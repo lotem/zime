@@ -1,0 +1,98 @@
+﻿#--------------------------------------------------------------
+# config/2.txt
+# 
+# 宫保拼音鍵位佈局  二式
+# 
+# 西元2007年 中州式恕堂 弓辰謹訂
+#--------------------------------------------------------------
+
+#@title 佈局二(&2)
+#@enhanced_bksp on
+#@repeat on
+
+# Up Down Left Right Home End PgUp PgDn Bksp Del Ins
+IKJLUOYHNMP
+
+VCXZREWQFDSAGTB_HYNJUMKI<LO>;P/'
+BPMFDTNLZCSRGK%H><~IUVAOE&WY;!/'
+
+#@modif
+%	U
+^H$	_
+
+^!$	ER
+
+^;$	\xBA
+^<$	\xBC
+^>$	\xBE
+^/$	\xBF
+
+!$	$1;
+/$	$1;
+
+[&WY];	NG
+([AOEIUV]);	$1NG
+;	ENG
+^NG$	ENG
+
+([AO])&	AN
+([EIUV])&	$1N
+&	EN
+([IV])EN	$1AN
+(U?)ON$	$1AN
+
+[AO]W	AO
+UAO$	UAN
+W	OU
+UOU$	UN
+[AE]Y	AI
+Y	EI
+V([AE])I	U$1I
+^(.+)IOU	$1IU
+^(.+)UEI	$1UI
+VA$	UA
+
+GH	K
+DH	T
+BH	P
+
+^G([IV])	J$1
+^K([IV])	Q$1
+^H([IV])	X$1
+^Z([IV])	J$1
+^C([IV])	Q$1
+^S([IV])	X$1
+
+^([ZCS]H)I(.+)$	$1$2
+
+UONG	UANG
+UNG	ONG
+VNG	IONG
+^ONG$	WENG
+^UN$	WEN
+^I([AOE])	Y$1
+^I	YI
+^U([AOE])	W$1
+^U	WU
+^V	YU
+([JQX])V	$1U
+
+RH	R
+^([ZCSR])$	$1I
+^([ZCS])H$	$1HI
+
+^([BPF7])$	$1U
+^([MDTNLGKH])$	$1E
+
+^([FW])I$	$1EI
+^([NL])UI$	$1EI
+([GKH])O$	$1E
+
+# 輸入音序
+^([BPMFVDTNLGKHJQXZCSRYW]+).*'$	$1
+^'$	\xDE
+
+([A-Z])$	$1\xDE
+#([A-Z])$	$1_
+
+#@end

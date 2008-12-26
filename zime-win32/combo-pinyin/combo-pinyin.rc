@@ -1,0 +1,196 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(中华人民共和国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ZH                  ICON                    "zh.ico"
+IDI_ALPHA               ICON                    "alpha.ico"
+IDI_COMBO_PINYIN        ICON                    "combo-pinyin.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDC_COMBO_PINYIN MENU 
+BEGIN
+    POPUP "檔案(&F)"
+    BEGIN
+        MENUITEM "退出(&X)",                      IDM_EXIT
+    END
+    POPUP "幫助(&H)"
+    BEGIN
+        MENUITEM "關於(&A) ...",                  IDM_ABOUT
+    END
+END
+
+IDR_POPUP_MENU MENU 
+BEGIN
+    POPUP "POPUP"
+    BEGIN
+        MENUITEM "中西文切換(&T)",                   IDM_TOGGLE
+        POPUP "選擇佈局(&L)"
+        BEGIN
+            MENUITEM "默認(&A)",                      IDM_LAYOUT
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "重新載入(&R)",                    IDM_RELOAD
+        MENUITEM "關於(&A) ...",                  IDM_ABOUT
+        MENUITEM "退出(&X)",                      IDM_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_SKENOTYPE ACCELERATORS 
+BEGIN
+    "?",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 22, 17, 297, 247
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_CAPTION | WS_SYSMENU
+CAPTION "關於"
+FONT 9, "宋体", 400, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "確定",IDOK,126,224,44,16,WS_GROUP
+    LTEXT           "宫保拼音  1.2\n中州式恕堂製  2008\n\n本程序為自由軟件，以GNU GPL授權發佈。\n項目主頁\thttp://zime.googlecode.com\n聯繫作者請寄\tcontralisk@gmail.com",IDC_STATIC,13,11,202,52,0,WS_EX_TRANSPARENT
+    LTEXT           "Combo Pinyin 1.2 \nconverts combinations of keystrokes into Chinese romanization.\n\nCopyright (C) 2008",IDC_STATIC,13,70,284,35,0,WS_EX_TRANSPARENT
+    LTEXT           "This program is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.",IDC_STATIC,13,112,284,36,0,WS_EX_TRANSPARENT
+    LTEXT           "This program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.",IDC_STATIC,13,155,284,35,0,WS_EX_TRANSPARENT
+    LTEXT           "You should have received a copy of the GNU General Public License\nalong with this program.  If not, see <http://www.gnu.org/licenses/>.\n",IDC_STATIC,13,197,284,20,0,WS_EX_TRANSPARENT
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,2
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "FileDescription", "宫保拼音"
+            VALUE "FileVersion", "1, 0, 0, 2"
+            VALUE "InternalName", "combo-pinyin"
+            VALUE "LegalCopyright", "中州式恕堂製 2008"
+            VALUE "OriginalFilename", "combo-pinyin.exe"
+            VALUE "ProductName", "宫保拼音"
+            VALUE "ProductVersion", "1, 0, 0, 2"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "宫保拼音"
+    IDS_LAYOUT_CHANGES      "已選用佈局  "
+    IDS_ZH                  "中文"
+    IDS_ALPHA               "西文"
+    IDC_COMBO_PINYIN        "COMBO_PINYIN"
+END
+
+#endif    // 中文(中华人民共和国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
