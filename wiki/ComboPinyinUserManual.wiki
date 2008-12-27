@@ -63,6 +63,8 @@ Google 拼音、搜狗拼音、微軟拼音、微軟新注音、紫光拼音。
 
 如有不明，請讀《佈局五詳解》。此訣即是對《詳解》的精練總結。
 
+http://lh3.ggpht.com/_Hc7OHLe4NUI/SUzJPx5DcvI/AAAAAAAAAuA/f13H6EcLq7g/s400/skenotype-layout-5.png
+
 子  請參看佈局五鍵位圖（`doc/combo-pinyin-layout-5.png`）。
 
 丑  下文中以「」引述圖中標示的拼碼，以大寫字母表示英文鍵盤的字母，以小寫字母表示拼音。
@@ -90,6 +92,8 @@ Google 拼音、搜狗拼音、微軟拼音、微軟新注音、紫光拼音。
 ==佈局五詳解==
 
 請參看佈局五鍵位圖（`doc/combo-pinyin-layout-5.png`）。
+
+http://lh3.ggpht.com/_Hc7OHLe4NUI/SUzJPx5DcvI/AAAAAAAAAuA/f13H6EcLq7g/s400/skenotype-layout-5.png
 
 圖中的拼碼排成三行十列又一條空格鍵。上中下三排拼碼對應英文鍵盤 Q、A、Z 起首的三行字母鍵。
 
@@ -184,6 +188,8 @@ zi、ci、si、zhi、chi、shi、ri 省略韻母 i。
 ===0. 節===
 
 請參看佈局四鍵位圖（`doc/combo-pinyin-layout-4.png`）。
+
+http://lh5.ggpht.com/_Hc7OHLe4NUI/SVYlpB9y77I/AAAAAAAAAuo/TSCIxkBWECI/s400/combo-pinyin-layout-4.png
 
 自然狀態下，兩手的食指放在鍵盤上的 F 與 J 二基準鍵上，對應圖中外框加粗的兩顆鍵。
 
