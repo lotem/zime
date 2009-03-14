@@ -1,0 +1,48 @@
+#summary 打字機 / Typewriter 說明書
+#labels Featured
+
+= 打字機 =
+
+中州式恕堂製
+
+----
+
+本程序供輸入法操作演示與鍵位練習之用。
+
+如有問題或建議，請致函： chen.sst@gmail.com
+
+或訪問項目主頁： http://code.google.com/p/zime
+
+== 介面 ==
+
+http://lh5.ggpht.com/_Hc7OHLe4NUI/SbqAOYoRl8I/AAAAAAAAAvg/UHdfkNzh77Y/s800/Screenshot-%E6%89%93%E5%AD%97%E6%A9%9F-%E6%B3%A8%E9%9F%B3.png
+
+「提示」框：用於查詢單字。輸入單字並按 Enter 鍵，鍵盤圖上會給出打法的提示。
+
+「佈局」選單：切換鍵盤佈局。
+
+「輸出字數」：限制頁面上顯示已輸入單字的字數，多出時捨棄最先輸出的文字。
+
+「鍵位圖」：標明當前佈局中各按鍵的含義。
+
+「輸入緩衝區」：鍵盤圖下方的光標處，顯示當前正在編輯的文字。
+
+== 用法 ==
+
+根據練習內容選用鍵盤佈局。目前支持英文鍵盤、宮保拼音、注音等。
+
+緩衝區光標閃動時，開始打字。圖中會以動畫顯示按鍵動作。
+
+輸入有錯誤，可用 Backspace 鍵刪除緩衝區的內容。
+
+單字編輯完成後，結果用綠色顯示在頁面底端。
+
+按 ESC 鍵，清除已輸入的文字。按 Enter 鍵，跳至提示查詢框。
+
+在提示框內輸入單字並按 Enter 鍵確認後，鍵位圖中會以醒目顏色標示出該單字的打法。目前僅支持宮保拼音鍵位提示。
+
+http://lh3.ggpht.com/_Hc7OHLe4NUI/Sbt8DzbI0yI/AAAAAAAAAvo/zhpzxwjInBU/s400/typewriter-combo-tip-1.png
+
+按照提示練習單字的打法。正確的按鍵和錯誤按鍵會在圖中標成不同顏色。若要重新練習該單字，按 ESC 鍵。
+
+http://lh4.ggpht.com/_Hc7OHLe4NUI/Sbt8EbCPUvI/AAAAAAAAAvw/BxoMSmt1Ekg/s400/typewriter-combo-tip-2.png
