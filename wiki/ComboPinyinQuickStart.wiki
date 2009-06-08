@@ -7,9 +7,9 @@
 
   # 下載 http://zime.googlecode.com/files/combo-pinyin-1.2.zip
     效果：得文件 combo-pinyin-1.2.zip
-  # 解包 combo-pinyin-1.2.zip 到某 X 盤*根目錄*
-    效果：得目錄 combo-pinyin
-  # 在目錄 combo-pinyin 下運行 combo-pinyin.exe
+  # 解包 combo-pinyin-1.2.zip 到某 X 盤 *根目錄*
+    效果：得目錄 X:\combo-pinyin
+  # 在目錄 X:\combo-pinyin 下運行 combo-pinyin.exe
     效果：通知區出現硃砂色「A」圖標，氣球提示已選用默認佈局
   # 打開一個編輯器窗口，敲 Ctrl-空格
     效果：圖標變為黑色的「中」，同時調出拼音輸入法（如果沒有請手動調出）
