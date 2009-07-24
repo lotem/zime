@@ -2,6 +2,7 @@ package cn.zzsst.client.engine;
 
 import java.util.ArrayList;
 
+import cn.zzsst.client.Context;
 import cn.zzsst.client.ZimeEngine;
 import cn.zzsst.client.ZimeModule;
 
@@ -15,13 +16,13 @@ public class LuomazyEngine extends ZimeEngine {
 
 	protected LuomazySchema schema;
 
-	protected String preedit;
+    protected Context context;
 
 	public LuomazyEngine(ZimeModule module) {
 		super(module);
 		schema = new LuomazySchema();
 		dict = schema.getDict();
-		preedit = "";
+        context = new Context();
 	}
 
 	@Override
@@ -33,6 +34,8 @@ public class LuomazyEngine extends ZimeEngine {
 	public boolean processKeyDownEvent(KeyDownEvent event) {
 		int c = event.getNativeKeyCode();
 		switch (c) {
+		case KeyCodes.KEY_TAB:
+		    return false;
 		case KeyCodes.KEY_BACKSPACE:
 			return false;
 		default:
@@ -46,6 +49,8 @@ public class LuomazyEngine extends ZimeEngine {
 	public boolean processKeyUpEvent(KeyUpEvent event) {
 		int c = event.getNativeKeyCode();
 		switch (c) {
+        case KeyCodes.KEY_TAB:
+            return false;
 		case KeyCodes.KEY_PAGEUP:
 			module.pageUp();
 			break;
@@ -56,19 +61,17 @@ public class LuomazyEngine extends ZimeEngine {
 			clear();
 			break;
 		case KeyCodes.KEY_ENTER:
-			module.commitString(preedit);
+			module.commitString(context.getPreedit());
 			clear();
 			break;
 		case KeyCodes.KEY_BACKSPACE:
-			preedit = module.getPreedit();
-			updatePreedit();
-			updateCandidates();
+		    updatePreedit(module.getPreedit());
+			update();
 			break;
 		default:
 			if (schema.isInput(c)) {
-				preedit = module.getPreedit();
-				updatePreedit();
-				updateCandidates();
+			    updatePreedit(module.getPreedit());
+				update();
 				break;
 			}
 			int selection = 0;
@@ -77,7 +80,8 @@ public class LuomazyEngine extends ZimeEngine {
 			String s = module.getCandidateList().getSelectedCandidate(selection);
 			if (s != null) {
 				module.commitString(s);
-				clear();
+				updatePreedit(context.rest());
+				update();
 			}
 		}
 
@@ -85,18 +89,45 @@ public class LuomazyEngine extends ZimeEngine {
 	}
 
 	protected void clear() {
-		preedit = "";
-		updatePreedit();
-		updateCandidates();
+		updatePreedit("");
+		update();
 	}
 
-	protected void updatePreedit() {
-		module.setPreedit(preedit);
+	protected void update() {
+	    int len = context.getLength();
+	    context.setCandidateLength(len);
+        ArrayList<String> result = null;
+        while (len > 0) {
+	        result = dict.lookup(context);
+	        if (result != null)
+	            break;
+	        --len;
+	        context.setCandidateLength(len);
+	    }
+	    
+        module.setPreedit(context.getPreedit());
+		module.updateCandidates(result);
 	}
 
-	protected void updateCandidates() {
-		ArrayList<String> list = dict.lookup(preedit);
-		module.updateCandidates(list);
-	}
+    protected void updatePreedit(String preedit) {
+        context.clear();
+        context.setPreedit(preedit);
+        
+        int start = 0, end;
+        String result = null;
+        while (start < preedit.length()) {
+            result = dict.parse(preedit.substring(start));
+            if (result == null) {
+                end = preedit.length();
+            } else {
+                end = start + result.length();
+            }
+            context.add(start, end);
+            start = end;
+            if (start < preedit.length() && preedit.charAt(start) == '\'') {
+                ++start;
+            }
+        }
+    }
 
 }
