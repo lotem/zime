@@ -3,6 +3,7 @@ package cn.zzsst.client.engine;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import cn.zzsst.client.Context;
 import cn.zzsst.client.ZimeDict;
 
 public class DummyDict implements ZimeDict {
@@ -30,14 +31,24 @@ public class DummyDict implements ZimeDict {
 	}
 	
 	@Override
-	public ArrayList<String> lookup(String preedit) {
-		String s = map.get(preedit);
+	public ArrayList<String> lookup(Context context) {
+	    if (context.getCandidateLength() != 1)
+	        return null;
+		String s = map.get(context.getWord(0));
 		if (s == null)
 			return null;
-		
 		ArrayList<String> list = new ArrayList<String>();
 		list.add(s);
 		return list;
 	}
 
+    public String parse(String preedit) {
+        for (int i = preedit.length(); i > 0; --i) {
+            final String s = preedit.substring(0, i);
+            if (map.containsKey(s))
+                return s;
+        }
+        return null;
+    }
+    
 }
