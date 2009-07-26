@@ -1,5 +1,4 @@
 #summary 打字機 / Typewriter 說明書
-#labels Featured
 
 = 打字機 =
 
