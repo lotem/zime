@@ -1,5 +1,4 @@
 #summary 宮保拼音用戶手冊
-#labels Featured
 
 = 宮保拼音用戶手冊 =
 
