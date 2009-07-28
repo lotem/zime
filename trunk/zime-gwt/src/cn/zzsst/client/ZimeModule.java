@@ -2,11 +2,8 @@ package cn.zzsst.client;
 
 import java.util.ArrayList;
 
-import com.google.gwt.event.dom.client.KeyDownHandler;
-import com.google.gwt.event.dom.client.KeyUpHandler;
 
-
-public interface ZimeModule extends KeyDownHandler, KeyUpHandler {
+public interface ZimeModule {
 
 	public String getPreedit();
 
@@ -25,5 +22,7 @@ public interface ZimeModule extends KeyDownHandler, KeyUpHandler {
 	public void hideCandidates();
 
 	public void updateCandidates(ArrayList<String> list);
+
+    public void submit();
 
 }
