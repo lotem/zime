@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import cn.zzsst.client.engine.RomanEngine;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
+import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
@@ -33,11 +36,38 @@ public class Zime implements EntryPoint, ZimeModule {
         panel.setWidth("100%");
         engineName = new Label("ZIME");
         preeditBox = new PreeditBox();
-        preeditBox.addKeyDownHandler(this);
-        preeditBox.addKeyUpHandler(this);
+        preeditBox.addKeyDownHandler(new KeyDownHandler() {
+
+            @Override
+            public void onKeyDown(KeyDownEvent event) {
+                if (engine.processKeyDownEvent(event))
+                    preeditBox.cancelKey();
+            }
+            
+        });
+        preeditBox.addKeyUpHandler(new KeyUpHandler() {
+
+            @Override
+            public void onKeyUp(KeyUpEvent event) {
+                if (engine.processKeyUpEvent(event))
+                    preeditBox.cancelKey();
+            }
+            
+        });
         editor = new TextArea();
         editor.setVisibleLines(5);
         editor.setWidth("100%");
+        editor.addKeyDownHandler(new KeyDownHandler() {
+
+            @Override
+            public void onKeyDown(KeyDownEvent event) {
+                if (event.getNativeKeyCode() == KeyCodes.KEY_TAB) {
+                    preeditBox.setFocus(true);
+                    editor.cancelKey();
+                }
+            }
+            
+        });
 
         panel.add(engineName);
         panel.add(preeditBox);
@@ -125,16 +155,10 @@ public class Zime implements EntryPoint, ZimeModule {
 		}
 	}
 
-	@Override
-	public void onKeyDown(KeyDownEvent event) {
-		if (engine.processKeyDownEvent(event))
-			preeditBox.cancelKey();
-	}
-
-	@Override
-	public void onKeyUp(KeyUpEvent event) {
-		if (engine.processKeyUpEvent(event))
-			preeditBox.cancelKey();
-	}
+    @Override
+    public void submit() {
+        editor.selectAll();
+        editor.setFocus(true);
+    }
 
 }

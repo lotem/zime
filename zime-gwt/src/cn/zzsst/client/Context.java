@@ -29,6 +29,10 @@ public class Context {
         return preedit.substring(startIndex.get(n), endIndex.get(n));
     }
     
+    public boolean isEmpty() {
+        return "".equals(preedit);
+    }
+    
     public String getPreedit() {
         return preedit;
     }
@@ -65,7 +69,7 @@ public class Context {
             preedit.substring(startIndex.get(candidateLength));
     }
 
-    public void add(int start, int end) {
+    public void addWordRange(int start, int end) {
         startIndex.add(start);
         endIndex.add(end);
         ++length;

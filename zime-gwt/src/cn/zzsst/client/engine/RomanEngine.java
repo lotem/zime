@@ -32,8 +32,8 @@ public class RomanEngine extends ZimeEngine {
 	public boolean processKeyDownEvent(KeyDownEvent event) {
 		int c = event.getNativeKeyCode();
 		switch (c) {
-		case KeyCodes.KEY_TAB:
-		    return false;
+        case KeyCodes.KEY_TAB:
+            return false;
 		case KeyCodes.KEY_BACKSPACE:
 			return false;
 		default:
@@ -59,7 +59,11 @@ public class RomanEngine extends ZimeEngine {
 			clear();
 			break;
 		case KeyCodes.KEY_ENTER:
-			module.commitString(context.getPreedit());
+			if (context.isEmpty()) {
+			    module.submit();
+			} else {
+			    module.commitString(context.getPreedit());
+			}
 			clear();
 			break;
 		case KeyCodes.KEY_BACKSPACE:
@@ -120,7 +124,7 @@ public class RomanEngine extends ZimeEngine {
             } else {
                 end = start + result.length();
             }
-            context.add(start, end);
+            context.addWordRange(start, end);
             start = end;
             if (start < preedit.length() && preedit.charAt(start) == '\'') {
                 ++start;
