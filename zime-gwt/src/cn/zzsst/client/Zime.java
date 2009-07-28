@@ -2,7 +2,7 @@ package cn.zzsst.client;
 
 import java.util.ArrayList;
 
-import cn.zzsst.client.engine.LuomazyEngine;
+import cn.zzsst.client.engine.RomanEngine;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.KeyDownEvent;
@@ -47,7 +47,7 @@ public class Zime implements EntryPoint, ZimeModule {
         preeditBox.setFocus(true);
         
         candidateList = new CandidateList();
-    	setEngine(new LuomazyEngine(this));
+    	setEngine(new RomanEngine(this));
     }
 
 	public void setEngine(ZimeEngine engine) {
@@ -79,7 +79,8 @@ public class Zime implements EntryPoint, ZimeModule {
 		String t = editor.getText();
 		int cursorPos = editor.getCursorPos();
 		int selLength = editor.getSelectionLength();
-		String result = t.substring(0, cursorPos) + s + t.substring(cursorPos + selLength);
+		String result = t.substring(0, cursorPos) + s + 
+		                t.substring(cursorPos + selLength);
 		editor.setText(result);
 		editor.setCursorPos(cursorPos + s.length());
 	}

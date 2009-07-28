@@ -10,24 +10,22 @@ import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 
-public class LuomazyEngine extends ZimeEngine {
+public class RomanEngine extends ZimeEngine {
 	
-	private static final String ENGINE_NAME = "中州羅馬字";
-
-	protected LuomazySchema schema;
+	protected RomanSchema schema;
 
     protected Context context;
 
-	public LuomazyEngine(ZimeModule module) {
+	public RomanEngine(ZimeModule module) {
 		super(module);
-		schema = new LuomazySchema();
+		schema = new RomanSchema();
 		dict = schema.getDict();
         context = new Context();
 	}
 
 	@Override
 	public String getName() {
-		return ENGINE_NAME;
+		return RomanSchema.ENGINE_NAME;
 	}
 
 	@Override

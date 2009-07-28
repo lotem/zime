@@ -30,7 +30,11 @@ public class DummyDict implements ZimeDict {
 		map.put("you", "右");
 	}
 	
-	@Override
+	public DummyDict(String name) {
+        // TODO
+    }
+
+    @Override
 	public ArrayList<String> lookup(Context context) {
 	    if (context.getCandidateLength() != 1)
 	        return null;
