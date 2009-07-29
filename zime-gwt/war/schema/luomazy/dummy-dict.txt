@@ -1,6 +1,7 @@
 a  啊
 an  俺
 bu  不
+bu-shy  不是
 di	的
 geo	個
 gue 國
@@ -28,6 +29,7 @@ sha	啥
 shei    誰
 shui    誰
 shy 是
+shy-bu-shy  是不是
 ta  他
 wo	我
 yi	一
