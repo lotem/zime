@@ -9,11 +9,6 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 
 public class RomanEngine extends ZimeEngine {
 	
-    public static final int KEYCODE_APOSTROPHE = 222;
-    public static final int KEYCODE_COMMA = 188;
-    public static final int KEYCODE_PERIOD = 190;
-    public static final int KEYCODE_SPACE = 32;
-
 	public RomanEngine(ZimeModule module, Schema schema) {
 		super(module, schema);
 	}
@@ -65,14 +60,27 @@ public class RomanEngine extends ZimeEngine {
 			break;
 		default:
             if (isPageUpKey(c)) {
-                if (candidateList.getCurrentPage() > 0)
+                if (candidateList.getCurrentPage() > 0) {
                     candidateList.pageUp();
+                }
+                else if (!context.getCache().isEmpty()) {
+                    ArrayList<String> candidates = context.fetchCache(1);
+                    candidateList.setCandidates(candidates);
+                }
                 module.updateCandidates(candidateList);
 		    }
 		    else if (isPageDownKey(c)) {
-		        if (candidateList.getCurrentPage() < candidateList.getLastPage())
+		        if (candidateList.getCurrentPage() < candidateList.getLastPage()) {
 		            candidateList.pageDown();
-	            module.updateCandidates(candidateList);
+		        }
+		        else {
+                    if (context.getCache().isEmpty()) {
+                        cacheCandidates();
+                    }
+                    ArrayList<String> candidates = context.fetchCache(-1);
+                    candidateList.setCandidates(candidates);
+		        }
+		        module.updateCandidates(candidateList);
 		    } 
 		    else if (isSelectionKey(c)) {
     			int selection = 0;
@@ -94,25 +102,46 @@ public class RomanEngine extends ZimeEngine {
 		return true;
 	}
 
-	protected void clear() {
+	private void cacheCandidates() {
+        ArrayList<ArrayList<String>> cache = context.getCache();
+        for (int i = 0; i < 4; ++i)
+            cache.add(null);
+        int candidateLength = context.getCandidateLength();
+        int len = candidateLength - 1;
+        cache.set(len, candidateList.getCandidates());
+        ArrayList<String> result = null;
+        while (len > 0) {
+            result = findCandidates(len);
+            if (result == null)
+                break;
+            --len;
+            cache.set(len, result);
+        }
+        context.setCandidateLength(candidateLength);
+    }
+
+    private ArrayList<String> findCandidates(int len) {
+        ArrayList<String> result = null;
+        while (len > 0) {
+            context.setCandidateLength(len);
+            result = dict.lookup(context);
+            if (result != null)
+                break;
+            --len;
+        }
+        if (result == null)
+            context.setCandidateLength(0);
+        return result;
+    }
+
+    protected void clear() {
 		updateContext("");
 		updateUI();
 	}
 
 	protected void updateUI() {
 	    int len = context.getLength();
-	    context.setCandidateLength(len);
-        ArrayList<String> result = null;
-        while (len > 0) {
-	        result = dict.lookup(context);
-	        if (result != null)
-	            break;
-	        --len;
-	        context.setCandidateLength(len);
-	    }
-        candidateList.clear();
-        if (result != null)
-            candidateList.addCandidates(result);
+	    candidateList.setCandidates(findCandidates(len));
         module.setPreedit(context.getPreedit());
         module.updateCandidates(candidateList);
 	}

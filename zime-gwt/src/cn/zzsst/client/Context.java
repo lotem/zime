@@ -8,6 +8,7 @@ public class Context {
     private int candidateLength;
     private ArrayList<Integer> startIndex;
     private ArrayList<Integer> endIndex;
+    private ArrayList<ArrayList<String>> cache;
     
     public Context() {
         preedit = "";
@@ -15,6 +16,7 @@ public class Context {
         candidateLength = 0;
         startIndex = new ArrayList<Integer>();
         endIndex = new ArrayList<Integer>();
+        cache = new ArrayList<ArrayList<String>>();
     }
 
     public void clear() {
@@ -23,6 +25,7 @@ public class Context {
         candidateLength = 0;
         startIndex.clear();
         endIndex.clear();
+        cache.clear();
     }
     
     public String getWord(int n) {
@@ -64,6 +67,10 @@ public class Context {
         this.endIndex = endIndex;
     }
 
+    public ArrayList<ArrayList<String>> getCache() {
+        return cache;
+    }
+
     public String rest() {
         return (candidateLength == length) ? "" : 
             preedit.substring(startIndex.get(candidateLength));
@@ -73,5 +80,21 @@ public class Context {
         startIndex.add(start);
         endIndex.add(end);
         ++length;
+    }
+
+    public ArrayList<String> fetchCache(int incr) {
+        ArrayList<String> result;
+        int k = candidateLength - 1;
+        do {
+            k += incr;
+            if (k < 0)
+                k += 4;
+            else if (k >= 4)
+                k -= 4;
+            result = cache.get(k);
+        } 
+        while (result == null && k != candidateLength - 1);
+        candidateLength = k + 1;
+        return result;
     }
 }

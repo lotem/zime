@@ -30,13 +30,12 @@ public class CandidateList {
 		return currentPage;
 	}
 
-	public void clear() {
-	    candidates.clear();
-	    currentPage = 0;    
-	}
-	
-	public void addCandidates(ArrayList<String> candidates) {
-		this.candidates.addAll(candidates);
+	public void setCandidates(ArrayList<String> candidates) {
+	    if (candidates == null)
+	        this.candidates = new ArrayList<String>();
+	    else
+	        this.candidates = candidates;
+        currentPage = 0;    
 	}
 
 	public ArrayList<String> getCandidates() {
