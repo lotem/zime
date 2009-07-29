@@ -38,5 +38,6 @@ ziou	就
 zho	這個
 zhung	中
 zhung	種
-zhung-gue	中國
+zhung-gue   中國
+zhung-gue-rhen   中國人
 zua	做啥

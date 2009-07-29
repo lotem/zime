@@ -106,18 +106,17 @@ public class RomanEngine extends ZimeEngine {
         ArrayList<ArrayList<String>> cache = context.getCache();
         for (int i = 0; i < 4; ++i)
             cache.add(null);
-        int candidateLength = context.getCandidateLength();
-        int len = candidateLength - 1;
-        cache.set(len, candidateList.getCandidates());
-        ArrayList<String> result = null;
-        while (len > 0) {
-            result = findCandidates(len);
-            if (result == null)
-                break;
-            --len;
+        int savedLength = context.getCandidateLength();
+        int len = savedLength - 1;
+        ArrayList<String> result = candidateList.getCandidates();
+        do {
             cache.set(len, result);
-        }
-        context.setCandidateLength(candidateLength);
+            if (len == 0)
+                break;
+            result = findCandidates(len);
+            len = context.getCandidateLength() - 1;
+        } while (result != null);
+        context.setCandidateLength(savedLength);
     }
 
     private ArrayList<String> findCandidates(int len) {
