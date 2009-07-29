@@ -7,6 +7,7 @@ import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
@@ -69,10 +70,10 @@ public class Zime implements EntryPoint, ZimeModule {
         panel.add(preeditBox);
         panel.add(editor);
         RootPanel.get().add(panel);
-        
         preeditBox.setFocus(true);
         
-    	setSchema(new Schema("luomazy"));
+        String codeName = Window.Location.getParameter("schema");
+    	setSchema(Schema.create(codeName));
     }
 
 	public void setSchema(Schema schema) {

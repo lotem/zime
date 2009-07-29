@@ -68,4 +68,8 @@ public class CandidateList {
     public boolean isEmpty() {
         return candidates.isEmpty();
     }
+
+    public int getLastPage() {
+        return candidates.isEmpty() ? 0 : (candidates.size() - 1) / pageSize;
+    }
 }
