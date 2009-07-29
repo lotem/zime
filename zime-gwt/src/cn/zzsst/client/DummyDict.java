@@ -18,7 +18,7 @@ public class DummyDict implements Dict {
     public DummyDict(String codeName) {
         
         index = new HashMap<String, ArrayList<String>>(); 
-        dictPath = "/schema/" + codeName + "/dict/dummy.txt";
+        dictPath = "../schema/" + codeName + "/dict/dummy.txt";
         
         RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, dictPath);
         try {
