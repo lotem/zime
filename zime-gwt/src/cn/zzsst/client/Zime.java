@@ -1,8 +1,5 @@
 package cn.zzsst.client;
 
-import java.util.ArrayList;
-
-import cn.zzsst.client.engine.RomanEngine;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.KeyCodes;
@@ -21,11 +18,10 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class Zime implements EntryPoint, ZimeModule {
 	
     private VerticalPanel panel;
-    private Label engineName;
+    private Label schemaName;
     private PreeditBox preeditBox;
     private TextArea editor;
     
-	private CandidateList candidateList;
     private ZimeEngine engine;
     
 	/**
@@ -34,7 +30,7 @@ public class Zime implements EntryPoint, ZimeModule {
     public void onModuleLoad() {
         panel = new VerticalPanel();
         panel.setWidth("100%");
-        engineName = new Label("ZIME");
+        schemaName = new Label("ZIME");
         preeditBox = new PreeditBox();
         preeditBox.addKeyDownHandler(new KeyDownHandler() {
 
@@ -69,29 +65,23 @@ public class Zime implements EntryPoint, ZimeModule {
             
         });
 
-        panel.add(engineName);
+        panel.add(schemaName);
         panel.add(preeditBox);
         panel.add(editor);
         RootPanel.get().add(panel);
         
         preeditBox.setFocus(true);
         
-        candidateList = new CandidateList();
-    	setEngine(new RomanEngine(this));
+    	setSchema(new Schema("luomazy"));
     }
 
-	public void setEngine(ZimeEngine engine) {
-		this.engine = engine;
-    	engineName.setText(engine.getName()); 
+	public void setSchema(Schema schema) {
+		this.engine = schema.createEngine(this);
+    	schemaName.setText(schema.getName()); 
 	}
 
 	public ZimeEngine getEngine() {
 		return engine;
-	}
-
-	@Override
-	public CandidateList getCandidateList() {
-		return this.candidateList;
 	}
 
 	@Override
@@ -104,32 +94,14 @@ public class Zime implements EntryPoint, ZimeModule {
 		preeditBox.setText(s);
 	}
 
-	@Override
-	public void commitString(String s) {
-		String t = editor.getText();
-		int cursorPos = editor.getCursorPos();
-		int selLength = editor.getSelectionLength();
-		String result = t.substring(0, cursorPos) + s + 
-		                t.substring(cursorPos + selLength);
-		editor.setText(result);
-		editor.setCursorPos(cursorPos + s.length());
-	}
-
-	@Override
-	public void pageDown() {
-		int page = candidateList.getCurrentPage() + 1;
-		int start = page * candidateList.getPageSize();
-		if (start < candidateList.getCandidates().size())
-			candidateList.setCurrentPage(page);
-		preeditBox.updateMenuItems(candidateList);
-	}
-
-	@Override
-	public void pageUp() {
-		int page = candidateList.getCurrentPage() - 1;
-		if (page >= 0)
-			candidateList.setCurrentPage(page);
-		preeditBox.updateMenuItems(candidateList);
+    @Override
+	public void updateCandidates(CandidateList candidateList) {
+        preeditBox.updateMenuItems(candidateList);
+        if (candidateList.isEmpty()) {
+            preeditBox.hideMenu();
+        } else {
+            preeditBox.showMenu();
+        }
 	}
 
 	@Override
@@ -142,18 +114,16 @@ public class Zime implements EntryPoint, ZimeModule {
 		preeditBox.hideMenu();
 	}
 	
-	@Override
-	public void updateCandidates(ArrayList<String> list) {
-		if (list == null || list.size() == 0) {
-			candidateList.getCandidates().clear();
-			hideCandidates();
-		}
-		else {
-			candidateList.setCandidates(list);
-			preeditBox.updateMenuItems(candidateList);
-			showCandidates();
-		}
-	}
+    @Override
+    public void commitString(String s) {
+        String t = editor.getText();
+        int cursorPos = editor.getCursorPos();
+        int selLength = editor.getSelectionLength();
+        String result = t.substring(0, cursorPos) + s + 
+                        t.substring(cursorPos + selLength);
+        editor.setText(result);
+        editor.setCursorPos(cursorPos + s.length());
+    }
 
     @Override
     public void submit() {

@@ -29,10 +29,14 @@ public class CandidateList {
 	public int getCurrentPage() {
 		return currentPage;
 	}
+
+	public void clear() {
+	    candidates.clear();
+	    currentPage = 0;    
+	}
 	
-	public void setCandidates(ArrayList<String> candidates) {
-		this.candidates = candidates;
-		currentPage = 0;
+	public void addCandidates(ArrayList<String> candidates) {
+		this.candidates.addAll(candidates);
 	}
 
 	public ArrayList<String> getCandidates() {
@@ -48,4 +52,20 @@ public class CandidateList {
 		return candidates.get(pos);
 	}
 
+    public void pageDown() {
+        int page = currentPage + 1;
+        int start = page * pageSize;
+        if (start < candidates.size())
+            currentPage = page;
+    }
+
+    public void pageUp() {
+        int page = currentPage - 1;
+        if (page >= 0)
+            currentPage = page;
+    }
+
+    public boolean isEmpty() {
+        return candidates.isEmpty();
+    }
 }

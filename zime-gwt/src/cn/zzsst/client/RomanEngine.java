@@ -1,10 +1,7 @@
-package cn.zzsst.client.engine;
+package cn.zzsst.client;
 
 import java.util.ArrayList;
 
-import cn.zzsst.client.Context;
-import cn.zzsst.client.ZimeEngine;
-import cn.zzsst.client.ZimeModule;
 
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
@@ -12,21 +9,19 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 
 public class RomanEngine extends ZimeEngine {
 	
-	protected RomanSchema schema;
+    private static final int KEYCODE_APOSTROPHE = 222;
 
-    protected Context context;
-
-	public RomanEngine(ZimeModule module) {
-		super(module);
-		schema = new RomanSchema();
-		dict = schema.getDict();
-        context = new Context();
+	public RomanEngine(ZimeModule module, Schema schema) {
+		super(module, schema);
 	}
 
-	@Override
-	public String getName() {
-		return RomanSchema.ENGINE_NAME;
-	}
+    public boolean isInput(int c) {
+        return c >= 'A' && c <= 'Z' || c == KEYCODE_APOSTROPHE;
+    }
+
+    public boolean isSelection(int c) {
+        return c >= '0' && c <= '9';
+    }
 
 	@Override
 	public boolean processKeyDownEvent(KeyDownEvent event) {
@@ -37,7 +32,7 @@ public class RomanEngine extends ZimeEngine {
 		case KeyCodes.KEY_BACKSPACE:
 			return false;
 		default:
-			if (schema.isInput(c))
+			if (isInput(c))
 				return false;
 		}
 		return true;
@@ -50,10 +45,10 @@ public class RomanEngine extends ZimeEngine {
         case KeyCodes.KEY_TAB:
             return false;
 		case KeyCodes.KEY_PAGEUP:
-			module.pageUp();
+			candidateList.pageUp();
 			break;
 		case KeyCodes.KEY_PAGEDOWN:
-			module.pageDown();
+		    candidateList.pageDown();
 			break;
 		case KeyCodes.KEY_ESCAPE:
 			clear();
@@ -71,15 +66,15 @@ public class RomanEngine extends ZimeEngine {
 			update();
 			break;
 		default:
-			if (schema.isInput(c)) {
+			if (isInput(c)) {
 			    updatePreedit(module.getPreedit());
 				update();
 				break;
 			}
 			int selection = 0;
-			if (schema.isSelection(c))
+			if (isSelection(c))
 				selection = c - '1';
-			String s = module.getCandidateList().getSelectedCandidate(selection);
+			String s = candidateList.getSelectedCandidate(selection);
 			if (s != null) {
 				module.commitString(s);
 				updatePreedit(context.rest());
@@ -106,9 +101,11 @@ public class RomanEngine extends ZimeEngine {
 	        --len;
 	        context.setCandidateLength(len);
 	    }
-	    
+        candidateList.clear();
+        if (result != null)
+            candidateList.addCandidates(result);
         module.setPreedit(context.getPreedit());
-		module.updateCandidates(result);
+        module.updateCandidates(candidateList);
 	}
 
     protected void updatePreedit(String preedit) {
