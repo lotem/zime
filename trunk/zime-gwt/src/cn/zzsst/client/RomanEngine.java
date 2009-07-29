@@ -62,13 +62,13 @@ public class RomanEngine extends ZimeEngine {
 			clear();
 			break;
 		case KeyCodes.KEY_BACKSPACE:
-		    updatePreedit(module.getPreedit());
-			update();
+		    updateContext(module.getPreedit());
+			updateUI();
 			break;
 		default:
 			if (isInput(c)) {
-			    updatePreedit(module.getPreedit());
-				update();
+			    updateContext(module.getPreedit());
+				updateUI();
 				break;
 			}
 			int selection = 0;
@@ -77,8 +77,8 @@ public class RomanEngine extends ZimeEngine {
 			String s = candidateList.getSelectedCandidate(selection);
 			if (s != null) {
 				module.commitString(s);
-				updatePreedit(context.rest());
-				update();
+				updateContext(context.rest());
+				updateUI();
 			}
 		}
 
@@ -86,11 +86,11 @@ public class RomanEngine extends ZimeEngine {
 	}
 
 	protected void clear() {
-		updatePreedit("");
-		update();
+		updateContext("");
+		updateUI();
 	}
 
-	protected void update() {
+	protected void updateUI() {
 	    int len = context.getLength();
 	    context.setCandidateLength(len);
         ArrayList<String> result = null;
@@ -108,7 +108,7 @@ public class RomanEngine extends ZimeEngine {
         module.updateCandidates(candidateList);
 	}
 
-    protected void updatePreedit(String preedit) {
+    protected void updateContext(String preedit) {
         context.clear();
         context.setPreedit(preedit);
         
