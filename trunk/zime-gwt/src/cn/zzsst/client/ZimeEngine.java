@@ -6,6 +6,11 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 
 public abstract class ZimeEngine {
 
+    public static final int KEYCODE_APOSTROPHE = 222;
+    public static final int KEYCODE_COMMA = 188;
+    public static final int KEYCODE_PERIOD = 190;
+    public static final int KEYCODE_SPACE = 32;
+
 	protected ZimeModule module;
 	
 	protected Schema schema;
