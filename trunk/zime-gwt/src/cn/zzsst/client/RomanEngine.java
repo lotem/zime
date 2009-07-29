@@ -9,33 +9,36 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 
 public class RomanEngine extends ZimeEngine {
 	
-    private static final int KEYCODE_APOSTROPHE = 222;
+    public static final int KEYCODE_APOSTROPHE = 222;
+    public static final int KEYCODE_COMMA = 188;
+    public static final int KEYCODE_PERIOD = 190;
+    public static final int KEYCODE_SPACE = 32;
 
 	public RomanEngine(ZimeModule module, Schema schema) {
 		super(module, schema);
 	}
 
-    public boolean isInput(int c) {
-        return c >= 'A' && c <= 'Z' || c == KEYCODE_APOSTROPHE;
-    }
-
-    public boolean isSelection(int c) {
-        return c >= '0' && c <= '9';
-    }
-
 	@Override
 	public boolean processKeyDownEvent(KeyDownEvent event) {
-		int c = event.getNativeKeyCode();
-		switch (c) {
-        case KeyCodes.KEY_TAB:
-            return false;
-		case KeyCodes.KEY_BACKSPACE:
-			return false;
-		default:
-			if (isInput(c))
-				return false;
-		}
-		return true;
+        int c = event.getNativeKeyCode();
+        switch (c) {
+        case KeyCodes.KEY_ESCAPE:
+            return true;
+        case KeyCodes.KEY_ENTER:
+            return true;
+        default:
+            if (isPageUpKey(c)) {
+                return true;
+            }
+            else if (isPageDownKey(c)) {
+                return true;
+            } 
+            else if (isSelectionKey(c)) {
+                return true;
+            }
+        }
+
+		return false;
 	}
 
 	@Override
@@ -44,19 +47,14 @@ public class RomanEngine extends ZimeEngine {
 		switch (c) {
         case KeyCodes.KEY_TAB:
             return false;
-		case KeyCodes.KEY_PAGEUP:
-			candidateList.pageUp();
-			break;
-		case KeyCodes.KEY_PAGEDOWN:
-		    candidateList.pageDown();
-			break;
 		case KeyCodes.KEY_ESCAPE:
 			clear();
 			break;
 		case KeyCodes.KEY_ENTER:
 			if (context.isEmpty()) {
 			    module.submit();
-			} else {
+			} 
+			else {
 			    module.commitString(context.getPreedit());
 			}
 			clear();
@@ -66,20 +64,31 @@ public class RomanEngine extends ZimeEngine {
 			updateUI();
 			break;
 		default:
-			if (isInput(c)) {
-			    updateContext(module.getPreedit());
-				updateUI();
-				break;
-			}
-			int selection = 0;
-			if (isSelection(c))
-				selection = c - '1';
-			String s = candidateList.getSelectedCandidate(selection);
-			if (s != null) {
-				module.commitString(s);
-				updateContext(context.rest());
-				updateUI();
-			}
+            if (isPageUpKey(c)) {
+                if (candidateList.getCurrentPage() > 0)
+                    candidateList.pageUp();
+                module.updateCandidates(candidateList);
+		    }
+		    else if (isPageDownKey(c)) {
+		        if (candidateList.getCurrentPage() < candidateList.getLastPage())
+		            candidateList.pageDown();
+	            module.updateCandidates(candidateList);
+		    } 
+		    else if (isSelectionKey(c)) {
+    			int selection = 0;
+    			if (c != KEYCODE_SPACE)
+    				selection = c - '1';
+    			String s = candidateList.getSelectedCandidate(selection);
+    			if (s != null) {
+    				module.commitString(s);
+    				updateContext(context.rest());
+    				updateUI();
+    			}
+		    }
+            else {
+                updateContext(module.getPreedit());
+                updateUI();
+            }
 		}
 
 		return true;
@@ -127,6 +136,21 @@ public class RomanEngine extends ZimeEngine {
                 ++start;
             }
         }
+    }
+
+    private boolean isPageUpKey(int c) {
+        return c == KeyCodes.KEY_PAGEUP || 
+               c == KEYCODE_COMMA && !candidateList.isEmpty();
+    }
+
+    private boolean isPageDownKey(int c) {
+        return c == KeyCodes.KEY_PAGEDOWN || 
+               c == KEYCODE_PERIOD && !candidateList.isEmpty();
+    }
+
+    private boolean isSelectionKey(int c) {
+        return (c >= '0' && c <= '9' || c == KEYCODE_SPACE) && 
+               !candidateList.isEmpty();
     }
 
 }
