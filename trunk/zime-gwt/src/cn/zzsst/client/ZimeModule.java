@@ -1,7 +1,5 @@
 package cn.zzsst.client;
 
-import java.util.ArrayList;
-
 
 public interface ZimeModule {
 
@@ -9,19 +7,13 @@ public interface ZimeModule {
 
 	public void setPreedit(String str);
 
-	public CandidateList getCandidateList();
-
-	public void commitString(String str);
-
-	public void pageDown();
-
-	public void pageUp();
+    void updateCandidates(CandidateList candidateList);
 
 	public void showCandidates();
 
 	public void hideCandidates();
 
-	public void updateCandidates(ArrayList<String> list);
+    public void commitString(String str);
 
     public void submit();
 

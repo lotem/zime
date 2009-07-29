@@ -1,12 +1,10 @@
-package cn.zzsst.client.engine;
+package cn.zzsst.client;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import cn.zzsst.client.Context;
-import cn.zzsst.client.ZimeDict;
 
-public class DummyDict implements ZimeDict {
+public class DummyDict implements Dict {
 
 	static protected HashMap<String, String> map;
 	
@@ -30,7 +28,7 @@ public class DummyDict implements ZimeDict {
 		map.put("you", "右");
 	}
 	
-	public DummyDict(String name) {
+	public DummyDict(String codeName) {
         // TODO
     }
 

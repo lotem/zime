@@ -2,6 +2,7 @@ package cn.zzsst.client;
 
 import java.util.ArrayList;
 
+
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.DecoratedPopupPanel;
@@ -24,16 +25,16 @@ public class PreeditBox extends TextBox {
     }
     
 	public void updateMenuItems(CandidateList candidateList) {
-		ArrayList<String> candidates = candidateList.getCandidates();
+		ArrayList<String> cand = candidateList.getCandidates();
 		final Command cmd = new Command() {
 			@Override
 			public void execute() {}
 		};
 		menu.clearItems();
 		int start = candidateList.getCurrentPage() * candidateList.getPageSize();
-		int count = Math.min(candidateList.getPageSize(), candidates.size() - start);
+		int count = Math.min(candidateList.getPageSize(), cand.size() - start);
 		for (int i = 0; i < count; ++i) {
-			String disp = "<b>" + (i + 1) + ".</b>&nbsp;" + candidates.get(start + i);
+			String disp = "<b>" + (i + 1) + ".</b>&nbsp;" + cand.get(start + i);
 			final MenuItem item = new MenuItem(disp, true, cmd);
 			DOM.setStyleAttribute(item.getElement(), "whiteSpace", "nowrap");
 			menu.addItem(item);
