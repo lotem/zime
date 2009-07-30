@@ -15,8 +15,6 @@ public abstract class ZimeEngine {
 	
 	protected Schema schema;
 
-    protected Dict dict;
-
     protected Context context;
 
     protected CandidateList candidateList;
@@ -24,8 +22,7 @@ public abstract class ZimeEngine {
 	public ZimeEngine(ZimeModule module, Schema schema) {
 		this.module = module;
 		this.schema = schema;
-		this.dict = schema.getDict();
-		this.context = new Context();
+		this.context = new Context(schema);
 		this.candidateList = new CandidateList();
 	}
 	

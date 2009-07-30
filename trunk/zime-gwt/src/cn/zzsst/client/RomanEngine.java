@@ -9,7 +9,16 @@ import com.google.gwt.event.dom.client.KeyUpEvent;
 
 public class RomanEngine extends ZimeEngine {
 	
-	public RomanEngine(ZimeModule module, Schema schema) {
+	private Callback callback = new Callback() {
+	    public void onReady(ArrayList<String> result) {
+	        System.err.println("RomanEngine.callback.onReady()");
+	        System.err.println("    " + result);
+	        candidateList.setCandidates(result);
+	        module.updateCandidates(candidateList);
+	    }
+	};
+
+    public RomanEngine(ZimeModule module, Schema schema) {
 		super(module, schema);
 	}
 
@@ -55,15 +64,14 @@ public class RomanEngine extends ZimeEngine {
 			clear();
 			break;
 		case KeyCodes.KEY_BACKSPACE:
-		    updateContext(module.getPreedit());
-			updateUI();
+			update(module.getPreedit());
 			break;
 		default:
             if (isPageUpKey(c)) {
                 if (candidateList.getCurrentPage() > 0) {
                     candidateList.pageUp();
                 }
-                else if (!context.getCache().isEmpty()) {
+                else {
                     ArrayList<String> candidates = context.fetchCache(1);
                     candidateList.setCandidates(candidates);
                 }
@@ -74,9 +82,6 @@ public class RomanEngine extends ZimeEngine {
 		            candidateList.pageDown();
 		        }
 		        else {
-                    if (context.getCache().isEmpty()) {
-                        cacheCandidates();
-                    }
                     ArrayList<String> candidates = context.fetchCache(-1);
                     candidateList.setCandidates(candidates);
 		        }
@@ -89,82 +94,31 @@ public class RomanEngine extends ZimeEngine {
     			String s = candidateList.getSelectedCandidate(selection);
     			if (s != null) {
     				module.commitString(s);
-    				updateContext(context.rest());
-    				updateUI();
+    				String p = context.rest();
+    				System.err.println("    rest: " + p);
+                    module.setPreedit(p);
+    				update(p);
     			}
 		    }
             else {
-                updateContext(module.getPreedit());
-                updateUI();
+                update(module.getPreedit());
             }
 		}
 
 		return true;
 	}
 
-	private void cacheCandidates() {
-        ArrayList<ArrayList<String>> cache = context.getCache();
-        for (int i = 0; i < 4; ++i)
-            cache.add(null);
-        int savedLength = context.getCandidateLength();
-        int len = savedLength - 1;
-        ArrayList<String> result = candidateList.getCandidates();
-        do {
-            cache.set(len, result);
-            if (len == 0)
-                break;
-            result = findCandidates(len);
-            len = context.getCandidateLength() - 1;
-        } while (result != null);
-        context.setCandidateLength(savedLength);
-    }
-
-    private ArrayList<String> findCandidates(int len) {
-        ArrayList<String> result = null;
-        while (len > 0) {
-            context.setCandidateLength(len);
-            result = dict.lookup(context);
-            if (result != null)
-                break;
-            --len;
-        }
-        if (result == null)
-            context.setCandidateLength(0);
-        return result;
-    }
-
-    protected void clear() {
-		updateContext("");
-		updateUI();
-	}
-
-	protected void updateUI() {
-	    int len = context.getLength();
-	    candidateList.setCandidates(findCandidates(len));
-        module.setPreedit(context.getPreedit());
+   protected void clear() {
+        module.setPreedit("");
+		context.clear();
+        candidateList.setCandidates(null);
         module.updateCandidates(candidateList);
 	}
 
-    protected void updateContext(String preedit) {
-        context.clear();
-        context.setPreedit(preedit);
-        
-        int start = 0, end;
-        String result = null;
-        while (start < preedit.length()) {
-            result = dict.parse(preedit.substring(start));
-            if (result == null) {
-                end = preedit.length();
-            } else {
-                end = start + result.length();
-            }
-            context.addWordRange(start, end);
-            start = end;
-            if (start < preedit.length() && preedit.charAt(start) == '\'') {
-                ++start;
-            }
-        }
-    }
+	protected void update(String p) {
+	    System.err.println("RomanEngine.update(): " + p);
+	    context.update(p, callback);
+	}
 
     private boolean isPageUpKey(int c) {
         return c == KeyCodes.KEY_PAGEUP || 

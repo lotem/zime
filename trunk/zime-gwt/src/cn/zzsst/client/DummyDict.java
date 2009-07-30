@@ -63,23 +63,14 @@ public class DummyDict implements Dict {
     }
 
     @Override
-	public ArrayList<String> lookup(Context context) {
-	    StringBuilder sb = new StringBuilder();
-	    for (int i = 0; i < context.getCandidateLength(); ++i) {
-            if (i > 0)
-                sb.append('-');
-	        sb.append(context.getWord(i));
-	    }
-		return index.get(sb.toString());
+    public void lookup(String key, Callback callback) {
+        System.err.println("DummyDict.lookup(): " + key);
+		callback.onReady(index.get(key));
 	}
 
-    public String parse(String preedit) {
-        for (int i = preedit.length(); i > 0; --i) {
-            final String s = preedit.substring(0, i);
-            if (index.containsKey(s))
-                return s;
-        }
-        return null;
+    @Override
+    public boolean exist(String key) {
+        return index.containsKey(key);
     }
-    
+
 }
