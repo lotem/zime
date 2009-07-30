@@ -22,12 +22,16 @@ public class StaticFileDict implements Dict {
             public void onReady(String text) {
                 populate(index, text);
             }
+            @Override
+            public void onFailure() {
+            }
         });
     }
 
     @Override
     public void lookup(String key, Callback callback) {
         System.err.println("StaticFile.lookup(): " + key);
+        // check phrase index
         if (!index.contains(key)) {
             callback.onReady(null);
             return;
@@ -38,6 +42,10 @@ public class StaticFileDict implements Dict {
                 ArrayList<String> result = new ArrayList<String>();
                 populate(result, text);
                 callback.onReady(result);                
+            }
+            @Override
+            public void onFailure() {
+                callback.onReady(null);
             }
         });
 	}

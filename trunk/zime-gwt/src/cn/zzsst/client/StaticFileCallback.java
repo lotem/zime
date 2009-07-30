@@ -8,14 +8,19 @@ public abstract class StaticFileCallback implements RequestCallback {
 
     @Override
     public void onError(Request request, Throwable e) {
-        e.printStackTrace();
+        onFailure();
     }
 
     @Override
     public void onResponseReceived(Request request, Response response) {
-        onReady(response.getText());
+        if (response.getStatusCode() == Response.SC_OK) {
+            onReady(response.getText());
+        } else {
+            onFailure();
+        }
     }
 
     public abstract void onReady(String text);
+    public abstract void onFailure();
     
 }
