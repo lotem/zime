@@ -8,6 +8,7 @@ import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.Timer;
 
 
 public class DummyDict implements Dict {
@@ -20,24 +21,27 @@ public class DummyDict implements Dict {
         index = new HashMap<String, ArrayList<String>>(); 
         dictPath = "../schema/" + codeName + "/dummy-dict.txt";
         
-        RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, dictPath);
+        RequestCallback callback = new RequestCallback() {
+
+            @Override
+            public void onError(Request request, Throwable e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponseReceived(Request request, Response response) {
+                loadIndex(response.getText());
+            }
+            
+        };
+        fetchStaticFile(dictPath, callback);
+    }
+
+    private void fetchStaticFile(String filePath, RequestCallback callback) {
+        RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, filePath);
         try {
-            requestBuilder.sendRequest(null, new RequestCallback() {
-
-                @Override
-                public void onError(Request request, Throwable exception) {
-                    // TODO Auto-generated method stub
-                    
-                }
-
-                @Override
-                public void onResponseReceived(Request request, Response response) {
-                    loadIndex(response.getText());
-                }
-                
-            });
+            requestBuilder.sendRequest(null, callback);
         } catch (RequestException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -58,14 +62,23 @@ public class DummyDict implements Dict {
                 list.add(r[1]);
             }
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
     }
 
     @Override
     public void lookup(String key, Callback callback) {
         System.err.println("DummyDict.lookup(): " + key);
-		callback.onReady(index.get(key));
+        // TODO
+        Timer t = new DummyDictTimer(key, callback) {
+
+            @Override
+            public void run() {
+                callback.onReady(index.get(key));
+            }
+            
+        };
+        t.schedule(2000);
 	}
 
     @Override

@@ -18,7 +18,7 @@ public class Schema {
 
     public Schema(String codeName) {
         this.codeName = codeName;
-        dict = new DummyDict(codeName);
+        dict = new StaticFileDict(codeName);
     }
 
     public String getCodeName() {

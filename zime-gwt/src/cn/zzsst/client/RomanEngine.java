@@ -11,7 +11,7 @@ public class RomanEngine extends ZimeEngine {
 	
 	private Callback callback = new Callback() {
 	    public void onReady(ArrayList<String> result) {
-	        System.err.println("RomanEngine.callback.onReady()");
+	        System.err.println("RomanEngine.callback.onReady():");
 	        System.err.println("    " + result);
 	        candidateList.setCandidates(result);
 	        module.updateCandidates(candidateList);
