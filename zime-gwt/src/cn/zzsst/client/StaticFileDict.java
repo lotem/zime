@@ -27,6 +27,27 @@ public class StaticFileDict implements Dict {
             }
         });
     }
+    
+    private class StaticFileDictLookupCallback extends StaticFileCallback {
+        protected String key;
+        protected Callback callback;
+
+        public StaticFileDictLookupCallback(String key, Callback callback) {
+            this.key = key;
+            this.callback = callback;
+        }
+
+        @Override
+        public void onReady(String text) {
+            ArrayList<String> result = new ArrayList<String>();
+            populate(result, text);
+            callback.onReady(result);                
+        }
+        @Override
+        public void onFailure() {
+            callback.onReady(null);
+        }
+    }
 
     @Override
     public void lookup(String key, Callback callback) {
@@ -36,18 +57,8 @@ public class StaticFileDict implements Dict {
             callback.onReady(null);
             return;
         }
-        fetchStaticFile(getDictFileName(key), new StaticFileDictLookupCallback(key, callback) {
-            @Override
-            public void onReady(String text) {
-                ArrayList<String> result = new ArrayList<String>();
-                populate(result, text);
-                callback.onReady(result);                
-            }
-            @Override
-            public void onFailure() {
-                callback.onReady(null);
-            }
-        });
+        fetchStaticFile(getDictFileName(key), 
+                new StaticFileDictLookupCallback(key, callback));
 	}
 
     private String getDictFileName(String key) {
@@ -72,9 +83,6 @@ public class StaticFileDict implements Dict {
         try {
             String[] lines = text.split("\n");
             for (String x : lines) {
-                if ("".equals(x)) {
-                    continue;
-                }
                 cont.add(x);
             }
         } catch (Exception e) {

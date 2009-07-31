@@ -48,7 +48,7 @@ public class DummyDict implements Dict {
 
     protected void loadIndex(String text) {
         try {
-            String[] lines = text.trim().split("\n");
+            String[] lines = text.split("\n");
             for (String line : lines) {
                 String[] r = line.split("[ \\t]+", 2);
                 final String key = r[0]; 
@@ -66,18 +66,27 @@ public class DummyDict implements Dict {
         }
     }
 
+    private class DummyDictTimer extends Timer {
+
+        protected String key;
+        protected Callback callback;
+
+        public DummyDictTimer(String key, Callback callback) {
+            this.key = key;
+            this.callback = callback;
+        }
+
+        @Override
+        public void run() {
+            callback.onReady(index.get(key));
+        }
+    }
+    
     @Override
     public void lookup(String key, Callback callback) {
         System.err.println("DummyDict.lookup(): " + key);
         // TODO
-        Timer t = new DummyDictTimer(key, callback) {
-
-            @Override
-            public void run() {
-                callback.onReady(index.get(key));
-            }
-            
-        };
+        Timer t = new DummyDictTimer(key, callback);
         t.schedule(2000);
 	}
 
