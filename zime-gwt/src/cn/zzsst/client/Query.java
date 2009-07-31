@@ -68,6 +68,10 @@ public class Query {
         return endPosition;
     }
 
+    public void setEndPosition(int pos) {
+        this.endPosition = pos;
+    }
+
     public boolean isPending() {
         return status == PENDING;
     }

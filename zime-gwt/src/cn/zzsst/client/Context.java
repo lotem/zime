@@ -62,14 +62,16 @@ public class Context {
                 sb.append('-');
             sb.append(word);
             Query query = new Query(i, start, sb.toString());
-            if (!query.equals(queries.get(i))) {
+            Query oldQuery = queries.get(i);
+            if (query.equals(oldQuery)) {
+                System.err.println("    existing: " + oldQuery);
+                oldQuery.setEndPosition(start);
+            }
+            else {
                 System.err.println("    new: " + query);
                 queries.set(i, query);
                 queryIndex = i;
                 doQuery(query, callback);
-            }
-            else {
-                System.err.println("    existing: " + queries.get(i));
             }
         }
         for (int j = i; j < maxQueryWords; ++j) {
