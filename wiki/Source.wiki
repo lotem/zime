@@ -17,4 +17,4 @@ svn checkout http://zime.googlecode.com/svn/trunk/zine-web
 svn checkout http://zime.googlecode.com/svn/trunk/zine-win32
 }}}
 
-or go to: [http://code.google.com/p/zime/source/checkout Source Checkout Page]
+You may also visit: [http://code.google.com/p/zime/source/checkout Source Checkout Page]
