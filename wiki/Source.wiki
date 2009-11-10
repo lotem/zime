@@ -2,6 +2,8 @@
 
 = Get Source =
 
+You may also visit [http://code.google.com/p/zime/source/checkout Source Checkout Page] for parts of the source hosted on Google Code.
+
 == ibus-zime ==
 {{{
 git clone git://github.com/lotem/ibus-zime.git
@@ -16,5 +18,3 @@ svn checkout http://zime.googlecode.com/svn/trunk/zine-web
 {{{
 svn checkout http://zime.googlecode.com/svn/trunk/zine-win32
 }}}
-
-You may also visit: [http://code.google.com/p/zime/source/checkout Source Checkout Page]
