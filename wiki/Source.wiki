@@ -1,8 +1,9 @@
 #summary access to source code
 
-= Get Source =
+= Get the Source =
 
-You may also visit [http://code.google.com/p/zime/source/checkout Source Checkout Page] for parts of the source hosted on Google Code.
+Use the given shell commands to fetch the source code of ZIME projects.
+You may also visit [http://code.google.com/p/zime/source/browse/ Source Browser] for parts of the source hosted on Google Code.
 
 == ibus-zime ==
 {{{
