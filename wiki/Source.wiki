@@ -1,0 +1,20 @@
+#summary access to source code
+
+= Get Source =
+
+== ibus-zime ==
+{{{
+git clone git://github.com/lotem/ibus-zime.git
+}}}
+
+== zime-web ==
+{{{
+svn checkout http://zime.googlecode.com/svn/trunk/zine-web
+}}}
+
+== Combo Pinyin for Windows ==
+{{{
+svn checkout http://zime.googlecode.com/svn/trunk/zine-win32
+}}}
+
+or go to: [http://code.google.com/p/zime/source/checkout Source Checkout Page]
