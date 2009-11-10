@@ -12,10 +12,10 @@ git clone git://github.com/lotem/ibus-zime.git
 
 == zime-web ==
 {{{
-svn checkout http://zime.googlecode.com/svn/trunk/zine-web
+svn checkout http://zime.googlecode.com/svn/trunk/zime-web
 }}}
 
 == Combo Pinyin for Windows ==
 {{{
-svn checkout http://zime.googlecode.com/svn/trunk/zine-win32
+svn checkout http://zime.googlecode.com/svn/trunk/zime-win32
 }}}
