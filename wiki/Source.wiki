@@ -1,10 +1,10 @@
-#summary access to source code
+#summary access to the source code
 
 = Get the Source =
 
 Use the given shell commands to fetch the source code of ZIME projects.
 
-You may also visit [http://code.google.com/p/zime/source/browse/ Source Browser] for parts of the source hosted on Google Code.
+You may also visit [http://code.google.com/p/zime/source/browse/ Source Browser] for the parts of source code hosted on Google Code.
 
 == ibus-zime ==
 {{{
