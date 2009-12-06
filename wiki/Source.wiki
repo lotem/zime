@@ -4,14 +4,13 @@
 
 Use the given shell commands to fetch the source code of ZIME projects.
 
-You may also visit [http://code.google.com/p/zime/source/browse/ Source Browser] for the parts of source code hosted on Google Code.
-
 == ibus-zime ==
+Use the following command to checkout the source, or access our [url=http://github.com/lotem/ibus-zime web interface].
 {{{
 git clone git://github.com/lotem/ibus-zime.git
 }}}
 
-== zime-web ==
+== zime-web 0.x ==
 {{{
 svn checkout http://zime.googlecode.com/svn/trunk/zime-web
 }}}
@@ -20,3 +19,5 @@ svn checkout http://zime.googlecode.com/svn/trunk/zime-web
 {{{
 svn checkout http://zime.googlecode.com/svn/trunk/zime-win32
 }}}
+
+You may also visit [http://code.google.com/p/zime/source/browse/ Source Browser] for the parts of source code hosted on Google Code.
