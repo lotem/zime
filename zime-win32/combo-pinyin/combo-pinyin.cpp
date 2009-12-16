@@ -43,7 +43,7 @@ void InitializeModule()
 	pModule->Initialize();
 }
 
-void EventHander(UINT event_id, UINT param)
+void EventHandler(UINT event_id, UINT param)
 {
 	bool enabled;
 	LPCTSTR text = NULL;
@@ -225,7 +225,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 		return FALSE;
 	}
 
-	pModule = new ComboPinyinModule(hInstance, hWnd, &EventHander);
+	pModule = new ComboPinyinModule(hInstance, hWnd, &EventHandler);
 	if (!pModule)
 	{
 		TrayIcon.RemoveIcon();
