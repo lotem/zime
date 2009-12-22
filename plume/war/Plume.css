@@ -1,0 +1,5 @@
+/** Add css rules here for your application. */
+
+.gwt-ListBox, .gwt-TextBox, .gwt-TextArea, .gwt-MenuItem {
+    font-size: 20pt;
+}
