@@ -19,7 +19,10 @@ var JSONFileBackend = Class.extend(Backend, {
     },
 
     // TODO
-    loadConfig: function (schemaName, callback) {},
+    loadConfig: function (schemaName, callback) {
+        callback(null);
+    },
+
     query: function (input, callback) {}
 });
 
