@@ -10,8 +10,15 @@ var RomanParser = Class.extend(Parser, {
 Parser.register("roman", RomanParser);
 
 var JSONFileBackend = Class.extend(Backend, {
+
+    DATA_DIR: "data/",
+    SCHEMA_LIST: "SchemaList.json",
+
+    loadSchemaList: function (callback) {
+        $.getJSON(this.DATA_DIR + this.SCHEMA_LIST, null, callback);
+    },
+
     // TODO
-    loadSchemaList: function (callback) {},
     loadConfig: function (schemaName, callback) {},
     query: function (input, callback) {}
 });
