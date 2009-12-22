@@ -39,7 +39,7 @@ else:
     keyword_file = args[1] if len (args) > 1 else None
     phrase_file = args[2] if len (args) > 2 else None
 
-DEST_DIR = os.path.join ('..', 'war', 'data')
+DEST_DIR = os.path.join ('..', 'war', 'script', 'data')
 LIMIT = 512
 
 schema = None
@@ -88,10 +88,6 @@ if schema_file:
                 fuzzy_rules.append (compile_repl_pattern (value.split ()))
         config.append ((path, value))
     f.close ()
-
-output_schema_file = os.path.join (DEST_DIR, '%sSchema.json' % schema)
-data = {'schema': schema, 'displayName': schema_name}
-json.dump (data, open (output_schema_file, 'wb'))
 
 if not prefix:
     print >> sys.stderr, 'no dict prefix specified in schema file.'
@@ -179,7 +175,19 @@ output_config_file = os.path.join (DEST_DIR, '%sConfig.json' % schema)
 data = {'fuzzyMap': fuzzy_map, 'keywords': keywords, 'config': config}
 json.dump (data, open (output_config_file, 'wb'))
 
+def update_schema_list ():
+    global schema, schema_name
+    schema_list_file = os.path.join (DEST_DIR, 'SchemaList.json')
+    if os.path.exists (schema_list_file):
+        data = filter (lambda x: x['schema'] != schema, json.load (open (schema_list_file, 'rb')))
+    else:
+        data = []
+    s = {'schema': schema, 'displayName': schema_name}
+    data.append (s)
+    json.dump (data, open (schema_list_file, 'wb'))
+
 if options.keep:
+    update_schema_list ()
     print >> sys.stderr, 'done.'
     exit ()
 
@@ -302,5 +310,6 @@ data = {'freqTotal': freq_total, 'indexingLevel': options.level, 'indices': indi
 output_dict_file = os.path.join (DEST_DIR, '%s.json' % prefix)
 json.dump (data, open (output_dict_file, 'wb'))
 
+update_schema_list ()
 print >> sys.stderr, 'done.'
 
