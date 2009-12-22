@@ -39,9 +39,6 @@ Logger.error = function (text) {
         console.error("[ERROR] " + text);
 };
 
-var Schema = Class({
-});
-
 // abstarct class
 var Parser = Class({
     // clear: function () {},
@@ -100,11 +97,23 @@ Backend.create = function () {
     return new Backend._impl();
 }
 
+var Schema = Class({
+    // TODO
+});
+
 var Context = Class({
     // TODO
 });
 
 var Engine = Class({
+
     // TODO
+    initialize: function (schema, frontend, backend) {
+        Logger.debug("Engine.initialize");
+        this._schema = schema;
+        this._frontend = frontend;
+        this._backend = backend;
+    }
+
 });
 
