@@ -13,16 +13,17 @@ var JSONFileBackend = Class.extend(Backend, {
 
     DATA_DIR: "data/",
     SCHEMA_LIST: "SchemaList.json",
+    CONFIG: "Config.json",
 
     loadSchemaList: function (callback) {
         $.getJSON(this.DATA_DIR + this.SCHEMA_LIST, null, callback);
     },
 
-    // TODO
     loadConfig: function (schemaName, callback) {
-        callback(null);
+        $.getJSON(this.DATA_DIR + schemaName + this.CONFIG, null, callback);
     },
 
+    // TODO
     query: function (input, callback) {}
 });
 
