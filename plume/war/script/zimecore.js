@@ -131,7 +131,8 @@ var Schema = Class({
 
     getConfigCharSequence: function (key) {
         var s = this.getConfigValue(key);
-        if (s != null && s.startsWith("[") && s.endsWith("]"))
+		var re = /^\[.*\]$/;
+        if (s != null && s.match(re))
             return s.slice(1, -1);
         else
             return s;
