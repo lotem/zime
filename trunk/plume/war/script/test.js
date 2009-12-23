@@ -67,7 +67,7 @@ $(function () {
 function testAjax() {
     var cont = $('<div id="testAjax" />');
     cont.append($('<p>testAjax:</p>'));
-    $.getJSON("sample.json", null, function (data) {
+    $.getJSON("script/sample.json", null, function (data) {
         $.each(data, function (i, item) {
             var p = $('<p />').text (item.schema + " - " + item.displayName);
             cont.append(p);

@@ -39,7 +39,7 @@ else:
     keyword_file = args[1] if len (args) > 1 else None
     phrase_file = args[2] if len (args) > 2 else None
 
-DEST_DIR = os.path.join ('..', 'war', 'script', 'data')
+DEST_DIR = os.path.join ('..', 'war', 'data')
 LIMIT = 512
 
 schema = None
