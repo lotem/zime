@@ -9,7 +9,7 @@ var TestFrontend = new Class({
         var me = this;
         this._backend.loadSchemaList(function (schemaList) {
             var cont = $('<div id="schemaList" />');
-            cont.append($('<p>SchemaList:</p>'));
+            cont.append($('<b>schemaList:</b><hr />'));
             $.each(schemaList, function (i, item) {
                 var p = $('<p />').text (item.schema + " - " + item.displayName);
                 cont.append(p);
@@ -43,7 +43,7 @@ var TestFrontend = new Class({
         var me = this;
         this._backend.loadConfig(schemaName, function (config) {
             schema = new Schema (schemaName, config);
-            me._engine = new Engine(schema, me, me._backend);
+            me.engine = new Engine(schema, me, me._backend);
             testAll(me);
         });
     },
@@ -51,7 +51,7 @@ var TestFrontend = new Class({
     input: function (text) {
         // TODO: foreach char in text:
         // e = new KeyEvent(keycode of char, mask);
-        // this._engine.processKeyEvent(e);
+        // this.engine.processKeyEvent(e);
     }
 
 });
@@ -66,7 +66,7 @@ $(function () {
 
 function testAjax() {
     var cont = $('<div id="testAjax" />');
-    cont.append($('<p>testAjax:</p>'));
+    cont.append($('<b>testAjax:</b><hr />'));
     $.getJSON("script/sample.json", null, function (data) {
         $.each(data, function (i, item) {
             var p = $('<p />').text (item.schema + " - " + item.displayName);
@@ -82,6 +82,39 @@ function testBootstrap() {
 
 function testAll(t) {
     Logger.debug("bootstrap completed");
-    // TODO
+    Logger.debug("active schema: " + t.engine.schema.schemaName);
+    //testConfig(t);
+    testSchema(t);
+}
+
+function testConfig(t) {
+    var cont = $('<div id="testConfig" />');
+    cont.append($('<b>keywords:</b><hr />'));
+    var a = t.engine.schema.keywords;
+    for (var k in a) {
+        cont.append($('<span />').text (k + " --> " + a[k]));
+        cont.append($('<br />'));
+    }
+    cont.append($('<b>fuzzyMap:</b><hr />'));
+    var a = t.engine.schema.fuzzyMap;
+    for (var k in a) {
+        cont.append($('<span />').text (k + " --> " + a[k]));
+        cont.append($('<br />'));
+    }
+    $("body").append(cont);
+}
+
+function testSchema(t) {
+    var s = t.engine.schema;
+    var cont = $('<div id="testSchema" />');
+    cont.append($('<b>testSchema:</b><hr />'));
+    cont.append($('<p />').text("parserName: " + s.getParserName()));
+    cont.append($('<p />').text("punct:"));
+    var ul = $('<ul />');
+    $.each(s.getConfigList("Punct"), function (i, e) {
+        ul.append($('<li />').text(e));
+    });
+    cont.append(ul);
+    $("body").append(cont);
 }
 

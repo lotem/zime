@@ -54,7 +54,7 @@ Parser.register = function (parserName, klass) {
 };
 
 Parser.create = function (schema) {
-    var parserName = schema.getParser();
+    var parserName = schema.getParserName();
     var klass = Parser._registry[parserName];
     if (klass == undefined)
         return null;
@@ -98,7 +98,45 @@ Backend.create = function () {
 }
 
 var Schema = Class({
-    // TODO
+
+    initialize: function (schemaName, data) {
+        this.schemaName = schemaName;
+        this._prefix = "Config/" + schemaName + "/";
+        $.extend(this, data);
+    },
+
+    getParserName: function () {
+        return this.getConfigValue("Parser");
+    },
+
+    getConfigValue: function (key) {
+        var path = this._prefix + key;
+        var m = $.grep(this.config, function (e) {
+            return e[0] == path;
+        });
+        if (m.length != 1)
+            return null;
+        return m[0][1];
+    },
+
+    getConfigList: function (key) {
+        var path = this._prefix + key;
+        var m = $.grep(this.config, function (e) {
+            return e[0] == path;
+        });
+        return $.map(m, function (e) {
+            return e[1];
+        });
+    },
+
+    getConfigCharSequence: function (key) {
+        var s = this.getConfigValue(key);
+        if (s != null && s.startsWith("[") && s.endsWith("]"))
+            return s.slice(1, -1);
+        else
+            return s;
+    }
+
 });
 
 var Context = Class({
@@ -110,7 +148,7 @@ var Engine = Class({
     // TODO
     initialize: function (schema, frontend, backend) {
         Logger.debug("Engine.initialize");
-        this._schema = schema;
+        this.schema = schema;
         this._frontend = frontend;
         this._backend = backend;
     }
