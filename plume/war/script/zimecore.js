@@ -45,7 +45,7 @@ Logger.error = function (text) {
 };
 
 // abstarct class
-var Parser = Class({
+var Parser = new Class({
     // clear: function () {},
     // getPrompt: function () {},
     // processInput: function (event, ctx) {}
@@ -68,7 +68,7 @@ Parser.create = function (schema) {
 };
 
 // abstarct class
-var Frontend = Class({
+var Frontend = new Class({
     // updatePreedit: function (preeditText, selStart, selEnd) {},
     // updateCandidates: function (candidateList) {}, 
     // commit: function (commitText) {}, 
@@ -86,7 +86,7 @@ Frontend.create = function () {
 }
 
 // abstarct class
-var Backend = Class({
+var Backend = new Class({
     // loadSchemaList: function (callback) {},
     // loadConfig: function (schemaName, callback) {},
     // query: function (input, callback) {}
@@ -102,7 +102,7 @@ Backend.create = function () {
     return new Backend._impl();
 }
 
-var Schema = Class({
+var Schema = new Class({
 
     initialize: function (schemaName, data) {
         this.schemaName = schemaName;
@@ -145,11 +145,11 @@ var Schema = Class({
 
 });
 
-var Context = Class({
+var Context = new Class({
     // TODO
 });
 
-var Engine = Class({
+var Engine = new Class({
 
     // TODO
     initialize: function (schema, frontend, backend) {
