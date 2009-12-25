@@ -18,25 +18,30 @@ Class.extend = function (klass, extension) {
 };
 
 var Logger = {};
+var console;
 
 Logger.log = function (text) {
-    if (console != undefined)
+    if (console != undefined) {
         console.log(text);
+    }
 };
 
 Logger.debug = function (text) {
-    if (console != undefined)
+    if (console != undefined) {
         console.debug("[DEBUG] " + text);
+    }
 };
 
 Logger.info = function (text) {
-    if (console != undefined)
+    if (console != undefined) {
         console.info("[INFO] " + text);
+    }
 };
 
 Logger.error = function (text) {
-    if (console != undefined)
+    if (console != undefined) {
         console.error("[ERROR] " + text);
+    }
 };
 
 // abstarct class
