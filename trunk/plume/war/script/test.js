@@ -1,6 +1,6 @@
 // test.js
 
-var TestFrontend = new Class({
+var TestFrontend = Class.extend(Frontend, {
 
     initialize: function () {
         Logger.debug("TestFrontend.initialize");
