@@ -171,9 +171,22 @@ for s in akas:
         a.append (spelling)
 del akas
 
+def rm_R (top):
+    for root, dirs, files in os.walk (top, topdown=False):
+        for name in files:
+            os.remove (os.path.join (root, name))
+        for name in dirs:
+            os.rmdir (os.path.join (root, name))
+
+def mkdir_p (dir):
+    if not os.path.exists (dir):
+        os.makedirs (dir)
+
+mkdir_p (DEST_DIR)
+
 output_config_file = os.path.join (DEST_DIR, '%sConfig.json' % schema)
 data = {'fuzzyMap': fuzzy_map, 'keywords': keywords, 'config': config}
-json.dump (data, open (output_config_file, 'wb'))
+json.dump (data, open (output_config_file, 'wb'), indent=(2 if options.pretty else None))
 
 def update_schema_list ():
     global schema, schema_name
@@ -184,7 +197,7 @@ def update_schema_list ():
         data = []
     s = {'schema': schema, 'displayName': schema_name}
     data.append (s)
-    json.dump (data, open (schema_list_file, 'wb'))
+    json.dump (data, open (schema_list_file, 'wb'), indent=(2 if options.pretty else None))
 
 if options.keep:
     update_schema_list ()
@@ -250,17 +263,6 @@ if phrase_file:
             print >> sys.stderr, '%dk phrases imported from %s.' % (phrase_counter / 1000, phrase_file)
     f.close ()
 
-def rm_R (top):
-    for root, dirs, files in os.walk (top, topdown=False):
-        for name in files:
-            os.remove (os.path.join (root, name))
-        for name in dirs:
-            os.rmdir (os.path.join (root, name))
-
-def mkdir_p (dir):
-    if not os.path.exists (dir):
-        os.makedirs (dir)
-
 rm_R (os.path.join (DEST_DIR, prefix))
 mkdir_p (os.path.join (DEST_DIR, prefix))
 
@@ -308,7 +310,7 @@ if options.verbose:
 
 data = {'freqTotal': freq_total, 'indexingLevel': options.level, 'indices': indices}
 output_dict_file = os.path.join (DEST_DIR, '%s.json' % prefix)
-json.dump (data, open (output_dict_file, 'wb'))
+json.dump (data, open (output_dict_file, 'wb'), indent=(2 if options.pretty else None))
 
 update_schema_list ()
 print >> sys.stderr, 'done.'
