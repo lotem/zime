@@ -1,14 +1,7 @@
 package zime.plume.client.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import zime.plume.client.Backend;
 import zime.plume.client.CandidateList;
-import zime.plume.client.Config;
-import zime.plume.client.Engine;
 import zime.plume.client.Frontend;
-import zime.plume.client.Schema;
 import zime.plume.client.util.Logger;
 
 import com.google.gwt.core.client.JavaScriptObject;
@@ -21,7 +14,6 @@ import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
@@ -46,14 +38,14 @@ public class GWTFrontend implements Frontend {
         preeditBox.addKeyDownHandler(new KeyDownHandler() {
             @Override
             public void onKeyDown(KeyDownEvent event) {
-                if (nativeProcessEvent(event.getNativeEvent()))
+                if (nativeProcessKeyEvent(event.getNativeEvent()))
                     preeditBox.cancelKey();
             }
         });
         preeditBox.addKeyUpHandler(new KeyUpHandler() {
             @Override
             public void onKeyUp(KeyUpEvent event) {
-                if (nativeProcessEvent(event.getNativeEvent()))
+                if (nativeProcessKeyEvent(event.getNativeEvent()))
                     preeditBox.cancelKey();
             }
         });
@@ -70,7 +62,6 @@ public class GWTFrontend implements Frontend {
             }
         });
 
-        final GWTFrontend frontend = this;
         schemaChooser = new ListBox();
         schemaChooser.addChangeHandler(new ChangeHandler() {
             @Override
@@ -82,7 +73,6 @@ public class GWTFrontend implements Frontend {
                     String schemaName = schemaChooser.getValue(index);
                     nativeLoadSchema(schemaName);
                 }
-                
             }
         });
         
@@ -93,6 +83,8 @@ public class GWTFrontend implements Frontend {
         panel.add(preeditBox);
         panel.add(editor);
         RootPanel.get().add(panel);
+        
+        initialize();
     }
 
 	@Override
@@ -121,7 +113,7 @@ public class GWTFrontend implements Frontend {
 
     @Override
     public void updatePreedit(String preedit, int selStart, int selEnd) {
-        Logger.debug("WebFrontend.updatePreedit: [" + preedit + "] " + selStart + ", " + selEnd);
+        Logger.debug("GWTFrontend.updatePreedit: [" + preedit + "] " + selStart + ", " + selEnd);
         preeditBox.setText(preedit);
         if (selStart < selEnd) {
             preeditBox.setSelectionRange(selStart, selEnd - selStart);
@@ -161,7 +153,7 @@ public class GWTFrontend implements Frontend {
         preeditBox.setSelectionRange(start, length);
     }
 
-	public native void initialize() /*-{
+	protected native void initialize() /*-{
 		var frontend = Frontend.create();
 	}-*/;
 
@@ -169,36 +161,30 @@ public class GWTFrontend implements Frontend {
 		frontend.loadSchema(schemaName);
 	}-*/;
 
-    protected boolean nativeProcessEvent(NativeEvent nativeEvent) {
-	// TODO Auto-generated method stub
-	return false;
-}
+	protected native boolean nativeProcessKeyEvent(NativeEvent nativeEvent) /*-{
+		// TODO Auto-generated method stub
+		return false;
+	}-*/;
 
-    //TODO: 选择完schema以后回调
     public void onSchemaReady() {
         editor.setEnabled(true);
         preeditBox.setEnabled(true);
         preeditBox.setFocus(true);
 	}
 
-	public void onSchemaListReady(JsArray<SchemaItem> array) {
+	public void onSchemaListReady(JsArray<SchemaListItem> array) {
 		if (array == null)
 			return;
 		for (int i = 0; i < array.length(); i++) {
-			SchemaItem schemaItem = array.get(i);
-			schemaChooser.addItem(schemaItem.getDisplayName(), schemaItem
-					.getSchemaName());
+			SchemaListItem item = array.get(i);
+			schemaChooser.addItem(item.getDisplayName(), item.getSchemaName());
 		}
 	}
 
-	class SchemaItem extends JavaScriptObject {
-
-		protected SchemaItem() {
-		}
-
+	static class SchemaListItem extends JavaScriptObject {
+		protected SchemaListItem() {}
 		public final native String getDisplayName() /*-{ return this.displayName; }-*/;
-
-		public final native String getSchemaName() /*-{ return this.schema;  }-*/;
-
+		public final native String getSchemaName() /*-{ return this.schema; }-*/;
 	}
+
 }
