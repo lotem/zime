@@ -2,21 +2,21 @@
 
 = Get the Source =
 
-  * [http://code.google.com/p/zime/source/checkout Checkout Instructions]
   * [http://code.google.com/p/zime/source/browse/ Source Browser]
-
-== zime-web 0.x ==
-{{{
-svn checkout http://zime.googlecode.com/svn/trunk/zime-web
-}}}
+  * [http://code.google.com/p/zime/source/checkout Checkout Instructions]
+  * [http://github.com/lotem/ibus-zime]
 
 == Combo Pinyin for Windows ==
 {{{
 svn checkout http://zime.googlecode.com/svn/trunk/zime-win32
 }}}
 
+== zime-web 0.x ==
+{{{
+svn checkout http://zime.googlecode.com/svn/trunk/zime-web
+}}}
+
 == ibus-zime ==
 {{{
 git clone git://github.com/lotem/ibus-zime.git
 }}}
-[http://github.com/lotem/ibus-zime]
