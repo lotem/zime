@@ -1,7 +1,7 @@
 /**
  * 
  */
-package zime.plume.client.impl;
+package zime.plume.client;
 
 import com.google.gwt.core.client.JavaScriptObject;
 

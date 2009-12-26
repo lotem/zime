@@ -1,6 +1,5 @@
 package zime.plume.client;
 
-import zime.plume.client.impl.GWTFrontend;
 import com.google.gwt.core.client.EntryPoint;
 
 /**

@@ -1,8 +1,7 @@
-package zime.plume.client.impl;
+package zime.plume.client;
 
 import java.util.List;
 
-import zime.plume.client.CandidateList;
 
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DOM;
