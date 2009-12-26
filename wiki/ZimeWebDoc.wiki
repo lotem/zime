@@ -1,5 +1,5 @@
 #summary zime-web 網頁輸入法文檔
-#labels Featured,Phase-Support
+#labels Phase-Support
 
 = zime-web 網頁輸入法文檔 =
 
