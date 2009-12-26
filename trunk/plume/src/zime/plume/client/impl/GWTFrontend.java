@@ -4,7 +4,6 @@ import zime.plume.client.CandidateList;
 import zime.plume.client.Frontend;
 import zime.plume.client.util.Logger;
 
-import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -156,7 +155,7 @@ public class GWTFrontend implements Frontend {
 		var frontend = $wnd.Frontend.create();
 		var gwtFrontend = this;
 		frontend.onSchemaListReady = function (schemaList) {
-			gwtFrontend.@zime.plume.client.impl.GWTFrontend::onSchemaListReady(Lzime/plume/client/impl/GWTFrontend$SchemaList;)(schemaList);
+			gwtFrontend.@zime.plume.client.impl.GWTFrontend::onSchemaListReady(Lzime/plume/client/impl/SchemaList;)(schemaList);
 		};
 		frontend.onSchemaReady = function () {
 			gwtFrontend.@zime.plume.client.impl.GWTFrontend::onSchemaReady()();
@@ -186,10 +185,6 @@ public class GWTFrontend implements Frontend {
 			SchemaListItem item = list.get(i);
 			schemaChooser.addItem(item.getDisplayName(), item.getSchemaName());
 		}
-	}
-
-	public static class SchemaList extends JsArray<SchemaListItem> {
-		protected SchemaList() {}
 	}
 
 }
