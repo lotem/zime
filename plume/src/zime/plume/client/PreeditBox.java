@@ -1,8 +1,5 @@
 package zime.plume.client;
 
-import java.util.List;
-
-
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.DecoratedPopupPanel;
@@ -24,16 +21,13 @@ public class PreeditBox extends TextBox {
     }
     
     public void updateCandidates(CandidateList candidateList) {
-        List<String> a = candidateList.getCandidates();
         final Command cmd = new Command() {
             @Override
             public void execute() {}
         };
         menu.clearItems();
-        int start = candidateList.getCurrentPage() * candidateList.getPageSize();
-        int count = Math.min(candidateList.getPageSize(), a.size() - start);
-        for (int i = 0; i < count; ++i) {
-            String disp = "<b>" + (i + 1) + ".</b>&nbsp;" + a.get(start + i);
+        for (int i = 0; i < candidateList.length(); ++i) {
+            String disp = "<b>" + (i + 1) + ".</b>&nbsp;" + candidateList.get(i);
             final MenuItem item = new MenuItem(disp, true, cmd);
             DOM.setStyleAttribute(item.getElement(), "whiteSpace", "nowrap");
             menu.addItem(item);

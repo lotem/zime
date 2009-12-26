@@ -1,6 +1,3 @@
-/**
- * 
- */
 package zime.plume.client;
 
 import com.google.gwt.core.client.JsArray;

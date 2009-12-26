@@ -117,7 +117,7 @@ public class GWTFrontend implements Frontend {
     @Override
     public void updateCandidates(CandidateList candidateList) {
         preeditBox.updateCandidates(candidateList);
-        if (candidateList.isEmpty()) {
+        if (candidateList.length() == 0) {
             preeditBox.hideCandidates();
         } else {
             preeditBox.showCandidates();
@@ -154,7 +154,18 @@ public class GWTFrontend implements Frontend {
 		frontend.onSchemaReady = function () {
 			gwtFrontend.@zime.plume.client.GWTFrontend::onSchemaReady()();
 		};
-		// TODO: other callbacks
+		frontend.updatePreedit = function (preedit, selStart, selEnd) {
+			gwtFrontend.@zime.plume.client.GWTFrontend::updatePreedit(Ljava/lang/String;II)(preedit, selStart, selEnd);
+		};
+		frontend.updateCandidates = function (candidateList) {
+			gwtFrontend.@zime.plume.client.GWTFrontend::updateCandidates(Lzime/plume/client/CandidateList;)(candidateList);
+		};
+		frontend.commit = function (text) {
+			gwtFrontend.@zime.plume.client.GWTFrontend::commit(Ljava/lang/String;)(text);
+		};
+		frontend.submit = function () {
+			gwtFrontend.@zime.plume.client.GWTFrontend::submit()();
+		};
 		$wnd.frontend = frontend;
 	}-*/;
 
