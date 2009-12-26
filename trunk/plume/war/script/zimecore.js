@@ -159,8 +159,11 @@ var Engine = new Class({
     },
     
     processKeyEvent: function(event) {
-        // TODO
-    	return false;
+    	// TODO: test code
+    	this._frontend.updatePreedit('abc', 1, 3);
+    	this._frontend.updateCandidates(['A', 'B', 'C']);
+    	this._frontend.commit('text');
+    	return true;
     }
 
 });
