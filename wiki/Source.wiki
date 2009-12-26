@@ -2,13 +2,8 @@
 
 = Get the Source =
 
+[http://code.google.com/p/zime/source/checkout Checkout Instructions]
 [http://code.google.com/p/zime/source/browse/ Source Browser]
-
-== ibus-zime ==
-{{{
-git clone git://github.com/lotem/ibus-zime.git
-}}}
-[http://github.com/lotem/ibus-zime web interface]
 
 == zime-web 0.x ==
 {{{
@@ -19,3 +14,9 @@ svn checkout http://zime.googlecode.com/svn/trunk/zime-web
 {{{
 svn checkout http://zime.googlecode.com/svn/trunk/zime-win32
 }}}
+
+== ibus-zime ==
+{{{
+git clone git://github.com/lotem/ibus-zime.git
+}}}
+[http://github.com/lotem/ibus-zime GitHub's Web Interface]
