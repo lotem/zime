@@ -32,7 +32,7 @@ public class GWTFrontend implements Frontend {
         nastyBrowser = true;
         
         panel = new VerticalPanel();
-        panel.setWidth("100%");
+        panel.setWidth("99%");
         preeditBox = new PreeditBox();
         preeditBox.setWidth("100%");
         preeditBox.addKeyDownHandler(new KeyDownHandler() {
@@ -154,11 +154,11 @@ public class GWTFrontend implements Frontend {
     }
 
 	protected native void initialize() /*-{
-		var frontend = Frontend.create();
+		$wnd.frontend = $wnd.Frontend.create();
 	}-*/;
 
 	protected native void nativeLoadSchema(String schemaName) /*-{
-		frontend.loadSchema(schemaName);
+		$wnd.frontend.loadSchema(schemaName);
 	}-*/;
 
 	protected native boolean nativeProcessKeyEvent(NativeEvent nativeEvent) /*-{
