@@ -151,12 +151,16 @@ var Context = new Class({
 
 var Engine = new Class({
 
-    // TODO
     initialize: function (schema, frontend, backend) {
         Logger.debug("Engine.initialize");
         this.schema = schema;
         this._frontend = frontend;
         this._backend = backend;
+    },
+    
+    processKeyEvent: function(event) {
+        // TODO
+    	return false;
     }
 
 });

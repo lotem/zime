@@ -4,7 +4,6 @@ import zime.plume.client.CandidateList;
 import zime.plume.client.Frontend;
 import zime.plume.client.util.Logger;
 
-import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -154,16 +153,24 @@ public class GWTFrontend implements Frontend {
     }
 
 	protected native void initialize() /*-{
-		$wnd.frontend = $wnd.Frontend.create();
+		var frontend = $wnd.Frontend.create();
+		var gwtFrontend = this;
+		frontend.onSchemaListReady = function (schemaList) {
+			gwtFrontend.@zime.plume.client.impl.GWTFrontend::onSchemaListReady(Lzime/plume/client/impl/GWTFrontend$SchemaList;)(schemaList);
+		};
+		frontend.onSchemaReady = function () {
+			gwtFrontend.@zime.plume.client.impl.GWTFrontend::onSchemaReady()();
+		};
+		// TODO: other callbacks
+		$wnd.frontend = frontend;
 	}-*/;
 
 	protected native void nativeLoadSchema(String schemaName) /*-{
 		$wnd.frontend.loadSchema(schemaName);
 	}-*/;
 
-	protected native boolean nativeProcessKeyEvent(NativeEvent nativeEvent) /*-{
-		// TODO Auto-generated method stub
-		return false;
+	protected native boolean nativeProcessKeyEvent(NativeEvent event) /*-{
+		return $wnd.frontend.processKeyEvent(event);
 	}-*/;
 
     public void onSchemaReady() {
@@ -172,19 +179,17 @@ public class GWTFrontend implements Frontend {
         preeditBox.setFocus(true);
 	}
 
-	public void onSchemaListReady(JsArray<SchemaListItem> array) {
-		if (array == null)
+	public void onSchemaListReady(SchemaList list) {
+		if (list == null)
 			return;
-		for (int i = 0; i < array.length(); i++) {
-			SchemaListItem item = array.get(i);
+		for (int i = 0; i < list.length(); i++) {
+			SchemaListItem item = list.get(i);
 			schemaChooser.addItem(item.getDisplayName(), item.getSchemaName());
 		}
 	}
 
-	static class SchemaListItem extends JavaScriptObject {
-		protected SchemaListItem() {}
-		public final native String getDisplayName() /*-{ return this.displayName; }-*/;
-		public final native String getSchemaName() /*-{ return this.schema; }-*/;
+	public static class SchemaList extends JsArray<SchemaListItem> {
+		protected SchemaList() {}
 	}
 
 }
