@@ -2,8 +2,8 @@
 
 = Get the Source =
 
-  * [http://code.google.com/p/zime/source/list Committed Changes]
   * [http://code.google.com/p/zime/source/browse/ Source Browser]
+  * [http://code.google.com/p/zime/source/list Committed Changes]
   * [http://code.google.com/p/zime/source/checkout Checkout Instructions]
   * [http://github.com/lotem/ibus-zime]
 
