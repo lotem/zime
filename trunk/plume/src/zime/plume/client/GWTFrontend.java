@@ -1,8 +1,5 @@
-package zime.plume.client.impl;
+package zime.plume.client;
 
-import zime.plume.client.CandidateList;
-import zime.plume.client.Frontend;
-import zime.plume.client.util.Logger;
 
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -30,7 +27,7 @@ public class GWTFrontend implements Frontend {
         nastyBrowser = true;
         
         panel = new VerticalPanel();
-        panel.setWidth("99%");
+        panel.setWidth("100%");
         preeditBox = new PreeditBox();
         preeditBox.setWidth("100%");
         preeditBox.addKeyDownHandler(new KeyDownHandler() {
@@ -111,21 +108,10 @@ public class GWTFrontend implements Frontend {
 
     @Override
     public void updatePreedit(String preedit, int selStart, int selEnd) {
-        Logger.debug("GWTFrontend.updatePreedit: [" + preedit + "] " + selStart + ", " + selEnd);
         preeditBox.setText(preedit);
         if (selStart < selEnd) {
             preeditBox.setSelectionRange(selStart, selEnd - selStart);
         }
-    }
-
-    @Override
-    public void hideCandidates() {
-        preeditBox.hideCandidates();
-    }
-
-    @Override
-    public void showCandidates() {
-        preeditBox.showCandidates();
     }
 
     @Override
@@ -144,34 +130,6 @@ public class GWTFrontend implements Frontend {
         editor.setFocus(true);
     }
 
-    @Override
-    public void setSelectionRange(int start, int length) {
-        if (length == 0)
-            start = preeditBox.getText().length();
-        preeditBox.setSelectionRange(start, length);
-    }
-
-	protected native void initialize() /*-{
-		var frontend = $wnd.Frontend.create();
-		var gwtFrontend = this;
-		frontend.onSchemaListReady = function (schemaList) {
-			gwtFrontend.@zime.plume.client.impl.GWTFrontend::onSchemaListReady(Lzime/plume/client/impl/SchemaList;)(schemaList);
-		};
-		frontend.onSchemaReady = function () {
-			gwtFrontend.@zime.plume.client.impl.GWTFrontend::onSchemaReady()();
-		};
-		// TODO: other callbacks
-		$wnd.frontend = frontend;
-	}-*/;
-
-	protected native void nativeLoadSchema(String schemaName) /*-{
-		$wnd.frontend.loadSchema(schemaName);
-	}-*/;
-
-	protected native boolean nativeProcessKeyEvent(NativeEvent event) /*-{
-		return $wnd.frontend.processKeyEvent(event);
-	}-*/;
-
     public void onSchemaReady() {
         editor.setEnabled(true);
         preeditBox.setEnabled(true);
@@ -186,5 +144,26 @@ public class GWTFrontend implements Frontend {
 			schemaChooser.addItem(item.getDisplayName(), item.getSchemaName());
 		}
 	}
+
+	protected native void initialize() /*-{
+		var frontend = $wnd.Frontend.create();
+		var gwtFrontend = this;
+		frontend.onSchemaListReady = function (schemaList) {
+			gwtFrontend.@zime.plume.client.GWTFrontend::onSchemaListReady(Lzime/plume/client/SchemaList;)(schemaList);
+		};
+		frontend.onSchemaReady = function () {
+			gwtFrontend.@zime.plume.client.GWTFrontend::onSchemaReady()();
+		};
+		// TODO: other callbacks
+		$wnd.frontend = frontend;
+	}-*/;
+
+	protected native void nativeLoadSchema(String schemaName) /*-{
+		$wnd.frontend.loadSchema(schemaName);
+	}-*/;
+
+	protected native boolean nativeProcessKeyEvent(NativeEvent event) /*-{
+		return $wnd.frontend.processKeyEvent(event);
+	}-*/;
 
 }
