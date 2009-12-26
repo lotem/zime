@@ -2,8 +2,8 @@
 
 = Get the Source =
 
-[http://code.google.com/p/zime/source/checkout Checkout Instructions]
-[http://code.google.com/p/zime/source/browse/ Source Browser]
+  * [http://code.google.com/p/zime/source/checkout Checkout Instructions]
+  * [http://code.google.com/p/zime/source/browse/ Source Browser]
 
 == zime-web 0.x ==
 {{{
