@@ -2,11 +2,13 @@
 
 = Get the Source =
 
+[http://code.google.com/p/zime/source/browse/ Source Browser]
+
 == ibus-zime ==
-Use the following command to checkout the source, or access our [http://github.com/lotem/ibus-zime web interface].
 {{{
 git clone git://github.com/lotem/ibus-zime.git
 }}}
+[http://github.com/lotem/ibus-zime web interface]
 
 == zime-web 0.x ==
 {{{
@@ -17,5 +19,3 @@ svn checkout http://zime.googlecode.com/svn/trunk/zime-web
 {{{
 svn checkout http://zime.googlecode.com/svn/trunk/zime-win32
 }}}
-
-You may also visit [http://code.google.com/p/zime/source/browse/ Source Browser] for the parts of source code hosted on Google Code.
