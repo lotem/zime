@@ -67,7 +67,7 @@ Parser.create = function (schema) {
     return new klass();
 };
 
-// abstarct class
+// abstract class
 var Frontend = new Class({
     // updatePreedit: function (preeditText, selStart, selEnd) {},
     // updateCandidates: function (candidateList) {}, 
@@ -85,7 +85,7 @@ Frontend.create = function () {
     return new Frontend._impl();
 }
 
-// abstarct class
+// abstract class
 var Backend = new Class({
     // loadSchemaList: function (callback) {},
     // loadConfig: function (schemaName, callback) {},
