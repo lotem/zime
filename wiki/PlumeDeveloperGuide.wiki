@@ -18,10 +18,7 @@ The web IME *Plume.js* is a DHTML app with static data files, mainly written in 
 
 = Setup =
 
-  * checkout project from svn repo:
-{{{
-svn chekout https://zime.googlecode.com/svn/trunk/plume plume -username your-google-account
-}}}
+  * checkout project from svn repo: `https://zime.googlecode.com/svn/trunk/plume`
     see [http://code.google.com/p/zime/source/checkout Checkout Instructions] for your password
 
   * make data files:
