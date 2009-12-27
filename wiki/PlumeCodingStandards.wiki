@@ -37,7 +37,7 @@ var SomeClass = new Class ({
 var SomeSubClass = Class.extend(SomeBaseClass, {
     
     initialize: function () {
-        // note there's no means to access either super.initialize() or any other overriden members
+        // note there's no means to access either super.initialize() or any other overridden members
     },
 
     // ...
