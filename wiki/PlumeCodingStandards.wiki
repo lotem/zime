@@ -61,7 +61,7 @@ doSomeJobAsync(1, 2, function (result) {
 // async call; job has not been done at this point
 }}}
 
-== Useful jQuery utility functions in algorithms ==
+== Useful jQuery utility functions for coding algorithms ==
 {{{
 // iterating an array
 $.each(array, function (i, elem) {
