@@ -45,6 +45,23 @@ var SomeSubClass = Class.extend(SomeBaseClass, {
 });
 }}}
 
+== Abstract factory ==
+{{{
+var BaseClass = new Class({...});
+BaseClass.register = function (implClass) {
+    this._impl = implClass;
+};
+BaseClass.create = function () {
+    return new this._impl();
+};
+
+var ImplClass = Class.extend(BaseClass, {...});
+BaseClass.register(ImplClass);
+
+// avoid creating an instance with explicit ImplClass name
+var instance = BaseClass.create();
+}}}
+
 == Understanding callbacks ==
 {{{
 function doSomeJobAsync(arg1, arg2, callback) {
