@@ -71,14 +71,14 @@ $.each(array, function (i, elem) {
 });
 
 // filter an array
-$.grep(array, function (elem) {
+var newArray = $.grep(array, function (elem) {
     var keep = true;
     // TODO: decide whether the element should be kept in the resulting array
     return keep;
 });
 
 // transform an array
-$.map(array, function (elem) {
+var newArray = $.map(array, function (elem) {
     var replaceValue;
     // TODO: make a replace value out of the element
     return replaceValue;
