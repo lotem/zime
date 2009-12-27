@@ -54,13 +54,13 @@ var Parser = new Class({
 Parser._registry = {};
 
 Parser.register = function (parserName, klass) {
-    Parser._registry[parserName] = klass;
+	this._registry[parserName] = klass;
     Logger.info("registered parser: " + parserName);
 };
 
 Parser.create = function (schema) {
     var parserName = schema.getParserName();
-    var klass = Parser._registry[parserName];
+    var klass = this._registry[parserName];
     if (klass == undefined)
         return null;
     Logger.info("creating parser: " + parserName);
@@ -76,13 +76,13 @@ var Frontend = new Class({
 });
 
 Frontend.register = function (klass) {
-    Frontend._impl = klass;
+	this._impl = klass;
     Logger.info("registered frontend");
 }
 
 Frontend.create = function () {
     Logger.info("creating frontend");
-    return new Frontend._impl();
+    return new this._impl();
 }
 
 // abstract class
@@ -93,13 +93,13 @@ var Backend = new Class({
 });
 
 Backend.register = function (klass) {
-    Backend._impl = klass;
+	this._impl = klass;
     Logger.info("registered backend");
 }
 
 Backend.create = function () {
     Logger.info("creating backend");
-    return new Backend._impl();
+    return new this._impl();
 }
 
 var Schema = new Class({
