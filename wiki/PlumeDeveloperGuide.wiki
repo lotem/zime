@@ -1,4 +1,4 @@
-#steps to setup development environment for plume.js
+# steps to setup development environment for plume.js
 
 = Intro =
 
@@ -18,8 +18,9 @@ The web IME *Plume.js* is a DHTML app with static data files, mainly written in 
 
 = Setup =
 
-  * checkout project from svn repo: `https://zime.googlecode.com/svn/trunk/plume`
-    see [http://code.google.com/p/zime/source/checkout Checkout Instructions] for your password
+  * checkout project from svn repo: 
+    * `https://zime.googlecode.com/svn/trunk/plume`
+    * see [http://code.google.com/p/zime/source/checkout Checkout Instructions] for your password
 
   * make data files:
 {{{
