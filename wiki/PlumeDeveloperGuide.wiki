@@ -1,4 +1,4 @@
-# steps to setup development environment for plume.js
+#summary steps to setup development environment for plume.js
 
 = Intro =
 
