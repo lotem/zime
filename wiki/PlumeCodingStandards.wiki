@@ -58,7 +58,7 @@ BaseClass.create = function () {
 var ImplClass = Class.extend(BaseClass, {...});
 BaseClass.register(ImplClass);
 
-// avoid creating an instance with explicit ImplClass name
+// avoid creating instances with explicit implementation class names 
 var instance = BaseClass.create();
 }}}
 
