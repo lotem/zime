@@ -108,6 +108,30 @@ var Schema = new Class({
         this.schemaName = schemaName;
         this._prefix = "Config/" + schemaName + "/";
         $.extend(this, data);
+        // required configuration options
+        this.parser = this.getConfigValue("Parser");
+        this.maxKeyLength = this.getConfigValue("MaxKeyLength") || 3;
+        this.maxKeywordLength = this.getConfigValue("MaxKeywordLength") || 7;
+        this.delimiter = this.getConfigCharSequence("Delimiter") || " ";
+        this.alphabet = this.getConfigCharSequence("Alphabet") || "abcdefghijklmnopqrstuvwxyz";
+        var punct = {};
+        $.each(this.getConfigList("Punct"), function (i, p) {
+        	var a = p.split(/\s+/);
+        	var key = a[0];
+        	var value;
+        	if (a.length > 2) {
+        		value = ["alt", a.slice(1)];
+        	} else if (a.length == 2) {
+        		var b = a[1];
+        		if (b.indexOf("~") != -1) {
+        			value = ["pair", b.split("~", 2)];
+        		} else {
+        			value = ["unique", b];
+        		}
+        	}
+        	punct[key] = value;
+        });
+        this.punct = punct;
     },
 
     getParserName: function () {
@@ -156,14 +180,21 @@ var Engine = new Class({
         this.schema = schema;
         this._frontend = frontend;
         this._backend = backend;
+        this._ctx = new Context(schema);
+        this.updateUI();
     },
     
-    processKeyEvent: function(event) {
+    updateUI: function () {
+    	// TODO: test code
+    	this._frontend.updatePreedit('abc', 1, 3);
+    	this._frontend.updateCandidates(['A', 'B', 'C']);
+    },
+    
+    processKeyEvent: function (event) {
     	// TODO: test code
     	if (event.type == "keyup") {
-	    	this._frontend.updatePreedit('abc', 1, 3);
-	    	this._frontend.updateCandidates(['A', 'B', 'C']);
-	    	this._frontend.commit('text');
+	    	this._frontend.commit('keyup!');
+	    	this.updateUI();
     	}
     	return true;
     }
