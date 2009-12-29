@@ -171,12 +171,32 @@ var Context = new Class({
 		this.updateUI = function () {
 			engine.onContextUpdate(this);
 		}
+		this.input = [];
 		this.updateUI();
 	},
 	
     // TODO
     beingConverted: function () {
 		return false;
+	},
+	
+	isCompleted: function () {
+		return false;
+	},
+	
+	edit: function (input) {
+		this.input = input;
+		// TODO
+		this.updateUI();
+	},
+	
+	getPreedit: function () {
+		// TODO
+		return {
+			text: this.input.join(""),
+			selStart: 0,
+			selEnd: 0
+		};
 	}
 
 });
@@ -192,17 +212,49 @@ var Engine = new Class({
     },
     
     onContextUpdate: function (ctx) {
+    	Logger.debug("onContextUpdate: " + ctx.input);
+    	var p = ctx.getPreedit();
+    	this._frontend.updatePreedit(p.text, p.selStart, p.selEnd);
     	// TODO: test code
-    	this._frontend.updatePreedit('abc', 1, 3);
     	this._frontend.updateCandidates(['A', 'B', 'C']);
     },
     
     processKeyEvent: function (event) {
-    	// TODO: test code
-    	if (event.type == "keyup") {
-	    	this._frontend.commit('keyup!');
-	    	this.ctx.updateUI();
+    	// ignore hot keys
+    	if (event.ctrlKey || event.altKey || event.metaKey) {
+    		return false;
     	}
+    	// TODO: handle alternating punctuation input
+    	var result = this._parser.processInput(event, this.ctx);
+    	if (typeof result == "boolean") {
+    		if (result)
+    			return true;
+    		else
+    			return this._process(event);
+    	}
+    	if (result.type == "edit") {
+    		if (this.ctx.beingConverted()) { 
+    			if (this.ctx.isCompleted())
+    				this._commit();
+    			else
+    				return true;
+    		}
+    		if (result.value == null)
+    			this.ctx.edit(this.ctx.input);
+    		else
+    			this.ctx.edit(this.ctx.input.concat(result.value));
+    	}
+    	// TODO: handle other result types
+    	// NOOP
+    	return true;
+    },
+    
+    // TODO
+    _commit: function () {
+    
+    },
+    
+    _process: function (event) {
     	return true;
     }
 

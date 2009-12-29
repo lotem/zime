@@ -23,7 +23,7 @@ var RomanParser = Class.extend(Parser, {
 	
 	_getInput: function() {
 		// TODO: apply transform rules
-		return this._input;
+		return this._input.slice(0);
 	},
 	
 	_isInput: function (ch) {
@@ -50,7 +50,7 @@ var RomanParser = Class.extend(Parser, {
 				return false;
 			this._input.pop();
 			ctx.input = this._getInput();
-			return {edit: []};
+			return {type: "edit", value: null};
 		}
 		if (event.keyCode == KeyEvent.KEY_SPACE) {
 			return false;
@@ -59,7 +59,7 @@ var RomanParser = Class.extend(Parser, {
 		if (ch != null && this._isInput(ch)) {
 			this._input.push(ch);
 			ctx.input = this._getInput();
-			return {edit: []};
+			return {type: "edit", value: null};
 		}
 		return false;
 	}
