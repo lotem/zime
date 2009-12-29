@@ -109,7 +109,6 @@ var Schema = new Class({
         this._prefix = "Config/" + schemaName + "/";
         $.extend(this, data);
         // required configuration options
-        this.parser = this.getConfigValue("Parser");
         this.maxKeyLength = this.getConfigValue("MaxKeyLength") || 3;
         this.maxKeywordLength = this.getConfigValue("MaxKeywordLength") || 7;
         this.delimiter = this.getConfigCharSequence("Delimiter") || " ";
@@ -170,7 +169,18 @@ var Schema = new Class({
 });
 
 var Context = new Class({
+
+	initialize: function (schema, engine, backend) {
+		this.schema = schema;
+		this._backend = backend;
+		this.updateUI = function () {
+			engine.onContextUpdate(this);
+		}
+		this.updateUI();
+	}
+	
     // TODO
+
 });
 
 var Engine = new Class({
@@ -179,12 +189,11 @@ var Engine = new Class({
         Logger.debug("Engine.initialize");
         this.schema = schema;
         this._frontend = frontend;
-        this._backend = backend;
-        this._ctx = new Context(schema);
-        this.updateUI();
+        this._parser = Parser.create(schema);
+        this.ctx = new Context(schema, this, backend);
     },
     
-    updateUI: function () {
+    onContextUpdate: function (ctx) {
     	// TODO: test code
     	this._frontend.updatePreedit('abc', 1, 3);
     	this._frontend.updateCandidates(['A', 'B', 'C']);
