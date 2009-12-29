@@ -108,7 +108,7 @@ function testSchema(t) {
     var s = t.engine.schema;
     var cont = $('<div id="testSchema" />');
     cont.append($('<b>testSchema:</b><hr />'));
-    cont.append($('<p />').text("parserName: " + s.getParserName()));
+    cont.append($('<p />').text("parserName: " + s.getConfigValue("Parser")));
     cont.append($('<p />').text("punct:"));
     var ul = $('<ul />');
     $.each(s.getConfigList("Punct"), function (i, e) {
