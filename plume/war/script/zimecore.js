@@ -118,13 +118,13 @@ var Schema = new Class({
             var key = a[0];
             var value;
             if (a.length > 2) {
-                value = ["alt", a.slice(1)];
+                value = {type: "alt", value: a.slice(1)};
             } else if (a.length == 2) {
                 var b = a[1];
                 if (b.indexOf("~") != -1) {
-                    value = ["pair", b.split("~", 2)];
+                    value = {type: "pair", value: b.split("~", 2)};
                 } else {
-                    value = ["unique", b];
+                    value = {type: "unique", value: b};
                 }
             }
             punct[key] = value;
@@ -214,6 +214,18 @@ var Context = new Class({
         return false;
     },
     
+    home: function () {
+    },
+
+    end: function () {
+    },
+
+    left: function () {
+    },
+
+    right: function () {
+    },
+
     getPreedit: function () {
         // TODO
         return {
@@ -221,6 +233,11 @@ var Context = new Class({
             selStart: 0,
             selEnd: 0
         };
+    },
+
+    getCandidates: function () {
+        // TODO
+        return [];
     }
 
 });
@@ -248,7 +265,25 @@ var Engine = new Class({
         if (event.ctrlKey || event.altKey || event.metaKey) {
             return false;
         }
-        // TODO: handle alternating punctuation input
+        // handle alternating punctuation input
+        if (this._punct && event.type != "keyup" && event.keyCode != KeyEvent.KEY_SHIFT) {
+            var ch = KeyEvent.toChar(event);
+            if (ch == this._punctKey) {
+                this._alternatePunct();
+               return true;
+            } else {
+                if (event.keyCode == KeyEvent.KEY_BACKSPACE || event.keyCode == KeyEvent.KEY_ESCAPE) {
+                    this._clearPunctPrompt();
+                    return true;
+                }
+                var p = this._punct;
+                this._frontend.commit(p.value[p.lastIndex]);
+                this._clearPunctPrompt();
+                if (event.keyCode == KeyEvent.KEY_SPACE || event.keyCode == KeyEvent.KEY_ENTER) {
+                    return true;
+                }
+            }
+        }
         var result = this._parser.processInput(event, this.ctx);
         if (typeof result == "boolean") {
             if (result)
@@ -279,18 +314,66 @@ var Engine = new Class({
     
     _confirm: function (choice) {
     },
+
+    _pageUp: function () {
+    },
+
+    _pageDown: function () {
+    },
     
     _handlePunct: function (event, autoCommit) {
+        var ch = KeyEvent.toChar(event);
+        var p = this.schema.punct[ch];
+        if (p != undefined) {
+            if (event.type == "keyup") {
+                return true;
+            }
+            if (autoCommit) {
+                this._commit();
+            }
+            if (p.type == "unique") {
+                this._frontend.commit(p.value);
+            } else if (p.type == "pair") {
+                var idx = p.lastIndex;
+                idx = (idx == undefined) ? 0 : 1 - idx;
+                p.lastIndex = idx;
+                this._frontend.commit(p.value[idx]);
+            } else if (p.type == "alt") {
+                this._punct = p;
+                this._punctKey = ch;
+                p.lastIndex = 0;
+                var symbol = p.value[0];
+                this._frontend.updatePreedit(symbol, 0, symbol.length);
+            }
+            return true;
+        }
+        return false;
+    },
+
+    _alternatePunct: function () {
+        var p = this._punct;
+        var idx = (p.lastIndex + 1) % p.value.length;
+        p.lastIndex = idx;
+        var symbol = p.value[idx];
+        this._frontend.updatePreedit(symbol, 0, symbol.length);
+    },
+
+    _clearPunctPrompt: function () {
+        this._punct = undefined;
+        this._punctKey = undefined;
+        this._frontend.updatePreedit("", 0, 0);
     },
     
     _process: function (event) {
         var ctx = this.ctx;
         if (ctx.isEmpty()) {
-            // TODO:
+            if (this._punct && event.type == "keyup") {
+                return true;
+            }
             if (this._handlePunct(event, false)) {
                 return true;
             }
-            return false;
+            return true;
         }
         if (event.type == "keyup") {
             return true;
@@ -303,12 +386,6 @@ var Engine = new Class({
             }
             return true;
         }
-        if (event.keyCode == KeyEvent.KEY_TAB) {
-            ctx.convert();
-            return true;
-        }
-        // TODO: HOME, END, LEFT, RIGHT, PAGE_UP, PAGE_DOWN
-        // TODO: number keys
         if (event.keyCode == KeyEvent.KEY_BACKSPACE) {
             if (ctx.beingConverted()) {
                 ctx.back() || ctx.cancelConversion();
@@ -326,12 +403,62 @@ var Engine = new Class({
             }
         }
         if (event.keyCode == KeyEvent.KEY_ENTER) {
-            // TODO: handle SHIFT+ENTER
+            // TODO: handle Shift+Enter
             if (ctx.beingConverted()) {
                 this._confirm(0);
             } else {
                 this._commit();
             }
+        }
+        if (event.keyCode == KeyEvent.KEY_TAB) {
+            ctx.convert();
+            return true;
+        }
+        if (event.keyCode == KeyEvent.KEY_HOME) {
+            ctx.home();
+            return true;
+        }
+        if (event.keyCode == KeyEvent.KEY_END) {
+            ctx.end();
+            return true;
+        }
+        if (event.keyCode == KeyEvent.KEY_LEFT) {
+            ctx.left();
+            return true;
+        }
+        if (event.keyCode == KeyEvent.KEY_RIGHT) {
+            ctx.right();
+            return true;
+        }
+        var hasCandidates = ctx.getCandidates().length > 0;
+        if (event.keyCode == KeyEvent.KEY_PAGEUP || event.keyCode == KeyEvent.KEY_UP) {
+            if (hasCandidates) {
+                this._pageUp();
+            }
+            return true;
+        }
+        if (event.keyCode == KeyEvent.KEY_PAGEDOWN || event.keyCode == KeyEvent.KEY_DOWN) {
+            if (hasCandidates) {
+                this._pageDown();
+            }
+            return true;
+        }
+        var ch = KeyEvent.toChar(event);
+        if (hasCandidates) {
+            if (ch == "-" || ch == ",") {
+                this._pageUp();
+                return true;
+            }
+            if (ch == "=" || ch == ".") {
+                this._pageUp();
+                return true;
+            }
+        }
+        if (ch >= "1" && ch <= "9") {
+            if (this._confirm(ch - "0")) {
+                return true;
+            }
+            // try matching punctuation
         }
         // auto-commit
         if (this._handlePunct(event, true)) {
@@ -361,6 +488,7 @@ KeyEvent = {
     KEY_ENTER: 13,
     KEY_SPACE: 32,
     KEY_0: 48,
+    KEY_1: 49,
     KEY_9: 57,
     KEY_A: 65,
     KEY_Z: 90,
