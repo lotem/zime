@@ -175,6 +175,10 @@ var Context = new Class({
 		this.updateUI();
 	},
 	
+	isEmpty: function () {
+		return this.input.length == 0;
+	},
+	
     // TODO
     beingConverted: function () {
 		return false;
@@ -185,9 +189,29 @@ var Context = new Class({
 	},
 	
 	edit: function (input) {
-		this.input = input;
+		if (input != undefined) {
+			this.input = input;
+		}
 		// TODO
 		this.updateUI();
+	},
+	
+	popInput: function () {
+		// TODO:
+		this.input.pop();
+	},
+	
+	convert: function () {
+		Logger.debug("convert:");
+		return true;
+	},
+	
+	cancelConversion: function () {
+		return true;
+	},
+	
+	back: function () {
+		return false;
 	},
 	
 	getPreedit: function () {
@@ -240,7 +264,7 @@ var Engine = new Class({
     				return true;
     		}
     		if (result.value == null)
-    			this.ctx.edit(this.ctx.input);
+    			this.ctx.edit();
     		else
     			this.ctx.edit(this.ctx.input.concat(result.value));
     	}
@@ -251,10 +275,68 @@ var Engine = new Class({
     
     // TODO
     _commit: function () {
+    },
     
+    _confirm: function (choice) {
+    },
+    
+    _handlePunct: function (event, autoCommit) {
     },
     
     _process: function (event) {
+    	var ctx = this.ctx;
+    	if (ctx.isEmpty()) {
+    		// TODO:
+    		if (this._handlePunct(event, false)) {
+    			return true;
+    		}
+    		return false;
+    	}
+    	if (event.type == "keyup") {
+    		return true;
+    	}
+    	if (event.keyCode == KeyEvent.KEY_ESCAPE) {
+    		if (ctx.beingConverted()) {
+    			ctx.cancelConversion();
+    		} else {
+    			ctx.edit([]);
+    		}
+    		return true;
+    	}
+    	if (event.keyCode == KeyEvent.KEY_TAB) {
+    		ctx.convert();
+    		return true;
+    	}
+    	// TODO: HOME, END, LEFT, RIGHT, PAGE_UP, PAGE_DOWN
+    	// TODO: number keys
+    	if (event.keyCode == KeyEvent.KEY_BACKSPACE) {
+    		if (ctx.beingConverted()) {
+    			ctx.back() || ctx.cancelConversion();
+    		} else {
+    			ctx.popInput();
+    			ctx.edit();
+    		}
+    		return true;
+    	}
+    	if (event.keyCode == KeyEvent.KEY_SPACE) {
+    		if (ctx.beingConverted()) {
+    			this._confirm(0);
+    		} else {
+    			ctx.convert();
+    		}
+    	}
+    	if (event.keyCode == KeyEvent.KEY_ENTER) {
+    		// TODO: handle SHIFT+ENTER
+    		if (ctx.beingConverted()) {
+    			this._confirm(0);
+    		} else {
+    			this._commit();
+    		}
+    	}
+    	// auto-commit
+    	if (this._handlePunct(event, true)) {
+    		return true;
+    	}
     	return true;
     }
 
