@@ -54,7 +54,7 @@ var Parser = new Class({
 Parser._registry = {};
 
 Parser.register = function (parserName, klass) {
-	this._registry[parserName] = klass;
+    this._registry[parserName] = klass;
     Logger.info("registered parser: " + parserName);
 };
 
@@ -76,7 +76,7 @@ var Frontend = new Class({
 });
 
 Frontend.register = function (klass) {
-	this._impl = klass;
+    this._impl = klass;
     Logger.info("registered frontend");
 }
 
@@ -93,7 +93,7 @@ var Backend = new Class({
 });
 
 Backend.register = function (klass) {
-	this._impl = klass;
+    this._impl = klass;
     Logger.info("registered backend");
 }
 
@@ -114,20 +114,20 @@ var Schema = new Class({
         this.delimiter = this.getConfigCharSequence("Delimiter") || " ";
         var punct = {};
         $.each(this.getConfigList("Punct"), function (i, p) {
-        	var a = p.split(/\s+/);
-        	var key = a[0];
-        	var value;
-        	if (a.length > 2) {
-        		value = ["alt", a.slice(1)];
-        	} else if (a.length == 2) {
-        		var b = a[1];
-        		if (b.indexOf("~") != -1) {
-        			value = ["pair", b.split("~", 2)];
-        		} else {
-        			value = ["unique", b];
-        		}
-        	}
-        	punct[key] = value;
+            var a = p.split(/\s+/);
+            var key = a[0];
+            var value;
+            if (a.length > 2) {
+                value = ["alt", a.slice(1)];
+            } else if (a.length == 2) {
+                var b = a[1];
+                if (b.indexOf("~") != -1) {
+                    value = ["pair", b.split("~", 2)];
+                } else {
+                    value = ["unique", b];
+                }
+            }
+            punct[key] = value;
         });
         this.punct = punct;
     },
@@ -154,7 +154,7 @@ var Schema = new Class({
 
     getConfigCharSequence: function (key) {
         var s = this.getConfigValue(key);
-		var re = /^\[.*\]$/;
+        var re = /^\[.*\]$/;
         if (s != null && s.match(re))
             return s.slice(1, -1);
         else
@@ -165,63 +165,63 @@ var Schema = new Class({
 
 var Context = new Class({
 
-	initialize: function (schema, engine, backend) {
-		this.schema = schema;
-		this._backend = backend;
-		this.updateUI = function () {
-			engine.onContextUpdate(this);
-		}
-		this.input = [];
-		this.updateUI();
-	},
-	
-	isEmpty: function () {
-		return this.input.length == 0;
-	},
-	
+    initialize: function (schema, engine, backend) {
+        this.schema = schema;
+        this._backend = backend;
+        this.updateUI = function () {
+            engine.onContextUpdate(this);
+        }
+        this.input = [];
+        this.updateUI();
+    },
+    
+    isEmpty: function () {
+        return this.input.length == 0;
+    },
+    
     // TODO
     beingConverted: function () {
-		return false;
-	},
-	
-	isCompleted: function () {
-		return false;
-	},
-	
-	edit: function (input) {
-		if (input != undefined) {
-			this.input = input;
-		}
-		// TODO
-		this.updateUI();
-	},
-	
-	popInput: function () {
-		// TODO:
-		this.input.pop();
-	},
-	
-	convert: function () {
-		Logger.debug("convert:");
-		return true;
-	},
-	
-	cancelConversion: function () {
-		return true;
-	},
-	
-	back: function () {
-		return false;
-	},
-	
-	getPreedit: function () {
-		// TODO
-		return {
-			text: this.input.join(""),
-			selStart: 0,
-			selEnd: 0
-		};
-	}
+        return false;
+    },
+    
+    isCompleted: function () {
+        return false;
+    },
+    
+    edit: function (input) {
+        if (input != undefined) {
+            this.input = input;
+        }
+        // TODO
+        this.updateUI();
+    },
+    
+    popInput: function () {
+        // TODO:
+        this.input.pop();
+    },
+    
+    convert: function () {
+        Logger.debug("convert:");
+        return true;
+    },
+    
+    cancelConversion: function () {
+        return true;
+    },
+    
+    back: function () {
+        return false;
+    },
+    
+    getPreedit: function () {
+        // TODO
+        return {
+            text: this.input.join(""),
+            selStart: 0,
+            selEnd: 0
+        };
+    }
 
 });
 
@@ -236,41 +236,41 @@ var Engine = new Class({
     },
     
     onContextUpdate: function (ctx) {
-    	Logger.debug("onContextUpdate: " + ctx.input);
-    	var p = ctx.getPreedit();
-    	this._frontend.updatePreedit(p.text, p.selStart, p.selEnd);
-    	// TODO: test code
-    	this._frontend.updateCandidates(['A', 'B', 'C']);
+        Logger.debug("onContextUpdate: " + ctx.input);
+        var p = ctx.getPreedit();
+        this._frontend.updatePreedit(p.text, p.selStart, p.selEnd);
+        // TODO: test code
+        this._frontend.updateCandidates(['A', 'B', 'C']);
     },
     
     processKeyEvent: function (event) {
-    	// ignore hot keys
-    	if (event.ctrlKey || event.altKey || event.metaKey) {
-    		return false;
-    	}
-    	// TODO: handle alternating punctuation input
-    	var result = this._parser.processInput(event, this.ctx);
-    	if (typeof result == "boolean") {
-    		if (result)
-    			return true;
-    		else
-    			return this._process(event);
-    	}
-    	if (result.type == "edit") {
-    		if (this.ctx.beingConverted()) { 
-    			if (this.ctx.isCompleted())
-    				this._commit();
-    			else
-    				return true;
-    		}
-    		if (result.value == null)
-    			this.ctx.edit();
-    		else
-    			this.ctx.edit(this.ctx.input.concat(result.value));
-    	}
-    	// TODO: handle other result types
-    	// NOOP
-    	return true;
+        // ignore hot keys
+        if (event.ctrlKey || event.altKey || event.metaKey) {
+            return false;
+        }
+        // TODO: handle alternating punctuation input
+        var result = this._parser.processInput(event, this.ctx);
+        if (typeof result == "boolean") {
+            if (result)
+                return true;
+            else
+                return this._process(event);
+        }
+        if (result.type == "edit") {
+            if (this.ctx.beingConverted()) { 
+                if (this.ctx.isCompleted())
+                    this._commit();
+                else
+                    return true;
+            }
+            if (result.value == null)
+                this.ctx.edit();
+            else
+                this.ctx.edit(this.ctx.input.concat(result.value));
+        }
+        // TODO: handle other result types
+        // NOOP
+        return true;
     },
     
     // TODO
@@ -284,60 +284,60 @@ var Engine = new Class({
     },
     
     _process: function (event) {
-    	var ctx = this.ctx;
-    	if (ctx.isEmpty()) {
-    		// TODO:
-    		if (this._handlePunct(event, false)) {
-    			return true;
-    		}
-    		return false;
-    	}
-    	if (event.type == "keyup") {
-    		return true;
-    	}
-    	if (event.keyCode == KeyEvent.KEY_ESCAPE) {
-    		if (ctx.beingConverted()) {
-    			ctx.cancelConversion();
-    		} else {
-    			ctx.edit([]);
-    		}
-    		return true;
-    	}
-    	if (event.keyCode == KeyEvent.KEY_TAB) {
-    		ctx.convert();
-    		return true;
-    	}
-    	// TODO: HOME, END, LEFT, RIGHT, PAGE_UP, PAGE_DOWN
-    	// TODO: number keys
-    	if (event.keyCode == KeyEvent.KEY_BACKSPACE) {
-    		if (ctx.beingConverted()) {
-    			ctx.back() || ctx.cancelConversion();
-    		} else {
-    			ctx.popInput();
-    			ctx.edit();
-    		}
-    		return true;
-    	}
-    	if (event.keyCode == KeyEvent.KEY_SPACE) {
-    		if (ctx.beingConverted()) {
-    			this._confirm(0);
-    		} else {
-    			ctx.convert();
-    		}
-    	}
-    	if (event.keyCode == KeyEvent.KEY_ENTER) {
-    		// TODO: handle SHIFT+ENTER
-    		if (ctx.beingConverted()) {
-    			this._confirm(0);
-    		} else {
-    			this._commit();
-    		}
-    	}
-    	// auto-commit
-    	if (this._handlePunct(event, true)) {
-    		return true;
-    	}
-    	return true;
+        var ctx = this.ctx;
+        if (ctx.isEmpty()) {
+            // TODO:
+            if (this._handlePunct(event, false)) {
+                return true;
+            }
+            return false;
+        }
+        if (event.type == "keyup") {
+            return true;
+        }
+        if (event.keyCode == KeyEvent.KEY_ESCAPE) {
+            if (ctx.beingConverted()) {
+                ctx.cancelConversion();
+            } else {
+                ctx.edit([]);
+            }
+            return true;
+        }
+        if (event.keyCode == KeyEvent.KEY_TAB) {
+            ctx.convert();
+            return true;
+        }
+        // TODO: HOME, END, LEFT, RIGHT, PAGE_UP, PAGE_DOWN
+        // TODO: number keys
+        if (event.keyCode == KeyEvent.KEY_BACKSPACE) {
+            if (ctx.beingConverted()) {
+                ctx.back() || ctx.cancelConversion();
+            } else {
+                ctx.popInput();
+                ctx.edit();
+            }
+            return true;
+        }
+        if (event.keyCode == KeyEvent.KEY_SPACE) {
+            if (ctx.beingConverted()) {
+                this._confirm(0);
+            } else {
+                ctx.convert();
+            }
+        }
+        if (event.keyCode == KeyEvent.KEY_ENTER) {
+            // TODO: handle SHIFT+ENTER
+            if (ctx.beingConverted()) {
+                this._confirm(0);
+            } else {
+                this._commit();
+            }
+        }
+        // auto-commit
+        if (this._handlePunct(event, true)) {
+            return true;
+        }
+        return true;
     }
 
 });
@@ -381,18 +381,18 @@ KeyEvent = {
 };
 
 (function () {
-	var keyCodes = [
-	    192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 109, 189, 107, 187,  
-	    81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220, 
-	    65, 83, 68, 70, 71, 72, 74, 75, 76, 59, 186, 222,
-	    90, 88, 67, 86, 66, 78, 77, 188, 190, 191,
-	    32
-	];
-	var lowerCase = "`1234567890--==qwertyuiop[]\\asdfghjkl;;\'zxcvbnm,./ ";
-	var upperCase = "~!@#$%^&*()__++QWERTYUIOP{}|ASDFGHJKL::\"ZXCVBNM<>? ";
-	var table = {};
+    var keyCodes = [
+        192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 109, 189, 107, 187,  
+        81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220, 
+        65, 83, 68, 70, 71, 72, 74, 75, 76, 59, 186, 222,
+        90, 88, 67, 86, 66, 78, 77, 188, 190, 191,
+        32
+    ];
+    var lowerCase = "`1234567890--==qwertyuiop[]\\asdfghjkl;;\'zxcvbnm,./ ";
+    var upperCase = "~!@#$%^&*()__++QWERTYUIOP{}|ASDFGHJKL::\"ZXCVBNM<>? ";
+    var table = {};
     $.each(keyCodes, function (i, keyCode) {
-    	table[keyCode] = [lowerCase[i], upperCase[i]];
+        table[keyCode] = [lowerCase[i], upperCase[i]];
     });
     KeyEvent._table = table;
 })();
