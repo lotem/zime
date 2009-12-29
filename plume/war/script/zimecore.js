@@ -59,12 +59,12 @@ Parser.register = function (parserName, klass) {
 };
 
 Parser.create = function (schema) {
-    var parserName = schema.getParserName();
+    var parserName = schema.getConfigValue("Parser");
     var klass = this._registry[parserName];
     if (klass == undefined)
         return null;
     Logger.info("creating parser: " + parserName);
-    return new klass();
+    return new klass(schema);
 };
 
 // abstract class
@@ -112,7 +112,6 @@ var Schema = new Class({
         this.maxKeyLength = this.getConfigValue("MaxKeyLength") || 3;
         this.maxKeywordLength = this.getConfigValue("MaxKeywordLength") || 7;
         this.delimiter = this.getConfigCharSequence("Delimiter") || " ";
-        this.alphabet = this.getConfigCharSequence("Alphabet") || "abcdefghijklmnopqrstuvwxyz";
         var punct = {};
         $.each(this.getConfigList("Punct"), function (i, p) {
         	var a = p.split(/\s+/);
@@ -131,10 +130,6 @@ var Schema = new Class({
         	punct[key] = value;
         });
         this.punct = punct;
-    },
-
-    getParserName: function () {
-        return this.getConfigValue("Parser");
     },
 
     getConfigValue: function (key) {
@@ -177,9 +172,12 @@ var Context = new Class({
 			engine.onContextUpdate(this);
 		}
 		this.updateUI();
-	}
+	},
 	
     // TODO
+    beingConverted: function () {
+		return false;
+	}
 
 });
 
@@ -203,10 +201,73 @@ var Engine = new Class({
     	// TODO: test code
     	if (event.type == "keyup") {
 	    	this._frontend.commit('keyup!');
-	    	this.updateUI();
+	    	this.ctx.updateUI();
     	}
     	return true;
     }
 
 });
 
+KeyEvent = {
+    KEY_SHIFT: 16,
+    KEY_CTRL: 17,
+    KEY_ALT: 18,
+    KEY_LEFT: 37,
+    KEY_RIGHT: 39,
+    KEY_UP: 38,
+    KEY_DOWN: 40,
+    KEY_HOME: 36,
+    KEY_END: 35,
+    KEY_PAGEDOWN: 34,
+    KEY_PAGEUP: 33,
+    KEY_DELETE: 46,
+    KEY_BACKSPACE: 8,
+    KEY_ESCAPE: 27,
+    KEY_TAB: 9,
+    KEY_ENTER: 13,
+    KEY_SPACE: 32,
+    KEY_0: 48,
+    KEY_9: 57,
+    KEY_A: 65,
+    KEY_Z: 90,
+    KEY_BACKQUOTE: 192,
+    KEY_MINUS_1: 109,
+    KEY_MINUS_2: 189,
+    KEY_EQUAL_1: 107,
+    KEY_EQUAL_2: 187,
+    KEY_L_BRACKET: 219,
+    KEY_R_BRACKET: 221,
+    KEY_BACKSLASH: 220,
+    KEY_SEMICOLON_1: 59,
+    KEY_SEMICOLON_2: 186,
+    KEY_APOSTROPHE: 222,
+    KEY_COMMA: 188,
+    KEY_PERIOD: 190,
+    KEY_SLASH: 191
+};
+
+(function () {
+	var keyCodes = [
+	    192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 109, 189, 107, 187,  
+	    81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220, 
+	    65, 83, 68, 70, 71, 72, 74, 75, 76, 59, 186, 222,
+	    90, 88, 67, 86, 66, 78, 77, 188, 190, 191,
+	    32
+	];
+	var lowerCase = "`1234567890--==qwertyuiop[]\\asdfghjkl;;\'zxcvbnm,./ ";
+	var upperCase = "~!@#$%^&*()__++QWERTYUIOP{}|ASDFGHJKL::\"ZXCVBNM<>? ";
+	var table = {};
+    $.each(keyCodes, function (i, keyCode) {
+    	table[keyCode] = [lowerCase[i], upperCase[i]];
+    });
+    KeyEvent._table = table;
+})();
+
+KeyEvent.toChar = function (event) {
+    if (event.ctrlKey || event.altKey || event.metaKey)
+        return null;
+    var keyCode = event.keyCode;
+    if (keyCode < 0 || keyCode >= 256 || !this._table[keyCode])
+        return null;
+    return this._table[keyCode][event.shiftKey ? 1 : 0];
+};
