@@ -315,10 +315,16 @@ var Context = new Class({
 
     getPreedit: function () {
         // TODO
+        var start = 0;
+        var end = 0;
+        if (this._error) {
+            start = this._error.start;
+            end = this._error.end;
+        }
         return {
             text: this.input.join(""),
-            selStart: 0,
-            selEnd: 0
+            start: start,
+            end: end
         };
     },
 
@@ -342,7 +348,7 @@ var Engine = new Class({
     onContextUpdate: function (ctx) {
         Logger.debug("onContextUpdate: " + ctx.input);
         var p = ctx.getPreedit();
-        this._frontend.updatePreedit(p.text, p.selStart, p.selEnd);
+        this._frontend.updatePreedit(p.text, p.start, p.end);
         this._frontend.updateCandidates(ctx.getCandidates());
     },
     
