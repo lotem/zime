@@ -168,11 +168,11 @@ var Context = new Class({
     initialize: function (schema, engine, backend) {
         this.schema = schema;
         this._backend = backend;
-        this.updateUI = function () {
+        this._updateUI = function () {
             engine.onContextUpdate(this);
         }
         this.input = [];
-        this.updateUI();
+        this._updateUI();
     },
     
     isEmpty: function () {
@@ -193,7 +193,7 @@ var Context = new Class({
             this.input = input;
         }
         // TODO
-        this.updateUI();
+        this._updateUI();
     },
     
     popInput: function () {
@@ -226,6 +226,24 @@ var Context = new Class({
     right: function () {
     },
 
+    select: function (choice) {
+        // TODO
+        return false;
+    },
+
+    pageUp: function () {
+    },
+
+    pageDown: function () {
+    },
+    
+    commit: function () {
+    },
+
+    getCommitText: function () {
+        return "TODO";
+    },
+
     getPreedit: function () {
         // TODO
         return {
@@ -256,8 +274,7 @@ var Engine = new Class({
         Logger.debug("onContextUpdate: " + ctx.input);
         var p = ctx.getPreedit();
         this._frontend.updatePreedit(p.text, p.selStart, p.selEnd);
-        // TODO: test code
-        this._frontend.updateCandidates(['A', 'B', 'C']);
+        this._frontend.updateCandidates(ctx.getCandidates());
     },
     
     processKeyEvent: function (event) {
@@ -308,17 +325,11 @@ var Engine = new Class({
         return true;
     },
     
-    // TODO
     _commit: function () {
-    },
-    
-    _confirm: function (choice) {
-    },
-
-    _pageUp: function () {
-    },
-
-    _pageDown: function () {
+        var s = ctx.getCommitText();
+        this._frontend.commit(s);
+        this._parser.clear();
+        this.ctx.commit();
     },
     
     _handlePunct: function (event, autoCommit) {
@@ -367,6 +378,9 @@ var Engine = new Class({
     _process: function (event) {
         var ctx = this.ctx;
         if (ctx.isEmpty()) {
+            if (event.keyCode == KeyEvent.KEY_TAB) {
+                return false;
+            }
             if (this._punct && event.type == "keyup") {
                 return true;
             }
@@ -397,7 +411,7 @@ var Engine = new Class({
         }
         if (event.keyCode == KeyEvent.KEY_SPACE) {
             if (ctx.beingConverted()) {
-                this._confirm(0);
+                ctx.select(0);
             } else {
                 ctx.convert();
             }
@@ -405,7 +419,7 @@ var Engine = new Class({
         if (event.keyCode == KeyEvent.KEY_ENTER) {
             // TODO: handle Shift+Enter
             if (ctx.beingConverted()) {
-                this._confirm(0);
+                ctx.select(0);
             } else {
                 this._commit();
             }
@@ -433,29 +447,29 @@ var Engine = new Class({
         var hasCandidates = ctx.getCandidates().length > 0;
         if (event.keyCode == KeyEvent.KEY_PAGEUP || event.keyCode == KeyEvent.KEY_UP) {
             if (hasCandidates) {
-                this._pageUp();
+                ctx.pageUp();
             }
             return true;
         }
         if (event.keyCode == KeyEvent.KEY_PAGEDOWN || event.keyCode == KeyEvent.KEY_DOWN) {
             if (hasCandidates) {
-                this._pageDown();
+                ctx.pageDown();
             }
             return true;
         }
         var ch = KeyEvent.toChar(event);
         if (hasCandidates) {
             if (ch == "-" || ch == ",") {
-                this._pageUp();
+                ctx.pageUp();
                 return true;
             }
             if (ch == "=" || ch == ".") {
-                this._pageUp();
+                ctx.pageDown();
                 return true;
             }
         }
         if (ch >= "1" && ch <= "9") {
-            if (this._confirm(ch - "0")) {
+            if (ctx.select(ch - "1")) {
                 return true;
             }
             // try matching punctuation
