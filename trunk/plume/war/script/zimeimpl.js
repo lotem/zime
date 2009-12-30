@@ -82,9 +82,40 @@ var JSONFileBackend = Class.extend(Backend, {
         $.getJSON(this.DATA_DIR + schemaName + this.CONFIG, null, callback);
     },
 
-    // TODO
     segmentation: function (schema, input) {
-        return {m: 0, n: input.length};
+        // TODO: dummy code
+        var n = input.length;
+        var a = [];
+        for (var i = 0; i <= n; ++i) {
+            a[i] = [];
+        }
+        var b = [0];
+        var d = [0];
+        var delim = schema.delimiter;
+        var i = 0;
+        while (i < n) {
+            var j = i;
+            while (j < n && j - i < schema.maxKeywordLength && delim.indexOf(input[j]) == -1)
+                ++j;
+            var spelling = input.slice(i, j).join("");
+            var ikey = schema.keywords[spelling];
+            Logger.debug("spelling: " + spelling);
+            if (ikey == undefined)
+                break;
+            if (j < n && delim.indexOf(input[j]) != -1) {
+                j += 1;
+                d.push(j);
+            }
+            b.push(j);
+            a[j][i] = ikey;
+            Logger.debug("a[" + j + "][" + i + "]: " + ikey);
+            i = j;
+        }
+        if (b[b.length - 1] > d[d.length - 1]) {
+            d.push(b[b.length - 1]);
+        }
+        var m = i;
+        return {n: n, m: m, a: a, b: b, d: d};
     },
 
     query: function (ctx, callback) {}

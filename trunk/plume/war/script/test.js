@@ -46,21 +46,15 @@ var TestFrontend = Class.extend(Frontend, {
             me.engine = new Engine(schema, me, me._backend);
             testAll(me);
         });
-    },
-    
-    input: function (text) {
-        // TODO: foreach char in text:
-        // e = new KeyEvent(keycode of char, mask);
-        // this.engine.processKeyEvent(e);
     }
-
+    
 });
 
 Frontend.register(TestFrontend);
 
 // on page load
 $(function () {
-    testAjax();
+    //testAjax();
     testBootstrap();
 });
 
@@ -84,7 +78,8 @@ function testAll(t) {
     Logger.debug("bootstrap completed");
     Logger.debug("active schema: " + t.engine.schema.schemaName);
     //testConfig(t);
-    testSchema(t);
+    //testSchema(t);
+    testSegmentation(t);
 }
 
 function testConfig(t) {
@@ -118,3 +113,12 @@ function testSchema(t) {
     $("body").append(cont);
 }
 
+function testSegmentation(t) {
+    t.engine.ctx.edit(["s", "h", "u", "a", "n", "g", "z", "i", "e", "\'", "g", "u", "n", "-"]);
+    var s = t.engine.ctx._segmentation;
+    Logger.info("testSegmentation:");
+    Logger.log("m: " + s.m + " n: " + s.n);
+    Logger.log("a: " + s.a);
+    Logger.log("b: " + s.b);
+    Logger.log("d: " + s.d);
+}
