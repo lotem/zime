@@ -18,7 +18,7 @@ var RomanParser = Class.extend(Parser, {
     },
     
     isEmpty: function () {
-        return this._inputlength == 0;
+        return this._input.length == 0;
     },
     
     _getInput: function() {
@@ -83,7 +83,11 @@ var JSONFileBackend = Class.extend(Backend, {
     },
 
     // TODO
-    query: function (input, callback) {}
+    segmentation: function (schema, input) {
+        return {m: 0, n: input.length};
+    },
+
+    query: function (ctx, callback) {}
 });
 
 Backend.register(JSONFileBackend);

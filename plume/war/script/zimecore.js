@@ -171,59 +171,126 @@ var Context = new Class({
         this._updateUI = function () {
             engine.onContextUpdate(this);
         }
-        this.input = [];
+        this._reset();
         this._updateUI();
     },
     
+    _reset: function () {
+        this.input = [];
+        this._error = null;
+        this._segmentation = null;
+        this._selected = [];
+        this._current = [];
+    },
+
+    clear: function () {
+        this._reset();
+        this._updateUI();
+    },
+
     isEmpty: function () {
         return this.input.length == 0;
     },
     
-    // TODO
+    popInput: function () {
+        this.input.pop();
+        if (!this.isEmpty() && this.input[this.input.length - 1] == this.schema.delimiter[0]) {
+            this.input.pop();
+        }
+    },
+    
     beingConverted: function () {
-        return false;
+        return this._current.length != 0;
     },
     
     isCompleted: function () {
-        return false;
+        var c = this._current;
+        return c.length > 0 && c[c.length - 1].end == this.input.length;
     },
     
     edit: function (input) {
-        if (input != undefined) {
-            this.input = input;
+        if (input == undefined) {
+            input = this.input;
         }
-        // TODO
+        this._reset();
+        this.input = input;
+        if (input.length > 0) {
+            var seg = this._backend.segmentation (this.schema, input);
+            this._segmentation = seg;
+            if (seg.m != seg.n) {
+                this._error = {start: seg.m, end: seg.n};
+            }
+        }
         this._updateUI();
-    },
-    
-    popInput: function () {
-        // TODO:
-        this.input.pop();
     },
     
     convert: function () {
         Logger.debug("convert:");
+        // TODO:
+        // this._backend.query(this, ...);
+        this._updateCandidates(this._predict());
         return true;
     },
     
     cancelConversion: function () {
+        this.edit();
         return true;
     },
     
     back: function () {
+        if (!this.beingConverted()) {
+            return false;
+        }
+        // TODO
         return false;
     },
     
+    forth: function () {
+        if (!this.beingConverted()) {
+            return false;
+        }
+        // TODO
+        return false;
+    },
+
     home: function () {
+        if (!this.beingConverted()) {
+            return false;
+        }
+        this._selected = [];
+        this._updateCandidates(0);
+        return true;
     },
 
     end: function () {
+        if (!this.beingConverted()) {
+            return false;
+        }
+        this._selected = [];
+        this._updateCandidates(this._predict());
     },
 
     left: function () {
+        if (!this.beingConverted()) {
+            return false;
+        }
+        // TODO:
+        return true;
     },
 
     right: function () {
+        if (!this.beingConverted()) {
+            return false;
+        }
+        // TODO:
+        return true;
+    },
+
+    // TODO
+    _updateCandidates: function () {
+    },
+
+    _predict: function () {
     },
 
     select: function (choice) {
@@ -238,6 +305,8 @@ var Context = new Class({
     },
     
     commit: function () {
+        // TODO: save user phrase
+        this.clear();
     },
 
     getCommitText: function () {
@@ -309,12 +378,13 @@ var Engine = new Class({
                 return this._process(event);
         }
         if (result.type == "edit") {
-            if (this.ctx.beingConverted()) { 
-                if (this.ctx.isCompleted())
-                    this._commit();
-                else
-                    return true;
+            if (this.ctx.isCompleted()) {
+                this._commit();
+                // continue processing
+            } else if (this.ctx.beingConverted()) { 
+                return true;
             }
+            // input updated
             if (result.value == null)
                 this.ctx.edit();
             else
@@ -475,7 +545,7 @@ var Engine = new Class({
             // try matching punctuation
         }
         // auto-commit
-        if (this._handlePunct(event, true)) {
+        if (this.ctx.isCompleted() && this._handlePunct(event, true)) {
             return true;
         }
         return true;
