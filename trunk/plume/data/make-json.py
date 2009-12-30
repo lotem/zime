@@ -120,7 +120,12 @@ if keyword_file:
 
 def apply_spelling_rule (m, r):
     return (r[0].sub (r[1], m[0], 1), m[1])
-d = dict ([reduce (apply_spelling_rule, spelling_rules, (k, frozenset ([k]))) for k in okeys])
+d = dict ()
+for k, v in [reduce (apply_spelling_rule, spelling_rules, (k, frozenset ([k]))) for k in okeys]:
+    if k in d:
+        d[k] |= v
+    else:
+        d[k] = v
 akas = dict ()
 def add_aka (s, x):
     if s in akas:
