@@ -610,7 +610,7 @@ KeyEvent = {
     var upperCase = "~!@#$%^&*()__++QWERTYUIOP{}|ASDFGHJKL::\"ZXCVBNM<>? ";
     var table = {};
     $.each(keyCodes, function (i, keyCode) {
-        table[keyCode] = [lowerCase[i], upperCase[i]];
+        table[keyCode] = [lowerCase.charAt(i), upperCase.charAt(i)];
     });
     KeyEvent._table = table;
 })();
