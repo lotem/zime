@@ -8,7 +8,7 @@ The web IME *Plume.js* is a DHTML app with static data files, mainly written in 
 
   * JDK 1.6+
 
-  * Python
+  * Python 2.6
 
   * Eclipse, Subclipse plugin, Google Eclipse Plugin (shipped with GWT SDK 2.0)
 
