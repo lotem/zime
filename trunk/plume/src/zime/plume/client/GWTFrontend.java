@@ -87,7 +87,7 @@ public class GWTFrontend implements Frontend {
         String t = editor.getText();
         int cursorPos = editor.getCursorPos();
         int selLength = editor.getSelectionLength();
-        if (cursorPos != 0) {
+        if (cursorPos > 0) {
             nastyBrowser = false;
         }
         if (nastyBrowser) {
