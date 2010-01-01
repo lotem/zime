@@ -23,7 +23,7 @@ var TestFrontend = Class.extend(Frontend, {
     },
 
     updatePreedit: function (preeditText, selStart, selEnd) {
-        Logger.debug("TestFrontend.updatePreedit: " + preeditText + "[" + selStart + ", " + selEnd + "]");
+        Logger.debug("TestFrontend.updatePreedit: " + preeditText + " [" + selStart + ", " + selEnd + ")");
     },
 
     updateCandidates: function (candidateList) {
@@ -80,6 +80,7 @@ function testAll(t) {
     //testConfig(t);
     //testSchema(t);
     testSegmentation(t);
+    testQuery(t);
 }
 
 function testConfig(t) {
@@ -114,11 +115,40 @@ function testSchema(t) {
 }
 
 function testSegmentation(t) {
+    Logger.info("testSegmentation:");
     t.engine.ctx.edit(["s", "h", "u", "a", "n", "g", "z", "i", "e", "\'", "g", "u", "n", "-"]);
     var s = t.engine.ctx._segmentation;
-    Logger.info("testSegmentation:");
     Logger.log("m: " + s.m + " n: " + s.n);
     Logger.log("a: " + s.a);
     Logger.log("b: " + s.b);
     Logger.log("d: " + s.d);
+}
+
+function testQuery(t) {
+    Logger.info("testQuery:");
+    var ctx = t.engine.ctx;
+    ctx.edit(["s", "h", "u", "a", "n", "g", "z", "i", "e", "\'", "g", "u", "n", "-"]);
+    ctx.convert();
+    Logger.log("phrase: ");
+    var a = ctx.phrase;
+    for (var i = 0; i < a.length; ++i) {
+        if (a[i]) {
+            var b = a[i];
+            for (var j = 0; j < b.length; ++j) {
+                if (b[j]) {
+                    var c = b[j];
+                    for (var k = 0; k < c.length; ++k) {
+                        Logger.log("[" + i + ", " + j + ") " + c[k].text);
+                    }
+                }
+            }
+        }
+    }
+    Logger.log("prediction: ");
+    var d = ctx.prediction;
+    for (var i = 0; i < d.length; ++i) {
+        if (d[i]) {
+            Logger.log(i + ": " + d[i].text);
+        }
+    }
 }

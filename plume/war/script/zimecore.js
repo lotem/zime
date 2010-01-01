@@ -165,6 +165,8 @@ var Schema = new Class({
 
 var Context = new Class({
 
+    PAGE_SIZE: 5,
+
     initialize: function (schema, engine, backend) {
         this.schema = schema;
         this._backend = backend;
@@ -180,7 +182,8 @@ var Context = new Class({
         this._error = null;
         this._segmentation = null;
         this._selected = [];
-        this._current = [];
+        this._current = null;
+        this._candidateList = null;
     },
 
     clear: function () {
@@ -200,12 +203,11 @@ var Context = new Class({
     },
     
     beingConverted: function () {
-        return this._current.length != 0;
+        return this._current != null;
     },
     
     isCompleted: function () {
-        var c = this._current;
-        return c.length > 0 && c[c.length - 1].end == this.input.length;
+        return this._current && this._current.end == this.input.length;
     },
     
     edit: function (input) {
@@ -226,23 +228,30 @@ var Context = new Class({
     
     convert: function () {
         Logger.debug("convert:");
-        // TODO:
-        // this._backend.query(this, ...);
-        this._updateCandidates(this._predict());
+        if (this._error) {
+            return false;
+        }
+        var ctx = this;
+        this._backend.query(this, function () {
+            ctx._updateCandidates(ctx._predict());
+        });
         return true;
     },
     
     cancelConversion: function () {
+        Logger.debug("cancelConversion:");
         this.edit();
         return true;
     },
     
     back: function () {
-        if (!this.beingConverted()) {
+        if (!this.beingConverted() || this._selected.length == 0) {
             return false;
         }
-        // TODO
-        return false;
+        var last = this._selected.pop();
+        Logger.debug("last: " + last.text);
+        this._updateCandidates(last.start);
+        return true;
     },
     
     forth: function () {
@@ -250,7 +259,7 @@ var Context = new Class({
             return false;
         }
         // TODO
-        return false;
+        return true;
     },
 
     home: function () {
@@ -286,51 +295,133 @@ var Context = new Class({
         return true;
     },
 
-    // TODO
-    _updateCandidates: function () {
+    _updateCandidates: function (i, j) {
+        Logger.debug("_updateCandidates: " + i + ", " + j);
+        if (!j) {
+            j = this._segmentation.m;
+        }
+        var result = [];
+        var c = this.phrase[i];
+        if (c) {
+            for (var k = j; k > i; --k) {
+                if (c[k]) {
+                    result = result.concat(c[k]);
+                }
+            }
+        }
+        if (result.length > 0) {
+            result.currentPage = 0;
+            this._candidateList = result;
+            this._current = result[0];
+        }
+        else {
+            this._candidateList = null;
+            this._current = null;
+            this._error = {start: i, end: j};
+        }
+        this._updateUI();
     },
 
     _predict: function () {
+        var s = this._selected;
+        var i = (s.length > 0) ? s[s.length - 1].end : 0;
+        var p;
+        while ((p = this.prediction[i]) != undefined) {
+            if (p.end >= this._segmentation.m)
+                break;
+            this._selected.push(p);
+            i = p.end;
+        }
+        return i;
     },
 
     select: function (choice) {
-        // TODO
-        return false;
+        if (choice >= this.PAGE_SIZE) {
+            return false;
+        }
+        var c = this._candidateList;
+        var index = c.currentPage * this.PAGE_SIZE + choice;
+        if (index >= c.length) {
+            return false;
+        }    
+        this._current = c[index];
+        return true;
+    },
+
+    forward: function () {
+        this._selected.push(this._current);
+        this._updateCandidates(this._current.end);
     },
 
     pageUp: function () {
+        var c = this._candidateList;
+        if (!c || c.currentPage == 0) {
+            return false;
+        }
+        --c.currentPage;
+        this._current = c[c.currentPage * this.PAGE_SIZE];
+        this._updateUI();
+        return true;
     },
 
     pageDown: function () {
+        var c = this._candidateList;
+        if (!c || c.length < (c.currentPage + 1) * this.PAGE_SIZE) {
+            return false;
+        }
+        ++c.currentPage;
+        this._current = c[c.currentPage * this.PAGE_SIZE];
+        this._updateUI();
+        return true;
     },
     
     commit: function () {
+        this._selected.push(this._current);
+        var commitText = $.map(this._selected, function (e) {
+            return e.text;
+        }).join("");
         // TODO: save user phrase
         this.clear();
-    },
-
-    getCommitText: function () {
-        return "TODO";
+        return commitText;
     },
 
     getPreedit: function () {
-        // TODO
+        // TODO: auto-delimit
+        var result = this.input;
         var start = 0;
         var end = 0;
         if (this._error) {
             start = this._error.start;
             end = this._error.end;
         }
+        else if (this._current) {
+            result = [];
+            $.each(this._selected, function (i, e) {
+                result.push(e.text);
+                start += e.text.length;
+            });
+            var rest = this._current.start;
+            result = result.concat(this.input.slice(rest));
+            end = start + (this._current.end - rest);
+        }
         return {
-            text: this.input.join(""),
+            text: result.join(""),
             start: start,
             end: end
         };
     },
 
+    // returns an array of strings
     getCandidates: function () {
-        // TODO
-        return [];
+        var c = this._candidateList;
+        if (!c) {
+            return [];
+        }
+        var start = this.PAGE_SIZE * c.currentPage;
+        var end = Math.min(start + this.PAGE_SIZE, c.length);
+        return $.map(c.slice(start, end), function (e) {
+            return e.text;
+        });
     }
 
 });
@@ -401,11 +492,19 @@ var Engine = new Class({
         return true;
     },
     
+    _forward: function () {
+        if (this.ctx.isCompleted()) {
+            this._commit();
+        }
+        else {
+            this.ctx.forward();
+        }
+    },
+
     _commit: function () {
-        var s = ctx.getCommitText();
+        var s = this.ctx.commit();
         this._frontend.commit(s);
         this._parser.clear();
-        this.ctx.commit();
     },
     
     _handlePunct: function (event, autoCommit) {
@@ -487,7 +586,7 @@ var Engine = new Class({
         }
         if (event.keyCode == KeyEvent.KEY_SPACE) {
             if (ctx.beingConverted()) {
-                ctx.select(0);
+                ctx.select(0) && this._forward();
             } else {
                 ctx.convert();
             }
@@ -495,7 +594,7 @@ var Engine = new Class({
         if (event.keyCode == KeyEvent.KEY_ENTER) {
             // TODO: handle Shift+Enter
             if (ctx.beingConverted()) {
-                ctx.select(0);
+                ctx.select(0) && this._forward();
             } else {
                 this._commit();
             }
@@ -520,21 +619,20 @@ var Engine = new Class({
             ctx.right();
             return true;
         }
-        var hasCandidates = ctx.getCandidates().length > 0;
         if (event.keyCode == KeyEvent.KEY_PAGEUP || event.keyCode == KeyEvent.KEY_UP) {
-            if (hasCandidates) {
+            if (ctx.beingConverted()) {
                 ctx.pageUp();
             }
             return true;
         }
         if (event.keyCode == KeyEvent.KEY_PAGEDOWN || event.keyCode == KeyEvent.KEY_DOWN) {
-            if (hasCandidates) {
+            if (ctx.beingConverted()) {
                 ctx.pageDown();
             }
             return true;
         }
         var ch = KeyEvent.toChar(event);
-        if (hasCandidates) {
+        if (ctx.beingConverted()) {
             if (ch == "-" || ch == ",") {
                 ctx.pageUp();
                 return true;
@@ -546,6 +644,7 @@ var Engine = new Class({
         }
         if (ch >= "1" && ch <= "9") {
             if (ctx.select(ch - "1")) {
+                this._forward();
                 return true;
             }
             // try matching punctuation

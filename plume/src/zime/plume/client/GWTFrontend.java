@@ -82,7 +82,7 @@ public class GWTFrontend implements Frontend {
         initialize();
     }
 
-	@Override
+    @Override
    public void commit(String str) {
         String t = editor.getText();
         int cursorPos = editor.getCursorPos();
@@ -134,47 +134,47 @@ public class GWTFrontend implements Frontend {
         editor.setEnabled(true);
         preeditBox.setEnabled(true);
         preeditBox.setFocus(true);
-	}
+    }
 
-	public void onSchemaListReady(SchemaList list) {
-		if (list == null)
-			return;
-		for (int i = 0; i < list.length(); i++) {
-			SchemaListItem item = list.get(i);
-			schemaChooser.addItem(item.getDisplayName(), item.getSchemaName());
-		}
-	}
+    public void onSchemaListReady(SchemaList list) {
+        if (list == null)
+            return;
+        for (int i = 0; i < list.length(); i++) {
+            SchemaListItem item = list.get(i);
+            schemaChooser.addItem(item.getDisplayName(), item.getSchemaName());
+        }
+    }
 
-	protected native void initialize() /*-{
-		var frontend = $wnd.Frontend.create();
-		var gwtFrontend = this;
-		frontend.onSchemaListReady = function (schemaList) {
-			gwtFrontend.@zime.plume.client.GWTFrontend::onSchemaListReady(Lzime/plume/client/SchemaList;)(schemaList);
-		};
-		frontend.onSchemaReady = function () {
-			gwtFrontend.@zime.plume.client.GWTFrontend::onSchemaReady()();
-		};
-		frontend.updatePreedit = function (preedit, selStart, selEnd) {
-			gwtFrontend.@zime.plume.client.GWTFrontend::updatePreedit(Ljava/lang/String;II)(preedit, selStart, selEnd);
-		};
-		frontend.updateCandidates = function (candidateList) {
-			gwtFrontend.@zime.plume.client.GWTFrontend::updateCandidates(Lzime/plume/client/CandidateList;)(candidateList);
-		};
-		frontend.commit = function (text) {
-			gwtFrontend.@zime.plume.client.GWTFrontend::commit(Ljava/lang/String;)(text);
-		};
-		frontend.submit = function () {
-			gwtFrontend.@zime.plume.client.GWTFrontend::submit()();
-		};
-		$wnd.frontend = frontend;
-	}-*/;
+    protected native void initialize() /*-{
+        var frontend = $wnd.Frontend.create();
+        var gwtFrontend = this;
+        frontend.onSchemaListReady = function (schemaList) {
+            gwtFrontend.@zime.plume.client.GWTFrontend::onSchemaListReady(Lzime/plume/client/SchemaList;)(schemaList);
+        };
+        frontend.onSchemaReady = function () {
+            gwtFrontend.@zime.plume.client.GWTFrontend::onSchemaReady()();
+        };
+        frontend.updatePreedit = function (preedit, selStart, selEnd) {
+            gwtFrontend.@zime.plume.client.GWTFrontend::updatePreedit(Ljava/lang/String;II)(preedit, selStart, selEnd);
+        };
+        frontend.updateCandidates = function (candidateList) {
+            gwtFrontend.@zime.plume.client.GWTFrontend::updateCandidates(Lzime/plume/client/CandidateList;)(candidateList);
+        };
+        frontend.commit = function (text) {
+            gwtFrontend.@zime.plume.client.GWTFrontend::commit(Ljava/lang/String;)(text);
+        };
+        frontend.submit = function () {
+            gwtFrontend.@zime.plume.client.GWTFrontend::submit()();
+        };
+        $wnd.frontend = frontend;
+    }-*/;
 
-	protected native void nativeLoadSchema(String schemaName) /*-{
-		$wnd.frontend.loadSchema(schemaName);
-	}-*/;
+    protected native void nativeLoadSchema(String schemaName) /*-{
+        $wnd.frontend.loadSchema(schemaName);
+    }-*/;
 
-	protected native boolean nativeProcessKeyEvent(NativeEvent event) /*-{
-		return $wnd.frontend.processKeyEvent(event);
-	}-*/;
+    protected native boolean nativeProcessKeyEvent(NativeEvent event) /*-{
+        return $wnd.frontend.processKeyEvent(event);
+    }-*/;
 
 }

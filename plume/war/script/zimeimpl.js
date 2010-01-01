@@ -118,7 +118,36 @@ var JSONFileBackend = Class.extend(Backend, {
         return {n: n, m: m, a: a, b: b, d: d};
     },
 
-    query: function (ctx, callback) {}
+    query: function (ctx, callback) {
+        // TODO: dummy code
+        var seg = ctx._segmentation;
+        var b = seg.b;
+        var c = [];
+        var d = [];
+        for (var i = 0; i < b.length; ++i) {
+            c[b[i]] = [];
+            for (var j = i + 1; j <= b.length && b[j] <= b[i] + ctx.schema.maxKeywordLength; ++j) {
+                var t = seg.a[b[j]][b[i]];
+                if (t) {
+                    Logger.log("[" + b[i] + ", " + b[j] + ") " + t);
+                    var cl = [];
+                    for (var k = 1; k <= 9; ++k) {
+                        cl.push({
+                            text: t.toUpperCase() + k, 
+                            start: b[i], 
+                            end: b[j], 
+                            prob: 0.01
+                        });
+                    }
+                    c[b[i]][b[j]] = cl;
+                    d[b[i]] = cl[0];
+                }
+            }
+        }
+        ctx.phrase = c;
+        ctx.prediction = d;
+        callback();
+    }
 });
 
 Backend.register(JSONFileBackend);
