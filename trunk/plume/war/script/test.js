@@ -116,10 +116,19 @@ function testSchema(t) {
 
 function testSegmentation(t) {
     Logger.info("testSegmentation:");
-    t.engine.ctx.edit(["s", "h", "u", "a", "n", "g", "z", "i", "e", "\'", "g", "u", "n", "-"]);
+    t.engine.ctx.edit(["h", "e", "n", "a", "n", "c", "y", "u", "a", "n"]);
     var s = t.engine.ctx._segmentation;
     Logger.log("m: " + s.m + " n: " + s.n);
-    Logger.log("a: " + s.a);
+    Logger.log("a:");
+    for (var i = 0; i < s.b.length; ++i) {
+        for (var j = i + 1; j <= s.b.length; ++j) {
+            var ki = s.b[i];
+            var kj = s.b[j];
+            if (s.a[kj] && s.a[kj][ki]) {
+                Logger.log("[" + ki + ", " + kj + "): " + s.a[kj][ki]);
+            }
+        }
+    }
     Logger.log("b: " + s.b);
     Logger.log("d: " + s.d);
 }

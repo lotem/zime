@@ -111,8 +111,8 @@ var Schema = new Class({
         // required configuration options
         this.prefix = this.getConfigValue("Prefix");
         this.parser = this.getConfigValue("Parser");
-        this.maxKeyLength = this.getConfigValue("MaxKeyLength") || 3;
-        this.maxKeywordLength = this.getConfigValue("MaxKeywordLength") || 7;
+        this.maxKeyLength = Number(this.getConfigValue("MaxKeyLength") || 3);
+        this.maxKeywordLength = Number(this.getConfigValue("MaxKeywordLength") || 7);
         this.delimiter = this.getConfigCharSequence("Delimiter") || " ";
         var punct = {};
         $.each(this.getConfigList("Punct"), function (i, p) {
