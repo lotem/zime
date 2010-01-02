@@ -26,8 +26,8 @@ var RomanParser = Class.extend(Parser, {
         return this._input.slice(0);
     },
     
-    _isInput: function (ch) {
-        if (this.isEmpty()) {
+    _isInput: function (ch, empty) {
+        if (empty) {
             return this._initial.indexOf(ch) != -1;
         } else {
             return this._alphabet.indexOf(ch) != -1 || this._delimiter.indexOf(ch) != -1;
@@ -38,7 +38,16 @@ var RomanParser = Class.extend(Parser, {
         if (event.type == "keyup") {
             return false;
         }
+        if (event.keyCode == KeyEvent.KEY_SPACE) {
+            return false;
+        }
+        var ch = KeyEvent.toChar(event);
         if (ctx.beingConverted()) {
+            if (ctx.isCompleted() && ch != null && this._isInput(ch, true)) {
+                this.clear();
+                this._input.push(ch);
+                return {type: "edit", value: this._getInput()};
+            }
             return false;
         }
         if (event.keyCode == KeyEvent.KEY_ESCAPE) {
@@ -52,11 +61,7 @@ var RomanParser = Class.extend(Parser, {
             ctx.input = this._getInput();
             return {type: "edit", value: null};
         }
-        if (event.keyCode == KeyEvent.KEY_SPACE) {
-            return false;
-        }
-        var ch = KeyEvent.toChar(event);
-        if (ch != null && this._isInput(ch)) {
+        if (ch != null && this._isInput(ch, this.isEmpty())) {
             this._input.push(ch);
             ctx.input = this._getInput();
             return {type: "edit", value: null};
@@ -73,6 +78,7 @@ var JSONFileBackend = Class.extend(Backend, {
     DATA_DIR: "data/",
     SCHEMA_LIST: "SchemaList.json",
     CONFIG: "Config.json",
+    JSON: ".json",
 
     loadSchemaList: function (callback) {
         $.getJSON(this.DATA_DIR + this.SCHEMA_LIST, null, callback);
@@ -82,8 +88,20 @@ var JSONFileBackend = Class.extend(Backend, {
         $.getJSON(this.DATA_DIR + schemaName + this.CONFIG, null, callback);
     },
 
+    loadDict: function (schema) {
+        var prefix = schema.prefix;
+        $.getJSON(this.DATA_DIR + prefix + this.JSON, null, function (data) {
+            this._dict = data;
+            this._dict.prefix = prefix;
+        });
+    },
+
     segmentation: function (schema, input) {
-        // TODO: dummy code
+        // TODO: 
+        return this._dummySegmentation(schema, input);
+    },
+
+    _dummySegmentation: function (schema, input) {
         var n = input.length;
         var a = [];
         for (var i = 0; i <= n; ++i) {
@@ -119,7 +137,11 @@ var JSONFileBackend = Class.extend(Backend, {
     },
 
     query: function (ctx, callback) {
-        // TODO: dummy code
+        // TODO: 
+        this._dummyQuery(ctx, callback); 
+    },
+
+    _dummyQuery: function (ctx, callback) {
         var seg = ctx._segmentation;
         var b = seg.b;
         var c = [];
@@ -148,6 +170,7 @@ var JSONFileBackend = Class.extend(Backend, {
         ctx.prediction = d;
         callback();
     }
+
 });
 
 Backend.register(JSONFileBackend);
@@ -173,6 +196,7 @@ var JSFrontend = Class.extend(Frontend, {
         var me = this;
         this._backend.loadConfig(schemaName, function (config) {
             schema = new Schema (schemaName, config);
+            me._backend.loadDict(schema);
             me.engine = new Engine(schema, me, me._backend);
             me.onSchemaReady();
         });

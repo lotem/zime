@@ -59,7 +59,7 @@ Parser.register = function (parserName, klass) {
 };
 
 Parser.create = function (schema) {
-    var parserName = schema.getConfigValue("Parser");
+    var parserName = schema.parser;
     var klass = this._registry[parserName];
     if (klass == undefined)
         return null;
@@ -109,6 +109,8 @@ var Schema = new Class({
         this._prefix = "Config/" + schemaName + "/";
         $.extend(this, data);
         // required configuration options
+        this.prefix = this.getConfigValue("Prefix");
+        this.parser = this.getConfigValue("Parser");
         this.maxKeyLength = this.getConfigValue("MaxKeyLength") || 3;
         this.maxKeywordLength = this.getConfigValue("MaxKeywordLength") || 7;
         this.delimiter = this.getConfigCharSequence("Delimiter") || " ";
@@ -400,9 +402,10 @@ var Context = new Class({
                 result.push(e.text);
                 start += e.text.length;
             });
-            var rest = this._current.start;
+            result.push(this._current.text);
+            end = start + this._current.text.length;
+            var rest = this._current.end;
             result = result.concat(this.input.slice(rest));
-            end = start + (this._current.end - rest);
         }
         return {
             text: result.join(""),
@@ -495,6 +498,7 @@ var Engine = new Class({
     _forward: function () {
         if (this.ctx.isCompleted()) {
             this._commit();
+            this._parser.clear();
         }
         else {
             this.ctx.forward();
@@ -504,7 +508,6 @@ var Engine = new Class({
     _commit: function () {
         var s = this.ctx.commit();
         this._frontend.commit(s);
-        this._parser.clear();
     },
     
     _handlePunct: function (event, autoCommit) {
@@ -516,6 +519,7 @@ var Engine = new Class({
             }
             if (autoCommit) {
                 this._commit();
+                this._parser.clear();
             }
             if (p.type == "unique") {
                 this._frontend.commit(p.value);
@@ -597,6 +601,7 @@ var Engine = new Class({
                 ctx.select(0) && this._forward();
             } else {
                 this._commit();
+                this._parser.clear();
             }
         }
         if (event.keyCode == KeyEvent.KEY_TAB) {
