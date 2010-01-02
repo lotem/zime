@@ -33,15 +33,17 @@ public class GWTFrontend implements Frontend {
         preeditBox.addKeyDownHandler(new KeyDownHandler() {
             @Override
             public void onKeyDown(KeyDownEvent event) {
-                if (nativeProcessKeyEvent(event.getNativeEvent()))
+                if (nativeProcessKeyEvent(event.getNativeEvent())) {
                     preeditBox.cancelKey();
+                }
             }
         });
         preeditBox.addKeyUpHandler(new KeyUpHandler() {
             @Override
             public void onKeyUp(KeyUpEvent event) {
-                if (nativeProcessKeyEvent(event.getNativeEvent()))
+                if (nativeProcessKeyEvent(event.getNativeEvent())) {
                     preeditBox.cancelKey();
+                }
             }
         });
         editor = new TextArea();
@@ -111,6 +113,9 @@ public class GWTFrontend implements Frontend {
         preeditBox.setText(preedit);
         if (selStart < selEnd) {
             preeditBox.setSelectionRange(selStart, selEnd - selStart);
+        }
+        else {
+            preeditBox.setCursorPos(preedit.length());
         }
     }
 
