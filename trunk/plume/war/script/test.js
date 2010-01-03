@@ -41,11 +41,10 @@ var TestFrontend = Class.extend(Frontend, {
     loadSchema: function (schemaName) {
         Logger.debug("TestFrontend.loadSchema: " + schemaName);
         var me = this;
-        this._backend.loadConfig(schemaName, function (config) {
-            schema = new Schema (schemaName, config);
+        this._backend.loadSchema(schemaName, function (schema) {
             me.engine = new Engine(schema, me, me._backend);
             testAll(me);
-        });
+        }, "_sync");
     }
     
 });
@@ -136,10 +135,14 @@ function testSegmentation(t) {
 function testQuery(t) {
     Logger.info("testQuery:");
     var ctx = t.engine.ctx;
-    ctx.edit(["s", "h", "u", "a", "n", "g", "z", "i", "e", "\'", "g", "u", "n", "-"]);
+    ctx.edit("shuangziegun-errouzhongdaigang".split(""));
     ctx.convert();
-    Logger.log("phrase: ");
     var a = ctx.phrase;
+    if (!a) {
+        Logger.error("no query result");
+        return;
+    }
+    Logger.log("phrase: ");
     for (var i = 0; i < a.length; ++i) {
         if (a[i]) {
             var b = a[i];
