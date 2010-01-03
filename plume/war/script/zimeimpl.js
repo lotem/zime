@@ -151,7 +151,14 @@ var JSONFileBackend = Class.extend(Backend, {
                 }
                 var t = (j < n && schema.delimiter.indexOf(input[j]) != -1) ? j + 1 : j;
                 //Logger.debug("[" + i + ", " + j + ") " + s);
-                if (q.indexOf(t) == -1) {
+                var found = false;
+                $.each(q, function (i_, e) {
+                    if (e == t) {
+                        found = true;
+                        return false;
+                    }
+                });
+                if (!found) {
                     q.push(t);
                     m = Math.max(m, t);
                 }
@@ -312,12 +319,18 @@ var JSONFileBackend = Class.extend(Backend, {
                             }
                         });
                     });
-                    var i = pending.indexOf(index);
-                    if (i == -1) {
+                    var pos = -1;
+                    $.each(pending, function (i, e) {
+                        if (e == index) {
+                            pos = i;
+                            return false;
+                        }
+                    });
+                    if (pos == -1) {
                         Logger.error("index '" + index + "' lost trace in pending lookups.");
                         return;
                     }
-                    pending.splice(i, 1);
+                    pending.splice(pos, 1);
                     if (pending.length == 0) {
                         me._queries = null;
                         Logger.debug("lookup successful.");
