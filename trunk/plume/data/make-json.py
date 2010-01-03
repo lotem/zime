@@ -93,10 +93,7 @@ if not prefix:
     print >> sys.stderr, 'no dict prefix specified in schema file.'
     exit ()
 
-phrase_counter = 0
-phrases = dict ()
-
-okeys = set ()
+okeys = dict ()
 
 if keyword_file:
     f = open (keyword_file, 'r')
@@ -111,11 +108,9 @@ if keyword_file:
             print >> sys.stderr, 'error: invalid format (%s) %s' % (phrase_file, x)
             exit ()
         if okey not in okeys:
-            okeys.add (okey)
-        phrases[(okey, phrase)] = 0
-        phrase_counter += 1
-        if options.verbose and phrase_counter % 1000 == 0:
-            print >> sys.stderr, '%dk phrases imported from %s.' % (phrase_counter / 1000, keyword_file)
+            okeys[okey] = [phrase]
+        else:
+            okeys[okey].append(phrase)
     f.close ()
 
 def apply_spelling_rule (m, r):
@@ -222,27 +217,36 @@ def g (s, k, depth):
             r.append (x + [y])
     return g(r, k[1:], depth + 1)
 
+phrase_counter = 0
+phrases = dict ()
 freq_total = 0
 ip_map = dict ()
 
 def process_phrase (okey, phrase, freq):
     global phrase_counter, phrases, freq_total, i_map
     phrase_counter += 1
+    freq_total += freq
     k = (okey, phrase)
     if k in phrases:
         phrases[k] += freq
     else:
         phrases[k] = freq
-    freq_total += freq
-    ikeys = g ([[]], okey.split (), 0)
-    if not ikeys and options.verbose:
-        print >> sys.stderr, 'failed index generation for phrase [%s] %s.' % (okey, phrase)
-    for i in ikeys:
-        ikey = u' '.join (i)
-        if ikey in ip_map:
-            ip_map[ikey].add (k)
-        else:
-            ip_map[ikey] = set ([k])
+        ikeys = g ([[]], okey.split (), 0)
+        if not ikeys and options.verbose:
+            print >> sys.stderr, 'failed index generation for phrase [%s] %s.' % (okey, phrase)
+        for i in ikeys:
+            ikey = u' '.join (i)
+            if ikey in ip_map:
+                ip_map[ikey].add (k)
+            else:
+                ip_map[ikey] = set ([k])
+
+for okey in okeys:
+    for phrase in okeys[okey]:
+        process_phrase(okey, phrase, 0)
+        if options.verbose and phrase_counter % 1000 == 0:
+            print >> sys.stderr, '%dk phrases imported from %s.' % (phrase_counter / 1000, keyword_file)
+del okeys
 
 if phrase_file:
     f = open (phrase_file, 'r')
