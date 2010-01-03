@@ -78,6 +78,7 @@ var JSONFileBackend = Class.extend(Backend, {
     DATA_DIR: "data/",
     SCHEMA_LIST: "SchemaList.json",
     CONFIG: "Config.json",
+    SEPARATOR: "/",
     JSON: ".json",
 
     loadSchemaList: function (callback) {
@@ -232,33 +233,35 @@ var JSONFileBackend = Class.extend(Backend, {
     },
 
     query: function (ctx, callback) {
-        var seg = ctx._segmentation;
+        if (!this._dict) {
+            Logger.error("dict not yet loaded.");
+            return;
+        }
+        this._indexQueries(ctx);
+        this._lookup(ctx, callback);
+    },
+
+    _indexQueries: function (ctx) {
         var maxKeywordLength = ctx.schema.maxKeywordLength;
         var maxKeyLength = ctx.schema.maxKeyLength;
-        var indexingLevel = this._dict.indexingLevel;
-        var queries = {};
-        var registerQuery = function (r) {
-            Logger.debug("registerQuery: [" + r.start + ", " + r.end + ") " + r.ikey);
-            var index = r.ikey.slice(0, indexingLevel).join("_");
-            if (queries[index])
-                queries[index].push(r);
-            else
-                queries[index] = [r];
-        };
+        var a = ctx._segmentation.a;
+        var b = ctx._segmentation.b;
+        this._queries = {};
         var q = [];
-        for (var i = 0; i < seg.b.length; ++i) {
+        for (var i = 0; i < b.length; ++i) {
             var s = [];
-            for (var j = i + 1; j < seg.b.length && b[j] - b[i] <= maxKeywordLength; ++j) {
-                var kw = seg.a[b[j]][b[i]];
+            for (var j = i + 1; j < b.length && b[j] - b[i] <= maxKeywordLength; ++j) {
+                var kw = a[b[j]][b[i]];
                 if (kw) {
                     var r = {ikey: [kw], start: b[i], end: b[j]};
-                    registerQuery(r);
+                    this._registerQuery(r);
                     if (r.ikey.length < maxKeyLength)
                         s.push(r);
+                    var me = this;
                     $.each(q, function (k, e) {
                         if (e.end == b[i]) {
                             r = {ikey: e.ikey.concat([kw]), start: e.start, end: b[j]};
-                            registerQuery(r);
+                            me._registerQuery(r);
                             if (r.ikey.length < maxKeyLength)
                                 s.push(r);
                         }
@@ -267,7 +270,74 @@ var JSONFileBackend = Class.extend(Backend, {
             }
             q = q.concat(s);
         }
-        q = undefined;
+    },
+
+    _registerQuery: function (r) {
+        //Logger.debug("registerQuery: [" + r.start + ", " + r.end + ") " + r.ikey);
+        var index = r.ikey.slice(0, this._dict.indexingLevel).join("_");
+        if (this._queries[index])
+            this._queries[index].push(r);
+        else
+            this._queries[index] = [r];
+    },
+
+    _lookup: function (ctx, callback) {
+        var prefix = this._dict.prefix;
+        var queries = this._queries;
+        var me = this;
+        var pending = [];
+        var phrase = [];
+        for (var k in queries) {
+            (function (index) {
+                //Logger.debug("pending: " + index);
+                pending.push(index);
+                $.getJSON(me.DATA_DIR + prefix + me.SEPARATOR + index + me.JSON, null, function (data) {
+                    Logger.debug("fetched: " + index);
+                    if (me._queries !== queries)
+                        return;
+                    // generate query results
+                    $.each(queries[index], function (i, q) {
+                        var p = phrase[q.start];
+                        if (!p) {
+                            p = phrase[q.start] = [];
+                        }
+                        // filter results
+                        $.each(data[q.ikey.join(" ")] || [], function (i, e) {
+                            var r = me._checkEntry(e, ctx._segmentation, q.start, q.end);
+                            if (r) {
+                                if (!p[r.end])
+                                    p[r.end] = [r];
+                                else
+                                    p[r.end].push(r);
+                            }
+                        });
+                    });
+                    var i = pending.indexOf(index);
+                    if (i == -1) {
+                        Logger.error("index '" + index + "' lost trace in pending lookups.");
+                        return;
+                    }
+                    pending.splice(i, 1);
+                    if (pending.length == 0) {
+                        me._queries = null;
+                        Logger.debug("lookup successful.");
+                        ctx.phrase = phrase;
+                        ctx.prediction = me._makePrediction(phrase, ctx._segmentation);
+                        callback();
+                    }
+                });
+            })(k);
+        }
+    },
+
+    _checkEntry: function (e, seg, i, j) {
+        // TODO: match okey to ikey
+        return {unigram: e, text: e[1], start: i, end: j};
+    },
+
+    _makePrediction: function (phrase, seg) {
+        // TODO
+        return [];
     },
 
     _dummyQuery: function (ctx, callback) {

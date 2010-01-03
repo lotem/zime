@@ -78,7 +78,7 @@ function testAll(t) {
     Logger.debug("active schema: " + t.engine.schema.schemaName);
     //testConfig(t);
     //testSchema(t);
-    testSegmentation(t);
+    //testSegmentation(t);
     testQuery(t);
 }
 
@@ -115,7 +115,7 @@ function testSchema(t) {
 
 function testSegmentation(t) {
     Logger.info("testSegmentation:");
-    t.engine.ctx.edit(["h", "e", "n", "a", "n", "c", "y", "u", "a", "n"]);
+    t.engine.ctx.edit("henancyuan".split(""));
     var s = t.engine.ctx._segmentation;
     Logger.log("m: " + s.m + " n: " + s.n);
     Logger.log("a:");
@@ -135,32 +135,39 @@ function testSegmentation(t) {
 function testQuery(t) {
     Logger.info("testQuery:");
     var ctx = t.engine.ctx;
-    ctx.edit("shuangziegun-errouzhongdaigang".split(""));
-    ctx.convert();
-    var a = ctx.phrase;
-    if (!a) {
-        Logger.error("no query result");
-        return;
-    }
-    Logger.log("phrase: ");
-    for (var i = 0; i < a.length; ++i) {
-        if (a[i]) {
-            var b = a[i];
-            for (var j = 0; j < b.length; ++j) {
-                if (b[j]) {
-                    var c = b[j];
-                    for (var k = 0; k < c.length; ++k) {
-                        Logger.log("[" + i + ", " + j + ") " + c[k].text);
+    //ctx.edit("shuangzie\'gun".split(""));
+    ctx.edit("henancyuan".split(""));
+    ctx._backend.query(ctx, function () {
+        var a = ctx.phrase;
+        if (!a) {
+            Logger.error("no query result");
+            return;
+        }
+        Logger.log("phrase: ");
+        for (var i = 0; i < a.length; ++i) {
+            if (a[i]) {
+                var b = a[i];
+                for (var j = 0; j < b.length; ++j) {
+                    if (b[j]) {
+                        var c = b[j];
+                        for (var k = 0; k < c.length; ++k) {
+                            if (k >= 5) {
+                                Logger.log("[" + i + ", " + j + ") ...");
+                                break;
+                            }
+                            else
+                                Logger.log("[" + i + ", " + j + ") " + c[k].text);
+                        }
                     }
                 }
             }
         }
-    }
-    Logger.log("prediction: ");
-    var d = ctx.prediction;
-    for (var i = 0; i < d.length; ++i) {
-        if (d[i]) {
-            Logger.log(i + ": " + d[i].text);
+        Logger.log("prediction: ");
+        var d = ctx.prediction;
+        for (var i = 0; i < d.length; ++i) {
+            if (d[i]) {
+                Logger.log(i + ": " + d[i].text);
+            }
         }
-    }
+    });
 }
