@@ -84,15 +84,30 @@ var JSONFileBackend = Class.extend(Backend, {
         $.getJSON(this.DATA_DIR + this.SCHEMA_LIST, null, callback);
     },
 
-    loadConfig: function (schemaName, callback) {
+    loadSchema: function (schemaName, callback, _sync) {
+        var me = this;
+        this._loadConfig(schemaName, function (config) {
+            schema = new Schema (schemaName, config);
+            me._loadDict(schema, _sync ? callback : null);
+            if (!_sync) {
+                callback(schema);
+            }
+        });
+    },
+
+    _loadConfig: function (schemaName, callback) {
         $.getJSON(this.DATA_DIR + schemaName + this.CONFIG, null, callback);
     },
 
-    loadDict: function (schema) {
+    _loadDict: function (schema, callback) {
+        var me = this;
         var prefix = schema.prefix;
         $.getJSON(this.DATA_DIR + prefix + this.JSON, null, function (data) {
-            this._dict = data;
-            this._dict.prefix = prefix;
+            data.prefix = prefix;
+            me._dict = data;
+            if (callback) {
+                callback(schema);
+            }
         });
     },
 
@@ -217,8 +232,42 @@ var JSONFileBackend = Class.extend(Backend, {
     },
 
     query: function (ctx, callback) {
-        // TODO: 
-        this._dummyQuery(ctx, callback); 
+        var seg = ctx._segmentation;
+        var maxKeywordLength = ctx.schema.maxKeywordLength;
+        var maxKeyLength = ctx.schema.maxKeyLength;
+        var indexingLevel = this._dict.indexingLevel;
+        var queries = {};
+        var registerQuery = function (r) {
+            Logger.debug("registerQuery: [" + r.start + ", " + r.end + ") " + r.ikey);
+            var index = r.ikey.slice(0, indexingLevel).join("_");
+            if (queries[index])
+                queries[index].push(r);
+            else
+                queries[index] = [r];
+        };
+        var q = [];
+        for (var i = 0; i < seg.b.length; ++i) {
+            var s = [];
+            for (var j = i + 1; j < seg.b.length && b[j] - b[i] <= maxKeywordLength; ++j) {
+                var kw = seg.a[b[j]][b[i]];
+                if (kw) {
+                    var r = {ikey: [kw], start: b[i], end: b[j]};
+                    registerQuery(r);
+                    if (r.ikey.length < maxKeyLength)
+                        s.push(r);
+                    $.each(q, function (k, e) {
+                        if (e.end == b[i]) {
+                            r = {ikey: e.ikey.concat([kw]), start: e.start, end: b[j]};
+                            registerQuery(r);
+                            if (r.ikey.length < maxKeyLength)
+                                s.push(r);
+                        }
+                    });
+                }
+            }
+            q = q.concat(s);
+        }
+        q = undefined;
     },
 
     _dummyQuery: function (ctx, callback) {
@@ -274,9 +323,7 @@ var JSFrontend = Class.extend(Frontend, {
     loadSchema: function (schemaName) {
         Logger.debug("JSFrontend.loadSchema: " + schemaName);
         var me = this;
-        this._backend.loadConfig(schemaName, function (config) {
-            schema = new Schema (schemaName, config);
-            me._backend.loadDict(schema);
+        this._backend.loadSchema(schemaName, function (schema) {
             me.engine = new Engine(schema, me, me._backend);
             me.onSchemaReady();
         });

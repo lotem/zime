@@ -88,7 +88,7 @@ Frontend.create = function () {
 // abstract class
 var Backend = new Class({
     // loadSchemaList: function (callback) {},
-    // loadConfig: function (schemaName, callback) {},
+    // loadSchema: function (schemaName, callback) {},
     // query: function (input, callback) {}
 });
 
