@@ -426,6 +426,7 @@ var Context = new Class({
             return e.text;
         });
     }
+
 });
 
 var Engine = new Class({
@@ -447,23 +448,25 @@ var Engine = new Class({
     
     processKeyEvent: function (event) {
         // handle hot keys  --zouive
-        if(event.ctrlKey || event.altKey || event.metaKey){
-            if(this.ctx.isEmpty()){
-                if(event.ctrlKey && event.keyCode == KeyEvent.KEY_ENTER){
-                    Logger.debug("processKeyEvent: commit triggered and return true (ctrl + enter)");
-                    this._frontend.submit();
+        if (event.altKey || event.metaKey) {
+            return false;
+        }
+        if (event.ctrlKey) {
+            if (this.ctx.isEmpty() && event.type == "keydown") {
+                if (event.keyCode == KeyEvent.KEY_ENTER) {
+                    Logger.debug("processKeyEvent: submit triggered and return true (ctrl + enter)");
+                    this._frontend.submit();            
                     return true;
                 }
-                else if(event.ctrlKey && event.keyCode == KeyEvent.KEY_A + 2){
-                    Logger.debug("processKeyEvent: commit triggered and return false (ctrl + c)");
-                    this._frontend.submit(); 
+                else if (event.keyCode == KeyEvent.KEY_A + 2) {
+                    Logger.debug("processKeyEvent: submit triggered and return false (ctrl + c)");
+                    this._frontend.submit();            
                     return false;
                 }
             }
             return false;
         }
-        //                  --zouive
-        
+        //  --zouive
         // handle alternating punctuation input
         if (this._punct && event.type != "keyup" && event.keyCode != KeyEvent.KEY_SHIFT) {
             var ch = KeyEvent.toChar(event);
