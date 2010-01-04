@@ -310,7 +310,7 @@ var JSONFileBackend = Class.extend(Backend, {
                         }
                         // filter results
                         $.each(data[q.ikey.join(" ")] || [], function (i, e) {
-                            var r = me._checkEntry(e, ctx._segmentation, q.start, q.end);
+                            var r = me._checkEntry(e, q, ctx);
                             if (r) {
                                 if (!p[r.end])
                                     p[r.end] = [r];
@@ -343,9 +343,46 @@ var JSONFileBackend = Class.extend(Backend, {
         }
     },
 
-    _checkEntry: function (e, seg, i, j) {
-        // TODO: match okey to ikey
-        return {unigram: e, text: e[1], start: i, end: j};
+    _checkEntry: function (e, q, ctx) {
+        var okey = e[0].split(" ");
+        var ikey = q.ikey;
+        var j = (okey.length == ikey.length) ? q.end : this._matchKey(okey.slice(ikey.length), 
+                                                                      q.end, 
+                                                                      ctx._segmentation, 
+                                                                      ctx.schema.fuzzyMap);
+        return j ? {unigram: e, text: e[1], start: q.start, end: j} : null;
+    },
+
+    _matchKey: function (k, i, seg, fuzzyMap) {
+        if (k.length == 0) {
+            Logger.debug("matchKey: " + i);
+            return i;
+        }
+        // predict phrase
+        if (i == seg.n) {
+            return i;
+        }
+        var result = 0;
+        var me = this;
+        $.each(seg.a, function (j, c) {
+            if (c && c[i]) {
+                var found = false;
+                $.each(fuzzyMap[c[i]], function (i_, t) {
+                    if (k[0] == t) {
+                        found = true;
+                        return false;
+                    }
+                });
+                if (found) {
+                    var r = me._matchKey(k.slice(1), j, seg, fuzzyMap);
+                    if (r) {
+                        result = r;
+                        return false;
+                    }
+                }
+            }
+        });
+        return result;
     },
 
     _makePrediction: function (phrase, seg) {
