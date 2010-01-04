@@ -129,7 +129,7 @@ var JSONFileBackend = Class.extend(Backend, {
                     else
                         continue;
                 }
-                // TODO: return true if suggested by DivideRule
+                // TODO: return true if suggested by divide rules
                 // var lw = input.slice(p[k], j).join();
                 // ...
                 flag = false;
@@ -201,41 +201,6 @@ var JSONFileBackend = Class.extend(Backend, {
         }
         b.reverse();
         d.reverse();
-        return {n: n, m: m, a: a, b: b, d: d};
-    },
-
-    _dummySegmentation: function (schema, input) {
-        var n = input.length;
-        var a = [];
-        for (var i = 0; i <= n; ++i) {
-            a[i] = [];
-        }
-        var b = [0];
-        var d = [0];
-        var delim = schema.delimiter;
-        var i = 0;
-        while (i < n) {
-            var j = i;
-            while (j < n && j - i < schema.maxKeywordLength && delim.indexOf(input[j]) == -1)
-                ++j;
-            var spelling = input.slice(i, j).join("");
-            var ikey = schema.keywords[spelling];
-            Logger.debug("spelling: " + spelling);
-            if (ikey == undefined)
-                break;
-            if (j < n && delim.indexOf(input[j]) != -1) {
-                j += 1;
-                d.push(j);
-            }
-            b.push(j);
-            a[j][i] = ikey;
-            Logger.debug("a[" + j + "][" + i + "]: " + ikey);
-            i = j;
-        }
-        if (b[b.length - 1] > d[d.length - 1]) {
-            d.push(b[b.length - 1]);
-        }
-        var m = i;
         return {n: n, m: m, a: a, b: b, d: d};
     },
 
@@ -386,38 +351,23 @@ var JSONFileBackend = Class.extend(Backend, {
     },
 
     _makePrediction: function (phrase, seg) {
-        // TODO
-        return [];
-    },
-
-    _dummyQuery: function (ctx, callback) {
-        var seg = ctx._segmentation;
-        var b = seg.b;
-        var c = [];
+        var total = this._dict.freqTotal + 0.1;
         var d = [];
-        for (var i = 0; i < b.length; ++i) {
-            c[b[i]] = [];
-            for (var j = i + 1; j <= b.length && b[j] <= b[i] + ctx.schema.maxKeywordLength; ++j) {
-                var t = seg.a[b[j]][b[i]];
-                if (t) {
-                    Logger.log("[" + b[i] + ", " + b[j] + ") " + t);
-                    var cl = [];
-                    for (var k = 1; k <= 9; ++k) {
-                        cl.push({
-                            text: t.toUpperCase() + k, 
-                            start: b[i], 
-                            end: b[j], 
-                            prob: 0.01
-                        });
-                    }
-                    c[b[i]][b[j]] = cl;
-                    d[b[i]] = cl[0];
+        for (var j = seg.m; j >= 0; --j) {
+            var p = (j == seg.m) ? 1.0 : (d[j] == undefined) ? 0.0 : d[j].prob;
+            for (var i = 0; i < j; ++i) {
+                var c;
+                if (phrase[i] && (c = phrase[i][j])) {
+                    $.each(c, function (i_, e) {
+                        e.prob = (e.unigram[2] + 0.1) / total * p;
+                        if (d[i] == undefined || d[i].prob < e.prob) {
+                            d[i] = e;
+                        }
+                    });
                 }
             }
         }
-        ctx.phrase = c;
-        ctx.prediction = d;
-        callback();
+        return d;
     }
 
 });
