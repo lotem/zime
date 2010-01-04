@@ -456,7 +456,7 @@ var Engine = new Class({
 				this._commit();				
 				return true;
 			}
-			else if(event.ctrlKey && event.keyCode == 67){
+			else if(event.ctrlKey && event.keyCode == KeyEvent.KEY_A + 2){
 				Logger.debug("processKeyEvent: commit triggered and return false (ctrl + c)");
 				this._commit();				
 				return false;
