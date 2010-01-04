@@ -451,15 +451,17 @@ var Engine = new Class({
 			return false;
 		}
 		if(event.ctrlKey){
-			if(event.ctrlKey && event.keyCode == KeyEvent.KEY_ENTER){
-				Logger.debug("processKeyEvent: commit triggered and return true (ctrl + enter)");
-				this._commit();				
-				return true;
-			}
-			else if(event.ctrlKey && event.keyCode == KeyEvent.KEY_A + 2){
-				Logger.debug("processKeyEvent: commit triggered and return false (ctrl + c)");
-				this._commit();				
-				return false;
+			if(this.ctx.isEmpty()){
+				if(event.ctrlKey && event.keyCode == KeyEvent.KEY_ENTER){
+					Logger.debug("processKeyEvent: commit triggered and return true (ctrl + enter)");
+					this._frontend.submit();			
+					return true;
+				}
+				else if(event.ctrlKey && event.keyCode == KeyEvent.KEY_A + 2){
+					Logger.debug("processKeyEvent: commit triggered and return false (ctrl + c)");
+					this._frontend.submit();			
+					return false;
+				}
 			}
 			return false;
 		}
