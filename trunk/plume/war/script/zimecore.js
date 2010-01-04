@@ -426,7 +426,6 @@ var Context = new Class({
             return e.text;
         });
     }
-
 });
 
 var Engine = new Class({
@@ -447,10 +446,25 @@ var Engine = new Class({
     },
     
     processKeyEvent: function (event) {
-        // ignore hot keys
-        if (event.ctrlKey || event.altKey || event.metaKey) {
-            return false;
-        }
+        // handle hot keys  --zouive
+        if(event.altKey || event.metaKey){
+			return false;
+		}
+		if(event.ctrlKey){
+			if(event.ctrlKey && event.keyCode == KeyEvent.KEY_ENTER){
+				Logger.debug("processKeyEvent: commit triggered and return true (ctrl + enter)");
+				this._commit();				
+				return true;
+			}
+			else if(event.ctrlKey && event.keyCode == 67){
+				Logger.debug("processKeyEvent: commit triggered and return false (ctrl + c)");
+				this._commit();				
+				return false;
+			}
+			return false;
+		}
+		//                  --zouive
+		
         // handle alternating punctuation input
         if (this._punct && event.type != "keyup" && event.keyCode != KeyEvent.KEY_SHIFT) {
             var ch = KeyEvent.toChar(event);
