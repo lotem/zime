@@ -183,6 +183,7 @@ var Context = new Class({
         this.input = [];
         this._error = null;
         this._segmentation = null;
+        this._display = null;
         this._selected = [];
         this._current = null;
         this._candidateList = null;
@@ -221,6 +222,7 @@ var Context = new Class({
         if (input.length > 0) {
             var seg = this._backend.segmentation (this.schema, input);
             this._segmentation = seg;
+            this._display = this._calculateDisplayText(input, seg);
             if (seg.m != seg.n) {
                 this._error = {start: seg.m, end: seg.n};
             }
@@ -419,25 +421,53 @@ var Context = new Class({
         return commitText;
     },
 
+    _calculateDisplayText: function (input, seg) {
+        if (input.length == 0)
+            return null;
+        var index = [];
+        var disp = [];
+        var delimiter = this.schema.delimiter;
+        var j = 0;
+        var k = 0;
+        for (var i = 0; i < seg.n; ++i) {
+            if (i <= seg.m && i == seg.d[k]) {
+                ++k;
+                if (i > 0 && delimiter.indexOf(input[i]) == -1) {
+                    disp.push(delimiter.charAt(0));
+                    j += 1;
+                }
+            }
+            index[i] = j;
+            disp.push(input[i]);
+            j += input[i].length;
+        }
+        index[seg.n] = j;
+        return {text: disp.join(""), index: index};
+    },
+
     getPreedit: function () {
-        // TODO: auto-delimit
-        var result = this.input;
+        var result = [];
         var start = 0;
         var end = 0;
-        if (this._error) {
-            start = this._error.start;
-            end = this._error.end;
-        }
-        else if (this._current) {
-            result = [];
+        var rest = 0;
+        if (this._current) {
             $.each(this._selected, function (i, e) {
                 result.push(e.text);
                 start += e.text.length;
             });
             result.push(this._current.text);
             end = start + this._current.text.length;
-            var rest = this._current.end;
-            result = result.concat(this.input.slice(rest));
+            rest = this._current.end;
+        }
+        if (rest < this.input.length) {
+            var text = this._display.text;
+            var idx = this._display.index;
+            result.push(text.substring(idx[rest]));
+            if (this._error) {
+                var diff = idx[rest] - end;
+                start = idx[this._error.start] - diff;
+                end = idx[this._error.end] - diff;
+            }
         }
         return {
             text: result.join(""),

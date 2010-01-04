@@ -79,7 +79,8 @@ function testAll(t) {
     //testConfig(t);
     //testSchema(t);
     //testSegmentation(t);
-    testQuery(t);
+    //testQuery(t);
+    testAutoDelimit(t);
 }
 
 function testConfig(t) {
@@ -170,4 +171,11 @@ function testQuery(t) {
             }
         }
     });
+}
+
+function testAutoDelimit(t) {
+    Logger.info("testQuery:");
+    var ctx = t.engine.ctx;
+    ctx.edit("pspspsp".split(""));
+    ctx.edit("anannannanspspspsp".split(""));
 }
