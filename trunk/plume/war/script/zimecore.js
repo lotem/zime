@@ -260,8 +260,23 @@ var Context = new Class({
         if (!this.beingConverted()) {
             return false;
         }
-        // TODO
-        return true;
+        var p = this.prediction[this._current.start];
+        if (p && p.end < this._segmentation.m) {
+            this._selected.push(p);
+            var i = p.end;
+            var c = this.phrase[i];
+            var m = this._segmentation.m;
+            var j = 0;
+            for (var k = i + 1; k <= m; ++k) {
+                if (c[k]) {
+                    j = k;
+                    break;
+                }
+            }
+            this._updateCandidates(i, j);
+            return true;
+        }
+        return false;
     },
 
     home: function () {
@@ -285,7 +300,15 @@ var Context = new Class({
         if (!this.beingConverted()) {
             return false;
         }
-        // TODO:
+        var i = this._current.start;
+        var c = this.phrase[i];
+        for (var j = this._current.end - 1; j > i; --j) {
+            if (c[j]) {
+                this._updateCandidates(i, j);
+                return true;
+            }
+        }
+        this.back();
         return true;
     },
 
@@ -293,7 +316,16 @@ var Context = new Class({
         if (!this.beingConverted()) {
             return false;
         }
-        // TODO:
+        var i = this._current.start;
+        var c = this.phrase[i];
+        var m = this._segmentation.m;
+        for (var j = this._current.end + 1; j <= m; ++j) {
+            if (c[j]) {
+                this._updateCandidates(i, j);
+                return true;
+            }
+        }
+        this.forth();
         return true;
     },
 
@@ -576,12 +608,14 @@ var Engine = new Class({
             if (event.keyCode == KeyEvent.KEY_TAB) {
                 return false;
             }
+            // TODO: add newline if enter is down
             if (this._punct && event.type == "keyup") {
                 return true;
             }
             if (this._handlePunct(event, false)) {
                 return true;
             }
+            // TODO: commit printable chars directly to the editor
             return true;
         }
         if (event.type == "keyup") {
