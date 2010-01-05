@@ -516,12 +516,12 @@ var Engine = new Class({
         if (event.ctrlKey) {
             if (this.ctx.isEmpty() && event.type == "keydown") {
                 if (event.keyCode == KeyEvent.KEY_ENTER) {
-                    Logger.debug("processKeyEvent: submit triggered and return true (ctrl + enter)");
+                    Logger.debug("processKeyEvent: submit triggered (Ctrl+Enter)");
                     this._frontend.submit();            
                     return true;
                 }
                 else if (event.keyCode == KeyEvent.KEY_A + 2) {
-                    Logger.debug("processKeyEvent: submit triggered and return false (ctrl + c)");
+                    Logger.debug("processKeyEvent: submit triggered (Ctrl+C)");
                     this._frontend.submit();            
                     return false;
                 }
