@@ -13,10 +13,6 @@ var RomanParser = Class.extend(Parser, {
         this._input.length = 0;
     },
     
-    getPrompt: function () {
-        return null;
-    },
-    
     isEmpty: function () {
         return this._input.length == 0;
     },
@@ -73,6 +69,113 @@ var RomanParser = Class.extend(Parser, {
 
 Parser.register("roman", RomanParser);
 
+var GroupingParser = Class.extend(Parser, {
+
+    initialize: function (schema) {
+        this._delimiter = schema.delimiter.charAt(0);
+        this._keyGroups = schema.getConfigValue("KeyGroups").split(/\s+/);
+        this._codeGroups = schema.getConfigValue("CodeGroups").split(/\s+/);
+        this._groupCount = this._keyGroups.length;
+        this.clear();
+    },
+    
+    clear: function () {
+        this._slots = [];
+        this._cursor = 0;
+    },
+
+    isEmpty: function () {
+        return this._slots.length == 0;
+    },
+
+    _getKeyword: function () {
+         return $.grep(this._slots, function (e) { return e; }).join("");
+    },
+
+    _getPrompt: function (padding) {
+        var keyword = this._getKeyword();
+        if (padding)
+            return {type: "prompt", value: this._delimiter + keyword, start: this._delimiter.length};
+        else
+            return {type: "prompt", value: keyword};
+    },
+
+    _commitInput: function (padding) {
+        var keyword = this._getKeyword();
+        this.clear();
+        if (padding)
+            return {type: "edit", value: [this._delimiter, keyword]};
+        else
+            return {type: "edit", value: [keyword]};
+    },
+
+    processInput: function (event, ctx) {
+        if (event.type == "keyup") {
+            return false;
+        }
+        if (ctx.beingConverted()) {
+            return false;
+        }
+        if (event.keyCode == KeyEvent.KEY_ESCAPE) {
+            this.clear();
+            return false;
+        }
+        if (event.keyCode == KeyEvent.KEY_BACKSPACE) {
+            if (this.isEmpty())
+                return false;
+            // delete the last symbol from current keyword
+            var j = this._slots.length;
+            do {
+                --j;
+            }
+            while (j > 0 && !this._slots[j - 1]);
+            this._slots.length = j;
+            this._cursor = j;
+            if (!this.isEmpty()) {
+                return this._getPrompt(!ctx.isEmpty());
+            }
+            else {
+                // keyword disposed
+                return {type: "prompt", value: null};
+            }
+        }
+        if (event.keyCode == KeyEvent.KEY_SPACE) {
+            if (this.isEmpty())
+                return false;
+            return this._commitInput(!ctx.isEmpty());
+        }
+        // handle grouping input
+        var ch = KeyEvent.toChar(event);
+        if (!ch) {
+            return false;
+        }
+        var k = this._cursor;
+        var i;
+        while ((i = this._keyGroups[k].indexOf(ch)) == -1) {
+            if (++k >= this._groupCount)
+                k = 0;
+            if (k == this._cursor) {
+                // not accepted
+                return !this.isEmpty();
+            }
+        }
+        // update current keyword
+        this._slots[k] = this._codeGroups[k].charAt(i);
+        if (++k >= this._groupCount) {
+            return this._commitInput(!ctx.isEmpty());
+        }
+        else {
+            this._cursor = k;
+            return this._getPrompt(!ctx.isEmpty());
+        }
+    }
+
+});
+
+Parser.register("grouping", GroupingParser);
+
+// TODO: ComboParser
+
 var JSONFileBackend = Class.extend(Backend, {
 
     DATA_DIR: "data/",
@@ -97,13 +200,13 @@ var JSONFileBackend = Class.extend(Backend, {
     },
 
     _loadConfig: function (schemaName, callback) {
-        $.getJSON(this.DATA_DIR + schemaName + this.CONFIG, null, callback);
+        $.getJSON(this.DATA_DIR + encodeURIComponent(schemaName) + this.CONFIG, null, callback);
     },
 
     _loadDict: function (schema, callback) {
         var me = this;
         var prefix = schema.prefix;
-        $.getJSON(this.DATA_DIR + prefix + this.JSON, null, function (data) {
+        $.getJSON(this.DATA_DIR + encodeURIComponent(prefix) + this.JSON, null, function (data) {
             data.prefix = prefix;
             me._dict = data;
             if (callback) {
@@ -263,7 +366,7 @@ var JSONFileBackend = Class.extend(Backend, {
             (function (index) {
                 //Logger.debug("pending: " + index);
                 pending.push(index);
-                $.getJSON(me.DATA_DIR + prefix + me.SEPARATOR + index + me.JSON, null, function (data) {
+                $.getJSON(me.DATA_DIR + encodeURIComponent(prefix) + me.SEPARATOR + encodeURIComponent(index) + me.JSON, null, function (data) {
                     Logger.debug("fetched: " + index);
                     if (me._queries !== queries)
                         return;
