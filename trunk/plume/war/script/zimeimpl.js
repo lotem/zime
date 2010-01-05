@@ -139,6 +139,10 @@ var GroupingParser = Class.extend(Parser, {
                 return {type: "prompt", value: null};
             }
         }
+        if (event.keyCode == KeyEvent.KEY_ENTER) {
+            // no commits while editing keyword
+            return !this.isEmpty();
+        }
         if (event.keyCode == KeyEvent.KEY_SPACE) {
             if (this.isEmpty())
                 return false;
