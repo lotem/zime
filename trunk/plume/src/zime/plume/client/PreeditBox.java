@@ -16,7 +16,6 @@ public class PreeditBox extends TextBox {
         menu = new MenuBar(true);
         popup = new DecoratedPopupPanel(true);
         popup.setWidget(menu);
-        popup.setPreviewingAllNativeEvents(true);
         popup.addAutoHidePartner(this.getElement());
     }
     
