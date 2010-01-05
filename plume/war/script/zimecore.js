@@ -601,6 +601,12 @@ var Engine = new Class({
         var s = this.ctx.commit();
         this._frontend.commit(s);
     },
+
+    _commitRawInput: function () {
+        var s = this.ctx.input.join("");
+        this.ctx.clear();
+        this._frontend.commit(s);
+    },
     
     _handlePunct: function (event, autoCommit) {
         var ch = KeyEvent.toChar(event);
@@ -652,14 +658,24 @@ var Engine = new Class({
             if (event.keyCode == KeyEvent.KEY_TAB) {
                 return false;
             }
-            // TODO: add newline if enter is down
             if (this._punct && event.type == "keyup") {
                 return true;
             }
             if (this._handlePunct(event, false)) {
                 return true;
             }
-            // TODO: commit printable chars directly to the editor
+            // commit printable chars directly to the editor
+            if (event.type == "keydown") {
+                if (event.keyCode == KeyEvent.KEY_ENTER) {
+                    this._frontend.commit("\n");
+                    return true;
+                }
+                var ch = KeyEvent.toChar(event);
+                if (ch) {
+                    this._frontend.commit(ch);
+                    return true;
+                }
+            }
             return true;
         }
         if (event.type == "keyup") {
@@ -694,7 +710,7 @@ var Engine = new Class({
             if (ctx.beingConverted()) {
                 ctx.select(0) && this._forward();
             } else {
-                this._commit();
+                this._commitRawInput();
                 this._parser.clear();
             }
         }
