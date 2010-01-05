@@ -184,6 +184,9 @@ var JSONFileBackend = Class.extend(Backend, {
     SEPARATOR: "/",
     JSON: ".json",
 
+    // work around IE, which does not support ajax loading static files by encoded file name
+    encode: (window.location.protocol == "file:") ? function (x) { return x; } : encodeURIComponent,
+
     loadSchemaList: function (callback) {
         $.getJSON(this.DATA_DIR + this.SCHEMA_LIST, null, callback);
     },
@@ -200,13 +203,13 @@ var JSONFileBackend = Class.extend(Backend, {
     },
 
     _loadConfig: function (schemaName, callback) {
-        $.getJSON(this.DATA_DIR + encodeURIComponent(schemaName) + this.CONFIG, null, callback);
+        $.getJSON(this.DATA_DIR + this.encode(schemaName) + this.CONFIG, null, callback);
     },
 
     _loadDict: function (schema, callback) {
         var me = this;
         var prefix = schema.prefix;
-        $.getJSON(this.DATA_DIR + encodeURIComponent(prefix) + this.JSON, null, function (data) {
+        $.getJSON(this.DATA_DIR + this.encode(prefix) + this.JSON, null, function (data) {
             data.prefix = prefix;
             me._dict = data;
             if (callback) {
@@ -366,7 +369,7 @@ var JSONFileBackend = Class.extend(Backend, {
             (function (index) {
                 //Logger.debug("pending: " + index);
                 pending.push(index);
-                $.getJSON(me.DATA_DIR + encodeURIComponent(prefix) + me.SEPARATOR + encodeURIComponent(index) + me.JSON, null, function (data) {
+                $.getJSON(me.DATA_DIR + me.encode(prefix) + me.SEPARATOR + me.encode(index) + me.JSON, null, function (data) {
                     Logger.debug("fetched: " + index);
                     if (me._queries !== queries)
                         return;
