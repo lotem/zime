@@ -2,13 +2,18 @@ package zime.plume.client;
 
 
 import com.google.gwt.dom.client.NativeEvent;
+import com.google.gwt.event.dom.client.BlurEvent;
+import com.google.gwt.event.dom.client.BlurHandler;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.FocusEvent;
+import com.google.gwt.event.dom.client.FocusHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
@@ -45,6 +50,18 @@ public class GWTFrontend implements Frontend {
                     preeditBox.cancelKey();
                 }
             }
+        });
+        preeditBox.addFocusHandler(new FocusHandler() {
+			@Override
+			public void onFocus(FocusEvent event) {
+				Event.setCapture(preeditBox.getElement());
+			}
+        });
+        preeditBox.addBlurHandler(new BlurHandler(){
+			@Override
+			public void onBlur(BlurEvent event) {
+				Event.releaseCapture(preeditBox.getElement());
+			}
         });
         editor = new TextArea();
         editor.setVisibleLines(7);
