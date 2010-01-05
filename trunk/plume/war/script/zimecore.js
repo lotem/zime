@@ -47,7 +47,7 @@ Logger.error = function (text) {
 // abstarct class
 var Parser = new Class({
     // clear: function () {},
-    // getPrompt: function () {},
+    // isEmpty: function () {},
     // processInput: function (event, ctx) {}
 });
 
@@ -432,7 +432,7 @@ var Context = new Class({
         for (var i = 0; i < seg.n; ++i) {
             if (i <= seg.m && i == seg.d[k]) {
                 ++k;
-                if (i > 0 && delimiter.indexOf(input[i]) == -1) {
+                if (i > 0 && delimiter.indexOf(input[i - 1]) == -1) {
                     disp.push(delimiter.charAt(0));
                     j += 1;
                 }
@@ -567,8 +567,22 @@ var Engine = new Class({
                 this.ctx.edit();
             else
                 this.ctx.edit(this.ctx.input.concat(result.value));
+            return true;
         }
-        // TODO: handle other result types
+        if (result.type == "prompt") {
+            var p = this.ctx.getPreedit();
+            if (result.value == null) {
+                this._frontend.updatePreedit(p.text, p.start, p.end);
+            }
+            else {
+                var text = p.text + result.value;
+                var start = p.text.length + (result.start || 0);
+                var end = p.text.length + (result.end || result.value.length);
+                this._frontend.updatePreedit(text, start, end);
+            }
+            return true;
+        }
+        // TODO: handle result.type == "commit"
         // NOOP
         return true;
     },
