@@ -72,7 +72,9 @@ var Frontend = new Class({
     // updatePreedit: function (preeditText, selStart, selEnd) {},
     // updateCandidates: function (candidateList) {}, 
     // commit: function (commitText) {}, 
-    // submit: function () {}
+    // submit: function () {},
+    // loadSchema: function (schemaName) {},
+    // processKeyEvent: function (event) {}
 });
 
 Frontend.register = function (klass) {
