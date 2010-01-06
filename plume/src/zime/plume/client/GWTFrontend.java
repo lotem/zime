@@ -146,19 +146,18 @@ public class GWTFrontend implements Frontend {
         if (list == null || list.length() == 0) {
             return;
         }
-        // Support activating a specified schema using 'schema' parameter in URL query string
+        // activate the schema specified by 'schema' parameter in URL query string
         // --zouive
         int j = 0;
         String schema = Window.Location.getParameter("schema");
         for (int i = 0; i < list.length(); i++) {
             SchemaListItem item = list.get(i);
             schemaChooser.addItem(item.getDisplayName(), item.getSchemaName());
-            if(item.getSchemaName().equals(schema)){
+            if (item.getSchemaName().equals(schema)) {
             	j = i;
             }
         }
         schema = list.get(j).getSchemaName();
-        //Window.alert(schema);
         nativeLoadSchema(schema);
         schemaChooser.setSelectedIndex(j);
         // --zouive
