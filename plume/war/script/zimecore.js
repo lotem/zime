@@ -253,7 +253,7 @@ var Context = new Class({
             return false;
         }
         var last = this._selected.pop();
-        Logger.debug("last: " + last.text);
+        Logger.debug("back: " + last.text);
         this._updateCandidates(last.start);
         return true;
     },
@@ -582,8 +582,10 @@ var Engine = new Class({
             }
             return true;
         }
-        // TODO: handle result.type == "commit"
-        // NOOP
+        if (result.type == "keyevent") {
+            return this._process(result.value);
+        }
+        // noop
         return true;
     },
     
@@ -666,6 +668,8 @@ var Engine = new Class({
             }
             // commit printable chars directly to the editor
             if (event.type == "keydown") {
+                // clear prompt
+                this._frontend.updatePreedit("", 0, 0);
                 if (event.keyCode == KeyEvent.KEY_ENTER) {
                     this._frontend.commit("\n");
                     return true;
@@ -704,15 +708,16 @@ var Engine = new Class({
             } else {
                 ctx.convert();
             }
+            return true;
         }
         if (event.keyCode == KeyEvent.KEY_ENTER) {
-            // TODO: handle Shift+Enter
             if (ctx.beingConverted()) {
                 ctx.select(0) && this._forward();
             } else {
                 this._commitRawInput();
                 this._parser.clear();
             }
+            return true;
         }
         if (event.keyCode == KeyEvent.KEY_TAB) {
             ctx.convert();
