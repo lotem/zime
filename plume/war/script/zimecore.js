@@ -496,7 +496,7 @@ var Context = new Class({
 var Engine = new Class({
 
     initialize: function (schema, frontend, backend) {
-        Logger.debug("Engine.initialize");
+        //Logger.debug("Engine.initialize");
         this.schema = schema;
         this._frontend = frontend;
         this._parser = Parser.create(schema);
