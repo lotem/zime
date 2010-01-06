@@ -9,6 +9,7 @@ import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextArea;
@@ -142,12 +143,35 @@ public class GWTFrontend implements Frontend {
     }
 
     public void onSchemaListReady(SchemaList list) {
-        if (list == null)
+        if (list == null || list.length() == 0) {
             return;
+        }
+        String schema = Window.Location.getParameter("schema");
+        int j = 0;
         for (int i = 0; i < list.length(); i++) {
             SchemaListItem item = list.get(i);
             schemaChooser.addItem(item.getDisplayName(), item.getSchemaName());
+            // TODO
         }
+        // TODO:
+        // load the specified schema, or if not specified, load the first one
+        // remember to select the chosen item in schemaChooser (UI) by: schemaChooser.setSelectedIndex(j);
+        /*
+            // equivalent js code:
+            if (schemaList.length > 0) {
+                var j = 0;
+                var specified = me._getParams()["schema"];
+                if (specified) {
+                    $.each(schemaList, function (i, e) {
+                        if (e.schema == specified) {
+                            j = i;
+                            return false;
+                        }
+                    });
+                }
+                me.loadSchema(schemaList[j].schema);
+            }
+        */
     }
 
     protected native void initialize() /*-{
