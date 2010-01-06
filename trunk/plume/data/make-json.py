@@ -19,6 +19,7 @@ def debug (*what):
 usage = 'usage: %prog [options] schema-file [keyword-file [phrase-file]]'
 parser = optparse.OptionParser (usage)
 
+parser.add_option ('-d', '--dir', dest='dir', default='..', help='target plume.js root dir')
 parser.add_option ('-s', '--schema', dest='schema', help='shortcut to specifying a standard set of input file names')
 parser.add_option ('-k', '--keep', action='store_true', dest='keep', default=False, help='keep existing dict')
 parser.add_option ('-l', '--level', type='int', dest='level', default=1, help='level of indexing')
@@ -39,8 +40,9 @@ else:
     keyword_file = args[1] if len (args) > 1 else None
     phrase_file = args[2] if len (args) > 2 else None
 
-DEST_DIR = os.path.join ('..', 'war', 'data')
 LIMIT = 512
+
+dest_dir = os.path.join (options.dir, 'json')
 
 schema = None
 schema_name = None
@@ -192,15 +194,15 @@ def mkdir_p (dir):
     if not os.path.exists (dir):
         os.makedirs (dir)
 
-mkdir_p (DEST_DIR)
+mkdir_p (dest_dir)
 
-output_config_file = os.path.join (DEST_DIR, '%sConfig.json' % schema)
+output_config_file = os.path.join (dest_dir, '%sConfig.json' % schema)
 data = {'fuzzyMap': fuzzy_map, 'keywords': keywords, 'config': config}
 json.dump (data, open (output_config_file, 'wb'), indent=(2 if options.pretty else None))
 
 def update_schema_list ():
     global schema, schema_name
-    schema_list_file = os.path.join (DEST_DIR, 'SchemaList.json')
+    schema_list_file = os.path.join (dest_dir, 'SchemaList.json')
     if os.path.exists (schema_list_file):
         data = filter (lambda x: x['schema'] != schema, json.load (open (schema_list_file, 'rb')))
     else:
@@ -282,8 +284,8 @@ if phrase_file:
             print >> sys.stderr, '%dk phrases imported from %s.' % (phrase_counter / 1000, phrase_file)
     f.close ()
 
-rm_R (os.path.join (DEST_DIR, prefix))
-mkdir_p (os.path.join (DEST_DIR, prefix))
+rm_R (os.path.join (dest_dir, prefix))
+mkdir_p (os.path.join (dest_dir, prefix))
 
 def get_idx (ikey):
     return u'_'.join (ikey.split (u' ')[:options.level])
@@ -294,7 +296,7 @@ ph = {}
 indices = []
 
 def dump_json (key):
-    file_path = os.path.join (DEST_DIR, prefix, '%s.json' % key)
+    file_path = os.path.join (dest_dir, prefix, '%s.json' % key)
     f = open (file_path, 'wb')
     json.dump (ph, f, indent=(2 if options.pretty else None))
     if options.verbose:
@@ -328,7 +330,7 @@ if options.verbose:
     print >> sys.stderr, 'totaling %d indices.' % len (indices)
 
 data = {'freqTotal': freq_total, 'indexingLevel': options.level, 'indices': indices}
-output_dict_file = os.path.join (DEST_DIR, '%s.json' % prefix)
+output_dict_file = os.path.join (dest_dir, '%s.json' % prefix)
 json.dump (data, open (output_dict_file, 'wb'), indent=(2 if options.pretty else None))
 
 update_schema_list ()

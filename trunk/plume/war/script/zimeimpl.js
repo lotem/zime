@@ -292,7 +292,7 @@ Parser.register("combo", ComboParser);
 
 var JSONFileBackend = Class.extend(Backend, {
 
-    DATA_DIR: "data/",
+    DATA_DIR: "json/",
     SCHEMA_LIST: "SchemaList.json",
     CONFIG: "Config.json",
     SEPARATOR: "/",
