@@ -222,8 +222,8 @@ var ComboParser = Class.extend(Parser, {
     _getComboString: function () {
         var codes = [];
         for (var i = 0; i < this._comboMaxLength; ++i) {
-            if (this._combo[this._comboKeys[i]]) {
-                codes.push(this._comboCodes[i]);
+            if (this._combo[this._comboKeys.charAt(i)]) {
+                codes.push(this._comboCodes.charAt(i));
             }
         }
         var s = codes.join("");
