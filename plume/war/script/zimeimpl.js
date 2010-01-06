@@ -484,7 +484,7 @@ var JSONFileBackend = Class.extend(Backend, {
                 //Logger.debug("pending: " + index);
                 pending.push(index);
                 $.getJSON(me.DATA_DIR + me.encode(prefix) + me.SEPARATOR + me.encode(index) + me.JSON, null, function (data) {
-                    Logger.debug("fetched: " + index);
+                    //Logger.debug("fetched: " + index);
                     if (me._queries !== queries)
                         return;
                     // generate query results
@@ -518,7 +518,7 @@ var JSONFileBackend = Class.extend(Backend, {
                     pending.splice(pos, 1);
                     if (pending.length == 0) {
                         me._queries = null;
-                        Logger.debug("lookup successful.");
+                        //Logger.debug("lookup successful.");
                         ctx.phrase = phrase;
                         ctx.prediction = me._makePrediction(phrase, ctx._segmentation);
                         callback();
