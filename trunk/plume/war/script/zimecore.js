@@ -233,7 +233,7 @@ var Context = new Class({
     },
     
     convert: function () {
-        Logger.debug("convert:");
+        //Logger.debug("convert:");
         if (this._error) {
             return false;
         }
@@ -245,7 +245,7 @@ var Context = new Class({
     },
     
     cancelConversion: function () {
-        Logger.debug("cancelConversion:");
+        //Logger.debug("cancelConversion:");
         this.edit();
         return true;
     },
@@ -255,7 +255,7 @@ var Context = new Class({
             return false;
         }
         var last = this._selected.pop();
-        Logger.debug("back: " + last.text);
+        //Logger.debug("back: " + last.text);
         this._updateCandidates(last.start);
         return true;
     },
@@ -334,7 +334,7 @@ var Context = new Class({
     },
 
     _updateCandidates: function (i, j) {
-        Logger.debug("_updateCandidates: " + i + ", " + j);
+        //Logger.debug("_updateCandidates: " + i + ", " + j);
         if (!j) {
             j = this._segmentation.m;
         }
@@ -504,7 +504,7 @@ var Engine = new Class({
     },
     
     onContextUpdate: function (ctx) {
-        Logger.debug("onContextUpdate: " + ctx.input);
+        //Logger.debug("onContextUpdate: " + ctx.input);
         var p = ctx.getPreedit();
         this._frontend.updatePreedit(p.text, p.start, p.end);
         this._frontend.updateCandidates(ctx.getCandidates());
@@ -518,12 +518,12 @@ var Engine = new Class({
         if (event.ctrlKey) {
             if (this.ctx.isEmpty() && event.type == "keydown") {
                 if (event.keyCode == KeyEvent.KEY_ENTER) {
-                    Logger.debug("processKeyEvent: submit triggered (Ctrl+Enter)");
+                    //Logger.debug("processKeyEvent: submit triggered (Ctrl+Enter)");
                     this._frontend.submit();            
                     return true;
                 }
                 else if (event.keyCode == KeyEvent.KEY_A + 2) {
-                    Logger.debug("processKeyEvent: submit triggered (Ctrl+C)");
+                    //Logger.debug("processKeyEvent: submit triggered (Ctrl+C)");
                     this._frontend.submit();            
                     return false;
                 }
