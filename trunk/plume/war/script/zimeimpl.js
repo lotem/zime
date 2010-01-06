@@ -596,7 +596,7 @@ Backend.register(JSONFileBackend);
 var JSFrontend = Class.extend(Frontend, {
     
     initialize: function () {
-        Logger.debug("JSFrontend.initialize");
+        //Logger.debug("JSFrontend.initialize");
         this._backend = Backend.create();
         this._schemaList = [];
         var me = this;
@@ -607,7 +607,7 @@ var JSFrontend = Class.extend(Frontend, {
     },
 
     loadSchema: function (schemaName) {
-        Logger.debug("JSFrontend.loadSchema: " + schemaName);
+        Logger.info("loading schema: " + schemaName);
         var me = this;
         this._backend.loadSchema(schemaName, function (schema) {
             me.engine = new Engine(schema, me, me._backend);
