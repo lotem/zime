@@ -603,12 +603,9 @@ var JSFrontend = Class.extend(Frontend, {
         this._backend.loadSchemaList(function (schemaList) {
             me._schemaList = schemaList;
             me.onSchemaListReady(schemaList);
-            if (schemaList.length > 0) {
-                me.loadSchema(schemaList[0].schema);
-            }
         });
     },
-    
+
     loadSchema: function (schemaName) {
         Logger.debug("JSFrontend.loadSchema: " + schemaName);
         var me = this;
