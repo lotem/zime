@@ -55,9 +55,17 @@ fuzzy_rules = []
 if schema_file:
     equal_sign = re.compile (ur'\s*=\s*')
     compile_repl_pattern = lambda x: (re.compile (x[0]), x[1])
+    back_ref = re.compile (ur'\\(\d+)')
+    back_ref_g = re.compile (ur'\\g<(\d+)>')
+    def to_js_regex (r):
+        p = r.split (None, 1)
+        if len (p) < 2:
+            return r
+        p[1] = back_ref.sub (ur'$\1', back_ref_g.sub (ur'$\1', p[1]))
+        return u' '.join (p)
     f = open (schema_file, 'r')
     for line in f:
-        x = line.strip ()
+        x = line.strip ().decode ('utf-8')
         if not x or x.startswith ('#'):
             continue
         try:
@@ -86,6 +94,8 @@ if schema_file:
                 spelling_rules.append (compile_repl_pattern (value.split ()))
             elif path == u'Config/%s/FuzzyRule' % schema:
                 fuzzy_rules.append (compile_repl_pattern (value.split ()))
+        if path.endswith (u'Rule'):
+            value = to_js_regex (value) 
         config.append ((path, value))
     f.close ()
 
