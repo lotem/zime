@@ -16,9 +16,6 @@ var TestFrontend = Class.extend(Frontend, {
             });
             $("body").append(cont);
             me._schemaList = schemaList;
-            if (schemaList.length > 0) {
-                me.loadSchema(schemaList[0].schema);
-            }
         });
     },
 
@@ -71,6 +68,7 @@ function testAjax() {
 
 function testBootstrap() {
     var t = Frontend.create();
+    t.loadSchema('Pinyin');
 }
 
 function testAll(t) {
@@ -174,7 +172,7 @@ function testQuery(t) {
 }
 
 function testAutoDelimit(t) {
-    Logger.info("testQuery:");
+    Logger.info("testAutoDelimit:");
     var ctx = t.engine.ctx;
     ctx.edit("pspspsp".split(""));
     ctx.edit("anannannanspspspsp".split(""));
