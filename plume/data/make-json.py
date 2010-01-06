@@ -295,14 +295,14 @@ def get_idx (ikey):
 current = None
 sum = 0
 ph = {}
-indices = []
+files = {}
 
-def dump_json (key):
-    file_path = os.path.join (dest_dir, prefix, '%s.json' % key)
+def dump_json (index):
+    file_path = os.path.join (dest_dir, prefix, '%s.json' % files[index])
     f = open (file_path, 'wb')
     json.dump (ph, f, indent=(2 if options.pretty else None))
     if options.verbose:
-        print >> sys.stderr, '%d phrases written to %s.' % (sum, file_path)
+        print >> sys.stderr, '%d phrases of index %s written to %s.' % (sum, index, file_path)
 
 for ikey in sorted (ip_map):
     idx = get_idx (ikey)
@@ -312,7 +312,7 @@ for ikey in sorted (ip_map):
         current = idx
         sum = 0
         ph = {}
-        indices.append (idx)
+        files[idx] = idx.encode('utf-7')
     if ikey in ph:
         s = ph[ikey]
     else:
@@ -329,9 +329,9 @@ if current:
     dump_json (current)
 
 if options.verbose:
-    print >> sys.stderr, 'totaling %d indices.' % len (indices)
+    print >> sys.stderr, 'totaling %d files.' % len (files)
 
-data = {'freqTotal': freq_total, 'indexingLevel': options.level, 'indices': indices}
+data = {'freqTotal': freq_total, 'indexingLevel': options.level, 'files': files}
 output_dict_file = os.path.join (dest_dir, '%s.json' % prefix)
 json.dump (data, open (output_dict_file, 'wb'), indent=(2 if options.pretty else None))
 
