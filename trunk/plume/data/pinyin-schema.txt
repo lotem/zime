@@ -8,8 +8,8 @@ Config/Pinyin/MaxKeywordLength = 6
 Config/Pinyin/SplitRule = mng aeiou
 Config/Pinyin/DivideRule = ^.*[iu]([aoe].*)$ \1
 # 模糊音
-Config/Pinyin/FuzzyRule = ^([zcs])h \1
-Config/Pinyin/FuzzyRule = ^([zcs])([^h]) \1h\2
+#Config/Pinyin/FuzzyRule = ^([zcs])h \1
+#Config/Pinyin/FuzzyRule = ^([zcs])([^h]) \1h\2
 #Config/Pinyin/FuzzyRule = ^l n
 #Config/Pinyin/FuzzyRule = ^n l
 #Config/Pinyin/FuzzyRule = ([ei])ng$ \1n
