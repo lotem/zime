@@ -676,9 +676,6 @@ var Engine = new Class({
                     this._frontend.commit("\n");
                     return true;
                 }
-				if (event.keyCode == KeyEvent.KEY_BACKSPACE){
-				    this._frontend.commit("\b");
-				}
                 var ch = KeyEvent.toChar(event);
                 if (ch) {
                     this._frontend.commit(ch);
