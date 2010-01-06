@@ -24,8 +24,8 @@ var RomanParser = Class.extend(Parser, {
     
     _getInput: function() {
         if (this._xformRules) {
-            // apply transform rules
             var s = this._input.join("");
+            // apply transform rules
             $.each(this._xformRules, function (i_, r) {
                 s = s.replace(r.pattern, r.repl);
             });
@@ -106,21 +106,21 @@ var GroupingParser = Class.extend(Parser, {
          return $.grep(this._slots, function (e) { return e; }).join("");
     },
 
-    _getPrompt: function (padding) {
+    _getPrompt: function (first) {
         var keyword = this._getKeyword();
-        if (padding)
-            return {type: "prompt", value: this._delimiter + keyword, start: this._delimiter.length};
-        else
+        if (first)
             return {type: "prompt", value: keyword};
+        else
+            return {type: "prompt", value: this._delimiter + keyword, start: this._delimiter.length};
     },
 
-    _commitInput: function (padding) {
+    _commitInput: function (first) {
         var keyword = this._getKeyword();
         this.clear();
-        if (padding)
-            return {type: "edit", value: [this._delimiter, keyword]};
-        else
+        if (first)
             return {type: "edit", value: [keyword]};
+        else
+            return {type: "edit", value: [this._delimiter, keyword]};
     },
 
     processInput: function (event, ctx) {
@@ -146,7 +146,7 @@ var GroupingParser = Class.extend(Parser, {
             this._slots.length = j;
             this._cursor = j;
             if (!this.isEmpty()) {
-                return this._getPrompt(!ctx.isEmpty());
+                return this._getPrompt(ctx.isEmpty());
             }
             else {
                 // keyword disposed
@@ -160,7 +160,7 @@ var GroupingParser = Class.extend(Parser, {
         if (event.keyCode == KeyEvent.KEY_SPACE) {
             if (this.isEmpty())
                 return false;
-            return this._commitInput(!ctx.isEmpty());
+            return this._commitInput(ctx.isEmpty());
         }
         // handle grouping input
         var ch = KeyEvent.toChar(event);
@@ -180,11 +180,11 @@ var GroupingParser = Class.extend(Parser, {
         // update current keyword
         this._slots[k] = this._codeGroups[k].charAt(i);
         if (++k >= this._groupCount) {
-            return this._commitInput(!ctx.isEmpty());
+            return this._commitInput(ctx.isEmpty());
         }
         else {
             this._cursor = k;
-            return this._getPrompt(!ctx.isEmpty());
+            return this._getPrompt(ctx.isEmpty());
         }
     }
 
@@ -192,7 +192,103 @@ var GroupingParser = Class.extend(Parser, {
 
 Parser.register("grouping", GroupingParser);
 
-// TODO: ComboParser
+var ComboParser = Class.extend(Parser, {
+
+    initialize: function (schema) {
+        this._promptPattern = schema.getConfigCharSequence("PromptPattern") || "%s\u203a"
+        this._delimiter = schema.delimiter.charAt(0);
+        this._comboKeys = schema.getConfigCharSequence("ComboKeys") || "";
+        this._comboCodes = schema.getConfigCharSequence("ComboCodes") || "";
+        this._comboMaxLength = Math.min(this._comboKeys.length, this._comboCodes.length);
+        this._comboSpace = schema.getConfigValue("ComboSpace") || "_";
+        var list = schema.getConfigList("TransformRule");
+        this._xformRules = (list.length == 0) ? null : $.map(list, function (r) {
+            var p = r.split(/\s+/);
+            return {pattern: new RegExp(p[0], "g"), repl: p[1]};
+        });
+        this.clear();
+    },
+
+    clear: function () {
+        this._combo = {};
+        this._held = {};
+        this._held.count = 0;
+    },
+
+    isEmpty: function () {
+        return this._held.count == 0; 
+    },
+
+    _getComboString: function () {
+        var codes = [];
+        for (var i = 0; i < this._comboMaxLength; ++i) {
+            if (this._combo[this._comboKeys[i]]) {
+                codes.push(this._comboCodes[i]);
+            }
+        }
+        var s = codes.join("");
+        if (this._xformRules) {
+            // apply transform rules
+            $.each(this._xformRules, function (i_, r) {
+                s = s.replace(r.pattern, r.repl);
+            });
+        }
+        return s;
+    },
+
+    _getPrompt: function (first) {
+        var promptText = this._promptPattern.replace(/%s/, this._getComboString());
+        if (first)
+            return {type: "prompt", value: promptText};
+        else
+            return {type: "prompt", value: this._delimiter + promptText, start: this._delimiter.length};
+    },
+
+    _commitCombo: function (first) {
+        var keyword = this._getComboString();
+        this.clear();
+        //Logger.debug("_commitCombo: [" + keyword + "]");
+        if (keyword == this._comboSpace) {
+            return {type: "keyevent", value: {type: "keydown", keyCode: KeyEvent.KEY_SPACE}};
+        }
+        if (!keyword) {
+            return {type: "prompt", value: null};
+        }
+        return {type: "edit", value: first ? [keyword] : [this._delimiter, keyword]};
+    },
+
+    processInput: function (event, ctx) {
+        var ch = KeyEvent.toChar(event);
+        if (event.type == "keyup") {
+            if (this._held[ch]) {
+                this._held[ch] = false;
+                --this._held.count;
+                //Logger.debug("released: [" + ch + "]");
+                if (this.isEmpty()) {
+                    return this._commitCombo(ctx.isEmpty());
+                }
+                return true;
+            }
+            // non-combo keys
+            return false;
+        }
+        if (this._comboKeys.indexOf(ch) != -1) {
+            this._combo[ch] = true;
+            this._held[ch] = true;
+            ++this._held.count;
+            //Logger.debug("held: [" + ch + "]");
+            return this._getPrompt(ctx.isEmpty());
+        }
+        // non-combo keys
+        if (!this.isEmpty()) {
+            this.clear();
+            return {type: "prompt", value: null};
+        }
+        return false;
+    }
+});
+
+Parser.register("combo", ComboParser);
 
 var JSONFileBackend = Class.extend(Backend, {
 
@@ -444,7 +540,6 @@ var JSONFileBackend = Class.extend(Backend, {
 
     _matchKey: function (k, i, seg, fuzzyMap) {
         if (k.length == 0) {
-            Logger.debug("matchKey: " + i);
             return i;
         }
         // predict phrase
