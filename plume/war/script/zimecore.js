@@ -761,13 +761,13 @@ var Engine = new Class({
                 ctx.pageDown();
                 return true;
             }
-        }
-        if (ch >= "1" && ch <= "9") {
-            if (ctx.select(ch - "1")) {
-                this._forward();
-                return true;
+            if (ch >= "1" && ch <= "9") {
+                if (ctx.select(ch - "1")) {
+                    this._forward();
+                    return true;
+                }
+                // try matching punctuation
             }
-            // try matching punctuation
         }
         // auto-commit
         if (this.ctx.isCompleted() && this._handlePunct(event, true)) {
