@@ -6,6 +6,11 @@ var RomanParser = Class.extend(Parser, {
         this._alphabet = schema.getConfigCharSequence("Alphabet") || "abcdefghijklmnopqrstuvwxyz";
         this._initial = this._alphabet.split (/\s+/, 1)[0];
         this._delimiter = schema.delimiter;
+        var list = schema.getConfigList("TransformRule");
+        this._xformRules = (list.length == 0) ? null : $.map(list, function (r) {
+            var p = r.split(/\s+/);
+            return {pattern: new RegExp(p[0], "g"), repl: p[1]};
+        });
         this._input = [];
     },
     
@@ -18,8 +23,17 @@ var RomanParser = Class.extend(Parser, {
     },
     
     _getInput: function() {
-        // TODO: apply transform rules
-        return this._input.slice(0);
+        if (this._xformRules) {
+            // apply transform rules
+            var s = this._input.join("");
+            $.each(this._xformRules, function (i_, r) {
+                s = s.replace(r.pattern, r.repl);
+            });
+            return s.split("");
+        }
+        else {
+            return this._input.slice(0);
+        }
     },
     
     _isInput: function (ch, empty) {
