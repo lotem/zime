@@ -404,7 +404,7 @@ var Context = new Class({
 
     pageDown: function () {
         var c = this._candidateList;
-        if (!c || c.length < (c.currentPage + 1) * this.PAGE_SIZE) {
+        if (!c || (c.currentPage + 1) * this.PAGE_SIZE >= c.length) {
             return false;
         }
         ++c.currentPage;
