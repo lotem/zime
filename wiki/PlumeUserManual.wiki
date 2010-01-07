@@ -7,13 +7,13 @@ Windows, Mac OS X 或 Linux 操作系統，及 Firefox, Google Chrome, Safari, I
 
 = 取得輸入法軟件 =
 
-到ZIME計劃主頁下載 plume-1.0.zip
+到ZIME計劃主頁下載 plume-x.x.zip
 
 該壓縮包內含 Plume.js 輸入法本地網頁程序，以及輸入方案製作工具。但不含任何可用的輸入方案。
 
 可以另外下載佛振製作好的輸入方案，現有拼音、注音、粵拼、標調拼音等任君選擇。
 
-下載 plume-1.0-data-pinyin.zip
+下載 plume-x.x-data-pinyin.zip
 
 解壓縮後得到一個名為 json/ 的目錄，將它置於輸入法程序的根目錄下即可使用。
 
@@ -44,4 +44,4 @@ BackSpace 鍵取消前一個選定的字詞，左右方向鍵及 Home／End 調�
 
 = 製作與配置輸入方案 =
 
-（尚未完成）
+（待續）
