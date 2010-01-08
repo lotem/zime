@@ -48,7 +48,7 @@ schema = None
 schema_name = None
 prefix = None
 delim = None
-max_key_length = 3
+max_key_length = 2
 
 config = []
 spelling_rules = []
@@ -91,7 +91,7 @@ if schema_file:
             #    else:
             #        delim = value[0]
             if path == u'Config/%s/MaxKeyLength' % schema:
-                max_key_length = int(value)
+                max_key_length = max(2, int(value))
             elif path == u'Config/%s/SpellingRule' % schema:
                 spelling_rules.append(compile_repl_pattern(value.split()))
             elif path == u'Config/%s/FuzzyRule' % schema:

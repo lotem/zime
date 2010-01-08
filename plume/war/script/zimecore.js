@@ -113,7 +113,7 @@ var Schema = new Class({
         // required configuration options
         this.prefix = this.getConfigValue("Prefix");
         this.parser = this.getConfigValue("Parser");
-        this.maxKeyLength = Number(this.getConfigValue("MaxKeyLength") || 3);
+        this.maxKeyLength = Math.max(2, Number(this.getConfigValue("MaxKeyLength") || 2));
         this.maxKeywordLength = Number(this.getConfigValue("MaxKeywordLength") || 7);
         this.delimiter = this.getConfigCharSequence("Delimiter") || " ";
         var punct = {};

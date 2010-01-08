@@ -15,8 +15,8 @@ Config/Pinyin/DivideRule = ^.*[iu]([aoe].*)$ \1
 #Config/Pinyin/FuzzyRule = ([ei])ng$ \1n
 #Config/Pinyin/FuzzyRule = ([ei])n$ \1ng
 # 簡拼
-#Config/Pinyin/FuzzyRule = ^([a-z]).+$ \1
-#Config/Pinyin/FuzzyRule = ^([a-z]h).+$ \1
+Config/Pinyin/FuzzyRule = ^([a-z]).+$ \1
+Config/Pinyin/FuzzyRule = ^([a-z]h).+$ \1
 # 兼容拼寫形式
 Config/Pinyin/FuzzyRule = ^([fvw])ei$ \1i
 Config/Pinyin/FuzzyRule = ^([nl])ei$ \1ui
