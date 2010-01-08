@@ -314,7 +314,16 @@ var JSONFileBackend = Class.extend(Backend, {
     },
 
     _loadConfig: function (schemaName, callback) {
-        $.getJSON(this.DATA_DIR + schemaName + this.CONFIG, null, callback);
+        $.getJSON(this.DATA_DIR + schemaName + this.CONFIG, null, function(config) {
+            for (var k in config.fuzzyMap) {
+                var s = {};
+                $.each(config.fuzzyMap[k], function(i, e) {
+                    s[e] = true;
+                });
+                config.fuzzyMap[k] = s;
+            }
+            callback(config);
+        });
     },
 
     _loadDict: function (schema, callback) {
@@ -529,46 +538,43 @@ var JSONFileBackend = Class.extend(Backend, {
     _checkEntry: function (e, q, ctx) {
         var okey = e[0].split(" ");
         var ikey = q.ikey;
+        var seg = ctx._segmentation;
         var j = (okey.length == ikey.length) ? q.end : this._matchKey(okey.slice(ikey.length), 
                                                                       q.end, 
-                                                                      ctx._segmentation, 
+                                                                      seg.a, 
+                                                                      (q.end < seg.n) ? seg.n : -1,
                                                                       ctx.schema.fuzzyMap);
         return j ? {unigram: e, text: e[1], start: q.start, end: j} : null;
     },
 
-    _matchKey: function (k, i, seg, fuzzyMap) {
+    _matchKey: function (k, i, a, predict, fuzzyMap) {
         if (k.length == 0) {
             return i;
         }
         // predict phrase
-        if (i == seg.n) {
+        if (i == predict) {
             return i;
         }
         var result = 0;
-        var me = this;
-        $.each(seg.a, function (j, c) {
-            if (c && c[i]) {
-                var found = false;
-                $.each(fuzzyMap[c[i]], function (i_, t) {
-                    if (k[0] == t) {
-                        found = true;
-                        return false;
-                    }
-                });
-                if (found) {
-                    var r = me._matchKey(k.slice(1), j, seg, fuzzyMap);
-                    if (r) {
-                        result = r;
-                        return false;
-                    }
+        for (var j = a.length - 1; j > i; --j) {
+            var kw = a[j] && a[j][i];
+            if (!kw)
+                continue;
+            var s = fuzzyMap[kw];
+            if (s && s[k[0]]) {
+                var r = this._matchKey(k.slice(1), j, a, predict, fuzzyMap);
+                if (r) {
+                    result = r;
+                    break;
                 }
             }
-        });
+        }
         return result;
     },
 
     _makePrediction: function (phrase, seg) {
         var total = this._dict.freqTotal + 0.1;
+        var penalty = 1e-4;
         var d = [];
         for (var j = seg.m; j >= 0; --j) {
             var p = (j == seg.m) ? 1.0 : (d[j] == undefined) ? 0.0 : d[j].prob;
@@ -576,7 +582,7 @@ var JSONFileBackend = Class.extend(Backend, {
                 var c;
                 if (phrase[i] && (c = phrase[i][j])) {
                     $.each(c, function (i_, e) {
-                        e.prob = (e.unigram[2] + 0.1) / total * p;
+                        e.prob = (e.unigram[2] + 0.1) / total * p * penalty;
                         if (d[i] == undefined || d[i].prob < e.prob) {
                             d[i] = e;
                         }
