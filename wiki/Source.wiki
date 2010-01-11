@@ -26,8 +26,3 @@ svn checkout http://zime.googlecode.com/svn/trunk/plume
 {{{
 svn checkout http://zime.googlecode.com/svn/trunk/zime-win32
 }}}
-
-== zime-web 0.x (deprecated) ==
-{{{
-svn checkout http://zime.googlecode.com/svn/trunk/zime-web
-}}}
