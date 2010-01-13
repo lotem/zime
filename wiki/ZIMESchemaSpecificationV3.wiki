@@ -158,16 +158,16 @@ abc-keywords.txt
 
 {{{
 # 鍵字\t單字
-bark		吠
-bird		鳥
+bark	吠
+bird	鳥
 capital	首
-city		府
-egg		蛋
-egg		卵
+city	府
+egg	蛋
+egg	卵
 head	首
-man		人
-roll		捲
-west		西
+man	人
+roll	捲
+west	西
 wind 	風
 
 # 多字元單字，用來將兒化音和方言中的合音詞視為單字處理
@@ -183,15 +183,15 @@ abc-phrases.txt
 
 {{{
 # 詞條\t詞頻\t編碼
-人		12	man
-捲		3	roll
+人	12	man
+捲	3	roll
 # 所有未記入詞庫的單字詞頻為 0
 
 # 編碼含多個鍵字者，以空格隔開各個鍵字
-西風		5	west wind
-鳥蛋		1	bird egg
-蛋捲		0	egg roll
-首府		0	capital city
+西風	5	west wind
+鳥蛋	1	bird egg
+蛋捲	0	egg roll
+首府	0	capital city
 # 因為「*捲」有一定義為罕用的編碼，故自動生成的詞庫中詞條「蛋捲」僅存編碼"egg roll"而無編碼"egg wind"
 # 然而詞條「首府」會有一錯誤編碼"head city"，需要人工校對處理
 
@@ -200,5 +200,5 @@ abc-phrases.txt
 蜘蛛 卵	0	spider egg
 
 # 有多個鍵字，但詞條不可拆解為單字者
-京師		0	capital city
+京師	0	capital city
 }}}
