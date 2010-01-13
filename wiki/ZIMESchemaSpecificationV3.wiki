@@ -1,0 +1,204 @@
+#summary ZIME Schema Specification v3
+#labels Featured,Phase-Design
+
+=ZIME 輸入方案定義文件規格（第三版）=
+
+
+==方案定義文件==
+Abc.txt
+
+{{{
+以 # 啟始的行為註釋。
+建議文件首行以此註釋標明文件規格：
+# ZIME Schema v3
+
+方案定義由 Key = value 形式的選項構成，每條選項佔一行。
+以下標示為（可選）的項目給出的均為其默認值。
+一組Key相同的選項構成一個有序的選項列表，其選項可取包括0在內的任意數量。
+}}}
+
+===共通選項===
+
+{{{
+# 方案標識（必備）
+Schema = Abc
+
+# 用於介面顯示的方案名稱（必備）
+DisplayName = 某某方案
+
+# 輸入方案版本號（可選）
+# 取值：任意
+Version = 
+
+# 字典（必備）
+Dict = abc
+
+# 解析方式（必備）
+# 取值：roman | grouping | combo
+Parser = roman
+
+# 鍵字分隔符（可選）
+# 取值：[ ] 內的西文字元
+Delimiter = [ ]
+
+# 詞庫索引之鍵字數（可選）
+# 取值：不小於 2 的整數
+MaxKeyLength = 2
+
+# 最大鍵字長度（可選）
+MaxKeywordLength = 7
+
+# 即時顯示候選列表（可選）
+# 取值：yes | no
+AutoPrompt = no
+
+# 顯示音節切分（可選）
+AutoDelimit = yes
+
+# 輸入預測（可選）
+Predict = yes
+
+# 字典鍵字變換規則列表
+MappingRule 
+
+# 字典鍵字模糊規則列表
+FuzzyRule 
+
+# 輸入鍵字變換規則列表
+SpellingRule 
+
+# 輸入鍵字模糊規則列表
+AlternativeRule 
+
+# 音節邊界消歧規則列表
+SplitRule 
+
+# 音節拆分規則列表
+DivideRule 
+
+# 標點列表
+Punct 
+
+# 編輯功能鍵列表
+EditKey 
+}}}
+
+== roman 羅馬字解析方式特定選項 ==
+
+{{{
+# 編碼輸入字元（可選）
+Alphabet = [abcdefghijklmnopqrstuvwxyz]
+
+# 西文輸入前導字元（可選）
+Quote = [`]
+
+# 西文輸入可用字元（可選）
+Acceptable = [ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz 0123456789!@#$%^&*()`~-_=+[{]}\\|;:'",<.>/?]
+
+# 編碼序列變換規則列表
+TransformRule 
+}}}
+
+== table 碼表解析方式特定選項 ==
+
+{{{
+# 編碼輸入字元（可選）
+Alphabet = [abcdefghijklmnopqrstuvwxyz]
+
+# 鍵名顯示字元（可選）
+PromptChar = [日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符]（默認不用此項）
+
+# 碼長（可選）
+AutoCommitKeywordLength = 已指定的MaxKeywordLength之值或默認為 4
+
+# 西文輸入前導字元（可選）
+Quote = [`]
+
+# 西文輸入可用字元（可選）
+Acceptable = [ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz 0123456789!@#$%^&*()`~-_=+[{]}\\|;:'",<.>/?]
+
+# 編碼序列變換規則列表
+TransformRule 
+}}}
+
+=== grouping 分組編碼解析方式特定選項 ===
+
+{{{
+# 輸入字元分組（必備）
+KeyGroups = 1qaz ujm 8ik, 2345
+
+# 編碼分組（必備）
+CodeGroups = ㄅㄆㄇㄈ ㄧㄨㄩ ㄚㄛㄜㄝ ˊˇˋ˙
+
+# 編輯樣式（可選）
+PromptPattern = %s›
+}}}
+
+=== combo 並擊解析方式特定選項 ===
+
+{{{
+# 用作並擊組合的字元（必備）
+ComboKeys = [sdf jkl]
+
+# 組合編碼字元（必備）
+ComboCodes = [xqjiang]
+
+# 用作空格輸出的組合碼（可選）
+ComboSpace = _
+
+# 編輯樣式（可選）
+PromptPattern = %s›
+
+# 組合編碼變換規則列表
+TransformRule 
+}}}
+
+==字典文件==
+abc-keywords.txt
+
+{{{
+# 鍵字\t單字
+bark		吠
+bird		鳥
+capital	首
+city		府
+egg		蛋
+egg		卵
+head	首
+man		人
+roll		捲
+west		西
+wind 	風
+
+# 多字元單字，用來將兒化音和方言中的合音詞視為單字處理
+spider	蜘蛛
+wander	踟躕
+
+# 不用於構詞的罕用單字編碼
+wind 	*捲
+}}}
+
+==詞庫文件==
+abc-phrases.txt
+
+{{{
+# 詞條\t詞頻\t編碼
+人		12	man
+捲		3	roll
+# 所有未記入詞庫的單字詞頻為 0
+
+# 編碼含多個鍵字者，以空格隔開各個鍵字
+西風		5	west wind
+鳥蛋		1	bird egg
+蛋捲		0	egg roll
+首府		0	capital city
+# 因為「*捲」有一定義為罕用的編碼，故自動生成的詞庫中詞條「蛋捲」僅存編碼"egg roll"而無編碼"egg wind"
+# 然而詞條「首府」會有一錯誤編碼"head city"，需要人工校對處理
+
+# 含有多字元單字的詞條，以空格隔開各個單字
+蜘蛛 人	0	spider man
+蜘蛛 卵	0	spider egg
+
+# 有多個鍵字，但詞條不可拆解為單字者
+京師		0	capital city
+}}}
