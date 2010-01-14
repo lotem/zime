@@ -87,7 +87,7 @@ Punct
 EditKey 
 }}}
 
-== roman 羅馬字解析方式特定選項 ==
+=== roman 羅馬字解析方式特定選項 ===
 {{{
 # 編碼輸入字元（可選）
 Alphabet = [abcdefghijklmnopqrstuvwxyz]
@@ -102,7 +102,7 @@ Acceptable = [ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz 0123456789!@#
 TransformRule = ([nl])v \1ü
 }}}
 
-== table 碼表解析方式特定選項 ==
+=== table 碼表解析方式特定選項 ===
 {{{
 # 編碼輸入字元（可選）
 # 若有空格，則空格後的字元不可做編碼的首字元
