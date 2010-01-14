@@ -104,12 +104,20 @@ RULES = {
     ],
 }
 
-def apply_rules(s):
+selected_rules = []
+
+def compile_rules():
     for r in config:
         if r.startswith('!'):
             continue
+        if r not in RULES:
+            continue
         for p in RULES[r]:
-            s = re.sub(p[0], p[1], s)
+            selected_rules.append((re.compile(p[0]), p[1]))
+
+def apply_rules(s):
+    for p in selected_rules:
+        s = p[0].sub(p[1], s)
     return s
 
 def output(append=False):
@@ -131,4 +139,5 @@ def output(append=False):
     for s in sorted(t):
         print '# %s' % s
 
+compile_rules()
 output()
