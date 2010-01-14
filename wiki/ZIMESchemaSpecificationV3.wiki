@@ -6,19 +6,17 @@
 
 ==方案定義文件==
 Abc.txt
-
 {{{
 以 # 啟始的行為註釋。
 建議文件首行以此註釋標明文件規格：
 # ZIME Schema v3
 
 方案定義由 Key = value 形式的選項構成，每條選項佔一行。
-以下標示為（可選）的項目給出的均為其默認值。
+以下標示為（可選）的項目，如無其他說明，給出的均為其默認值。
 一組Key相同的選項構成一個有序的選項列表，其選項可取包括0在內的任意數量。
 }}}
 
 ===共通選項===
-
 {{{
 # 方案標識（必備）
 Schema = Abc
@@ -59,21 +57,27 @@ AutoDelimit = yes
 Predict = yes
 
 # 字典鍵字變換規則列表
+# 詳見 SpellingAlgebra 技術
 MappingRule 
 
 # 字典鍵字模糊規則列表
+# 詳見 SpellingAlgebra 技術
 FuzzyRule 
 
 # 輸入鍵字變換規則列表
+# 詳見 SpellingAlgebra 技術
 SpellingRule 
 
 # 輸入鍵字模糊規則列表
+# 詳見 SpellingAlgebra 技術
 AlternativeRule 
 
 # 音節邊界消歧規則列表
+# 詳見 SpellingAlgebra 技術
 SplitRule 
 
 # 音節拆分規則列表
+# 詳見 SpellingAlgebra 技術
 DivideRule 
 
 # 標點列表
@@ -84,7 +88,6 @@ EditKey
 }}}
 
 == roman 羅馬字解析方式特定選項 ==
-
 {{{
 # 編碼輸入字元（可選）
 Alphabet = [abcdefghijklmnopqrstuvwxyz]
@@ -96,20 +99,24 @@ Quote = [`]
 Acceptable = [ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz 0123456789!@#$%^&*()`~-_=+[{]}\\|;:'",<.>/?]
 
 # 編碼序列變換規則列表
-TransformRule 
+TransformRule = ([nl])v \1ü
 }}}
 
 == table 碼表解析方式特定選項 ==
-
 {{{
 # 編碼輸入字元（可選）
-Alphabet = [abcdefghijklmnopqrstuvwxyz]
+# 若有空格，則空格後的字元不可做編碼的首字元
+# 以MSPY2003雙拼方案為例：
+Alphabet = [abcdefghijklmnopqrstuvwxyz ;]
 
-# 鍵名顯示字元（可選）
-PromptChar = [日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符]（默認不用此項）
+# 鍵名顯示字元（可選，默認不用此項）
+# 與編碼輸入字元一一對應
+# 以倉頡碼為例：
+PromptChar = [日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符]
 
 # 碼長（可選）
-AutoCommitKeywordLength = 已指定的MaxKeywordLength之值或默認為 4
+# 若此項未指定，則優先取已指定的 MaxKeywordLength 之值
+AutoCommitKeywordLength = 4
 
 # 西文輸入前導字元（可選）
 Quote = [`]
@@ -117,12 +124,15 @@ Quote = [`]
 # 西文輸入可用字元（可選）
 Acceptable = [ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz 0123456789!@#$%^&*()`~-_=+[{]}\\|;:'",<.>/?]
 
-# 編碼序列變換規則列表
-TransformRule 
+# 編碼變換規則列表
+# 以MSPY2003雙拼方案為例：
+TransformRule = ^v zh
+TransformRule = ^i ch
+TransformRule = ^u sh
+TransformRule = ^(.);$ \1ing
 }}}
 
 === grouping 分組編碼解析方式特定選項 ===
-
 {{{
 # 輸入字元分組（必備）
 KeyGroups = 1qaz ujm 8ik, 2345
@@ -135,13 +145,12 @@ PromptPattern = %s›
 }}}
 
 === combo 並擊解析方式特定選項 ===
-
 {{{
 # 用作並擊組合的字元（必備）
 ComboKeys = [sdf jkl]
 
 # 組合編碼字元（必備）
-ComboCodes = [xqjiang]
+ComboCodes = [scziang]
 
 # 用作空格輸出的組合碼（可選）
 ComboSpace = _
@@ -150,24 +159,25 @@ ComboSpace = _
 PromptPattern = %s›
 
 # 組合編碼變換規則列表
-TransformRule 
+TransformRule = ^zi ji
+TransformRule = ^ci qi
+TransformRule = ^si xi
 }}}
 
 ==字典文件==
 abc-keywords.txt
-
 {{{
 # 鍵字\t單字
-bark	吠
-bird	鳥
+bark		吠
+bird		鳥
 capital	首
-city	府
-egg	蛋
-egg	卵
+city		府
+egg		蛋
+egg		卵
 head	首
-man	人
-roll	捲
-west	西
+man		人
+roll		捲
+west		西
 wind 	風
 
 # 多字元單字，用來將兒化音和方言中的合音詞視為單字處理
@@ -180,18 +190,17 @@ wind 	*捲
 
 ==詞庫文件==
 abc-phrases.txt
-
 {{{
 # 詞條\t詞頻\t編碼
-人	12	man
-捲	3	roll
+人		12	man
+捲		3	roll
 # 所有未記入詞庫的單字詞頻為 0
 
 # 編碼含多個鍵字者，以空格隔開各個鍵字
-西風	5	west wind
-鳥蛋	1	bird egg
-蛋捲	0	egg roll
-首府	0	capital city
+西風		5	west wind
+鳥蛋		1	bird egg
+蛋捲		0	egg roll
+首府		0	capital city
 # 因為「*捲」有一定義為罕用的編碼，故自動生成的詞庫中詞條「蛋捲」僅存編碼"egg roll"而無編碼"egg wind"
 # 然而詞條「首府」會有一錯誤編碼"head city"，需要人工校對處理
 
@@ -200,5 +209,5 @@ abc-phrases.txt
 蜘蛛 卵	0	spider egg
 
 # 有多個鍵字，但詞條不可拆解為單字者
-京師	0	capital city
+京師		0	capital city
 }}}
