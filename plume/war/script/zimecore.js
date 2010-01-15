@@ -115,6 +115,19 @@ var Schema = new Class({
         this.maxKeyLength = Math.max(2, Number(this.getConfigValue("MaxKeyLength") || 2));
         this.maxKeywordLength = Number(this.getConfigValue("MaxKeywordLength") || 7);
         this.delimiter = this.getConfigCharSequence("Delimiter") || " ";
+        this.alphabet = this.getConfigCharSequence("Alphabet") || "abcdefghijklmnopqrstuvwxyz";
+        this.initial = this.alphabet.split (/\s+/, 1)[0];
+        var xformRules = $.map(this.getConfigList("TransformRule"), function (r) {
+            var p = r.split(/\s+/);
+            return {pattern: new RegExp(p[0], "g"), repl: p[1]};
+        });
+        this.xform = (xformRules.length == 0) ? null : function (s) {
+            // apply transform rules
+            $.each(xformRules, function (i_, r) {
+                s = s.replace(r.pattern, r.repl);
+            });
+            return s;
+        };
         var punct = {};
         $.each(this.getConfigList("Punct"), function (i, p) {
             var a = p.split(/\s+/);

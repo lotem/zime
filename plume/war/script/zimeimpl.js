@@ -3,14 +3,10 @@
 var RomanParser = Class.extend(Parser, {
 
     initialize: function (schema) {
-        this._alphabet = schema.getConfigCharSequence("Alphabet") || "abcdefghijklmnopqrstuvwxyz";
-        this._initial = this._alphabet.split (/\s+/, 1)[0];
+        this._alphabet = schema.alphabet;
+        this._initial = schema.initial;
         this._delimiter = schema.delimiter;
-        var list = schema.getConfigList("TransformRule");
-        this._xformRules = (list.length == 0) ? null : $.map(list, function (r) {
-            var p = r.split(/\s+/);
-            return {pattern: new RegExp(p[0], "g"), repl: p[1]};
-        });
+        this._xform = schema.xform;
         this._input = [];
     },
     
@@ -23,13 +19,9 @@ var RomanParser = Class.extend(Parser, {
     },
     
     _getInput: function() {
-        if (this._xformRules) {
+        if (this._xform) {
             var s = this._input.join("");
-            // apply transform rules
-            $.each(this._xformRules, function (i_, r) {
-                s = s.replace(r.pattern, r.repl);
-            });
-            return s.split("");
+            return this._xform(s).split("");
         }
         else {
             return this._input.slice(0);
@@ -195,17 +187,13 @@ Parser.register("grouping", GroupingParser);
 var ComboParser = Class.extend(Parser, {
 
     initialize: function (schema) {
-        this._promptPattern = schema.getConfigCharSequence("PromptPattern") || "%s\u203a"
+        this._promptPattern = schema.getConfigCharSequence("PromptPattern") || "%s\u203a";
         this._delimiter = schema.delimiter.charAt(0);
         this._comboKeys = schema.getConfigCharSequence("ComboKeys") || "";
         this._comboCodes = schema.getConfigCharSequence("ComboCodes") || "";
         this._comboMaxLength = Math.min(this._comboKeys.length, this._comboCodes.length);
         this._comboSpace = schema.getConfigValue("ComboSpace") || "_";
-        var list = schema.getConfigList("TransformRule");
-        this._xformRules = (list.length == 0) ? null : $.map(list, function (r) {
-            var p = r.split(/\s+/);
-            return {pattern: new RegExp(p[0], "g"), repl: p[1]};
-        });
+        this._xform = schema.xform;
         this.clear();
     },
 
@@ -227,13 +215,7 @@ var ComboParser = Class.extend(Parser, {
             }
         }
         var s = codes.join("");
-        if (this._xformRules) {
-            // apply transform rules
-            $.each(this._xformRules, function (i_, r) {
-                s = s.replace(r.pattern, r.repl);
-            });
-        }
-        return s;
+        return this._xform ? this._xform(s) : s;
     },
 
     _getPrompt: function (first) {
