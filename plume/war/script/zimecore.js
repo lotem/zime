@@ -228,7 +228,7 @@ var Context = new Class({
     
     popInput: function () {
         this.input.pop();
-        if (!this.isEmpty() && this.input[this.input.length - 1] == this.schema.delimiter[0]) {
+        if (!this.isEmpty() && this.input[this.input.length - 1] == this.schema.delimiter.charAt(0)) {
             this.input.pop();
         }
     },
