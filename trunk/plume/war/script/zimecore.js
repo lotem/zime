@@ -108,10 +108,9 @@ var Schema = new Class({
 
     initialize: function (schemaName, data) {
         this.schemaName = schemaName;
-        this._prefix = "Config/" + schemaName + "/";
         $.extend(this, data);
         // required configuration options
-        this.prefix = this.getConfigValue("Prefix");
+        this.dict = this.getConfigValue("Dict");
         this.parser = this.getConfigValue("Parser");
         this.maxKeyLength = Math.max(2, Number(this.getConfigValue("MaxKeyLength") || 2));
         this.maxKeywordLength = Number(this.getConfigValue("MaxKeywordLength") || 7);
@@ -137,9 +136,8 @@ var Schema = new Class({
     },
 
     getConfigValue: function (key) {
-        var path = this._prefix + key;
         var m = $.grep(this.config, function (e) {
-            return e[0] == path;
+            return e[0] == key;
         });
         if (m.length != 1)
             return null;
@@ -147,9 +145,8 @@ var Schema = new Class({
     },
 
     getConfigList: function (key) {
-        var path = this._prefix + key;
         var m = $.grep(this.config, function (e) {
-            return e[0] == path;
+            return e[0] == key;
         });
         return $.map(m, function (e) {
             return e[1];

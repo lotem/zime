@@ -315,12 +315,12 @@ var JSONFileBackend = Class.extend(Backend, {
 
     _loadConfig: function (schemaName, callback) {
         $.getJSON(this.DATA_DIR + schemaName + this.CONFIG, null, function(config) {
-            for (var k in config.fuzzyMap) {
+            for (var k in config.ioMap) {
                 var s = {};
-                $.each(config.fuzzyMap[k], function(i, e) {
+                $.each(config.ioMap[k], function(i, e) {
                     s[e] = true;
                 });
-                config.fuzzyMap[k] = s;
+                config.ioMap[k] = s;
             }
             callback(config);
         });
@@ -328,9 +328,9 @@ var JSONFileBackend = Class.extend(Backend, {
 
     _loadDict: function (schema, callback) {
         var me = this;
-        var prefix = schema.prefix;
-        $.getJSON(this.DATA_DIR + prefix + this.JSON, null, function (data) {
-            data.prefix = prefix;
+        var dict_prefix = schema.dict;
+        $.getJSON(this.DATA_DIR + dict_prefix + this.JSON, null, function (data) {
+            data.dict_prefix = dict_prefix;
             me._dict = data;
             if (callback) {
                 callback(schema);
@@ -372,7 +372,7 @@ var JSONFileBackend = Class.extend(Backend, {
             var ok = false;
             for (var j = i + 1; j <= n && j <= i + schema.maxKeywordLength; ++j) {
                 var s = input.slice(i, j).join("");
-                if (!schema.keywords[s]) {
+                if (!schema.spellingMap[s]) {
                     continue;
                 }
                 var t = (j < n && schema.delimiter.indexOf(input[j]) != -1) ? j + 1 : j;
@@ -392,7 +392,7 @@ var JSONFileBackend = Class.extend(Backend, {
                     //Logger.debug("denied division");
                     continue;
                 }
-                a[t][i] = schema.keywords[s];
+                a[t][i] = schema.spellingMap[s];
                 ok = true;
             }
             if (ok) {
@@ -480,7 +480,7 @@ var JSONFileBackend = Class.extend(Backend, {
     },
 
     _lookup: function (ctx, callback) {
-        var prefix = this._dict.prefix;
+        var dict_prefix = this._dict.dict_prefix;
         var files = this._dict.files;
         var queries = this._queries;
         var me = this;
@@ -490,7 +490,7 @@ var JSONFileBackend = Class.extend(Backend, {
             (function (index) {
                 //Logger.debug("pending: " + index);
                 pending.push(index);
-                $.getJSON(me.DATA_DIR + prefix + me.SEPARATOR + files[index] + me.JSON, null, function (data) {
+                $.getJSON(me.DATA_DIR + dict_prefix + me.SEPARATOR + files[index] + me.JSON, null, function (data) {
                     //Logger.debug("fetched: " + index);
                     if (me._queries !== queries)
                         return;
@@ -543,11 +543,11 @@ var JSONFileBackend = Class.extend(Backend, {
                                                                       q.end, 
                                                                       seg.a, 
                                                                       (q.end < seg.n) ? seg.n : -1,
-                                                                      ctx.schema.fuzzyMap);
+                                                                      ctx.schema.ioMap);
         return j ? {unigram: e, text: e[1], start: q.start, end: j} : null;
     },
 
-    _matchKey: function (k, i, a, predict, fuzzyMap) {
+    _matchKey: function (k, i, a, predict, ioMap) {
         if (k.length == 0) {
             return i;
         }
@@ -560,9 +560,9 @@ var JSONFileBackend = Class.extend(Backend, {
             var kw = a[j] && a[j][i];
             if (!kw)
                 continue;
-            var s = fuzzyMap[kw];
+            var s = ioMap[kw];
             if (s && s[k[0]]) {
-                var r = this._matchKey(k.slice(1), j, a, predict, fuzzyMap);
+                var r = this._matchKey(k.slice(1), j, a, predict, ioMap);
                 if (r) {
                     result = r;
                     break;
