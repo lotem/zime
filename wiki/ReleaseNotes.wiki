@@ -1,7 +1,12 @@
 #summary release notes
+#labels Featured
 
 = ibus-zime release notes =
 {{{
+ibus-zime 3.2 - 2010-01-15
+==========================
+  - removed extra schemas.
+
 ibus-zime 3.1 - 2010-01-14
 ==========================
   - fixed issue 2: improve backsapce key behavior in table parser.
@@ -11,4 +16,13 @@ ibus-zime 3.0 - 2010-01-13
   - adopted new schema file format as defined in ZIME Schema Specification v3.
   - full support for Spelling Algebra now implemented, enabling dict sharing between related schemas.
   - added table parser, supporting new schemas DoublePinyin, Cangjie5 and Quick.
+}}}
+
+= Plume.js release notes =
+{{{
+Plume.js 20 - 2010-01-15
+========================
+  - adopted new schema file format as defined in ZIME Schema Specification v3.
+  - full support for Spelling Algebra now implemented, enabling dict sharing between related schemas.
+  - added table parser, supporting new schemas DoublePinyin and Quick.
 }}}
