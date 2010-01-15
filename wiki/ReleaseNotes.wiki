@@ -20,8 +20,8 @@ ibus-zime 3.0 - 2010-01-13
 
 = Plume.js release notes =
 {{{
-Plume.js 20 - 2010-01-15
-========================
+Plume.js 2.0 - 2010-01-15
+=========================
   - adopted new schema file format as defined in ZIME Schema Specification v3.
   - full support for Spelling Algebra now implemented, enabling dict sharing between related schemas.
   - added table parser, supporting new schemas DoublePinyin and Quick.
