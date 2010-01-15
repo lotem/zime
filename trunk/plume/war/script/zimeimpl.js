@@ -79,6 +79,7 @@ var GroupingParser = Class.extend(Parser, {
 
     initialize: function (schema) {
         this._delimiter = schema.delimiter.charAt(0);
+        this._promptPattern = schema.getConfigCharSequence("PromptPattern") || "%s\u203a";
         this._keyGroups = schema.getConfigValue("KeyGroups").split(/\s+/);
         this._codeGroups = schema.getConfigValue("CodeGroups").split(/\s+/);
         this._groupCount = this._keyGroups.length;
@@ -99,11 +100,11 @@ var GroupingParser = Class.extend(Parser, {
     },
 
     _getPrompt: function (first) {
-        var keyword = this._getKeyword();
+        var promptText = this._promptPattern.replace(/%s/, this._getKeyword());
         if (first)
-            return {type: "prompt", value: keyword};
+            return {type: "prompt", value: promptText};
         else
-            return {type: "prompt", value: this._delimiter + keyword, start: this._delimiter.length};
+            return {type: "prompt", value: this._delimiter + promptText, start: this._delimiter.length};
     },
 
     _commitInput: function (first) {
