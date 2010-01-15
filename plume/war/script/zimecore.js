@@ -542,22 +542,24 @@ var Engine = new Class({
         }
         //  --zouive
         // handle alternating punctuation input
-        if (this._punct && event.type != "keyup" && event.keyCode != KeyEvent.KEY_SHIFT) {
+        if (this._punct) {
+            if (event.type == "keyup" || event.keyCode == KeyEvent.KEY_SHIFT) {
+                return true;
+            }
             var ch = KeyEvent.toChar(event);
             if (ch == this._punctKey) {
                 this._alternatePunct();
                return true;
-            } else {
-                if (event.keyCode == KeyEvent.KEY_BACKSPACE || event.keyCode == KeyEvent.KEY_ESCAPE) {
-                    this._clearPunctPrompt();
-                    return true;
-                }
-                var p = this._punct;
-                this._frontend.commit(p.value[p.lastIndex]);
+            }
+            if (event.keyCode == KeyEvent.KEY_BACKSPACE || event.keyCode == KeyEvent.KEY_ESCAPE) {
                 this._clearPunctPrompt();
-                if (event.keyCode == KeyEvent.KEY_SPACE || event.keyCode == KeyEvent.KEY_ENTER) {
-                    return true;
-                }
+                return true;
+            }
+            var p = this._punct;
+            this._frontend.commit(p.value[p.lastIndex]);
+            this._clearPunctPrompt();
+            if (event.keyCode == KeyEvent.KEY_SPACE || event.keyCode == KeyEvent.KEY_ENTER) {
+                return true;
             }
         }
         var result = this._parser.processInput(event, this.ctx);
