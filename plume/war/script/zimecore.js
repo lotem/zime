@@ -117,6 +117,22 @@ var Schema = new Class({
         this.delimiter = this.getConfigCharSequence("Delimiter") || " ";
         this.alphabet = this.getConfigCharSequence("Alphabet") || "abcdefghijklmnopqrstuvwxyz";
         this.initial = this.alphabet.split (/\s+/, 1)[0];
+        var promptChar = this.getConfigCharSequence("PromptChar");
+        if (promptChar) {
+            var xlit = {};
+            var i;
+            for (i = 0; i < this.alphabet.length && i < promptChar.length; ++i) {
+                xlit[this.alphabet.charAt(i)] = promptChar.charAt(i);
+            }
+            this.translit = function (s) {
+                return $.map(s.split(""), function (c) {
+                    return xlit[c] || c;
+                }).join("");
+            };
+        }
+        else {
+            this.translit = null;
+        }
         var xformRules = $.map(this.getConfigList("TransformRule"), function (r) {
             var p = r.split(/\s+/);
             return {pattern: new RegExp(p[0], "g"), repl: p[1]};
@@ -450,8 +466,9 @@ var Context = new Class({
                 }
             }
             index[i] = j;
-            disp.push(input[i]);
-            j += input[i].length;
+            var w = this.schema.translit ? this.schema.translit(input[i]) : input[i];
+            disp.push(w);
+            j += w.length;
         }
         index[seg.n] = j;
         return {text: disp.join(""), index: index};

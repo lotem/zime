@@ -75,6 +75,111 @@ var RomanParser = Class.extend(Parser, {
 
 Parser.register("roman", RomanParser);
 
+var TableParser = Class.extend(Parser, {
+    
+    initialize: function (schema) {
+        this._autoCommitKeywordLength = Number(schema.getConfigValue("AutoCommitKeywordLength") || 
+                                               schema.getConfigValue("MaxKeywordLength") || 4);
+        this._alphabet = schema.alphabet;
+        this._initial = schema.initial;
+        this._delimiter = schema.delimiter;
+        this._xform = schema.xform;
+        this.clear();
+    },
+
+    clear: function () {
+        this._input = [];
+        this._keyword = [];
+    },
+
+    isEmpty: function () {
+        return this._input.length == 0 && this._keyword.length == 0;
+    },
+
+    _isKeywordEmpty: function () {
+        return this._keyword.length == 0;
+    },
+
+    _getKeyword: function () {
+        var k = this._keyword.join("");
+        return this._xform ? this._xform(k) : k;
+    },
+    
+    processInput: function (event, ctx) {
+        if (event.type == "keyup") {
+            return false;
+        }
+        var ch = KeyEvent.toChar(event);
+        if (ctx.beingConverted()) {
+            if (ctx.isCompleted() && ch != null && this._initial.indexOf(ch) != -1) {
+                this.clear();
+                this._keyword.push(ch);
+                return {type: "edit", value: this._getKeyword()};
+            }
+            return false;
+        }
+        if (event.keyCode == KeyEvent.KEY_ESCAPE) {
+            this.clear();
+            return false;
+        }
+        if (event.keyCode == KeyEvent.KEY_SPACE) {
+            return false;
+        }
+        if (event.keyCode == KeyEvent.KEY_BACKSPACE) {
+            if (this.isEmpty())
+                return false;
+            if (this._isKeywordEmpty())
+                this._keyword = this._input.pop();
+            this._keyword.pop();
+            if (this._isKeywordEmpty()) {
+                ctx.popInput();
+            }
+            else {
+                ctx.input.pop();
+                ctx.input.push(this._getKeyword());
+            }
+            return {type: "edit", value: null};
+        }
+        if (ch == null) {
+            return false;
+        }
+        if (!this.isEmpty() && this._delimiter.indexOf(ch) != -1) {
+            if (!this._isKeywordEmpty())
+                this._input.push(this._keyword);
+            this._input.push([ch]);
+            this._keyword = [];
+            return {type: "edit", value: [ch]};
+        }
+        if (this._initial.indexOf(ch) != -1) {
+            var complete = (this._keyword.length == this._autoCommitKeywordLength);
+            if (complete) {
+                this._input.push(this._keyword);
+                this._keyword = [];
+            }
+            if (this._isKeywordEmpty()) {
+                this._keyword.push(ch);
+                var result = [];
+                var last = this._input.length - 1;
+                if (last >= 0 && this._delimiter.indexOf(this._input[last][0]) == -1)
+                    result.push(this._delimiter[0]);
+                result.push(this._getKeyword());
+                return {type: "edit", value: result};
+            }
+        }
+        if (!this._isKeywordEmpty()) {
+            if (this._alphabet.indexOf(ch) != -1) {
+                this._keyword.push(ch);
+                ctx.input.pop();
+                return {type: "edit", value: this._getKeyword()};
+            }
+        }
+        return false;
+    }
+
+});
+
+Parser.register("table", TableParser);
+
 var GroupingParser = Class.extend(Parser, {
 
     initialize: function (schema) {
