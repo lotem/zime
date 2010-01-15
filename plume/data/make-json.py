@@ -16,43 +16,148 @@ import re
 def debug(*what):
     print >> sys.stderr, '[DEBUG]: ', ' '.join(map(unicode, what))
 
+class SpellingCollisionError:
+    def __init__(self, rule, vars):
+        self.rule = rule
+        self.vars = vars
+    def __str__(self):
+        return 'spelling collision detected in %s: %s' % (self.rule, repr(self.vars))
+
+class SpellingAlgebra:
+
+    def __init__(self, report_errors=True):
+        self.__report_errors = report_errors
+
+    def calculate(self, mapping_rules, fuzzy_rules, spelling_rules, alternative_rules, keywords):
+
+        akas = dict()
+
+        def add_aka(s, x):
+            if s in akas:
+                a = akas[s]
+            else:
+                a = akas[s] = []
+            if x not in a:
+                a.append(x)
+
+        def del_aka(s, x):
+            if s in akas:
+                a = akas[s]
+            else:
+                a = akas[s] = []
+            if x in a:
+                a.remove(x)
+            if not a:
+                del akas[s]
+
+        def transform(x, r):
+            return r[0].sub(r[1], x, 1)
+
+        def apply_fuzzy_rule(d, r):
+            dd = dict(d)
+            for x in d:
+                if not r[0].search(x):
+                    continue
+                y = transform(x, r)
+                if y == x:
+                    continue
+                if y not in dd:
+                    dd[y] = d[x]
+                    add_aka(dd[y], y)
+                else:
+                    del_aka(dd[y], y)
+                    dd[y] |= d[x]
+                    add_aka(dd[y], y)
+            return dd
+
+        def apply_alternative_rule(d, r):
+            for x in d.keys():
+                if not r[0].search(x):
+                    continue
+                y = transform(x, r)
+                if y == x:
+                    continue
+                if y not in d:
+                    d[y] = d[x]
+                elif self.__report_errors:
+                    raise SpellingCollisionError('AlternativeRule', (x, d[x], y, d[y]))
+            return d
+
+        io_map = dict()
+        for okey in keywords:
+            ikey = reduce(transform, mapping_rules, okey)
+            s = frozenset([okey])
+            if ikey in io_map:
+                io_map[ikey] |= s
+            else:
+                io_map[ikey] = s
+        for ikey in io_map:
+            add_aka(io_map[ikey], ikey)
+        io_map = reduce(apply_fuzzy_rule, fuzzy_rules, io_map)
+
+        oi_map = dict()
+        ikeys = []
+        spellings = []
+        for okeys in akas:
+            ikey = akas[okeys][0]
+            ikeys.append(ikey)
+            for x in akas[okeys]:
+                spellings.append((x, ikey))
+            for k in okeys:
+                if k in oi_map:
+                    a = oi_map[k]
+                else:
+                    a = oi_map[k] = []
+                a.append(ikey)
+        akas = None
+
+        # remove non-ikey keys
+        io_map = dict([(k, list(io_map[k])) for k in ikeys])
+
+        spelling_map = dict()
+        for s, ikey in spellings:
+            t = reduce(transform, spelling_rules, s)
+            if t not in spelling_map:
+                spelling_map[t] = s
+            elif self.__report_errors:
+                raise SpellingCollisionError('SpellingRule', (s, ikey, t, spelling_map[t]))
+        spelling_map = reduce(apply_alternative_rule, alternative_rules, spelling_map)
+
+        return spelling_map, io_map, oi_map
+
 usage = 'usage: %prog [options] schema-file [keyword-file [phrase-file]]'
 parser = optparse.OptionParser(usage)
 
 parser.add_option('-d', '--dir', dest='dir', default='..', help='target plume.js root dir')
-parser.add_option('-s', '--schema', dest='schema', help='shortcut to specifying a standard set of input file names')
 parser.add_option('-k', '--keep', action='store_true', dest='keep', default=False, help='keep existing dict')
 parser.add_option('-l', '--level', type='int', dest='level', default=1, help='level of indexing')
 parser.add_option('-p', '--pretty', action='store_true', dest='pretty', default=False, help='pretty json output')
-
+parser.add_option('-n', '--no-phrases', action='store_true', dest='no_phrases', default=False, help='do not use phrase file')
+parser.add_option('-s', '--source', dest='source', help='specify the prefix of source dict files', metavar='PREFIX')
 parser.add_option('-v', '--verbose', action='store_true', dest='verbose', default=False, help='make lots of noice')
 
 options, args = parser.parse_args()
 
-if options.schema:
-    schema_file = '%s-schema.txt' % options.schema
-    keyword_file = '%s-keywords.txt' % options.schema
-    phrase_file = '%s-phrases.txt' % options.schema
-else:
-    if len(args) not in range(1, 4):
-        parser.error('incorrect number of arguments')
-    schema_file = args[0] if len(args) > 0 else None
-    keyword_file = args[1] if len(args) > 1 else None
-    phrase_file = args[2] if len(args) > 2 else None
+if len(args) != 1:
+    parser.error('incorrect number of arguments')
+schema_file = args[0] if len(args) > 0 else None
 
 LIMIT = 512
 
 dest_dir = os.path.join(options.dir, 'json')
 
 schema = None
-schema_name = None
-prefix = None
-delim = None
+display_name = None
+dict_prefix = None
+
 max_key_length = 2
 
-config = []
-spelling_rules = []
+mapping_rules = []
 fuzzy_rules = []
+spelling_rules = []
+alternative_rules = []
+
+config = []
 
 if schema_file:
     equal_sign = re.compile(ur'\s*=\s*')
@@ -75,38 +180,41 @@ if schema_file:
         except:
             print >> sys.stderr, 'error parsing (%s) %s' % (schema_file, x)
             exit()
-        if not schema:
-            m = re.match(ur'Schema/(\w+)', path)
-            if m:
-                schema = m.group(1)
-                schema_name = value
-                print >> sys.stderr, 'processing schema: %s' % schema
-        else:
-            if not prefix and path == u'Config/%s/Prefix' % schema:
-                prefix = value
-                print >> sys.stderr, 'dict prefix: %s' % prefix
-            #if not delim and path == u'Config/%s/Delimiter' % schema:
-            #    if value[0] == u'[' and value[-1] == u']':
-            #        delim = value[1]
-            #    else:
-            #        delim = value[0]
-            if path == u'Config/%s/MaxKeyLength' % schema:
-                max_key_length = max(2, int(value))
-            elif path == u'Config/%s/SpellingRule' % schema:
-                spelling_rules.append(compile_repl_pattern(value.split()))
-            elif path == u'Config/%s/FuzzyRule' % schema:
+        if not schema and path == u'Schema':
+            schema = value
+            print >> sys.stderr, 'schema: %s' % schema
+        if schema:
+            if path == u'DisplayName':
+                display_name = value
+            if not dict_prefix and path == u'Dict':
+                dict_prefix = value
+                print >> sys.stderr, 'dict: %s' % dict_prefix
+            if path == u'MaxKeyLength':
+                max_key_length = int(value)
+            elif path == u'MappingRule':
+                mapping_rules.append(compile_repl_pattern(value.split()))
+            elif path == u'FuzzyRule':
                 fuzzy_rules.append(compile_repl_pattern(value.split()))
+            elif path == u'SpellingRule':
+                spelling_rules.append(compile_repl_pattern(value.split()))
+            elif path == u'AlternativeRule':
+                alternative_rules.append(compile_repl_pattern(value.split()))
         if path.endswith(u'Rule'):
             value = to_js_regex(value) 
         config.append((path, value))
     f.close()
 
-if not prefix:
-    print >> sys.stderr, 'no dict prefix specified in schema file.'
+if not dict_prefix:
+    print >> sys.stderr, 'no dict specified in schema file.'
     exit()
 
-okeys = dict()
+prefix_args = {'prefix' : dict_prefix}
 
+source_file_prefix = options.source or dict_prefix.replace(u'_', u'-')
+keyword_file = '%s-keywords.txt' % source_file_prefix
+phrase_file = '%s-phrases.txt' % source_file_prefix if not options.no_phrases else None
+
+keywords = dict()
 if keyword_file:
     f = open(keyword_file, 'r')
     for line in f:
@@ -117,71 +225,24 @@ if keyword_file:
             ll = x.split(u'\t', 1)
             (okey, phrase) = ll
         except:
-            print >> sys.stderr, 'error: invalid format(%s) %s' % (phrase_file, x)
+            print >> sys.stderr, 'error: invalid format (%s) %s' % (keyword_file, x)
             exit()
-        if okey not in okeys:
-            okeys[okey] = [phrase]
+        if okey not in keywords:
+            keywords[okey] = [phrase]
         else:
-            okeys[okey].append(phrase)
+            keywords[okey].append(phrase)
     f.close()
 
-def apply_spelling_rule(m, r):
-    return(r[0].sub(r[1], m[0], 1), m[1])
-d = dict()
-for k, v in [reduce(apply_spelling_rule, spelling_rules, (k, frozenset([k]))) for k in okeys]:
-    if k in d:
-        d[k] |= v
-    else:
-        d[k] = v
-akas = dict()
-def add_aka(s, x):
-    if s in akas:
-        a = akas[s]
-    else:
-        a = akas[s] = []
-    if x not in a:
-        a.append(x)
-def del_aka(s, x):
-    if s in akas:
-        a = akas[s]
-    else:
-        a = akas[s] = []
-    if x in a:
-        a.remove(x)
-    if not a:
-        del akas[s]
-def apply_fuzzy_rule(d, r):
-    dd = dict(d)
-    for x in d:
-        if not r[0].search(x):
-            continue
-        y = r[0].sub(r[1], x, 1)
-        if y == x:
-            continue
-        if y not in dd:
-            dd[y] = d[x]
-            add_aka(dd[y], y)
-        else:
-            del_aka(dd[y], y)
-            dd[y] |= d[x]
-            add_aka(dd[y], y)
-    return dd
-for k in d:
-    add_aka(d[k], k)
-fuzzy_map = dict([(k, list(v)) for k, v in reduce(apply_fuzzy_rule, fuzzy_rules, d).iteritems()])
-keywords = dict()
-oi_map = dict()
-for s in akas:
-    spelling = akas[s][0]
-    for x in akas[s]:
-        keywords[x] = spelling
-    for k in s:
-        if k in oi_map:
-            a = oi_map[k]
-        else:
-            a = oi_map[k] = []
-        a.append(spelling)
-del akas
+sa = SpellingAlgebra()
+try:
+    spelling_map, io_map, oi_map = sa.calculate(mapping_rules, 
+                                                fuzzy_rules, 
+                                                spelling_rules, 
+                                                alternative_rules, 
+                                                keywords)
+except SpellingCollisionError as e:
+    print >> sys.stderr, e
+    exit()
 
 def rm_R(top):
     for root, dirs, files in os.walk(top, topdown=False):
@@ -194,40 +255,42 @@ def mkdir_p(dir):
     if not os.path.exists(dir):
         os.makedirs(dir)
 
-mkdir_p(dest_dir)
-
-output_config_file = os.path.join(dest_dir, '%sConfig.json' % schema)
-data = {'fuzzyMap': fuzzy_map, 'keywords': keywords, 'config': config}
-json.dump(data, open(output_config_file, 'wb'), indent=(2 if options.pretty else None))
+def dump_schema_config():
+    output_config_file = os.path.join(dest_dir, '%sConfig.json' % schema)
+    data = {'config': config, 'spellingMap': spelling_map, 'ioMap': io_map, 'oiMap': oi_map}
+    json.dump(data, open(output_config_file, 'wb'), indent=(2 if options.pretty else None))
 
 def update_schema_list():
-    global schema, schema_name
+    global schema, display_name
     schema_list_file = os.path.join(dest_dir, 'SchemaList.json')
     if os.path.exists(schema_list_file):
         data = filter(lambda x: x['schema'] != schema, json.load(open(schema_list_file, 'rb')))
     else:
         data = []
-    s = {'schema': schema, 'displayName': schema_name}
+    s = {'schema': schema, 'displayName': display_name}
     data.append(s)
     json.dump(data, open(schema_list_file, 'wb'), indent=(2 if options.pretty else None))
 
+mkdir_p(dest_dir)
+dump_schema_config()
+update_schema_list()
+
 if options.keep:
-    update_schema_list()
     print >> sys.stderr, 'done.'
     exit()
 
-def g(s, k, depth):
-    if not k or depth >= max_key_length:
-        return s
+def g(ikeys, okey, depth):
+    if not okey or depth >= max_key_length:
+        return ikeys
     r = []
-    for x in s:
-        if k[0] not in oi_map:
+    for x in ikeys:
+        if okey[0] not in oi_map:
             if options.verbose:
-                print >> sys.stderr, 'invalid keyword encountered: [%s]' % k[0]
+                print >> sys.stderr, 'invalid keyword encountered: [%s]' % okey[0]
             return []
-        for y in oi_map[k[0]]:
+        for y in oi_map[okey[0]]:
             r.append(x + [y])
-    return g(r, k[1:], depth + 1)
+    return g(r, okey[1:], depth + 1)
 
 phrase_counter = 0
 phrases = dict()
@@ -235,7 +298,7 @@ freq_total = 0
 ip_map = dict()
 
 def process_phrase(okey, phrase, freq):
-    global phrase_counter, phrases, freq_total, i_map
+    global phrase_counter, phrases, freq_total, ip_map
     phrase_counter += 1
     freq_total += freq
     k = (okey, phrase)
@@ -253,12 +316,12 @@ def process_phrase(okey, phrase, freq):
             else:
                 ip_map[ikey] = set([k])
 
-for okey in okeys:
-    for phrase in okeys[okey]:
-        process_phrase(okey, phrase, 0)
+for k in keywords:
+    for p in keywords[k]:
+        process_phrase(k, p, 0)
         if options.verbose and phrase_counter % 1000 == 0:
             print >> sys.stderr, '%dk phrases imported from %s.' % (phrase_counter / 1000, keyword_file)
-del okeys
+del keywords
 
 if phrase_file:
     f = open(phrase_file, 'r')
@@ -286,55 +349,58 @@ if phrase_file:
             print >> sys.stderr, '%dk phrases imported from %s.' % (phrase_counter / 1000, phrase_file)
     f.close()
 
-rm_R(os.path.join(dest_dir, prefix))
-mkdir_p(os.path.join(dest_dir, prefix))
+rm_R(os.path.join(dest_dir, dict_prefix))
+mkdir_p(os.path.join(dest_dir, dict_prefix))
 
-def get_idx(ikey):
+def get_index(ikey):
     return u'_'.join(ikey.split(u' ')[:options.level])
 
-current = None
-sum = 0
-ph = {}
 files = {}
+indexed_phrases = {}
+indexed_phrase_count = 0
 
-def dump_json(index):
-    file_path = os.path.join(dest_dir, prefix, '%s.json' % files[index])
+def dump_dict_index(index):
+    file_path = os.path.join(dest_dir, dict_prefix, '%s.json' % files[index])
     f = open(file_path, 'wb')
-    json.dump(ph, f, indent=(2 if options.pretty else None))
+    json.dump(indexed_phrases, f, indent=(2 if options.pretty else None))
     if options.verbose:
-        print >> sys.stderr, '%d phrases of index %s written to %s.' % (sum, index, file_path)
+        print >> sys.stderr, '%d phrases of index %s written to %s.' % (indexed_phrase_count, index, file_path)
+
+current = None
 
 for ikey in sorted(ip_map):
-    idx = get_idx(ikey)
-    if idx != current:
+    index = get_index(ikey)
+    if index != current:
         if current:
-            dump_json(current)
-        current = idx
-        sum = 0
-        ph = {}
-        files[idx] = idx.encode('utf-7')
-    if ikey in ph:
-        s = ph[ikey]
+            dump_dict_index(current)
+        current = index
+        indexed_phrase_count = 0
+        indexed_phrases = {}
+        files[index] = index.encode('utf-7')
+    if ikey in indexed_phrases:
+        s = indexed_phrases[ikey]
     else:
-        s = ph[ikey] = []
+        s = indexed_phrases[ikey] = []
     for k in ip_map[ikey]:
         freq = phrases[k]
         s.append((k[0], k[1], freq))
-        sum += 1
+        indexed_phrase_count += 1
     s.sort(cmp=lambda a, b: -cmp(a[2], b[2]))
     if len(s) > LIMIT:
         del s[LIMIT:]
 
 if current:
-    dump_json(current)
+    dump_dict_index(current)
 
 if options.verbose:
     print >> sys.stderr, 'totaling %d files.' % len(files)
 
-data = {'freqTotal': freq_total, 'indexingLevel': options.level, 'files': files}
-output_dict_file = os.path.join(dest_dir, '%s.json' % prefix)
-json.dump(data, open(output_dict_file, 'wb'), indent=(2 if options.pretty else None))
+def dump_dict_info():
+    data = {'freqTotal': freq_total, 'indexingLevel': options.level, 'files': files}
+    output_dict_file = os.path.join(dest_dir, '%s.json' % dict_prefix)
+    json.dump(data, open(output_dict_file, 'wb'), indent=(2 if options.pretty else None))
 
-update_schema_list()
+dump_dict_info()
+
 print >> sys.stderr, 'done.'
 
