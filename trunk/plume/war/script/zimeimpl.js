@@ -161,7 +161,7 @@ var TableParser = Class.extend(Parser, {
                 var result = [];
                 var last = this._input.length - 1;
                 if (last >= 0 && this._delimiter.indexOf(this._input[last][0]) == -1)
-                    result.push(this._delimiter[0]);
+                    result.push(this._delimiter.charAt(0));
                 result.push(this._getKeyword());
                 return {type: "edit", value: result};
             }
