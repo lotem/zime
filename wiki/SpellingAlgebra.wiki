@@ -1,4 +1,4 @@
-#summary Intro to ZIME's core technology Spelling Algebra
+#summary intro to ZIME's core technology Spelling Algebra
 
 = Introduction =
 
