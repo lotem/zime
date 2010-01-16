@@ -125,7 +125,7 @@ class SpellingAlgebra:
 
         return spelling_map, io_map, oi_map
 
-usage = 'usage: %prog [options] schema-file [keyword-file [phrase-file]]'
+usage = 'usage: %prog [options] YourSchema.txt'
 parser = optparse.OptionParser(usage)
 
 parser.add_option('-d', '--dir', dest='dir', default='..', help='target plume.js root dir')
