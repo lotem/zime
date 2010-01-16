@@ -128,6 +128,7 @@ class SpellingAlgebra:
 usage = 'usage: %prog [options] YourSchema.txt'
 parser = optparse.OptionParser(usage)
 
+parser.add_option('-i', '--ikey', action='store_true', dest='ikey', default=False, help='use ikeys rather than spellings')
 parser.add_option('-s', '--source', dest='source', help='specify the prefix of source dict files', metavar='PREFIX')
 parser.add_option('-v', '--verbose', action='store_true', dest='verbose', default=False, help='make lots of noice')
 
@@ -229,12 +230,21 @@ except SpellingCollisionError as e:
     print >> sys.stderr, e
     exit()
 
-for ikey in io_map:
-    s = set()
-    for okey in io_map[ikey]:
-        s |= set(keywords[okey])
-    for x in s:
-        print u'\t'.join([ikey, x]).encode('utf-8')
+if options.ikey:
+    for ikey in io_map:
+        s = set()
+        for okey in io_map[ikey]:
+            s |= set(keywords[okey])
+        for x in s:
+            print u'\t'.join([ikey, x]).encode('utf-8')
+else:
+    for spelling in spelling_map:
+        ikey = spelling_map[spelling]
+        s = set()
+        for okey in io_map[ikey]:
+            s |= set(keywords[okey])
+        for x in s:
+            print u'\t'.join([spelling, ikey, x]).encode('utf-8')
 
 print >> sys.stderr, 'done.'
 
