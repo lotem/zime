@@ -20,6 +20,7 @@ SpellingRule = ou$ o'u
 SpellingRule = eo o'
 SpellingRule = oe eo
 SpellingRule = yu eu
+SpellingRule = ([aeiou])'$ \1h
 SpellingRule = ([aeiou])'i$ \1y
 SpellingRule = ([aeiou])'u$ \1w
 SpellingRule = ([aeiou])'m$ \1mp
