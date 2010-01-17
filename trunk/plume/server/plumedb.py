@@ -243,13 +243,13 @@ class DB:
         self.__dict[dict_prefix] = [(spelling_map, io_map, oi_map), dict(), 0]
 
     def get_schema_list(self):
-        return [(s[0], s[1]) for s in self.__schema]
+        return [{'schema': s[0], 'displayName': s[1]} for s in self.__schema]
 
     def get_schema(self, schema):
         for s in self.__schema:
             if s[0] == schema:
                 s[-1] += 1
-                self.__schema.sort(key=lambda s: s[-1])
+                self.__schema.sort(key=lambda s: s[-1], reverse=True)
                 spelling_map, io_map, oi_map = self.__dict[s[3]][0] if s[3] in self.__dict else (None, None, None)
                 return {'config': s[2], 'spellingMap': spelling_map, 'ioMap': io_map, 'oiMap': oi_map}
         return None

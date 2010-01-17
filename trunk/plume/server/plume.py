@@ -10,12 +10,12 @@ db = plumedb.DB()
 class SchemaListHandler(webapp.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/plain'
-        self.response.out.write(json.dumps(db.get_schema_list()))
+        self.response.out.write(json.dumps(db.get_schema_list(), indent=2))
 
 class SchemaHandler(webapp.RequestHandler):
     def get(self, schema):
         self.response.headers['Content-Type'] = 'text/plain'
-        self.response.out.write(json.dumps(db.get_schema(schema)))
+        self.response.out.write(json.dumps(db.get_schema(schema), indent=2))
 
 class QueryHandler(webapp.RequestHandler):
     def get(self, schema):
@@ -32,10 +32,10 @@ class CommitHandler(webapp.RequestHandler):
         self.response.out.write(json.dumps([u'TODO']))
 
 
-application = webapp.WSGIApplication([(r'/schema_list', SchemaListHandler),
-                                      (r'/schema/(.*)', SchemaHandler),
-                                      (r'/query/(.*)', QueryHandler),
-                                      (r'/commit/(.*)', CommitHandler)
+application = webapp.WSGIApplication([(r'/plume/schema_list', SchemaListHandler),
+                                      (r'/plume/schema/(.*)', SchemaHandler),
+                                      (r'/plume/query/(.*)', QueryHandler),
+                                      (r'/plume/commit/(.*)', CommitHandler)
                                      ],
                                      debug=True)
 

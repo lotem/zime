@@ -378,6 +378,98 @@ var ComboParser = Class.extend(Parser, {
 
 Parser.register("combo", ComboParser);
 
+var _segmentation = function (schema, input) {
+    var n = input.length;
+    m = 0;
+    var p = [];
+    var a = [];
+    for (var i = 0; i <= n; ++i) {
+        a[i] = [];
+    }
+    allowDivide = function (i, j, s) {
+        var flag = true;
+        for (var k = 0; k < p.length; ++k) {
+            if (!a[j][p[k]]) {
+                if (flag && a[i][p[k]])
+                    return true;
+                else
+                    continue;
+            }
+            // TODO: return true if suggested by divide rules
+            // var lw = input.slice(p[k], j).join();
+            // ...
+            flag = false;
+        }
+        return false;
+    };
+    var q = [0];
+    while (q.length > 0) {
+        var i = q.shift();
+        if (i == n) {
+            p.push(i);
+            break;
+        }
+        var ok = false;
+        for (var j = i + 1; j <= n && j <= i + schema.maxKeywordLength; ++j) {
+            var s = input.slice(i, j).join("");
+            if (!schema.spellingMap[s]) {
+                continue;
+            }
+            var t = (j < n && schema.delimiter.indexOf(input[j]) != -1) ? j + 1 : j;
+            //Logger.debug("[" + i + ", " + j + ") " + s);
+            var found = false;
+            $.each(q, function (i_, e) {
+                if (e == t) {
+                    found = true;
+                    return false;
+                }
+            });
+            if (!found) {
+                q.push(t);
+                m = Math.max(m, t);
+            }
+            else if (!allowDivide(i, t, s)) {
+                //Logger.debug("denied division");
+                continue;
+            }
+            a[t][i] = schema.spellingMap[s];
+            ok = true;
+        }
+        if (ok) {
+            p.push(i);
+        }
+        q.sort(function (a, b) { return a - b; });
+    }
+    if (m < n)
+        p.push(m);
+    //Logger.debug("p: " + p);
+    b = [];
+    d = [];
+    // path finding
+    for (var i = p.length - 1; i >= 0; --i) {
+        var ok = (p[i] == m);
+        for (var j = 0; j < b.length; ++j) {
+            if (p[i] < b[j] && a[b[j]][p[i]]) {
+                ok = true;
+                d = $.grep(d, function (e) {
+                    return e >= b[j];
+                });
+            }
+        }
+        if (ok) {
+            b.push(p[i]);
+            d.push(p[i]);
+        }
+        else {
+            a[p[i]].length = 0;
+            //Logger.debug("removed edges starting at " + p[i]);
+        }
+    }
+    b.reverse();
+    d.reverse();
+    return {n: n, m: m, a: a, b: b, d: d};
+};
+
 var JSONFileBackend = Class.extend(Backend, {
 
     DATA_DIR: "json/",
@@ -426,97 +518,7 @@ var JSONFileBackend = Class.extend(Backend, {
         });
     },
 
-    segmentation: function (schema, input) {
-        var n = input.length;
-        m = 0;
-        var p = [];
-        var a = [];
-        for (var i = 0; i <= n; ++i) {
-            a[i] = [];
-        }
-        allowDivide = function (i, j, s) {
-            var flag = true;
-            for (var k = 0; k < p.length; ++k) {
-                if (!a[j][p[k]]) {
-                    if (flag && a[i][p[k]])
-                        return true;
-                    else
-                        continue;
-                }
-                // TODO: return true if suggested by divide rules
-                // var lw = input.slice(p[k], j).join();
-                // ...
-                flag = false;
-            }
-            return false;
-        };
-        var q = [0];
-        while (q.length > 0) {
-            var i = q.shift();
-            if (i == n) {
-                p.push(i);
-                break;
-            }
-            var ok = false;
-            for (var j = i + 1; j <= n && j <= i + schema.maxKeywordLength; ++j) {
-                var s = input.slice(i, j).join("");
-                if (!schema.spellingMap[s]) {
-                    continue;
-                }
-                var t = (j < n && schema.delimiter.indexOf(input[j]) != -1) ? j + 1 : j;
-                //Logger.debug("[" + i + ", " + j + ") " + s);
-                var found = false;
-                $.each(q, function (i_, e) {
-                    if (e == t) {
-                        found = true;
-                        return false;
-                    }
-                });
-                if (!found) {
-                    q.push(t);
-                    m = Math.max(m, t);
-                }
-                else if (!allowDivide(i, t, s)) {
-                    //Logger.debug("denied division");
-                    continue;
-                }
-                a[t][i] = schema.spellingMap[s];
-                ok = true;
-            }
-            if (ok) {
-                p.push(i);
-            }
-            q.sort(function (a, b) { return a - b; });
-        }
-        if (m < n)
-            p.push(m);
-        //Logger.debug("p: " + p);
-        b = [];
-        d = [];
-        // path finding
-        for (var i = p.length - 1; i >= 0; --i) {
-            var ok = (p[i] == m);
-            for (var j = 0; j < b.length; ++j) {
-                if (p[i] < b[j] && a[b[j]][p[i]]) {
-                    ok = true;
-                    d = $.grep(d, function (e) {
-                        return e >= b[j];
-                    });
-                }
-            }
-            if (ok) {
-                b.push(p[i]);
-                d.push(p[i]);
-            }
-            else {
-                a[p[i]].length = 0;
-                //Logger.debug("removed edges starting at " + p[i]);
-            }
-        }
-        b.reverse();
-        d.reverse();
-        return {n: n, m: m, a: a, b: b, d: d};
-    },
+    segmentation: _segmentation,
 
     query: function (ctx, callback) {
         if (!this._dict) {
@@ -683,7 +685,41 @@ var JSONFileBackend = Class.extend(Backend, {
 
 });
 
-Backend.register(JSONFileBackend);
+var GAEServerBackend = Class.extend(Backend, {
+
+    SCHEMA_LIST: "/plume/schema_list",
+    SCHEMA: "/plume/schema/",
+    QUERY: "/plume/query/",
+    COMMIT: "/plume/commit/",
+
+    initialize: function () {
+    },
+
+    loadSchemaList: function (callback) {
+        $.getJSON(this.SCHEMA_LIST, null, callback);
+    },
+
+    loadSchema: function (schemaName, callback) {
+        $.getJSON(this.SCHEMA + encodeURIComponent(schemaName), null, function (data) {
+            schema = new Schema (schemaName, data);
+            callback(schema);
+        });
+    },
+
+    segmentation: _segmentation,
+
+    query: function (input, callback) {
+        // TODO
+    }
+
+});
+
+if (document.location.protocol == "file:") {
+    Backend.register(JSONFileBackend);
+}
+else {
+    Backend.register(GAEServerBackend);
+}
 
 var JSFrontend = Class.extend(Frontend, {
     
