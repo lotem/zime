@@ -266,9 +266,12 @@ var Context = new Class({
             return false;
         }
         var ctx = this;
+        // set error beforehand in case the query fails, and to prevent repeated queries
+        this._error = {start: 0, end: ctx.input.length};
         this._backend.query(this, function () {
             ctx._updateCandidates(ctx._predict());
         });
+        this._updateUI();
         return true;
     },
     
