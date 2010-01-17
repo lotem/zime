@@ -618,6 +618,7 @@ var JSONFileBackend = Class.extend(Backend, {
                         //Logger.debug("lookup successful.");
                         ctx.phrase = phrase;
                         ctx.prediction = me._makePrediction(phrase, ctx._segmentation);
+                        ctx._error = null;
                         callback();
                     }
                 });

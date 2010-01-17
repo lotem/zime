@@ -212,8 +212,8 @@ class DB:
         if dict_prefix not in self.__dict:
             s = self.__dict[dict_prefix] = [max_key_length, [], None, dict(), -1]
         else:
-            s = self.__dict[dict_prefix][1]
-        s.append(schema_info)
+            s = self.__dict[dict_prefix]
+        s[1].append(schema_info)
 
     def __load_dict(self, dict_prefix):
         if dict_prefix not in self.__dict:
