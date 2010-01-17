@@ -93,6 +93,7 @@ var Backend = new Class({
     // loadSchema: function (schemaName, callback) {},
     // segmentation: function (schema, input) {},
     // query: function (ctx, callback) {},
+    // abortQuery: function (ctx) {},
     // commit: function (ctx) {}
 });
 
@@ -211,7 +212,11 @@ var Context = new Class({
     
     _reset: function () {
         this.input = [];
-        this._error = null;
+        if (this.pending) {
+            this._backend.abortQuery(this);
+        }
+        this.pending = null;
+        this.error = null;
         this._segmentation = null;
         this._display = null;
         this._selected = [];
@@ -254,7 +259,7 @@ var Context = new Class({
             this._segmentation = seg;
             this._display = this._calculateDisplayText(input, seg);
             if (seg.m != seg.n) {
-                this._error = {start: seg.m, end: seg.n};
+                this.error = {start: seg.m, end: seg.n};
             }
         }
         this._updateUI();
@@ -262,12 +267,12 @@ var Context = new Class({
     
     convert: function () {
         //Logger.debug("convert:");
-        if (this._error) {
+        if (this.error) {
             return false;
         }
         var ctx = this;
-        // set error beforehand in case the query fails, and to prevent repeated queries
-        this._error = {start: 0, end: ctx.input.length};
+        this.error = {start: 0, end: ctx.input.length};
+        this.pending = [];
         this._backend.query(this, function () {
             ctx._updateCandidates(ctx._predict());
         });
@@ -327,7 +332,6 @@ var Context = new Class({
         if (!this.beingConverted()) {
             return false;
         }
-        this._selected = [];
         this._updateCandidates(this._predict());
     },
 
@@ -386,7 +390,7 @@ var Context = new Class({
         else {
             this._candidateList = null;
             this._current = null;
-            this._error = {start: i, end: j};
+            this.error = {start: i, end: j};
         }
         this._updateUI();
     },
@@ -497,10 +501,11 @@ var Context = new Class({
             var text = this._display.text;
             var idx = this._display.index;
             result.push(text.substring(idx[rest]));
-            if (this._error) {
+            var e = this.error;
+            if (e) {
                 var diff = idx[rest] - end;
-                start = idx[this._error.start] - diff;
-                end = idx[this._error.end] - diff;
+                start = idx[e.start] - diff;
+                end = idx[e.end] - diff;
             }
         }
         return {
@@ -724,7 +729,8 @@ var Engine = new Class({
         if (event.keyCode == KeyEvent.KEY_ESCAPE) {
             if (ctx.beingConverted()) {
                 ctx.cancelConversion();
-            } else {
+            }
+            else {
                 ctx.edit([]);
             }
             return true;
@@ -732,7 +738,8 @@ var Engine = new Class({
         if (event.keyCode == KeyEvent.KEY_BACKSPACE) {
             if (ctx.beingConverted()) {
                 ctx.back() || ctx.cancelConversion();
-            } else {
+            }
+            else {
                 ctx.popInput();
                 ctx.edit();
             }
@@ -741,7 +748,8 @@ var Engine = new Class({
         if (event.keyCode == KeyEvent.KEY_SPACE) {
             if (ctx.beingConverted()) {
                 ctx.select(0) && this._forward();
-            } else {
+            }
+            else {
                 ctx.convert();
             }
             return true;
@@ -749,14 +757,20 @@ var Engine = new Class({
         if (event.keyCode == KeyEvent.KEY_ENTER) {
             if (ctx.beingConverted()) {
                 ctx.select(0) && this._forward();
-            } else {
+            }
+            else {
                 this._commitRawInput();
                 this._parser.clear();
             }
             return true;
         }
         if (event.keyCode == KeyEvent.KEY_TAB) {
-            ctx.convert();
+            if (ctx.beingConverted()) {
+                ctx.end();
+            }
+            else {
+                ctx.convert();
+            }
             return true;
         }
         if (event.keyCode == KeyEvent.KEY_HOME) {
