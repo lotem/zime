@@ -140,7 +140,7 @@ class DB:
 
     def __init__(self):
         self.__dict = {}
-        self.__schema = []
+        self.__schema = {}
         self.__load_schema_list()
 
     def __load_schema_list(self):
@@ -204,12 +204,21 @@ class DB:
         if not dict_prefix:
             logging.error('no Dict specified for schema %s in %s.' % (schema, file_path))
             return
-        self.__schema.append([schema, display_name, config, dict_prefix, 0])
-        logging.debug('loaded schema %s.' % schema)
-        self.__load_dict(dict_prefix, max_key_length, mapping_rules, fuzzy_rules, spelling_rules, alternative_rules)
+        self.__schema[schema] = [display_name, dict_prefix, config, None, 0]
+        logging.info('loaded schema %s.' % schema)
+        self.__register_dict(dict_prefix, max_key_length, (schema, mapping_rules, fuzzy_rules, spelling_rules, alternative_rules))
 
-    def __load_dict(self, dict_prefix, max_key_length, mapping_rules, fuzzy_rules, spelling_rules, alternative_rules):
-        if dict_prefix in self.__dict:
+    def __register_dict(self, dict_prefix, max_key_length, schema_info):
+        if dict_prefix not in self.__dict:
+            s = self.__dict[dict_prefix] = [max_key_length, [], None, dict(), -1]
+        else:
+            s = self.__dict[dict_prefix][1]
+        s.append(schema_info)
+
+    def __load_dict(self, dict_prefix):
+        if dict_prefix not in self.__dict:
+            return
+        if self.__dict[dict_prefix][1] == None:
             return
         keyword_file = os.path.join(self.DATA_DIR, '%s-keywords.txt' % dict_prefix)
         if not os.path.exists(keyword_file):
@@ -232,30 +241,39 @@ class DB:
             else:
                 keywords[okey].append(phrase)
         f.close()
+        d = self.__dict[dict_prefix]
         sa = SpellingAlgebra()
-        try:
-            spelling_map, io_map, oi_map = sa.calculate(mapping_rules, 
-                                                        fuzzy_rules, 
-                                                        spelling_rules, 
-                                                        alternative_rules, 
-                                                        keywords)
-        except SpellingCollisionError, e:
-            logging.error('spelling collision error: %s' % e)
-            return
+        first = True
+        for s in d[1]:
+            try:
+                schema, mapping_rules, fuzzy_rules, spelling_rules, alternative_rules = s
+                spelling_map, io_map, oi_map = sa.calculate(mapping_rules, 
+                                                            fuzzy_rules, 
+                                                            spelling_rules, 
+                                                            alternative_rules, 
+                                                            keywords)
+            except SpellingCollisionError, e:
+                logging.error('spelling collision error in schema %s: %s' % (schema, e))
+                continue
+            self.__schema[schema][3] = spelling_map
+            if first:
+                first = False
+                d[2] = (io_map, oi_map)
+        d[1] = None
         # TODO: populate dict index
-        self.__dict[dict_prefix] = [(spelling_map, io_map, oi_map), dict(), 0]
-        logging.debug('loaded dict %s.' % dict_prefix)
+        logging.info('loaded dict %s.' % dict_prefix)
 
     def get_schema_list(self):
-        return [{'schema': s[0], 'displayName': s[1]} for s in self.__schema]
+        order = sorted(self.__schema.keys(), key=lambda s: self.__schema[s][-1], reverse=True)
+        return [{'schema': s, 'displayName': self.__schema[s][0]} for s in order]
 
     def get_schema(self, schema):
         for s in self.__schema:
-            if s[0] == schema:
-                s[-1] += 1
-                self.__schema.sort(key=lambda s: s[-1], reverse=True)
-                spelling_map, io_map, oi_map = self.__dict[s[3]][0] if s[3] in self.__dict else (None, None, None)
-                return {'config': s[2], 'spellingMap': spelling_map, 'ioMap': io_map, 'oiMap': oi_map}
+            if s == schema:
+                t = self.__schema[s]
+                t[-1] += 1
+                self.__load_dict(t[1])
+                return {'config': t[2], 'spellingMap': t[3]}
         return None
         
     """
