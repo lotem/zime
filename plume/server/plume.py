@@ -5,15 +5,17 @@ import simplejson as json
 import plumedb
 
 
+db = plumedb.DB()
+
 class SchemaListHandler(webapp.RequestHandler):
     def get(self):
         self.response.headers['Content-Type'] = 'text/plain'
-        self.response.out.write(json.dumps([u'TODO']))
+        self.response.out.write(json.dumps(db.get_schema_list()))
 
 class SchemaHandler(webapp.RequestHandler):
     def get(self, schema):
         self.response.headers['Content-Type'] = 'text/plain'
-        self.response.out.write(json.dumps([u'TODO']))
+        self.response.out.write(json.dumps(db.get_schema(schema)))
 
 class QueryHandler(webapp.RequestHandler):
     def get(self, schema):
