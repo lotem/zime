@@ -205,9 +205,12 @@ class DB:
             logging.error('no Dict specified for schema %s in %s.' % (schema, file_path))
             return
         self.__schema.append([schema, display_name, config, dict_prefix, 0])
+        logging.debug('loaded schema %s.' % schema)
         self.__load_dict(dict_prefix, max_key_length, mapping_rules, fuzzy_rules, spelling_rules, alternative_rules)
 
     def __load_dict(self, dict_prefix, max_key_length, mapping_rules, fuzzy_rules, spelling_rules, alternative_rules):
+        if dict_prefix in self.__dict:
+            return
         keyword_file = os.path.join(self.DATA_DIR, '%s-keywords.txt' % dict_prefix)
         if not os.path.exists(keyword_file):
             logging.error('missing keyword file %s.' % keyword_file)
@@ -241,6 +244,7 @@ class DB:
             return
         # TODO: populate dict index
         self.__dict[dict_prefix] = [(spelling_map, io_map, oi_map), dict(), 0]
+        logging.debug('loaded dict %s.' % dict_prefix)
 
     def get_schema_list(self):
         return [{'schema': s[0], 'displayName': s[1]} for s in self.__schema]
