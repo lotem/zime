@@ -121,7 +121,8 @@ class SpellingAlgebra:
                 spelling_map[t] = s
             elif self.__report_errors:
                 raise SpellingCollisionError('SpellingRule', (s, ikey, t, spelling_map[t]))
-        spelling_map = reduce(apply_alternative_rule, alternative_rules, spelling_map)
+        # do not apply alternative_rules for results with standard spelling only 
+        #spelling_map = reduce(apply_alternative_rule, alternative_rules, spelling_map)
 
         return spelling_map, io_map, oi_map
 
