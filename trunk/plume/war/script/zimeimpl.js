@@ -681,6 +681,10 @@ var JSONFileBackend = Class.extend(Backend, {
             }
         }
         return d;
+    },
+
+    commit: function (ctx) {
+        // TODO: save user phrase
     }
 
 });
@@ -708,8 +712,12 @@ var GAEServerBackend = Class.extend(Backend, {
 
     segmentation: _segmentation,
 
-    query: function (input, callback) {
-        // TODO
+    query: function (ctx, callback) {
+        // TODO:
+    },
+
+    commit: function (ctx) {
+        // TODO:
     }
 
 });

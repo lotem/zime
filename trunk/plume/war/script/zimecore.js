@@ -91,7 +91,9 @@ Frontend.create = function () {
 var Backend = new Class({
     // loadSchemaList: function (callback) {},
     // loadSchema: function (schemaName, callback) {},
-    // query: function (input, callback) {}
+    // segmentation: function (schema, input) {},
+    // query: function (ctx, callback) {},
+    // commit: function (ctx) {}
 });
 
 Backend.register = function (klass) {
@@ -444,7 +446,7 @@ var Context = new Class({
         var commitText = $.map(this._selected, function (e) {
             return e.text;
         }).join("");
-        // TODO: save user phrase
+        this._backend.commit(this);
         this.clear();
         return commitText;
     },
