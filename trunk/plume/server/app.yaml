@@ -9,9 +9,6 @@ handlers:
 #  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
 #  login: admin
 
-- url: /data
-  static_dir: data
-
 - url: /static
   static_dir: static
 
