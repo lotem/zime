@@ -236,7 +236,7 @@ class DB:
                                                         spelling_rules, 
                                                         alternative_rules, 
                                                         keywords)
-        except SpellingCollisionError as e:
+        except SpellingCollisionError, e:
             logging.error('spelling collision error: %s' % e)
             return
         # TODO: populate dict index
