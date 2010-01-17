@@ -525,8 +525,7 @@ var JSONFileBackend = Class.extend(Backend, {
             Logger.error("dict not yet loaded.");
             return;
         }
-        this._indexQueries(ctx);
-        this._lookup(ctx, callback);
+        this._lookup(this._indexQueries(ctx), ctx, callback);
     },
 
     _indexQueries: function (ctx) {
@@ -534,7 +533,7 @@ var JSONFileBackend = Class.extend(Backend, {
         var maxKeyLength = ctx.schema.maxKeyLength;
         var a = ctx._segmentation.a;
         var b = ctx._segmentation.b;
-        this._queries = {};
+        var queries = {};
         var q = [];
         for (var i = 0; i < b.length; ++i) {
             var s = [];
@@ -542,14 +541,14 @@ var JSONFileBackend = Class.extend(Backend, {
                 var kw = a[b[j]][b[i]];
                 if (kw) {
                     var r = {ikey: [kw], start: b[i], end: b[j]};
-                    this._registerQuery(r);
+                    this._registerQuery(queries, r);
                     if (r.ikey.length < maxKeyLength)
                         s.push(r);
                     var me = this;
                     $.each(q, function (k, e) {
                         if (e.end == b[i]) {
                             r = {ikey: e.ikey.concat([kw]), start: e.start, end: b[j]};
-                            me._registerQuery(r);
+                            me._registerQuery(queries, r);
                             if (r.ikey.length < maxKeyLength)
                                 s.push(r);
                         }
@@ -558,52 +557,55 @@ var JSONFileBackend = Class.extend(Backend, {
             }
             q = q.concat(s);
         }
+        return queries;
     },
 
-    _registerQuery: function (r) {
+    _registerQuery: function (queries, r) {
         //Logger.debug("registerQuery: [" + r.start + ", " + r.end + ") " + r.ikey);
         var index = r.ikey.slice(0, this._dict.indexingLevel).join("_");
-        if (this._queries[index])
-            this._queries[index].push(r);
+        if (queries[index])
+            queries[index].push(r);
         else
-            this._queries[index] = [r];
+            queries[index] = [r];
     },
 
-    _lookup: function (ctx, callback) {
+    _lookup: function (queries, ctx, callback) {
         var dict_prefix = this._dict.dict_prefix;
         var files = this._dict.files;
-        var queries = this._queries;
         var me = this;
-        var pending = [];
+        var pending = ctx.pending;
+        // shared by all requests
         var phrase = [];
         for (var k in queries) {
             (function (index) {
-                //Logger.debug("pending: " + index);
-                pending.push(index);
-                $.getJSON(me.DATA_DIR + dict_prefix + me.SEPARATOR + files[index] + me.JSON, null, function (data) {
+                //Logger.debug("requesting: " + index);
+                var url = me.DATA_DIR + dict_prefix + me.SEPARATOR + files[index] + me.JSON;
+                var request = $.getJSON(url, null, function (data) {
                     //Logger.debug("fetched: " + index);
-                    if (me._queries !== queries)
+                    if (ctx.pending !== pending) {
+                        //Logger.debug("lookup result discarded: " + index);
                         return;
+                    }
                     // generate query results
                     $.each(queries[index], function (i, q) {
-                        var p = phrase[q.start];
-                        if (!p) {
-                            p = phrase[q.start] = [];
+                        var a = phrase[q.start];
+                        if (!a) {
+                            a = phrase[q.start] = [];
                         }
                         // filter results
                         $.each(data[q.ikey.join(" ")] || [], function (i, e) {
                             var r = me._checkEntry(e, q, ctx);
                             if (r) {
-                                if (!p[r.end])
-                                    p[r.end] = [r];
+                                if (!a[r.end])
+                                    a[r.end] = [r];
                                 else
-                                    p[r.end].push(r);
+                                    a[r.end].push(r);
                             }
                         });
                     });
                     var pos = -1;
-                    $.each(pending, function (i, e) {
-                        if (e == index) {
+                    $.each(pending, function (i, p) {
+                        if (p.index == index) {
                             pos = i;
                             return false;
                         }
@@ -614,14 +616,15 @@ var JSONFileBackend = Class.extend(Backend, {
                     }
                     pending.splice(pos, 1);
                     if (pending.length == 0) {
-                        me._queries = null;
+                        ctx.error = null;
+                        ctx.pending = null;
                         //Logger.debug("lookup successful.");
                         ctx.phrase = phrase;
                         ctx.prediction = me._makePrediction(phrase, ctx._segmentation);
-                        ctx._error = null;
                         callback();
                     }
                 });
+                pending.push({index: index, request: request});
             })(k);
         }
     },
@@ -684,6 +687,17 @@ var JSONFileBackend = Class.extend(Backend, {
         return d;
     },
 
+    abortQuery: function (ctx) {
+        var pending = ctx.pending;
+        if (!pending || pending.length == 0)
+            return;
+        ctx.pending = null;
+        $.each(pending, function (i_, p) {
+            p.request.abort();
+            //Logger.debug("aborted pending lookup: " + p.index);
+        });
+    },
+
     commit: function (ctx) {
         // TODO: save user phrase
     }
@@ -714,6 +728,10 @@ var GAEServerBackend = Class.extend(Backend, {
     segmentation: _segmentation,
 
     query: function (ctx, callback) {
+        // TODO:
+    },
+
+    abortQuery: function (ctx) {
         // TODO:
     },
 
