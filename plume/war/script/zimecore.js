@@ -271,8 +271,8 @@ var Context = new Class({
             return false;
         }
         var ctx = this;
+        // set error state in case the query fails
         this.error = {start: 0, end: ctx.input.length};
-        this.pending = [];
         this._backend.query(this, function () {
             ctx._updateCandidates(ctx._predict());
         });
