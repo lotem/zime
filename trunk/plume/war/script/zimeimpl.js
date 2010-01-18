@@ -573,7 +573,7 @@ var JSONFileBackend = Class.extend(Backend, {
         var dict_prefix = this._dict.dict_prefix;
         var files = this._dict.files;
         var me = this;
-        var pending = ctx.pending;
+        var pending = ctx.pending = [];
         // shared by all requests
         var phrase = [];
         for (var k in queries) {
