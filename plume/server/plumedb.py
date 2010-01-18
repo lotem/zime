@@ -204,13 +204,15 @@ class DB:
         if not dict_prefix:
             logging.error('no Dict specified for schema %s in %s.' % (schema, file_path))
             return
+        # [display_name, dict_prefix, config, spelling_map, use_count]
         self.__schema[schema] = [display_name, dict_prefix, config, None, 0]
         logging.info('loaded schema %s.' % schema)
         self.__register_dict(dict_prefix, max_key_length, (schema, mapping_rules, fuzzy_rules, spelling_rules, alternative_rules))
 
     def __register_dict(self, dict_prefix, max_key_length, schema_info):
         if dict_prefix not in self.__dict:
-            s = self.__dict[dict_prefix] = [max_key_length, [], None, dict(), -1]
+            # [max_key_length, associated_schemas, io_map, oi_map, dict_index, freq_map, freq_total]
+            s = self.__dict[dict_prefix] = [max_key_length, [], None, None, dict(), dict(), 0]
         else:
             s = self.__dict[dict_prefix]
         s[1].append(schema_info)
@@ -234,8 +236,8 @@ class DB:
                 ll = x.split(u'\t', 1)
                 (okey, phrase) = ll
             except:
-                logging.error('invalid format (%s) %s.' % (keyword_file, x))
-                return
+                logging.error('invalid format in %s: %s' % (keyword_file, x))
+                continue
             if okey not in keywords:
                 keywords[okey] = [phrase]
             else:
@@ -258,10 +260,13 @@ class DB:
             self.__schema[schema][3] = spelling_map
             if first:
                 first = False
-                d[2] = (io_map, oi_map)
+                d[2], d[3] = io_map, oi_map
         d[1] = None
-        # TODO: populate dict index
         logging.info('loaded dict %s.' % dict_prefix)
+        self.__populate_dict_index(d, keywords)
+        #phrase_file = os.path.join(self.DATA_DIR, '%s-phrases.txt' % dict_prefix)
+        #if os.path.exists(phrase_file):
+        #    self.__schedule_training_task(d, phrase_file)
 
     def get_schema_list(self):
         order = sorted(self.__schema.keys(), key=lambda s: self.__schema[s][-1], reverse=True)
@@ -276,6 +281,70 @@ class DB:
                 return {'config': t[2], 'spellingMap': t[3]}
         return None
         
+    def __process_phrase_func(self, d):
+        max_key_length, schemas, io_map, oi_map, index, freq_map, freq_total = d
+        def g(ikeys, okey, depth):
+            if not okey or depth >= max_key_length:
+                return ikeys
+            r = []
+            for x in ikeys:
+                if okey[0] not in oi_map:
+                    if options.verbose:
+                        logging.error(u'invalid keyword encountered: [%s]' % okey[0])
+                    return []
+                for y in oi_map[okey[0]]:
+                    r.append(x + [y])
+            return g(r, okey[1:], depth + 1)
+        def process_phrase(okey, phrase, freq):
+            d[-1] += freq
+            k = (okey, phrase)
+            if k in freq_map:
+                freq_map[k] += freq
+            else:
+                freq_map[k] = freq
+                # generate index
+                ikeys = g([[]], okey.split(), 0)
+                if not ikeys and options.verbose:
+                    logging.error(u'failed index generation for phrase [%s] %s.' % (okey, phrase))
+                for i in ikeys:
+                    ikey = u' '.join(i)
+                    if ikey in index:
+                        index[ikey].add(k)
+                    else:
+                        index[ikey] = set([k])
+        return process_phrase
+
+    def __populate_dict_index(self, d, keywords):
+        # TODO: handle this in task queue
+        process_phrase = self.__process_phrase_func(d)
+        for okey in keywords:
+            for phrase in keywords[okey]:
+                process_phrase(okey, phrase, 0)
+        
+    def __schedule_training_task(self, d, filename):
+        # TODO: handle this in task queue
+        process_phrase = self.__process_phrase_func(d)
+        for line in open(filename):
+            x = line.strip().decode('utf-8')
+            if not x or x.startswith(u'#'):
+                continue
+            try:
+                ll = x.split(u'\t', 2)
+                if len(ll) == 3:
+                    (phrase, freq_str, okey) = ll
+                    freq = int(freq_str)
+                else:
+                    (okey, phrase) = ll
+                    if phrase.startswith(u'*'):
+                        phrase = phrase[1:]
+                    freq = 0
+                if u' ' in phrase:
+                    phrase = phrase.replace(u' ', '')
+            except:
+                logging.error(u'invalid format in %s: %s' % (filename, x))
+                continue
+            process_phrase(okey, phrase, freq)
+
     """
     def lookup_freq_total(self):
         return (0, 0)
