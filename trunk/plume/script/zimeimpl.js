@@ -531,8 +531,8 @@ var JSONFileBackend = Class.extend(Backend, {
     _indexQueries: function (ctx) {
         var maxKeywordLength = ctx.schema.maxKeywordLength;
         var maxKeyLength = ctx.schema.maxKeyLength;
-        var a = ctx._segmentation.a;
-        var b = ctx._segmentation.b;
+        var a = ctx.segment.a;
+        var b = ctx.segment.b;
         var queries = {};
         var q = [];
         for (var i = 0; i < b.length; ++i) {
@@ -616,11 +616,11 @@ var JSONFileBackend = Class.extend(Backend, {
                     }
                     pending.splice(pos, 1);
                     if (pending.length == 0) {
+                        //Logger.debug("lookup successful.");
                         ctx.error = null;
                         ctx.pending = null;
-                        //Logger.debug("lookup successful.");
                         ctx.phrase = phrase;
-                        ctx.prediction = me._makePrediction(phrase, ctx._segmentation);
+                        ctx.prediction = me._makePrediction(phrase, ctx.segment);
                         callback();
                     }
                 });
@@ -632,7 +632,7 @@ var JSONFileBackend = Class.extend(Backend, {
     _checkEntry: function (e, q, ctx) {
         var okey = e[0].split(" ");
         var ikey = q.ikey;
-        var seg = ctx._segmentation;
+        var seg = ctx.segment;
         var j = (okey.length == ikey.length) ? q.end : this._matchKey(okey.slice(ikey.length), 
                                                                       q.end, 
                                                                       seg.a, 
@@ -729,10 +729,39 @@ var GAEServerBackend = Class.extend(Backend, {
 
     query: function (ctx, callback) {
         // TODO:
+        var m = ctx.segment.m;
+        var a = ctx.segment.a;
+        var b = ctx.segment.b;
+        var e = [];
+        $.each(b, function (i_, i) {
+            for (var j = i + 1; j <= m; ++j)
+                if (a[j] && a[j][i])
+                    e.push([i, j, a[j][i]]);
+        });
+        var data = {
+            m: $.toJSON(m),
+            b: $.toJSON(b),
+            e: $.toJSON(e)
+        };
+        var url = this.QUERY + encodeURIComponent(ctx.schema.schemaName);
+        ctx.pending = $.post(url, data, function (result) {
+            var phrase = [];
+            var prediction = [];
+            // TODO:
+            alert(result);
+            //Logger.debug("lookup successful.");
+            ctx.error = null;
+            ctx.pending = null;
+            ctx.phrase = phrase;
+            ctx.prediction = prediction;
+            callback();
+        }, "json");
     },
 
     abortQuery: function (ctx) {
-        // TODO:
+        ctx.pending.abort();
+        ctx.pending = null;
+        Logger.debug("pending query aborted.");
     },
 
     commit: function (ctx) {
