@@ -217,7 +217,7 @@ var Context = new Class({
         }
         this.pending = null;
         this.error = null;
-        this._segmentation = null;
+        this.segment = null;
         this._display = null;
         this._selected = [];
         this._current = null;
@@ -256,7 +256,7 @@ var Context = new Class({
         this.input = input;
         if (input.length > 0) {
             var seg = this._backend.segmentation (this.schema, input);
-            this._segmentation = seg;
+            this.segment = seg;
             this._display = this._calculateDisplayText(input, seg);
             if (seg.m != seg.n) {
                 this.error = {start: seg.m, end: seg.n};
@@ -301,11 +301,11 @@ var Context = new Class({
             return false;
         }
         var p = this.prediction[this._current.start];
-        if (p && p.end < this._segmentation.m) {
+        if (p && p.end < this.segment.m) {
             this._selected.push(p);
             var i = p.end;
             var c = this.phrase[i];
-            var m = this._segmentation.m;
+            var m = this.segment.m;
             var j = 0;
             for (var k = i + 1; k <= m; ++k) {
                 if (c[k]) {
@@ -357,7 +357,7 @@ var Context = new Class({
         }
         var i = this._current.start;
         var c = this.phrase[i];
-        var m = this._segmentation.m;
+        var m = this.segment.m;
         for (var j = this._current.end + 1; j <= m; ++j) {
             if (c[j]) {
                 this._updateCandidates(i, j);
@@ -371,7 +371,7 @@ var Context = new Class({
     _updateCandidates: function (i, j) {
         //Logger.debug("_updateCandidates: " + i + ", " + j);
         if (!j) {
-            j = this._segmentation.m;
+            j = this.segment.m;
         }
         var result = [];
         var c = this.phrase[i];
@@ -400,7 +400,7 @@ var Context = new Class({
         var i = (s.length > 0) ? s[s.length - 1].end : 0;
         var p;
         while ((p = this.prediction[i]) != undefined) {
-            if (p.end >= this._segmentation.m)
+            if (p.end >= this.segment.m)
                 break;
             this._selected.push(p);
             i = p.end;
