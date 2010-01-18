@@ -14,9 +14,11 @@ fi
 svn export . temp || exit -1
 cd temp
 ant build || exit -1
-rm -R war/WEB-INF war/test.html war/script/test.js war/script/sample.json
 mkdir war/data
 cp data/make-json.py war/data/
+mkdir war/script
+java -jar ~/opt/compiler.jar --js script/jquery-1.4.min.js --js script/jquery.json-2.2.min.js --js_output_file war/script/jquery.js --compilation_level WHITESPACE_ONLY
+java -jar ~/opt/compiler.jar --js script/zimecore.js --js script/zimeimpl.js --js_output_file war/script/zime.js
 cp LICENSE.txt README.txt war/
 mv war $target
 zip -r ../$target.zip $target

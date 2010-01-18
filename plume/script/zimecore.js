@@ -828,7 +828,7 @@ var Engine = new Class({
 
 });
 
-KeyEvent = {
+var KeyEvent = {
     KEY_SHIFT: 16,
     KEY_CTRL: 17,
     KEY_ALT: 18,
@@ -888,7 +888,7 @@ KeyEvent.toChar = function (event) {
     if (event.ctrlKey || event.altKey || event.metaKey)
         return null;
     var keyCode = event.keyCode;
-    if (keyCode < 0 || keyCode >= 256 || !this._table[keyCode])
+    if (keyCode < 0 || keyCode >= 256 || !KeyEvent._table[keyCode])
         return null;
-    return this._table[keyCode][event.shiftKey ? 1 : 0];
+    return KeyEvent._table[keyCode][event.shiftKey ? 1 : 0];
 };
