@@ -1,5 +1,5 @@
 #summary zime-web 網頁輸入法文檔
-#labels Phase-Support
+#labels Phase-Support,Deprecated
 
 = zime-web 網頁輸入法文檔 =
 
