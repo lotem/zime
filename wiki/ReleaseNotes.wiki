@@ -20,6 +20,11 @@ ibus-zime 3.0 - 2010-01-13
 
 = Plume.js release notes =
 {{{
+Plume.js 2.1 - 2010-01-22
+=========================
+  - bug fix: undesirable behavior when Tab/End keys are used under conversion mode.
+  - minified JavaScript files.
+
 Plume.js 2.0 - 2010-01-15
 =========================
   - adopted new schema file format as defined in ZIME Schema Specification v3.
