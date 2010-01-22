@@ -23,7 +23,7 @@ class QueryHandler(webapp.RequestHandler):
         m = json.loads(self.request.get('m'))
         b = json.loads(self.request.get('b'))
         e = json.loads(self.request.get('e'))
-        result = model.query(m, b, e)
+        result = model.query(schema, m, b, e)
         self.response.headers['Content-Type'] = 'text/plain'
         self.response.out.write(json.dumps(result))
 

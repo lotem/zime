@@ -174,7 +174,7 @@ class DB:
             try:
                 (path, value) = _equal_sign.split(x, 1)
             except:
-                print >> sys.stderr, 'error parsing (%s) %s' % (schema_file, x)
+                logging.error('error parsing (%s) %s' % (schema_file, x))
                 exit()
             if not schema and path == u'Schema':
                 schema = value
@@ -211,8 +211,8 @@ class DB:
 
     def __register_dict(self, dict_prefix, max_key_length, schema_info):
         if dict_prefix not in self.__dict:
-            # [max_key_length, associated_schemas, io_map, oi_map, dict_index, freq_map, freq_total]
-            s = self.__dict[dict_prefix] = [max_key_length, [], None, None, dict(), dict(), 0]
+            # [max_key_length, associated_schemas, io_map, oi_map, keywords, u_index, b_index, freq_total]
+            s = self.__dict[dict_prefix] = [max_key_length, [], None, None, list(), dict(), dict(), 0]
         else:
             s = self.__dict[dict_prefix]
         s[1].append(schema_info)
@@ -220,30 +220,35 @@ class DB:
     def __load_dict(self, dict_prefix):
         if dict_prefix not in self.__dict:
             return
-        if self.__dict[dict_prefix][1] == None:
+        d = self.__dict[dict_prefix]
+        if d[1] == None:
             return
         keyword_file = os.path.join(self.DATA_DIR, '%s-keywords.txt' % dict_prefix)
         if not os.path.exists(keyword_file):
             logging.error('missing keyword file %s.' % keyword_file)
             return
-        keywords = dict()
+        keywords = d[4]
+        keyword_map = dict()
         f = open(keyword_file, 'r')
         for line in f:
             x = line.strip().decode('utf-8')
             if not x or x.startswith(u'#'):
                 continue
             try:
-                ll = x.split(u'\t', 1)
-                (okey, phrase) = ll
+                k = x.split(u'\t', 1)
+                (okey, phrase) = k
             except:
                 logging.error('invalid format in %s: %s' % (keyword_file, x))
                 continue
-            if okey not in keywords:
-                keywords[okey] = [phrase]
+            i = keyword.index(k)
+            if i == -1:
+                i = len(keywords)
+                keywords.append(k)
+            if okey not in keyword_map:
+                keyword_map[okey] = [i]
             else:
-                keywords[okey].append(phrase)
+                keyword_map[okey].append(i)
         f.close()
-        d = self.__dict[dict_prefix]
         sa = SpellingAlgebra()
         first = True
         for s in d[1]:
@@ -253,7 +258,7 @@ class DB:
                                                             fuzzy_rules, 
                                                             spelling_rules, 
                                                             alternative_rules, 
-                                                            keywords)
+                                                            keyword_map)
             except SpellingCollisionError, e:
                 logging.error('spelling collision error in schema %s: %s' % (schema, e))
                 continue
@@ -263,7 +268,7 @@ class DB:
                 d[2], d[3] = io_map, oi_map
         d[1] = None
         logging.info('loaded dict %s.' % dict_prefix)
-        self.__populate_dict_index(d, keywords)
+        self.__populate_u_index(d, keyword_map)
         #phrase_file = os.path.join(self.DATA_DIR, '%s-phrases.txt' % dict_prefix)
         #if os.path.exists(phrase_file):
         #    self.__schedule_training_task(d, phrase_file)
@@ -282,7 +287,7 @@ class DB:
         return None
         
     def __process_phrase_func(self, d):
-        max_key_length, schemas, io_map, oi_map, index, freq_map, freq_total = d
+        max_key_length, schemas, io_map, oi_map, keywords, u_index, b_index, freq_total = d
         def g(ikeys, okey, depth):
             if not okey or depth >= max_key_length:
                 return ikeys
@@ -314,11 +319,11 @@ class DB:
                         index[ikey] = set([k])
         return process_phrase
 
-    def __populate_dict_index(self, d, keywords):
+    def __populate_u_index(self, d, keyword_map):
         # TODO: handle this in task queue
         process_phrase = self.__process_phrase_func(d)
-        for okey in keywords:
-            for phrase in keywords[okey]:
+        for okey in keyword_map:
+            for phrase in keyword_map[okey]:
                 process_phrase(okey, phrase, 0)
         
     def __schedule_training_task(self, d, filename):
@@ -345,18 +350,20 @@ class DB:
                 continue
             process_phrase(okey, phrase, freq)
 
+    def get_dict_info(self, schema):
+        return self.__dict[self.__schema[schema][1]]
+
+
+    def lookup_unigram(self, d, key):
+        logging.debug('lookup_unigram: %s' % key)
+        dict_index, freq_map = d[4], d[5]
+        return [(k[0], k[1], freq_map[k]) for k in dict_index[key]] if key in dict_index else []
+
+    def lookup_bigram(self, d, key):
+        logging.debug('lookup_bigram: %s' % key)
+        return None
+
     """
-    def lookup_freq_total(self):
-        return (0, 0)
-
-    def lookup_unigram(self, key):
-        #print 'lookup_unigram:', key
-        return None
-
-    def lookup_bigram(self, key):
-        #print 'lookup_bigram:', key
-        return None
-
     def update_freq_total(self, n):
         #print 'update_freq_total:', n
         pass
