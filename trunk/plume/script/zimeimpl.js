@@ -748,7 +748,7 @@ var GAEServerBackend = Class.extend(Backend, {
             var phrase = [];
             var prediction = [];
             // TODO:
-            alert(result);
+            //alert(result);
             //Logger.debug("lookup successful.");
             ctx.error = null;
             ctx.pending = null;
