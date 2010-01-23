@@ -73,11 +73,9 @@ SpellingRule
 AlternativeRule 
 
 # 音節邊界消歧規則列表
-# 詳見 SpellingAlgebra 技術
 SplitRule 
 
 # 音節拆分規則列表
-# 詳見 SpellingAlgebra 技術
 DivideRule 
 
 # 標點列表
