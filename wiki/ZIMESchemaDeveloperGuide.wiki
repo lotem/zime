@@ -133,9 +133,9 @@ ge	ke	he	ji	qi	xi	zhi	chi	shi	zi	ci	si	ri
 由於此方案基於與拼音相同的音系（普通話），只是拼寫法有所變化，故此可以直接利用拼音的單字表和詞庫，在方案定義中增設一組鍵字變換規則即可。
 
 下載拼音輸入方案的原始碼，置於文件夾 data/ 中。
-  * http://zime.googlecode.com/svn/trunk/zime-data/Pinyin.txt
-  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin-keywords.txt
-  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin-phrases.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/Pinyin.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/pinyin-keywords.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/pinyin-phrases.txt
 
 
 === 二、編譯輸入方案 ===
@@ -167,7 +167,7 @@ python make-json.py -v Pinyin.txt
 特別要將Alphabet設置為本方案允許的所有字符。
 
 完成後的Stenotype.txt在此：
-  * http://zime.googlecode.com/svn/trunk/zime-data/Stenotype.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/Stenotype.txt
 
 === 四、編譯新方案 ===
 
