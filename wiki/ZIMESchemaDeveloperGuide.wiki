@@ -188,7 +188,7 @@ python make-json.py -k Stenotype.txt
 佛振從維基文庫抓取《韻畧易通》文本，手工添加標記之後施展腳本功夫設法做成一個數據庫，最終得到此表，正可用於製作「東風破」輸入方案的單字表：
   * http://zime.googlecode.com/svn/trunk/zime-data/dungfungpuo/source/dfp-1234.txt
 
-一、製作單字表
+=== 一、製作單字表 ===
 
 把那個 dfp-1234.txt 在 data/ 內複製一份，更名為 dungfungpuo-keywords.txt 。名字裡連字符之前的 dungfungpuo 就是本方案所使用的字典名啦。
 
