@@ -56,11 +56,11 @@ AutoDelimit = yes
 # 輸入預測（可選）
 Predict = yes
 
-# 字典鍵字變換規則列表
+# 字典索引鍵字變換規則列表
 # 詳見 SpellingAlgebra 技術
 MappingRule 
 
-# 字典鍵字模糊規則列表
+# 字典索引鍵字模糊規則列表
 # 詳見 SpellingAlgebra 技術
 FuzzyRule 
 
