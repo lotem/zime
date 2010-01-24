@@ -44,4 +44,4 @@ BackSpace 鍵取消前一個選定的字詞，左右方向鍵及 Home／End 調�
 
 = 製作與配置輸入方案 =
 
-（待續）
+請閱讀[ZIMESchemaDeveloperGuide 《ZIME輸入方案開發者指南》]。
