@@ -108,22 +108,22 @@ zegn	------>	zen	------>	zhen, zheng, zeng	------>	真、正、增
   * 符號 / - 略代韻母 an, (e)n
   * 簡記拼式較長的韻母
 {{{
-	A	E	I	O	U	V	v	Y	y	W	w
-	ang	eng	ing	(i)ong	uen	yun	uei	iang	ian	uang	uan
+A	E	I	O	U	V	v	Y	y	W	w
+ang	eng	ing	(i)ong	uen	yun	uei	iang	ian	uang	uan
 }}}	
   * 用大寫字母代表結合了介音的聲母
 {{{
-	B	P	M	F	D	T	N	L
-	bi	pi	mi	fei	di	ti	ni	li
-	G	K	H	J	Q	X	Z	C	S	R
-	gu	ku	hu	ju	qu	xu	zh	ch	sh	er
+B	P	M	F	D	T	N	L
+bi	pi	mi	fei	di	ti	ni	li
+G	K	H	J	Q	X	Z	C	S	R
+gu	ku	hu	ju	qu	xu	zh	ch	sh	er
 }}}
   * 省略某些音節的韻母部份
 {{{
-	b	p	m	f	d	t	n	l
-	bu	pu	mu	fu	de	te	ne	le
-	g	k	h	j	q	x	Z	C	S	z	c	s	r
-	ge	ke	he	ji	qi	xi	zhi	chi	shi	zi	ci	si	ri
+b	p	m	f	d	t	n	l
+bu	pu	mu	fu	de	te	ne	le
+g	k	h	j	q	x	Z	C	S	z	c	s	r
+ge	ke	he	ji	qi	xi	zhi	chi	shi	zi	ci	si	ri
 }}}
 
 === 一、開始幹活 ===
