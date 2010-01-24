@@ -84,15 +84,19 @@ zegn	------>	zen	------>	zhen, zheng, zeng	------>	真、正、增
   * Plume.js 2.1 平台軟件
     由此下載：
     * http://zime.googlecode.com/files/plume-2.1.zip
+
   * Python腳本語言
     Windows使用者請自行安裝Python 2.6。
     * http://python.org/
+
   * 詞庫生成工具
     * http://zime.googlecode.com/svn/trunk/zime-data/make-phrases.py
     * http://zime.googlecode.com/svn/trunk/zime-data/phrases.txt
+
   * 部份ZIME輸入方案原始碼
     可由此獲取，視情況而選用。各實例中會給出用到的文件。
     * http://code.google.com/p/zime/source/browse/#svn/trunk/zime-data
+
   * 文本編輯器
     自備。當然要專業一點的，要能支持UTF-8編碼，最好要有正則表達式支持。
 
@@ -146,7 +150,7 @@ cmd
 
 在提示符下敲入命令
 {{{
-	python make-json.py -v Pinyin.txt
+python make-json.py -v Pinyin.txt
 }}}
 編譯拼音輸入方案，打字速記方案需要它的字典。
 
@@ -169,7 +173,7 @@ cmd
 
 以 -k 選項執行命令，保留已存在的字典，只將新的輸入方案配置到平台上。
 {{{
-	python make-json.py -k Stenotype.txt
+python make-json.py -k Stenotype.txt
 }}}
 編譯完成後Stenotype方案的相關數據文件出現在文件夾 plume-2.1/json/ 中。
 
@@ -190,7 +194,7 @@ cmd
 
 用編輯器打開該文件，看，黃色條標記出的兩列分別就是單字表所需的單字和鍵字。用正則表達式一替換：
 {{{
-	s/^\d+\t(\S+).*\t([a-z]+)\d*$/$2\t$1/
+s/^\d+\t(\S+).*\t([a-z]+)\d*$/$2\t$1/
 }}}
 東風破方案的單字表就編輯好了。
 
@@ -213,14 +217,14 @@ Dict選項自然是設為dungfungpuo。Parser選項取roman，羅馬字解析方
 
 以字典名為參數執行命令，生成詞庫文件dungfungpuo-phrases.txt，含多音字的詞都以註釋標明了。
 {{{
-	python make-phrases.py dungfungpuo
+python make-phrases.py dungfungpuo
 }}}
 
 === 四、編譯輸入方案 ===
 
 執行命令：
 {{{
-	python make-json.py -v Dungfungpuo.txt
+python make-json.py -v Dungfungpuo.txt
 }}}
 做中。
 
