@@ -32,7 +32,7 @@ Version =
 Dict = abc
 
 # 解析方式（必備）
-# 取值：roman | grouping | combo
+# 取值：roman | table | grouping | combo
 Parser = roman
 
 # 鍵字分隔符（可選）
