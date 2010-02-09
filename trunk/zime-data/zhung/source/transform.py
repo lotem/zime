@@ -36,13 +36,11 @@ RULES = {
         (r'^([zcsr]h)i([mn]\w*)$', r'\1e\2'),
         (r'^([zcsr]h)i(u?)e([mn]\d?)$', r'\1\2a\3'),
         (r'^([zcsr]h)i(u?)e([ptkh]?\d?)$', r'\1\2o\3'),
-        (r'^([zcsr]h)io([ptkh]?\d?)$', r'\1uo\2'),
         (r'^([zcsr]h)i([aoeu]\w*)$', r'\1\2'),
         #(r'^([zcs])ri(\d?)$', r'\1hy\2'),
         #(r'^([zcs]r)i([mn]\w*)$', r'\1e\2'),
         #(r'^([zcs]r)i(u?)e([mn]\d?)$', r'\1\2a\3'),
         (r'^([zcs]r)i(u?)e([ptkh]?\d?)$', r'\1\2o\3'),
-        #(r'^([zcs]r)io([ptkh]?\d?)$', r'\1uo\2'),
         #(r'^([zcs]r)i([aoeu]\w*)$', r'\1\2'),
     ],
     'zr-zh' : [
