@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <project name="Plume" default="build" basedir=".">
   <!-- Configure path to GWT SDK -->
-  <property name="gwt.sdk" location="/home/lotem/.filesafe/opt/gwt-2.0.0" />
+  <property name="gwt.sdk" location="C:/home/devel/gwt-2.0.0" />
 
   <path id="project.class.path">
     <pathelement location="war/WEB-INF/classes"/>
