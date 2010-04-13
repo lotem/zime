@@ -8,7 +8,7 @@ Rhyme
   * 写一个 rhyme.ime，其实是个DLL，用C++写，提供IME API指定的几个函数。
   * 在那里面，启动一个后台程序：
     python rhyme.py -d
-    然后用Socket连接过去。
+  * 然后用Socket连接过去。
   * rhyme.py随即为这个客户程序生成一个Session，包含一个独立的输入法引擎实例。
   * DLL里的键盘事件处理函数把事件发送给rhyme.py，
   * rhyme.py 传回输入法引擎的处理结果：
