@@ -2,26 +2,32 @@
 
 Rhyme
 -------
+
 我知道。应该这样做：
-写一个 rhyme.ime，其实是个DLL，用C++写，提供IME API指定的几个函数。
-在那里面，启动一个后台程序：
-python rhyme.py -d
-然后用Socket连接过去。
-rhyme.py随即为这个客户程序生成一个Session，包含一个独立的输入法引擎实例。
-DLL里的键盘事件处理函数把事件发送给rhyme.py，
-rhyme.py 传回输入法引擎的处理结果：
-{
-    commit_string,  // 输入法输出
-    preedit,  // 预编辑字符串
-    aux_string,  // 
-    candidate_list //
-}
-DLL据此组织输出，并更新界面。
-UI 也是写在DLL里。可能用到WTL？
-我想先弄个简约一点的。
- ----------------------
- preedit (可能嵌入式的难做一点，干脆先显示到输入法的窗口上)
+
+  * 写一个 rhyme.ime，其实是个DLL，用C++写，提供IME API指定的几个函数。
+  * 在那里面，启动一个后台程序：
+    python rhyme.py -d
+    然后用Socket连接过去。
+  * rhyme.py随即为这个客户程序生成一个Session，包含一个独立的输入法引擎实例。
+  * DLL里的键盘事件处理函数把事件发送给rhyme.py，
+  * rhyme.py 传回输入法引擎的处理结果：
+      * commit_string,  // 输入法输出
+      * preedit,  // 预编辑字符串
+      * aux_string,  // 
+      * candidate_list //
+  * DLL据此组织输出，并更新界面。
+
+  * UI 也是写在DLL里。可能用到WTL？
+    我想先弄个简约一点的。
+{{{
+ --------------
+ preedit
  aux_string
  candidate_list
- ----------------------
-狂想：也不必跟随光标，直接放在屏幕正中，用极大号字，半透明窗体，白色，黑边框，符合ZIME图标的风格。
+ --------------
+}}}
+
+狂想：
+
+可能嵌入式的preedit难做一点，干脆先显示到输入法的窗口上，也不必跟随光标，直接放在屏幕正中，用极大号字，半透明窗体，白色，黑边框，符合ZIME图标的风格。
