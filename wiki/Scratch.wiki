@@ -51,7 +51,7 @@ class !RhymePanel  绘制用户界面
 
 IME API  DLL导出函数（请高人执笔？）
 
-!RhymeDemo  先制成一个演示程序，一个文本框，调用 !RhymeClient 和 !RhymePanel 干活。
+!RhymeDemo  先制成一个演示程序，显示一个文本框，调用 !RhymeClient 和 !RhymePanel 干活。
 
 == 后台服务 ==
 
