@@ -55,6 +55,8 @@ IME API  DLL导出函数（请高人执笔？）
 
 == 后台服务 ==
 
+服务部分用Python写，重用现有的ZIME算法。
+
 环境变量：
 
 PATH  Python解释器路径
