@@ -73,7 +73,7 @@ class !RhymeService
 通信消息：
 {{{
 // to service
-EVENT=<int>,<int>
+EVENT=<int keycode>,<int mask>
 // from service
 COMMIT=<unicode>
 PREEDIT=<unicode>
