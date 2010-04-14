@@ -35,13 +35,13 @@
 
 = Rhyme 第二日 =
 
-class RhymeClient  实现与后台服务的通信
+class !RhymeClient  实现与后台服务的通信
   * static bool CheckService()
   * StartSession()
   * EndSession()
   * Msg ProcessKeyEvent()
 
-class RhymePanel  绘制用户界面
+class !RhymePanel  绘制用户界面
   * Show()
   * Hide()
   * Update()
@@ -51,7 +51,7 @@ class RhymePanel  绘制用户界面
 
 IME API  DLL导出函数（请高人执笔？）
 
-RhymeDemo  先制成一个演示程序，一个文本框，调用 RhymeClient 和 RhymePanel 干活。
+!RhymeDemo  先制成一个演示程序，一个文本框，调用 !RhymeClient 和 !RhymePanel 干活。
 
 == 后台服务 ==
 
@@ -62,11 +62,12 @@ HOME  数据库目录之所在
 
 script rhyme.py: 以pythonw.exe调用
 
-class RhymeService
-  * spawn Rhyme session -> create Engine instance
+class !RhymeService
+  * spawn !Rhyme session -> create !Engine instance
   * shared DB
 
 通信消息：
+{{{
 COMMIT=<unicode>
 PREEDIT=<unicode>
 AUX=<unicode>
@@ -77,3 +78,4 @@ CANDIDATES=5
 <uincode>
 <uincode>
 END
+}}}
