@@ -36,10 +36,10 @@
 = Rhyme 第二日 =
 
 class !RhymeClient  实现与后台服务的通信
-  * static bool CheckService()
-  * StartSession()
-  * EndSession()
-  * Msg ProcessKeyEvent()
+  * static bool !CheckService()
+  * !StartSession()
+  * !EndSession()
+  * Msg !ProcessKeyEvent()
 
 class !RhymePanel  绘制用户界面
   * Show()
@@ -63,7 +63,7 @@ HOME  数据库目录之所在
 script rhyme.py: 以pythonw.exe调用
 
 class !RhymeService
-  * spawn !Rhyme session -> create !Engine instance
+  * spawn Rhyme session -> create Engine instance
   * shared DB
 
 通信消息：
