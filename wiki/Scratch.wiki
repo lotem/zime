@@ -35,6 +35,8 @@
 
 = Rhyme 第二日 =
 
+Rhyme IME客户端，用C++开发。
+
 class !RhymeClient  实现与后台服务的通信
   * static bool !CheckService()
   * !StartSession()
