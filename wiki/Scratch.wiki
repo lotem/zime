@@ -37,23 +37,24 @@
 
 Rhyme IME客户端，用C++开发。
 
-class !RhymeClient  实现与后台服务的通信
-  * static bool !CheckService()
-  * !StartSession()
-  * !EndSession()
-  * Msg !ProcessKeyEvent()
+class !RhymeClient  实现与后台服务的通信，Socket
+  * static bool !CheckService()  检查、启动后台服务
+  * !StartSession()  连接后台服务，开始会话
+  * !EndSession()  结束会话，中断连接
+  * Msg !ProcessKeyEvent(keycode, mask)  通过后台服务处理键盘事件，通信协议见下文
 
-class !RhymePanel  绘制用户界面
-  * Show()
-  * Hide()
-  * Update()
-  * preedit
-  * auxString
-  * candidates
+class !RhymePanel  绘制用户界面，用WTL或Win32 API做一个窗体
+  * Show()  显示输入法界面
+  * Hide()  隐藏界面
+  * Update(Msg)  更新界面
+  * preedit  预编辑串（中文句子）
+  * auxString  辅助码（选定单词的拼音）
+  * candidates  候选列表
 
 IME API  DLL导出函数（请高人执笔？）
 
-!RhymeDemo  先制成一个演示程序，显示一个文本框，调用 !RhymeClient 和 !RhymePanel 干活。
+!RhymeDemo  先制成一个演示程序，测验IME客户端的功能。
+显示一个文本框，调用 !RhymeClient 和 !RhymePanel 干活。
 
 == 后台服务 ==
 
@@ -61,14 +62,14 @@ IME API  DLL导出函数（请高人执笔？）
 
 环境变量：
 
-PATH  Python解释器路径
-HOME  数据库目录之所在
+PATH  Python解释器路径，形如 C:\Python26\bin
+HOME  数据库文件放在 %HOME%/.ibus/zime/zime.db，可以把HOME设置到Rhyme的根目录，或当前用户的主目录。
 
 script rhyme.py: 以pythonw.exe调用
 
 class !RhymeService
-  * spawn Rhyme session -> create Engine instance
-  * shared DB
+  * spawn Rhyme session -> create a separate Engine instance
+  * shared DB (reuse ibus-zime modules)
 
 通信消息：
 {{{
