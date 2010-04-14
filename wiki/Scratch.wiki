@@ -68,6 +68,9 @@ class !RhymeService
 
 通信消息：
 {{{
+// to service
+EVENT=<int>,<int>
+// from service
 COMMIT=<unicode>
 PREEDIT=<unicode>
 AUX=<unicode>
