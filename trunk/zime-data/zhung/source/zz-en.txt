@@ -1,0 +1,1793 @@
+韻	字	簡化字	推導音	校正音	罕用標記	註
+en	分		fen1			
+en	旡		zhen1			
+en	申		shen1			
+en	阠		shen1			
+en	屾		shen1			
+en	扟		shen1			
+en	㘰		zhen1			
+en	㞣		fen1			
+en	伸		shen1			
+en	吩		fen1			
+en	扮		fen1			
+en	芬		fen1			
+en	身		shen1			
+en	侁		shen1			
+en	呻		shen1			
+en	坫		zhen1			
+en	奔		ben1			
+en	氛		fen1			
+en	㑗		shen1			
+en	䑣		chen1			
+en	侲		zhen1			
+en	姺		shen1			
+en	枮		zhen1			
+en	柛		shen1			
+en	珍		zhen1			
+en	砏		fen1			
+en	穼		shen1			
+en	籸		shen1			
+en	胂		chen1			
+en	胂		shen1			
+en	衯		fen1			
+en	㖘		zhen1			
+en	唇		zhen1			
+en	娠		shen1			
+en	帪		zhen1			
+en	恩		en1			
+en	振		zhen1			
+en	根		gen1			
+en	珢		gen1			
+en	甡		shen1			
+en	畛		zhen1			
+en	眒		shen1			
+en	眞		zhen1			
+en	真		zhen1			
+en	砧		zhen1			
+en	紛	纷	fen1			
+en	莘		shen1			
+en	郴		chen1			
+en	針	针	zhen1			
+en	㲀		zhen1			
+en	桭		zhen1			
+en	梫		chen1			
+en	棻		fen1			
+en	深		shen1			
+en	紳	绅	shen1			
+en	參	参	chen1			
+en	參	参	shen1			
+en	㾕		shen1			
+en	兟		shen1			
+en	森		shen1			
+en	棽		chen1			
+en	棽		shen1			
+en	犇		ben1			
+en	琛		chen1			
+en	葴		zhen1			
+en	訷		shen1			
+en	賁	贲	ben1			
+en	雰		fen1			
+en	嗔		chen1			
+en	塡		zhen1			
+en	搸		zhen1			
+en	斟		zhen1			
+en	椹		zhen1			
+en	溱		zhen1			
+en	瑊		zhen1			
+en	甄		zhen1			
+en	蒖		zhen1			
+en	蓁		zhen1			
+en	詵	诜	shen1			
+en	跟		gen1			
+en	䰠		shen1			
+en	嵾		chen1			
+en	榛		zhen1			
+en	煾		en1			
+en	碪	砧	zhen1			
+en	禛		zhen1			
+en	綝		chen1			
+en	蔘		shen1			
+en	噴	喷	pen1			
+en	撍		zhen1			
+en	槮		chen1			
+en	槮		shen1			
+en	潧		zhen1			
+en	濆		pen1			
+en	瞋		chen1			
+en	磌		zhen1			
+en	稹		zhen1			
+en	箴		zhen1			
+en	賝		chen1			
+en	㜪		shen1			
+en	㯜		shen1			
+en	䐜		chen1			
+en	樼		zhen1			
+en	歕		pen1			
+en	燊		shen1			
+en	縝	缜	chen1			
+en	臻		zhen1			
+en	薓		shen1			
+en	薽		zhen1			
+en	錀		fen1			
+en	錛	锛	ben1			
+en	餴		fen1			
+en	駪		shen1			
+en	㻸		zhen1			
+en	曑		shen1			
+en	謓		chen1			
+en	轃		zhen1			
+en	鍼	针	zhen1			
+en	駸		chen1			
+en	簪		zhen1			
+en	鎭		zhen1			
+en	瀙		zhen1			
+en	籈		zhen1			
+en	饙		fen1			
+en	襳		shen1			
+en	䴅		ben1			
+en	鱵		zhen1			
+en	䯂		shen1			
+en	𠲳		shen1			
+en	𡊄		fen1			
+en	𢁥		fen1			
+en	𢓠		shen1			
+en	𣇗		shen1			
+en	𣓀		zhen1			
+en	𣞟		chen1			
+en	𣢘		shen1			
+en	𣥦		gen1			
+en	𣬩		fen1			
+en	𣯻		fen1			
+en	𤇯		en1			
+en	𤣆		chen1			
+en	𥉨		chen1			
+en	𥤇		chen1			
+en	𥥿		shen1			
+en	𦐈		fen1			
+en	𦐹		shen1			
+en	𦸂		shen1			
+en	𧡪		chen1			
+en	𨐔		shen1			
+en	𨬖		zhen1			
+en	𨷹		fen1			
+en	𩉼		shen1			
+en	𩺵		shen1			
+en	𪈁		zhen1			
+en	人		rhen2			
+en	儿		rhen2			
+en	仁		rhen2			
+en	壬		rhen2			
+en	㞥		chen2			
+en	任		rhen2			
+en	朲		rhen2			
+en	臣		chen2			
+en	㞣		fen2			
+en	圻		en2			
+en	妢		fen2			
+en	岑		chen2			
+en	忱		chen2			
+en	汾		fen2			
+en	沉		chen2			
+en	辰		chen2			
+en	沈		chen2			
+en	帘		chen2			
+en	怋		men2			
+en	朌		fen2			
+en	枌		fen2			
+en	枕		chen2			
+en	氛		fen2			
+en	門	门	men2			
+en	㽸		chen2			
+en	垠		en2			
+en	拫		hen2			
+en	泿		en2			
+en	盆		pen2			
+en	茞		chen2			
+en	神		chen2			
+en	䒞		chen2			
+en	宸		chen2			
+en	屒		chen2			
+en	恁		rhen2			
+en	涔		chen2			
+en	笒		chen2			
+en	紝		rhen2			
+en	羒		fen2			
+en	莐		chen2			
+en	蚡		fen2			
+en	陳	陈	chen2			
+en	㲀		chen2			
+en	捫	扪	men2			
+en	敐		chen2			
+en	晨		chen2			
+en	桭		chen2			
+en	梣		chen2			
+en	梤		fen2			
+en	棻		fen2			
+en	痕		hen2			
+en	訦		chen2			
+en	愖		chen2			
+en	棼		fen2			
+en	湓		pen2			
+en	湛		chen2			
+en	焚		fen2			
+en	葐		fen2			
+en	葐		pen2			
+en	賁	贲	fen2			
+en	趁		chen2			
+en	鈂		chen2			
+en	䛘		rhen2			
+en	䢅		chen2			
+en	䢻		chen2			
+en	煁		chen2			
+en	頒	颁	fen2			
+en	馚		fen2			
+en	䍶		chen2			
+en	䣅		chen2			
+en	塵	尘	chen2			
+en	敶		chen2			
+en	瘎		chen2			
+en	銋		rhen2			
+en	㯊		hen2			
+en	墳	坟	fen2			
+en	樠		men2			
+en	濆		fen2			
+en	璊		men2			
+en	蕡		fen2			
+en	霃		chen2			
+en	鞎		hen2			
+en	魵		fen2			
+en	鳻		fen2			
+en	橨		fen2			
+en	燌		fen2			
+en	諶	谌	chen2			
+en	䅾		chen2			
+en	䊟		men2			
+en	䟂		men2			
+en	䫒		men2			
+en	鵀		rhen2			
+en	鼢		fen2			
+en	羵		fen2			
+en	麎		chen2			
+en	鼖		fen2			
+en	豶		fen2			
+en	轒		fen2			
+en	鐼		fen2			
+en	䩿		fen2			
+en	馩		fen2			
+en	亹		men2			
+en	鷐		chen2			
+en	䴅		fen2			
+en	䫶		fen2			
+en	虋		men2			
+en	𣠟		chen2			
+en	𣯩		men2			
+en	𣱦		fen2			
+en	𤅣		men2			
+en	𤘣		chen2			
+en	𦶁		fen2			
+en	𦿒		chen2			
+en	𧮱		fen2			
+en	𩅨		chen2			
+en	𩻛		chen2			
+en	𪂽		pen2			
+en	𪈿		men2			
+en	𪔵		fen2			
+en	刃		rhen4			
+en	分		fen4			
+en	㐱		zhen3			
+en	仞		rhen4			
+en	夯		ben4			
+en	夲		ben3			
+en	本		ben3			
+en	阠		shen4			
+en	任		rhen4			
+en	份		fen4			
+en	艮		gen4			
+en	邥		shen3			
+en	体		ben4			
+en	坋		fen4			
+en	坌		ben4			
+en	妊		rhen4			
+en	弅		fen4			
+en	弞		shen3			
+en	忍		rhen3			
+en	扮		fen3			
+en	扮		fen4			
+en	杒		rhen4			
+en	牣		rhen4			
+en	肕		rhen4			
+en	沈		shen3			
+en	沈		zhen4			
+en	㡷		ben3			
+en	㱽		zhen3			
+en	奔		ben4			
+en	忿		fen3			
+en	忿		fen4			
+en	抻		shen4			
+en	拚		fen4			
+en	枕		zhen3			
+en	枕		zhen4			
+en	矤		shen3			
+en	苯		ben3			
+en	㼉		zhen4			
+en	䀕		zhen4			
+en	侲		zhen4			
+en	侺		shen4			
+en	哂		shen3			
+en	很		hen4			
+en	恨		hen4			
+en	挋		zhen4			
+en	昚		shen4			
+en	狠		hen4			
+en	甚		shen4			
+en	疢		chen4			
+en	矧		shen3			
+en	秎		fen4			
+en	胗		zhen3			
+en	茛		gen4			
+en	荏		rhen3			
+en	衽		rhen4			
+en	陣	阵	zhen4			
+en	䀢		shen3			
+en	䏕		rhen3			
+en	䏖		zhen4			
+en	娠		zhen4			
+en	宷		shen3			
+en	屒		zhen3			
+en	恁		rhen3			
+en	振		zhen4			
+en	朕		zhen4			
+en	栚		zhen4			
+en	栠		rhen3			
+en	涊		rhen3			
+en	珢		gen4			
+en	畚		ben3			
+en	畛		zhen3			
+en	疹		zhen3			
+en	眒		shen4			
+en	眕		zhen3			
+en	粉		fen3			
+en	紖		zhen4			
+en	荵		rhen3			
+en	蚡		fen4			
+en	袗		zhen3			
+en	袗		zhen4			
+en	訒		rhen4			
+en	軔	轫	rhen4			
+en	針	针	zhen4			
+en	陳	陈	zhen4			
+en	㰮		shen4			
+en	敐		zhen3			
+en	淰		shen3			
+en	深		shen4			
+en	眹		zhen4			
+en	祳		shen4			
+en	笨		ben3			
+en	笨		ben4			
+en	紾		zhen3			
+en	翉		pen3			
+en	脤		shen4			
+en	袵		rhen3			
+en	訠		shen3			
+en	訦		shen4			
+en	㾕		shen3			
+en	䀼		rhen4			
+en	䇮		rhen3			
+en	悶	闷	men4			
+en	揕		zhen4			
+en	棯		rhen3			
+en	湓		fen4			
+en	湓		pen4			
+en	絍		rhen4			
+en	腍		rhen3			
+en	腎	肾	shen4			
+en	葚		shen4			
+en	裖		zhen3			
+en	診	诊	zhen3			
+en	診	诊	zhen4			
+en	趁		chen4			
+en	軫	轸	zhen3			
+en	韌	韧	rhen4			
+en	飪	饪	rhen3			
+en	㨧		ben4			
+en	䢻		zhen4			
+en	䪴		zhen3			
+en	塡		zhen4			
+en	填		zhen4			
+en	愼		shen4			
+en	慎		shen4			
+en	戡		zhen3			
+en	稔		rhen3			
+en	罧		shen4			
+en	蜃		shen4			
+en	詪		gen3			
+en	詪		gen4			
+en	豤		ken3			
+en	䟴		zhen4			
+en	䪾		zhen3			
+en	僨	偾	fen4			
+en	墋		chen3			
+en	敶		zhen4			
+en	槇		zhen3			
+en	滲	渗	shen4			
+en	瑱		zhen4			
+en	認	认	rhen4			
+en	賑	赈	zhen3			
+en	賑	赈	zhen4			
+en	銋		rhen3			
+en	餁		rhen3			
+en	㓄		zhen4			
+en	㜤		shen3			
+en	䫀		gen3			
+en	䰼		shen3			
+en	噴	喷	pen4			
+en	墳	坟	fen4			
+en	審	审	shen3			
+en	憤	愤	fen4			
+en	槮		shen3			
+en	獖		ben4			
+en	稹		zhen3			
+en	諗	谂	shen3			
+en	鋠		shen4			
+en	震		zhen4			
+en	頣		shen3			
+en	駗		zhen3			
+en	魫		shen3			
+en	魵		fen3			
+en	魵		fen4			
+en	鴆	鸩	zhen4			
+en	㱵		fen4			
+en	䭃		rhen3			
+en	墾	垦	ken3			
+en	奮	奋	fen4			
+en	歕		pen4			
+en	瘮		shen3			
+en	磣	碜	chen3			
+en	縝	缜	zhen3			
+en	膹		fen4			
+en	螣		zhen4			
+en	踸		chen3			
+en	黺		fen3			
+en	齓		chen3			
+en	懇	恳	ken3			
+en	濜		shen4			
+en	瞫		shen3			
+en	糞	粪	fen4			
+en	鍖		chen3			
+en	鵀		rhen4			
+en	鼢		fen4			
+en	齔	龀	chen3			
+en	齔	龀	chen4			
+en	㿎		fen4			
+en	䫖		chen3			
+en	䭓		en4			
+en	儭		chen4			
+en	嬸	婶	shen3			
+en	懣	懑	men3			
+en	懣	懑	men4			
+en	瀋	沈	chen3			
+en	醦		chen3			
+en	鎭		zhen4			
+en	鎮	镇	zhen4			
+en	闖	闯	chen4			
+en	㰂		shen3			
+en	嚫		chen4			
+en	瀙		chen4			
+en	譖	谮	zhen4			
+en	轒		fen4			
+en	辴		chen3			
+en	櫬	榇	chen4			
+en	瀵		fen4			
+en	鬒		zhen3			
+en	䫬		zhen3			
+en	䳲		zhen4			
+en	襯	衬	chen4			
+en	鰧		zhen4			
+en	齦	龈	ken3			
+en	䭡		en4			
+en	顩		zhen4			
+en	黰		zhen3			
+en	䞋		chen4			
+en	鱝		fen4			
+en	讖	谶	chen4			
+en	𠘱		zhen3			
+en	𡊅		fen4			
+en	𢂻		rhen4			
+en	𢅯		fen4			
+en	𢆉		rhen3			
+en	𢊖		shen4			
+en	𢤬		fen4			
+en	𣐽		zhen3			
+en	𣞟		zhen3			
+en	𣞵		shen4			
+en	𣴞		ben4			
+en	𤲙		ben3			
+en	𥽒		fen4			
+en	𦕑		zhen3			
+en	𦩎		zhen4			
+en	𦩗		zhen4			
+en	𧀯		shen3			
+en	𧡬		chen4			
+en	𧤛		zhen3			
+en	𨳌		zhen4			
+en	𩒉		zhen4			
+en	𩒣		shen4			
+en	𩶇		shen3			
+in	巾		jin1			
+in	今		jin1			
+in	心		sin1			
+in	斤		jin1			
+in	汃		bin1			
+in	份		bin1			
+in	因		yin1			
+in	邠		bin1			
+in	邤		xin1			
+in	忻		xin1			
+in	辛		sin1			
+in	兓		zin1			
+in	攽		bin1			
+in	昕		xin1			
+in	杺		sin1			
+in	欣		xin1			
+in	炘		xin1			
+in	玢		bin1			
+in	金		jin1			
+in	侵		cin1			
+in	垔		yin1			
+in	姻		yin1			
+in	洇		yin1			
+in	津		zin1			
+in	砏		bin1			
+in	砏		pin1			
+in	茵		yin1			
+in	衿		jin1			
+in	音		yin1			
+in	埐		zin1			
+in	殷		yin1			
+in	氤		yin1			
+in	浸		cin1			
+in	烟		yin1			
+in	衾		qin1			
+in	陰	阴	yin1			
+in	彬		bin1			
+in	梫		zin1			
+in	祲		zin1			
+in	菳		qin1			
+in	訢	欣	xin1			
+in	陻		yin1			
+in	隌		yin1			
+in	喑		yin1			
+in	堙		yin1			
+in	愔		yin1			
+in	斌		bin1			
+in	欽	钦	qin1			
+in	湮		yin1			
+in	筋		jin1			
+in	釿		jin1			
+in	㽎		xin1			
+in	新		sin1			
+in	歆		xin1			
+in	溵		yin1			
+in	禁		jin1			
+in	禋		yin1			
+in	綅		cin1			
+in	綅		zin1			
+in	㻞		bin1			
+in	䘳		jin1			
+in	䜷		cin1			
+in	慇	殷	yin1			
+in	瘖		yin1			
+in	賓	宾	bin1			
+in	賔		bin1			
+in	䈥		jin1			
+in	嶔		qin1			
+in	廞		xin1			
+in	璡		zin1			
+in	黅		jin1			
+in	㦗		jin1			
+in	䜾		yin1			
+in	䤃		yin1			
+in	儐	傧	bin1			
+in	嬜		xin1			
+in	薪		sin1			
+in	親	亲	cin1			
+in	駰		yin1			
+in	濜		zin1			
+in	濱	滨	bin1			
+in	虨		bin1			
+in	虨		pin1			
+in	豳		bin1			
+in	霠		yin1			
+in	顉		qin1			
+in	駸		cin1			
+in	檳	槟	bin1			
+in	襟		jin1			
+in	寴		cin1			
+in	瀕	濒	bin1			
+in	矉		bin1			
+in	霦		bin1			
+in	䎙		pin1			
+in	繽	缤	pin1			
+in	韾		yin1			
+in	㶏		yin1			
+in	䚔		bin1			
+in	鑌	镔	bin1			
+in	鼘		yin1			
+in	顮		bin1			
+in	鑫		xin1			
+in	𡪔		cin1			
+in	𡪛		bin1			
+in	𢔀		cin1			
+in	𢣐		pin1			
+in	𥇖		bin1			
+in	𥍯		cin1			
+in	𥍯		zin1			
+in	𦁍		sin1			
+in	𦘔		zin1			
+in	𦩨		zin1			
+in	𨊳		sin1			
+in	𩀿		zin1			
+in	𩰝		pin1			
+in	𩴱		bin1			
+in	𩴱		pin1			
+in	𩻛		zin1			
+in	𪑙		jin1			
+in	𪔗		yin1			
+in	𪖼		zin1			
+in	冘		yin2			
+in	民		min2			
+in	乑		yin2			
+in	㹜		yin2			
+in	㹞		yin2			
+in	吟		yin2			
+in	圻		yin2			
+in	岑		cin2			
+in	庈		qin2			
+in	汶		min2			
+in	芩		qin2			
+in	芹		qin2			
+in	㪁		qin2			
+in	㱽		qin2			
+in	㸒		yin2			
+in	岷		min2			
+in	忞		min2			
+in	怋		min2			
+in	斦		yin2			
+in	旻		min2			
+in	旼		min2			
+in	枔		sin2			
+in	泯		min2			
+in	玟		min2			
+in	玭		pin2			
+in	林		lin2			
+in	垠		yin2			
+in	泿		yin2			
+in	珉		min2			
+in	盿		min2			
+in	紉	纫	nin2			
+in	㕋		qin2			
+in	䒞		yin2			
+in	圁		yin2			
+in	埐		cin2			
+in	狺		yin2			
+in	珢		yin2			
+in	秦		cin2			
+in	紝		nin2			
+in	罠		min2			
+in	耹		qin2			
+in	荶		yin2			
+in	訔		yin2			
+in	唫		yin2			
+in	堇		qin2			
+in	婬	淫	yin2			
+in	寅		yin2			
+in	崟		yin2			
+in	捦		qin2			
+in	梣		cin2			
+in	淫		yin2			
+in	笢		min2			
+in	訡		yin2			
+in	貧	贫	pin2			
+in	淋		lin2			
+in	㨉		min2			
+in	䖐		yin2			
+in	尋	寻	sin2			
+in	琳		lin2			
+in	琴		qin2			
+in	禽		qin2			
+in	粦		lin2			
+in	鈂		cin2			
+in	雂		qin2			
+in	䓄		yin2			
+in	䛘		nin2			
+in	䪩		yin2			
+in	勤		qin2			
+in	瑉		min2			
+in	痳	麻	lin2			
+in	碈		min2			
+in	鄞		yin2			
+in	鈱		min2			
+in	靲		qin2			
+in	㨷		qin2			
+in	㷠		lin2			
+in	䁕		min2			
+in	䪸		min2			
+in	墐		qin2			
+in	夤		yin2			
+in	慬		qin2			
+in	碞		yin2			
+in	碪	砧	yin2			
+in	箖		lin2			
+in	粼		lin2			
+in	蔩		yin2			
+in	鄩		sin2			
+in	鄰	邻	lin2			
+in	銀	银	yin2			
+in	閩	闽	min2			
+in	䋻		nin2			
+in	䰼		cin2			
+in	嶙		lin2			
+in	嶜		cin2			
+in	撏		sin2			
+in	撢	掸	yin2			
+in	擒		qin2			
+in	潯	浔	sin2			
+in	潾		lin2			
+in	獜		lin2			
+in	緡	缗	min2			
+in	誾		yin2			
+in	駗		lin2			
+in	凜	凛	qin2			
+in	㩒		qin2			
+in	䤁		cin2			
+in	懄		qin2			
+in	樳		sin2			
+in	檎		qin2			
+in	澿		qin2			
+in	瘽		qin2			
+in	螓		cin2			
+in	霖		lin2			
+in	頻	频	pin2			
+in	魿		qin2			
+in	黔		qin2			
+in	燐	磷	lin2			
+in	璘		lin2			
+in	䅾		qin2			
+in	嬪	嫔	pin2			
+in	懃	勤	qin2			
+in	獱		pin2			
+in	疄		lin2			
+in	瞵		lin2			
+in	磷		lin2			
+in	薲		pin2			
+in	螾		yin2			
+in	襑		sin2			
+in	鍲		min2			
+in	闅		min2			
+in	鵀		nin2			
+in	黚		qin2			
+in	臨	临	lin2			
+in	㘋		yin2			
+in	䔷		qin2			
+in	䴦		yin2			
+in	嚚		yin2			
+in	檭		yin2			
+in	繗		lin2			
+in	翷		lin2			
+in	蟫		yin2			
+in	鬵		cin2			
+in	鬵		sin2			
+in	麐		lin2			
+in	䖜		yin2			
+in	嚬		pin2			
+in	蘄	蕲	qin2			
+in	蘋	苹	pin2			
+in	轔	辚	lin2			
+in	霪		yin2			
+in	鵭		qin2			
+in	齗		yin2			
+in	㰋		pin2			
+in	壣		lin2			
+in	瀶		lin2			
+in	礥		yin2			
+in	蠙		pin2			
+in	鏻		lin2			
+in	鐔	镡	sin2			
+in	鐔	镡	yin2			
+in	灊		cin2			
+in	灊		sin2			
+in	齦	龈	yin2			
+in	驎		lin2			
+in	鱏		sin2			
+in	鱏		yin2			
+in	鷣		yin2			
+in	鱗	鳞	lin2			
+in	麟		lin2			
+in	顰	颦	pin2			
+in	𠪚		yin2			
+in	𡐔		yin2			
+in	𡤉		pin2			
+in	𡧋		pin2			
+in	𢒫		sin2			
+in	𢓕		yin2			
+in	𣜣		cin2			
+in	𤚩		cin2			
+in	𤸅		min2			
+in	𥎊		qin2			
+in	𥮍		yin2			
+in	𦅀		sin2			
+in	𦇖		pin2			
+in	𦟘		yin2			
+in	𦠅		sin2			
+in	𧥺		yin2			
+in	𧭹		pin2			
+in	𧲂		lin2			
+in	𨙽		qin2			
+in	𨟏		yin2			
+in	𨼔		sin2			
+in	𩂢		yin2			
+in	𩖣		sin2			
+in	𩴱		pin2			
+in	𩷒		cin2			
+in	𩻜		lin2			
+in	𪃯		min2			
+in	𪛊		yin2			
+in	乚		yin3			
+in	廴		yin3			
+in	卂		sin4			
+in	引		yin3			
+in	引		yin4			
+in	斤		jin4			
+in	印		yin4			
+in	阠		sin4			
+in	㐆		yin3			
+in	㧆		jin4			
+in	伈		sin3			
+in	劤		jin4			
+in	囟		sin4			
+in	圳		zin4			
+in	汛		sin4			
+in	牝		bin4			
+in	迅		sin4			
+in	刡		min3			
+in	吟		yin4			
+in	吢		cin4			
+in	吣		cin4			
+in	听		yin3			
+in	坅		qin3			
+in	妗		jin4			
+in	庍		xin4			
+in	弞		yin3			
+in	沁		cin4			
+in	近		jin4			
+in	吝		lin4			
+in	㐭		lin3			
+in	枃		zin4			
+in	泯		min3			
+in	炘		xin4			
+in	臤		qin4			
+in	信		sin4			
+in	勁	劲	jin4			
+in	品		pin3			
+in	巹	卺	jin3			
+in	拰		nin3			
+in	敃		min3			
+in	洕		yin4			
+in	胗		jin3			
+in	胤		yin4			
+in	䏖		yin3			
+in	䏖		yin4			
+in	唚		cin4			
+in	垽		yin4			
+in	悋		lin4			
+in	晉	晋	zin4			
+in	浸		zin4			
+in	笉		cin3			
+in	笒		jin4			
+in	紟		jin4			
+in	菦		jin3			
+in	蚓		yin3			
+in	訊	讯	sin4			
+in	訙		sin4			
+in	唫		jin4			
+in	堇		jin3			
+in	奞		sin4			
+in	敏		min3			
+in	梫		cin3			
+in	祲		zin4			
+in	笢		min3			
+in	脪		xin3			
+in	脪		xin4			
+in	菣		qin4			
+in	菻		lin3			
+in	衅		xin4			
+in	赾		qin3			
+in	進	进	zin4			
+in	㾙		xin3			
+in	㾙		xin4			
+in	㾛		cin3			
+in	䟨		min3			
+in	喑		yin4			
+in	寑		cin3			
+in	湣	闵	min3			
+in	焮		xin4			
+in	猌		yin4			
+in	猵		bin4			
+in	粦		lin4			
+in	覕		bin4			
+in	釿		yin3			
+in	鈏		yin3			
+in	鈏		yin4			
+in	鈙		jin4			
+in	閔	闵	min3			
+in	飲	饮	yin3			
+in	飲	饮	yin4			
+in	㥯		yin3			
+in	㥯		yin4			
+in	僅	仅	jin4			
+in	愍		min3			
+in	搇		qin4			
+in	搢		zin4			
+in	暋		min3			
+in	禁		jin4			
+in	稟	禀	bin3			
+in	罧		sin3			
+in	蔭	荫	yin4			
+in	賃	赁	nin4			
+in	靳		jin4			
+in	靷		yin3			
+in	靷		yin4			
+in	黽	黾	min3			
+in	㔂		lin4			
+in	㨷		jin4			
+in	䅧		yin4			
+in	䐇		min3			
+in	僯		lin3			
+in	墐		jin4			
+in	寢	寝	cin3			
+in	廑		jin4			
+in	慬		jin3			
+in	漌		jin3			
+in	瑨		zin4			
+in	盡	尽	zin3			
+in	盡	尽	zin4			
+in	窨		yin4			
+in	緊	紧	jin3			
+in	酳		yin4			
+in	㝻		jin4			
+in	㱃		yin3			
+in	㹏		jin3			
+in	䈜		cin4			
+in	僶		min3			
+in	僸		jin4			
+in	僸		yin3			
+in	凚		jin4			
+in	嶙		lin3			
+in	廞		xin3			
+in	慜		min3			
+in	憫	悯	min3			
+in	戭		yin3			
+in	撛		lin3			
+in	撛		lin4			
+in	撳	揿	qin4			
+in	槿		jin3			
+in	歏		jin4			
+in	殣		jin4			
+in	潣		min3			
+in	潭		yin3			
+in	瑾		jin4			
+in	璡		zin4			
+in	癊		yin4			
+in	磤		yin3			
+in	蕈		zin4			
+in	趛		yin3			
+in	遴		lin4			
+in	鋟	锓	cin3			
+in	凜	凛	lin3			
+in	㒚		yin4			
+in	㬜		zin4			
+in	儐	傧	bin4			
+in	噤		jin4			
+in	廩	廪	lin3			
+in	憗		yin4			
+in	懍	懔	lin3			
+in	橉		lin3			
+in	橉		lin4			
+in	澟		lin3			
+in	澠	渑	min3			
+in	甐		lin4			
+in	瘽		jin4			
+in	磭		yin3			
+in	縉	缙	zin4			
+in	親	亲	cin4			
+in	賮		sin4			
+in	錦	锦	jin3			
+in	閵		lin4			
+in	隱	隐	yin3			
+in	隱	隐	yin4			
+in	鮣		yin4			
+in	燐	磷	lin4			
+in	㡥		yin4			
+in	㯲		jin4			
+in	嶾		yin3			
+in	懚		yin4			
+in	擯	摈	bin4			
+in	檁	檩	lin3			
+in	濜		sin4			
+in	濜		zin4			
+in	濥		yin3			
+in	濥		yin4			
+in	疄		lin4			
+in	瞵		lin4			
+in	磷		lin4			
+in	縯	演	yin3			
+in	藎	荩	sin4			
+in	螼		qin3			
+in	螼		qin4			
+in	螾		yin3			
+in	顉		qin3			
+in	臨	临	lin4			
+in	㯸		zin3			
+in	䐶		zin3			
+in	䗯		zin4			
+in	䗲		lin4			
+in	儭		cin4			
+in	檼		yin4			
+in	殯	殡	bin4			
+in	燼	烬	sin4			
+in	癛		lin3			
+in	簢		min3			
+in	臏	膑	bin4			
+in	覲	觐	jin4			
+in	謹	谨	jin3			
+in	麐		lin4			
+in	䤐		cin3			
+in	䤐		zin3			
+in	寴		cin4			
+in	瀙		cin4			
+in	轔	辚	lin4			
+in	顖		sin4			
+in	饉	馑	jin4			
+in	齗		yin3			
+in	藺	蔺	lin4			
+in	䌥		yin3			
+in	䭙		zin3			
+in	䶖		jin4			
+in	櫽		yin3			
+in	舋	衅	xin4			
+in	鏻		lin4			
+in	㶏		yin3			
+in	㶏		yin4			
+in	䚔		bin4			
+in	䚔		pin4			
+in	癮	瘾	yin3			
+in	贐	赆	sin4			
+in	䉮		lin4			
+in	䘆		xin3			
+in	䫴		jin4			
+in	䫴		yin4			
+in	鰵		min3			
+in	躙		lin4			
+in	髕	髌	bin4			
+in	鬢	鬓	bin4			
+in	顲		lin3			
+in	躪	躏	lin4			
+in	轥		lin4			
+in	釁	衅	xin4			
+in	齽		jin4			
+in	𠄈		lin4			
+in	𠐼		lin4			
+in	𠖶		cin4			
+in	𠞱		jin4			
+in	𠻤		yin3			
+in	𡎸		jin3			
+in	𡩻		zin3			
+in	𡪢		cin3			
+in	𡫏		zin4			
+in	𡬓		cin3			
+in	𢎢		yin3			
+in	𢯼		yin3			
+in	𢯼		yin4			
+in	𣌾		yin4			
+in	𣎵		pin4			
+in	𣱐		yin4			
+in	𤃷		yin3			
+in	𤌎		lin4			
+in	𤎭		lin3			
+in	𤔌		yin4			
+in	𤘡		jin4			
+in	𤛎		min3			
+in	𤜢		sin4			
+in	𤷌		jin3			
+in	𤸌		yin4			
+in	𤻘		yin3			
+in	𤿕		min3			
+in	𤿳		qin3			
+in	𥧲		zin4			
+in	𥳞		lin4			
+in	𥴲		min3			
+in	𦌡		min3			
+in	𦎷		zin4			
+in	𦜌		jin3			
+in	𦜓		xin4			
+in	𦧈		jin4			
+in	𦨽		jin4			
+in	𦯈		cin3			
+in	𦺸		lin4			
+in	𧖔		lin4			
+in	𧯷		jin3			
+in	𧶆		lin4			
+in	𧸈		bin4			
+in	𧼒		qin3			
+in	𧼒		qin4			
+in	𨋙		yin4			
+in	𨍌		min3			
+in	𨏈		yin3			
+in	𨏵		min3			
+in	𨷚		pin4			
+in	𩂥		yin4			
+in	𩔝		qin4			
+in	𩕔		lin3			
+in	𩕔		lin4			
+in	𩖄		qin3			
+in	𪏴		jin3			
+in	𪔰		yin4			
+in	𪙤		yin3			
+un	巛		kun1			
+un	屯		zhun1			
+un	吞		tun1			
+un	村		cun1			
+un	迍		zhun1			
+un	㢯		dun1			
+un	坤		kun1			
+un	昆		gun1			
+un	昏		hun1			
+un	杶		chun1			
+un	肫		zhun1			
+un	春		chun1			
+un	昷		wun1			
+un	窀		zhun1			
+un	䡅		chun1			
+un	孫	孙	sun1			
+un	涒		tun1			
+un	婚		hun1			
+un	崐		gun1			
+un	弴		dun1			
+un	惃		gun1			
+un	惇	敦	dun1			
+un	惇	敦	zhun1			
+un	惛		hun1			
+un	晜		gun1			
+un	猑		gun1			
+un	菎		gun1			
+un	訰		zhun1			
+un	㡒		zhun1			
+un	㡓		gun1			
+un	䖵		gun1			
+un	尊		zun1			
+un	敦		dun1			
+un	棔		hun1			
+un	殙		hun1			
+un	温		wun1			
+un	琨		gun1			
+un	飧		sun1			
+un	搎		sun1			
+un	椿		chun1			
+un	楯		chun1			
+un	殟		wun1			
+un	溫	温	wun1			
+un	猻	狲	sun1			
+un	瑃		chun1			
+un	蓀	荪	sun1			
+un	豤		kun1			
+un	髡		kun1			
+un	瘟		wun1			
+un	蜫		gun1			
+un	褌		gun1			
+un	㼔		wun1			
+un	噋		tun1			
+un	墩		dun1			
+un	嶟		zun1			
+un	瑻		gun1			
+un	緼		wun1			
+un	蕰		wun1			
+un	蕵		sun1			
+un	諄	谆	zhun1			
+un	噸	吨	dun1			
+un	暾		tun1			
+un	樽		zun1			
+un	燉	炖	tun1			
+un	豱		wun1			
+un	輴		chun1			
+un	輼		wun1			
+un	錕	锟	gun1			
+un	閽	阍	hun1			
+un	鴛	鸳	wun1			
+un	黗		tun1			
+un	礅		dun1			
+un	櫄		chun1			
+un	繜		zun1			
+un	罇		zun1			
+un	臗		kun1			
+un	韞	韫	wun1			
+un	騉		gun1			
+un	鯤	鲲	gun1			
+un	鵾		gun1			
+un	鶞		chun1			
+un	鶤		gun1			
+un	驐		dun1			
+un	髖	髋	kun1			
+un	㱎		gun1			
+un	𢃭		gun1			
+un	𣣏		hun1			
+un	𤭞		dun1			
+un	𥁕		wun1			
+un	𥇜		zhun1			
+un	𥊽		gun1			
+un	𧑒		tun1			
+un	𨜵		wun1			
+un	𩒱		kun1			
+un	𩥈		wun1			
+un	𪉸		wun1			
+un	𪋆		gun1			
+un	𪏆		tun1			
+un	屯		tun2			
+un	文		wun2			
+un	存		cun2			
+un	邨		tun2			
+un	㸪		chun2			
+un	㹠		tun2			
+un	坉		tun2			
+un	庉		tun2			
+un	彣		wun2			
+un	忳		tun2			
+un	忶		hun2			
+un	汶		wun2			
+un	沄		hun2			
+un	沌		tun2			
+un	芚		tun2			
+un	俒		hun2			
+un	拵		cun2			
+un	窀		tun2			
+un	紃		chun2			
+un	陙		chun2			
+un	紋	纹	wun2			
+un	純	纯	chun2			
+un	蚊		wun2			
+un	㑮		hun2			
+un	㑮		wun2			
+un	䣩		chun2			
+un	啍		tun2			
+un	崘		lun2			
+un	掄	抡	lun2			
+un	梱	捆	wun2			
+un	淳		chun2			
+un	眴		rhun2			
+un	脣	唇	chun2			
+un	菕		lun2			
+un	袸		cun2			
+un	豘		tun2			
+un	豚		tun2			
+un	軘		tun2			
+un	㡒		chun2			
+un	堚		hun2			
+un	渾	浑	hun2			
+un	焞		chun2			
+un	犉		rhun2			
+un	雯		wun2			
+un	飩	饨	tun2			
+un	㨡		hun2			
+un	楎		hun2			
+un	滣		chun2			
+un	煇		hun2			
+un	琿	珲	hun2			
+un	蒓		chun2			
+un	魂		hun2			
+un	㮯		hun2			
+un	䰚		wun2			
+un	䴷		hun2			
+un	漘		chun2			
+un	瘒		wun2			
+un	聞	闻	wun2			
+un	蓴	莼	chun2			
+un	閩	闽	wun2			
+un	馼		wun2			
+un	醇		chun2			
+un	鳼		wun2			
+un	論	论	lun2			
+un	䡣		hun2			
+un	燉	炖	tun2			
+un	螡		wun2			
+un	錞		chun2			
+un	閿	阌	wun2			
+un	餛	馄	hun2			
+un	䔚		chun2			
+un	瞤		rhun2			
+un	臀		tun2			
+un	蟁		wun2			
+un	闅		wun2			
+un	餫		hun2			
+un	鼤		wun2			
+un	顐		hun2			
+un	顐		wun2			
+un	䮝		hun2			
+un	蹲		cun2			
+un	鶉	鹑	chun2			
+un	黁		nun2			
+un	鼲		hun2			
+un	𡗥		chun2			
+un	𡱂		tun2			
+un	𢗋		chun2			
+un	𢣒		hun2			
+un	𣝂		hun2			
+un	𤟤		hun2			
+un	𤫭		tun2			
+un	𥴫		tun2			
+un	𦎧		chun2			
+un	𦖫		wun2			
+un	𦞠		tun2			
+un	𦸌		hun2			
+un	𧡡		hun2			
+un	𨚲		cun2			
+un	𩀋		rhun2			
+un	𩪡		tun2			
+un	𪎶		tun2			
+un	丨		gun3			
+un	寸		cun4			
+un	勽		wun3			
+un	刌		cun3			
+un	伆		wun3			
+un	刎		wun3			
+un	忖		cun3			
+un	吨		tun3			
+un	吮		shun4			
+un	吻		wun3			
+un	囤		dun4			
+un	困		kun4			
+un	坉		dun4			
+un	庉		dun4			
+un	扽		dun4			
+un	抆		wun3			
+un	抆		wun4			
+un	抐		nun4			
+un	汶		wun4			
+un	沌		dun4			
+un	㶧		nun3			
+un	俒		hun4			
+un	盹		zhun4			
+un	盾		dun4			
+un	盾		shun4			
+un	㤻		lun3			
+un	䀢		shun4			
+un	倱		hun4			
+un	准		zhun3			
+un	圂		hun4			
+un	娩		wun4			
+un	悃		kun3			
+un	捘		zun4			
+un	栫		zun4			
+un	涃		kun4			
+un	紊		wun4			
+un	純	纯	zhun3			
+un	莬		wun4			
+un	衮		gun3			
+un	偆		chun3			
+un	問	问	wun4			
+un	埻		zhun3			
+un	惀		lun3			
+un	惃		gun3			
+un	惛		hun3			
+un	惛		hun4			
+un	掍		hun4			
+un	梱	捆	kun3			
+un	混		hun4			
+un	焌		zun4			
+un	眴		shun4			
+un	脕		wun4			
+un	袞	衮	gun3			
+un	訰		zhun4			
+un	㡒		dun4			
+un	㾕		sun3			
+un	媆		nun4			
+un	巽		sun4			
+un	揗		shun4			
+un	揾		wun4			
+un	敦		dun4			
+un	棍		hun4			
+un	渾	浑	hun4			
+un	焜		hun4			
+un	琯		gun4			
+un	硱		kun3			
+un	稇		kun3			
+un	臶		zun4			
+un	舜		shun4			
+un	裍		kun3			
+un	遁		dun4			
+un	鈍	钝	dun4			
+un	閏	闰	rhun4			
+un	順	顺	shun4			
+un	䃂		gun3			
+un	䏰		rhun4			
+un	壼		kun3			
+un	惷	蠢	chun3			
+un	損	损	sun3			
+un	搵		wun4			
+un	楯		shun4			
+un	準	准	zhun3			
+un	溣		lun4			
+un	溷		hun4			
+un	煇		hun4			
+un	睔		gun4			
+un	睔		hun4			
+un	睔		lun3			
+un	碖		lun3			
+un	碖		lun4			
+un	稕		zhun4			
+un	絻		wun4			
+un	腝		nun4			
+un	蓘		gun3			
+un	遜	逊	sun4			
+un	閠		rhun4			
+un	頓	顿	dun4			
+un	㮯		hun4			
+un	㴫		gun4			
+un	僔		zun3			
+un	僢		chun3			
+un	嫩		nun4			
+un	愻		sun4			
+un	慁		hun4			
+un	滾	滚	gun3			
+un	畽		tun3			
+un	睴		gun4			
+un	睴		hun4			
+un	緄	绲	gun3			
+un	聞	闻	wun4			
+un	遯		dun4			
+un	䐏		chun3			
+un	䚠		hun4			
+un	噂		zun3			
+un	撙		zun3			
+un	潠		sun4			
+un	潤	润	rhun4			
+un	緷		gun3			
+un	緷		hun4			
+un	蕣		shun4			
+un	蝡		rhun3			
+un	諄	谆	zhun4			
+un	輥	辊	gun3			
+un	閫	阃	kun3			
+un	論	论	lun4			
+un	㒚		wun3			
+un	䐣		sun3			
+un	䑞		shun4			
+un	璭		gun4			
+un	瞚		shun4			
+un	諢	诨	wun4			
+un	賰		shun3			
+un	踳		chun3			
+un	錕	锟	gun3			
+un	黗		tun3			
+un	瞬		shun4			
+un	鼤		wun4			
+un	䔿		zun3			
+un	謴		gun4			
+un	顐		wun4			
+un	鯀	鲧	gun3			
+un	䫟		hun4			
+un	穩	稳	wun3			
+un	譐		zun3			
+un	鬊		shun4			
+un	䧰		hun4			
+un	璺		wun4			
+un	鐏		zun4			
+un	鯶		hun4			
+un	鶨		dun4			
+un	蠢		chun3			
+un	䭡		wun4			
+un	齫		kun3			
+un	䍎		cun4			
+un	鱒	鳟	zun4			
+un	𠟃		zun3			
+un	𠹀		sun4			
+un	𡁋		wun3			
+un	𡈋		kun3			
+un	𢧨		chun3			
+un	𢩭		cun3			
+un	𢾎		chun3			
+un	𣏔		kun4			
+un	𣯍		rhun3			
+un	𤊯		tun3			
+un	𥇜		zhun4			
+un	𥫱		dun4			
+un	𦃕		hun3			
+un	𦚧		chun3			
+un	𦝮		wun3			
+un	𦠆		sun3			
+un	𦪚		zun4			
+un	𦮶		wun3			
+un	𦽑		zhun4			
+un	𧞢		gun3			
+un	𧬪		gun4			
+un	𨡫		hun4			
+un	𩑔		kun3			
+un	𩒱		kun4			
+un	𩔂		dun4			
+un	𩕧		sun4			
+un	𩩌		gun3			
+un	𩯄		zun4			
+iun	君		jun1			
+iun	均		jun1			
+iun	夋		ciun1			
+iun	汮		jun1			
+iun	囷		qun1			
+iun	郇		siun1			
+iun	姰		siun1			
+iun	峋		siun1			
+iun	恂		siun1			
+iun	洵		siun1			
+iun	畇		siun1			
+iun	荀		siun1			
+iun	袀		jun1			
+iun	軍	军	jun1			
+iun	㰬		siun1			
+iun	宭		jun1			
+iun	峮		qun1			
+iun	捘		ciun1			
+iun	珣		siun1			
+iun	莙		jun1			
+iun	逡		ciun1			
+iun	桾		jun1			
+iun	焄		xun1			
+iun	眴		siun1			
+iun	㚃		yun1			
+iun	勛	勋	xun1			
+iun	皴		ciun1			
+iun	竣		ciun1			
+iun	葷	荤	xun1			
+iun	蒀		yun1			
+iun	鈞	钧	jun1			
+iun	䇹		jun1			
+iun	槆		siun1			
+iun	煴		yun1			
+iun	詢	询	siun1			
+iun	跧		ziun1			
+iun	僎		ziun1			
+iun	氳	氲	yun1			
+iun	熏		xun1			
+iun	皸	皲	jun1			
+iun	箘		qun1			
+iun	箟		qun1			
+iun	踆		ciun1			
+iun	輑		qun1			
+iun	㕙		ciun1			
+iun	䡝		yun1			
+iun	勲		xun1			
+iun	墫	樽	ciun1			
+iun	奫		yun1			
+iun	嶟		ziun1			
+iun	緼		yun1			
+iun	蝹		yun1			
+iun	遵		ziun1			
+iun	勳	勋	xun1			
+iun	頵		jun1			
+iun	頵		yun1			
+iun	麇		jun1			
+iun	檈		siun1			
+iun	獯		xun1			
+iun	竴		ciun1			
+iun	薰		xun1			
+iun	曛		xun1			
+iun	燻	熏	xun1			
+iun	臐		xun1			
+iun	馧		yun1			
+iun	鮶		jun1			
+iun	麏		jun1			
+iun	蘊	蕴	yun1			
+iun	贇		yun1			
+iun	麕		jun1			
+iun	纁		xun1			
+iun	醺		xun1			
+iun	鷷		ziun1			
+iun	𠣟		ciun1			
+iun	𡈋		qun1			
+iun	𣓓		siun1			
+iun	𥠺		yun1			
+iun	𧋕		qun1			
+iun	云		yun2			
+iun	勻	匀	yun2			
+iun	匀		yun2			
+iun	巡		siun2			
+iun	旬		siun2			
+iun	㸪		siun2			
+iun	囩		yun2			
+iun	妘		yun2			
+iun	沄		yun2			
+iun	芸		yun2			
+iun	侖	仑	liun2			
+iun	昀		yun2			
+iun	洵		siun2			
+iun	畇		siun2			
+iun	畇		yun2			
+iun	紃		siun2			
+iun	員	员	yun2			
+iun	宭		qun2			
+iun	帬		qun2			
+iun	紜	纭	yun2			
+iun	耘		yun2			
+iun	耺		yun2			
+iun	荺		yun2			
+iun	陯		liun2			
+iun	倫	伦	liun2			
+iun	䢵		yun2			
+iun	圇	囵	liun2			
+iun	惀		liun2			
+iun	掄	抡	liun2			
+iun	淪	沦	liun2			
+iun	䖲		siun2			
+iun	循		siun2			
+iun	揗		siun2			
+iun	棆		liun2			
+iun	裙		qun2			
+iun	鄖	郧	yun2			
+iun	雲	云	yun2			
+iun	愪		yun2			
+iun	楯		siun2			
+iun	溳		yun2			
+iun	筠		yun2			
+iun	羣		qun2			
+iun	群		qun2			
+iun	裠		qun2			
+iun	馴	驯	siun2			
+iun	䈁		liun2			
+iun	䑳		liun2			
+iun	綸	纶	liun2			
+iun	蜦		liun2			
+iun	㽦		siun2			
+iun	䋸		siun2			
+iun	澐		yun2			
+iun	蕓	芸	yun2			
+iun	踚		liun2			
+iun	論	论	liun2			
+iun	輪	轮	liun2			
+iun	橒		yun2			
+iun	篔		yun2			
+iun	縜		yun2			
+iun	䉙		yun2			
+iun	鯩		liun2			
+iun	鷷		ciun2			
+iun	灥		siun2			
+iun	𠣙		siun2			
+iun	𤸷		qun2			
+iun	𦓷		yun2			
+iun	𦔐		yun2			
+iun	𧶊		yun2			
+iun	𧾩		siun2			
+iun	𪀠		siun2			
+iun	𪔅		yun2			
+iun	允		yun3			
+iun	尹		yun3			
+iun	迅		siun4			
+iun	呁		jun4			
+iun	夽		yun3			
+iun	忶		yun4			
+iun	抎		yun3			
+iun	狁		yun3			
+iun	侚	徇	siun4			
+iun	玧		yun3			
+iun	俊		ziun4			
+iun	徇		siun4			
+iun	貟		yun4			
+iun	迿		siun4			
+iun	郡		jun4			
+iun	陖		siun4			
+iun	員	员	yun4			
+iun	埈		siun4			
+iun	峻		siun4			
+iun	捃		jun4			
+iun	栒	旬	siun3			
+iun	殉		siun4			
+iun	浚		siun4			
+iun	笋		siun3			
+iun	荺		yun3			
+iun	莙		jun4			
+iun	訓	训	xun4			
+iun	隼		siun3			
+iun	㖥		jun4			
+iun	奞		siun4			
+iun	晙		siun4			
+iun	晙		ziun4			
+iun	焌		ziun4			
+iun	菌		jun4			
+iun	鄆	郓	yun4			
+iun	㼱		ziun4			
+iun	喗		yun3			
+iun	惲	恽	yun3			
+iun	愠		yun4			
+iun	揾		yun3			
+iun	畯		ziun4			
+iun	窘		jun4			
+iun	筍	笋	siun3			
+iun	運	运	yun4			
+iun	隕	陨	yun3			
+iun	㻒		jun4			
+iun	䪳		yun3			
+iun	愪		yun3			
+iun	慍	愠	yun4			
+iun	溳		yun3			
+iun	韵		yun4			
+iun	暈	晕	yun4			
+iun	䐃		jun4			
+iun	僒		jun4			
+iun	儁		ziun4			
+iun	殞	殒	yun3			
+iun	皸	皲	jun4			
+iun	箘		jun4			
+iun	耣		liun3			
+iun	蔨		jun4			
+iun	蜠		jun4			
+iun	褞		yun3			
+iun	馻		yun3			
+iun	㕙		ziun4			
+iun	䡝		yun3			
+iun	䲰		yun4			
+iun	寯		ziun4			
+iun	磒		yun3			
+iun	箰		siun3			
+iun	緷		yun4			
+iun	緼		yun3			
+iun	緼		yun4			
+iun	蕰		yun3			
+iun	蕰		yun4			
+iun	餕		ziun4			
+iun	䝍		jun4			
+iun	縕		yun4			
+iun	賱		yun3			
+iun	醖		yun3			
+iun	醖		yun4			
+iun	䚋		yun4			
+iun	濬	浚	siun4			
+iun	薰		xun4			
+iun	醞	酝	yun3			
+iun	醞	酝	yun4			
+iun	餫		yun4			
+iun	駿	骏	ziun4			
+iun	䩵		yun4			
+iun	簨		siun3			
+iun	臐		xun4			
+iun	藴		yun3			
+iun	藴		yun4			
+iun	霣		yun3			
+iun	韗		yun4			
+iun	韞	韫	yun3			
+iun	鵕		siun4			
+iun	䫟		yun3			
+iun	攈		jun4			
+iun	韻	韵	yun4			
+iun	鵻		siun3			
+iun	爋		xun4			
+iun	鐼		xun4			
+iun	鶤		yun4			
+iun	齫		yun3			
+iun	齳		yun3			
+iun	𠣬		siun3			
+iun	𡴞		yun3			
+iun	𡺲		siun4			
+iun	𢏤		siun4			
+iun	𢓈		siun4			
+iun	𣕍		siun3			
+iun	𤮪		ziun4			
+iun	𤸫		yun3			
+iun	𤸫		yun4			
+iun	𥯗		siun3			
+iun	𦃢		qun3			
+iun	𦓾		liun3			
+iun	𧉃		yun3			
+iun	𧡡		yun4			
+iun	𧥺		jun4			
+iun	𧱝		jun4			
+iun	𧶊		yun4			
+iun	𧸩		siun4			
+iun	𧼐		qun3			
+iun	𧼐		yun3			
+iun	𪏚		yun3			
+iun	𪕞		ziun4			

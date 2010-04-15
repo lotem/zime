@@ -1,0 +1,1826 @@
+韻	字	簡化字	推導音	校正音	罕用標記	註
+o	屮		cheo1			
+o	丐		geo1			
+o	匃		geo1			
+o	屵		eo1			
+o	歺		eo1			
+o	各		geo1			
+o	合		geo1			
+o	㠷		geo1			
+o	折		zheo1			
+o	耴		zheo1			
+o	阿		eo1			
+o	車	车	cheo1			
+o	㚲		cheo1			
+o	㤎		geo1			
+o	佮		eo1			
+o	佮		geo1			
+o	匌		geo1			
+o	匌		keo1			
+o	呵		heo1			
+o	妸		eo1			
+o	妿		eo1			
+o	妿		geo1			
+o	戕		geo1			
+o	抲		heo1			
+o	砐		eo1			
+o	苶		rheo1			
+o	郃		geo1			
+o	㤩		keo1			
+o	㧁		geo1			
+o	㧁		keo1			
+o	㱒		heo1			
+o	㽺		heo1			
+o	咢		eo1			
+o	咹		eo1			
+o	哈		eo1			
+o	姶		eo1			
+o	恪		keo1			
+o	枿		eo1			
+o	柯		geo1			
+o	牁		geo1			
+o	珂		keo1			
+o	郝		heo1			
+o	㡇		zheo1			
+o	㤴		cheo1			
+o	㪉		geo1			
+o	㭘		geo1			
+o	䑥		eo1			
+o	哥		geo1			
+o	哲		zheo1			
+o	唈		eo1			
+o	啊		eo1			
+o	娿		eo1			
+o	婀		eo1			
+o	屙		eo1			
+o	格		geo1			
+o	欱		heo1			
+o	浙		zheo1			
+o	浩		geo1			
+o	爹		zheo1			
+o	疴		eo1			
+o	砝		geo1			
+o	胳		geo1			
+o	胺		eo1			
+o	㭯		zheo1			
+o	㳧		cheo1			
+o	㾑		eo1			
+o	㾑		heo1			
+o	䆟		keo1			
+o	偔		eo1			
+o	堊	垩	eo1			
+o	奢		sheo1			
+o	庵		eo1			
+o	悊		zheo1			
+o	晢	晰	zheo1			
+o	晣		zheo1			
+o	聅		cheo1			
+o	菏		geo1			
+o	萐		sheo1			
+o	袼		geo1			
+o	設	设	sheo1			
+o	鄂		eo1			
+o	㔩		eo1			
+o	㕎		keo1			
+o	㗁		eo1			
+o	䀿		zheo1			
+o	割		geo1			
+o	喆		zheo1			
+o	喝		heo1			
+o	喢		cheo1			
+o	喢		sheo1			
+o	喦		rheo1			
+o	堨		eo1			
+o	堮		eo1			
+o	媕		eo1			
+o	崿		eo1			
+o	嵑		keo1			
+o	弽		sheo1			
+o	愕		eo1			
+o	掣		cheo1			
+o	渴		keo1			
+o	湂		eo1			
+o	猲		heo1			
+o	畲		sheo1			
+o	痾	疴	eo1			
+o	硨	砗	cheo1			
+o	硩		cheo1			
+o	萼		eo1			
+o	葛		geo1			
+o	蛤		geo1			
+o	訶	诃	heo1			
+o	詀		cheo1			
+o	軻	轲	keo1			
+o	遌		eo1			
+o	遏		eo1			
+o	鄗		heo1			
+o	頇	顸	eo1			
+o	葉	叶	sheo1			
+o	惡	恶	eo1			
+o	㮙		eo1			
+o	㰼		sheo1			
+o	㸙		zheo1			
+o	䏳		zheo1			
+o	嗃		heo1			
+o	嗑		geo1			
+o	廅		eo1			
+o	愙		keo1			
+o	搕		eo1			
+o	摋		sheo1			
+o	暍		heo1			
+o	歁		keo1			
+o	歃		sheo1			
+o	溘		keo1			
+o	滒		geo1			
+o	煠		cheo1			
+o	罨		eo1			
+o	蓋	盖	geo1			
+o	蜇		zheo1			
+o	鈳	钶	eo1			
+o	鉀	钾	geo1			
+o	閘	闸	geo1			
+o	㕡		heo1			
+o	㬎		eo1			
+o	㿣		heo1			
+o	䅥		keo1			
+o	䋪		eo1			
+o	䯊		keo1			
+o	慴		zheo1			
+o	摺		zheo1			
+o	榼		keo1			
+o	歌		geo1			
+o	熇		heo1			
+o	箑		sheo1			
+o	罯		eo1			
+o	蔎		sheo1			
+o	蝁		eo1			
+o	賒	赊	sheo1			
+o	輒	辄	zheo1			
+o	遮		zheo1			
+o	鉿	铪	geo1			
+o	锸		cheo1			
+o	閣	阁	geo1			
+o	閤	合	geo1			
+o	靼		zheo1			
+o	魥		eo1			
+o	䈎		cheo1			
+o	䈓		geo1			
+o	䧪		cheo1			
+o	徹	彻	cheo1			
+o	慹		zheo1			
+o	撤		cheo1			
+o	熱	热	rheo1			
+o	獦		geo1			
+o	瘛		cheo1			
+o	瞌		keo1			
+o	磕		keo1			
+o	霅		zheo1			
+o	鞈		geo1			
+o	韐		geo1			
+o	頜	颌	geo1			
+o	頞		eo1			
+o	骹		keo1			
+o	㔍		cheo1			
+o	䗘		geo1			
+o	䚢		cheo1			
+o	䩢		zheo1			
+o	儑		eo1			
+o	噩		eo1			
+o	嶭		eo1			
+o	歙		sheo1			
+o	盦		eo1			
+o	諤	谔	eo1			
+o	輵		geo1			
+o	閼	阏	eo1			
+o	霎		sheo1			
+o	鴚		geo1			
+o	諸	诸	zheo1			
+o	㵣		keo1			
+o	㵧		geo1			
+o	壑		heo1			
+o	擱	搁	geo1			
+o	謌		geo1			
+o	謞		heo1			
+o	鍔	锷	eo1			
+o	餲		eo1			
+o	鮯		geo1			
+o	鴿	鸽	geo1			
+o	䒆		cheo1			
+o	䜆		zheo1			
+o	䫘		heo1			
+o	䳚		keo1			
+o	嚞		zheo1			
+o	礏		eo1			
+o	謵		cheo1			
+o	謺		zheo1			
+o	鞥		eo1			
+o	韘		sheo1			
+o	顎	颚	eo1			
+o	鮿		zheo1			
+o	䫦		geo1			
+o	䶀		keo1			
+o	礘		eo1			
+o	櫱		eo1			
+o	蘖		eo1			
+o	蠚		heo1			
+o	鰐		eo1			
+o	鶚	鹗	eo1			
+o	囁	嗫	rheo1			
+o	囁	嗫	zheo1			
+o	懾	慑	zheo1			
+o	攝	摄	sheo1			
+o	灄	滠	sheo1			
+o	矐		heo1			
+o	鰝		heo1			
+o	鰪		eo1			
+o	欇		sheo1			
+o	㩵		eo1			
+o	襵		zheo1			
+o	讋		zheo1			
+o	齃		eo1			
+o	鑩		eo1			
+o	靄	霭	eo1			
+o	齶	腭	eo1			
+o	䝕		zheo1			
+o	讘		rheo1			
+o	䡾		eo1			
+o	顳	颞	rheo1			
+o	鱷	鳄	eo1			
+o	齾		eo1			
+o	𠌮		zheo1			
+o	𠟎		eo1			
+o	𠥜		eo1			
+o	𠩧		keo1			
+o	𠱥		eo1			
+o	𠲗		eo1			
+o	𠳊		keo1			
+o	𠿒		heo1			
+o	𡀾		eo1			
+o	𡅡		eo1			
+o	𡓐		eo1			
+o	𡾙		eo1			
+o	𢂷		geo1			
+o	𢉥		eo1			
+o	𢙣		eo1			
+o	𢬴		zheo1			
+o	𣎴		eo1			
+o	𣠞		cheo1			
+o	𣠞		zheo1			
+o	𣡌		eo1			
+o	𣣹		heo1			
+o	𣩄		keo1			
+o	𣭝		geo1			
+o	𤸎		keo1			
+o	𤸱		eo1			
+o	𥋙		eo1			
+o	𥍉		sheo1			
+o	𥢸		geo1			
+o	𥯥		cheo1			
+o	𦛖		cheo1			
+o	𦞦		heo1			
+o	𦣀		rheo1			
+o	𦤦		heo1			
+o	𦯍		zheo1			
+o	𧊜		eo1			
+o	𧍞		eo1			
+o	𧛾		keo1			
+o	𧪞		geo1			
+o	𨂁		eo1			
+o	𨍰		keo1			
+o	𨜴		geo1			
+o	𨞛		geo1			
+o	𩂻		cheo1			
+o	𩇠		eo1			
+o	𩋊		eo1			
+o	𩍕		zheo1			
+o	𩑸		heo1			
+o	𩡔		heo1			
+o	𩢛		geo1			
+o	𩵢		heo1			
+o	𪁍		geo1			
+o	合		heo2			
+o	舌		sheo2			
+o	何		heo2			
+o	佘		cheo2			
+o	余		cheo2			
+o	折		sheo2			
+o	佫		heo2			
+o	河		heo2			
+o	苛		heo2			
+o	郃		heo2			
+o	若		rheo2			
+o	㧁		heo2			
+o	䢔		heo2			
+o	俄		eo2			
+o	曷		heo2			
+o	狢		heo2			
+o	紇	纥	heo2			
+o	虵		cheo2			
+o	㭘		heo2			
+o	哦		eo2			
+o	娥		eo2			
+o	峨		eo2			
+o	峩		eo2			
+o	涉		sheo2			
+o	涐		eo2			
+o	盍		heo2			
+o	荷		heo2			
+o	荼		cheo2			
+o	莪		eo2			
+o	䅂		heo2			
+o	婼		rheo2			
+o	涸		heo2			
+o	淈		heo2			
+o	盒		heo2			
+o	菏		heo2			
+o	蚵		heo2			
+o	蛇		cheo2			
+o	䄉		eo2			
+o	揲		sheo2			
+o	睋		eo2			
+o	硪		eo2			
+o	耠		heo2			
+o	蛥		sheo2			
+o	嗑		heo2			
+o	榙		heo2			
+o	殜		zheo2			
+o	毼		heo2			
+o	蓋	盖	heo2			
+o	蛾		eo2			
+o	詥		heo2			
+o	貈		heo2			
+o	貉		heo2			
+o	鉈	铊	cheo2			
+o	骱		heo2			
+o	鲄		heo2			
+o	㮫		heo2			
+o	熆		heo2			
+o	褐		heo2			
+o	誐		eo2			
+o	麧		heo2			
+o	䐑		zheo2			
+o	䤮		sheo2			
+o	徹	彻	zheo2			
+o	撤		zheo2			
+o	澈		zheo2			
+o	蝎		heo2			
+o	㯙		zheo2			
+o	篕		heo2			
+o	闍		cheo2			
+o	㙷		zheo2			
+o	鍦		cheo2			
+o	餲		heo2			
+o	䫘		heo2			
+o	闔	阖	heo2			
+o	鞨		heo2			
+o	鞨		sheo2			
+o	鵝	鹅	eo2			
+o	齕		heo2			
+o	䶅		heo2			
+o	轍	辙	zheo2			
+o	䮤		heo2			
+o	鶡		heo2			
+o	欇		sheo2			
+o	鶴	鹤	heo2			
+o	𠗂		heo2			
+o	𡇶		heo2			
+o	𣻣		sheo2			
+o	𥉑		heo2			
+o	𥍸		cheo2			
+o	𥝖		heo2			
+o	𦳬		heo2			
+o	𧪞		heo2			
+o	𨜴		heo2			
+o	𨵊		zheo2			
+o	𨶩		heo2			
+o	𩒰		eo2			
+o	𩩲		heo2			
+o	𪘁		heo2			
+o	个		geo4			
+o	可		keo3			
+o	斥		cheo4			
+o	何		heo4			
+o	我		eo3			
+o	扯		cheo3			
+o	社		sheo4			
+o	侉		eo4			
+o	呵		heo4			
+o	坷		keo3			
+o	坷		keo4			
+o	妸		eo3			
+o	岢		keo3			
+o	者		zheo3			
+o	舍		sheo3			
+o	舍		sheo4			
+o	舎		sheo4			
+o	若		rheo3			
+o	炙		zheo4			
+o	㪃		heo3			
+o	㰤		heo3			
+o	㰤		heo4			
+o	厙	厍	sheo4			
+o	哆		cheo3			
+o	柘		zheo4			
+o	㧴		eo3			
+o	個	个	geo4			
+o	偌		rheo4			
+o	哿		geo3			
+o	娿		eo3			
+o	射		sheo4			
+o	荷		heo4			
+o	袔		heo4			
+o	㪋		heo3			
+o	㫊		eo3			
+o	䞣		cheo4			
+o	喏		rheo3			
+o	堵		zheo3			
+o	捨	舍	sheo3			
+o	涻		sheo4			
+o	渃		rheo4			
+o	笴		geo3			
+o	舸		geo3			
+o	蚵		keo4			
+o	赦		sheo4			
+o	㨋		cheo3			
+o	䠶		sheo4			
+o	惹		rheo3			
+o	椏	桠	eo3			
+o	硪		eo3			
+o	貰	贳	sheo4			
+o	賀	贺	heo4			
+o	軻	轲	keo3			
+o	軻	轲	keo4			
+o	䬷		sheo3			
+o	嗻		zheo4			
+o	撦	扯	cheo3			
+o	箇	个	geo4			
+o	蔗		zheo4			
+o	樜		zheo4			
+o	艐		keo4			
+o	赭		zheo3			
+o	餓	饿	eo4			
+o	㗿		heo3			
+o	㵑		heo4			
+o	䗪		zheo4			
+o	蟅		zheo4			
+o	騀		eo3			
+o	䰩		cheo3			
+o	騇		sheo3			
+o	騇		sheo4			
+o	麝		sheo4			
+o	鷓	鹧	zheo4			
+o	奲		cheo3			
+o	𠰒		rheo3			
+o	𣘨		eo3			
+o	𣝒		sheo4			
+o	𥁹		sheo4			
+o	𥰮		geo3			
+o	𧙃		eo3			
+o	𧝂		heo4			
+o	𧧏		rheo4			
+o	𨵌		eo3			
+o	𩑸		heo3			
+o	𩒰		eo3			
+o	𩜉		sheo3			
+o	乇		tuo1			
+o	勺		zhuo1			
+o	戈		guo1			
+o	攴		puo1			
+o	他		tuo1			
+o	圤		puo1			
+o	它		tuo1			
+o	屵		yuo1			
+o	末		muo1			
+o	癶		buo1			
+o	㣿		zhuo1			
+o	叒		rhuo1			
+o	多		duo1			
+o	妁		zhuo1			
+o	彴		zhuo1			
+o	托		tuo1			
+o	朴		puo1			
+o	犳		zhuo1			
+o	芍		ciuo1			
+o	芍		zhuo1			
+o	㕯		rhuo1			
+o	㕰		xuo1			
+o	㤄		buo1			
+o	㧊		puo1			
+o	㺪		puo1			
+o	䢌		buo1			
+o	佗		tuo1			
+o	作		zuo1			
+o	却		quo1			
+o	沒	没	muo1			
+o	没		muo1			
+o	灼		zhuo1			
+o	皃		muo1			
+o	礿		yuo1			
+o	肑		buo1			
+o	角		juo1			
+o	辵		chuo1			
+o	㓢		luo1			
+o	㕞		shuo1			
+o	佸		guo1			
+o	侂		tuo1			
+o	刷		shuo1			
+o	卓		zhuo1			
+o	叕		zhuo1			
+o	咄		duo1			
+o	坡		puo1			
+o	妺		muo1			
+o	岳		yuo1			
+o	帗		buo1			
+o	抹		muo1			
+o	拕		tuo1			
+o	拖		tuo1			
+o	拙		zhuo1			
+o	枂		wo1			
+o	歿	殁	muo1			
+o	殁		muo1			
+o	沫		muo1			
+o	沰		tuo1			
+o	波		buo1			
+o	泧		huo1			
+o	玨	珏	juo1			
+o	矺		tuo1			
+o	祋		duo1			
+o	苜		muo1			
+o	茁		zhuo1			
+o	茇		buo1			
+o	茉		muo1			
+o	迮		zuo1			
+o	若		rhuo1			
+o	拓		tuo1			
+o	㲋		chuo1			
+o	㸰		kuo1			
+o	䀛		muo1			
+o	侻		tuo1			
+o	削		siuo1			
+o	卻	却	juo1			
+o	卻	却	quo1			
+o	括		guo1			
+o	拶		zuo1			
+o	挌	格	luo1			
+o	斫		zhuo1			
+o	昩		muo1			
+o	柝		tuo1			
+o	柞		zuo1			
+o	活		guo1			
+o	炪		zhuo1			
+o	玻		puo1			
+o	珏		juo1			
+o	眊		muo1			
+o	科		kuo1			
+o	約	约	yuo1			
+o	胉		puo1			
+o	茤		duo1			
+o	虐		yuo1			
+o	适		guo1			
+o	适		kuo1			
+o	洛		luo1			
+o	㛗		suo1			
+o	㹱		ciuo1			
+o	㽿		guo1			
+o	㽿		kuo1			
+o	䂐		zhuo1			
+o	䍨		puo1			
+o	倬		zhuo1			
+o	倭		wo1			
+o	剒		cuo1			
+o	剝	剥	buo1			
+o	剟		duo1			
+o	剟		zhuo1			
+o	剥		buo1			
+o	厝		cuo1			
+o	唆		suo1			
+o	埆		quo1			
+o	娑		suo1			
+o	娕		chuo1			
+o	娖		chuo1			
+o	弱		rhuo1			
+o	挩		tuo1			
+o	挱		suo1			
+o	捉		zhuo1			
+o	捋		luo1			
+o	捔		juo1			
+o	朔		shuo1			
+o	栝		guo1			
+o	桌		zhuo1			
+o	桗		duo1			
+o	毣		muo1			
+o	盋		buo1			
+o	眓		huo1			
+o	眜		muo1			
+o	秣		muo1			
+o	莈		muo1			
+o	莌		tuo1			
+o	莎		suo1			
+o	莏		suo1			
+o	莡		cuo1			
+o	莫		muo1			
+o	蚋		rhuo1			
+o	袚		buo1			
+o	袜		muo1			
+o	袥		tuo1			
+o	託	托	tuo1			
+o	趵		buo1			
+o	郭		guo1			
+o	鄀		rhuo1			
+o	酌		zhuo1			
+o	烙		luo1			
+o	珞		luo1			
+o	索		suo1			
+o	㧻		zhuo1			
+o	㭩		luo1			
+o	㳨		zuo1			
+o	㸹		luo1			
+o	䀩		liuo1			
+o	䀩		luo1			
+o	䂮		liuo1			
+o	䖦		zhuo1			
+o	䡈		juo1			
+o	䣪		puo1			
+o	偓		yuo1			
+o	傞		cuo1			
+o	傞		suo1			
+o	唰		shuo1			
+o	啄		zhuo1			
+o	啅		zhuo1			
+o	啜		chuo1			
+o	啜		zhuo1			
+o	埻		guo1			
+o	堝	埚	guo1			
+o	婥		chuo1			
+o	婼		chuo1			
+o	崞		guo1			
+o	惙		zhuo1			
+o	挲		suo1			
+o	捳		yuo1			
+o	捾		wo1			
+o	掇		duo1			
+o	掇		zhuo1			
+o	掉		nuo1			
+o	桫		suo1			
+o	桷		juo1			
+o	梏		juo1			
+o	梭		suo1			
+o	梲		zhuo1			
+o	棁		tuo1			
+o	欶		shuo1			
+o	殻		quo1			
+o	涶		tuo1			
+o	涹		wo1			
+o	涿		zhuo1			
+o	渦	涡	guo1			
+o	渦	涡	wo1			
+o	焫		rhuo1			
+o	畧		liuo1			
+o	痑		tuo1			
+o	硌		luo1			
+o	粕		puo1			
+o	粖		muo1			
+o	紴		buo1			
+o	缽	钵	buo1			
+o	脚		juo1			
+o	脫	脱	tuo1			
+o	菿		zhuo1			
+o	萵	莴	wo1			
+o	著		zhuo1			
+o	蛇		tuo1			
+o	袼		luo1			
+o	逪		cuo1			
+o	逴		chuo1			
+o	逽		niuo1			
+o	過	过	guo1			
+o	雀		ziuo1			
+o	飥		tuo1			
+o	掠		liuo1			
+o	略		liuo1			
+o	㗉		liuo1			
+o	㨎		rhuo1			
+o	䒷		guo1			
+o	䴲		muo1			
+o	傕		juo1			
+o	博		buo1			
+o	喔		yuo1			
+o	奤		puo1			
+o	媉		yuo1			
+o	幄		yuo1			
+o	惹		rhuo1			
+o	握		yuo1			
+o	搓		cuo1			
+o	敠		duo1			
+o	斮		zhuo1			
+o	晫		chuo1			
+o	晫		zhuo1			
+o	椁		guo1			
+o	楉		rhuo1			
+o	殼	壳	quo1			
+o	渥		yuo1			
+o	溠		cuo1			
+o	焥		wo1			
+o	焯		zhuo1			
+o	琢		zhuo1			
+o	番		buo1			
+o	矟		shuo1			
+o	硞		quo1			
+o	硦		luo1			
+o	笿		luo1			
+o	筈		guo1			
+o	筈		kuo1			
+o	筏		buo1			
+o	絡	络	luo1			
+o	聒		guo1			
+o	腏		duo1			
+o	腏		zhuo1			
+o	舄		ciuo1			
+o	萪		kuo1			
+o	萿		guo1			
+o	葀		guo1			
+o	葯	药	yuo1			
+o	蛞		kuo1			
+o	詑		tuo1			
+o	豿		xuo1			
+o	鄚		muo1			
+o	落		luo1			
+o	㗘		buo1			
+o	䇎		ciuo1			
+o	䋤		yuo1			
+o	䛚		liuo1			
+o	䟯		kuo1			
+o	䬴		muo1			
+o	嗍		shuo1			
+o	嗼		muo1			
+o	塙		quo1			
+o	塻		muo1			
+o	寞		muo1			
+o	幕		muo1			
+o	愽		buo1			
+o	揱		shuo1			
+o	搉		juo1			
+o	搉		quo1			
+o	搏		buo1			
+o	搏		puo1			
+o	搙		nuo1			
+o	搠		shuo1			
+o	搦		nuo1			
+o	摸		muo1			
+o	敫		yuo1			
+o	楃		yuo1			
+o	楇		guo1			
+o	準	准	zhuo1			
+o	溥		buo1			
+o	溹		suo1			
+o	滈		xuo1			
+o	漠		muo1			
+o	漷		kuo1			
+o	犐		kuo1			
+o	猼		buo1			
+o	瑳		cuo1			
+o	畷		zhuo1			
+o	瘑		guo1			
+o	皵		ciuo1			
+o	睕		wo1			
+o	碆		buo1			
+o	碏		ciuo1			
+o	稞		kuo1			
+o	窠		kuo1			
+o	窩	窝	wo1			
+o	罬		zhuo1			
+o	腛		yuo1			
+o	腳	脚	juo1			
+o	蒪		puo1			
+o	蒴		shuo1			
+o	蒻		rhuo1			
+o	蓑		suo1			
+o	蛶		luo1			
+o	蜹		rhuo1			
+o	裰		duo1			
+o	詻	咯	liuo1			
+o	較	较	juo1			
+o	遳		cuo1			
+o	鉢		buo1			
+o	馲		luo1			
+o	馲		tuo1			
+o	酪		luo1			
+o	溺		rhuo1			
+o	嗀		xuo1			
+o	㨼		liuo1			
+o	㮦		suo1			
+o	㮶		shuo1			
+o	㹊		yuo1			
+o	䁊		wo1			
+o	䐁		zhuo1			
+o	䛢		tuo1			
+o	䪼		zhuo1			
+o	嗽		shuo1			
+o	彉		guo1			
+o	彉		huo1			
+o	愨	悫	quo1			
+o	撂		liuo1			
+o	擆		zhuo1			
+o	斠		juo1			
+o	斡		wo1			
+o	斲		zhuo1			
+o	榷		juo1			
+o	槊		shuo1			
+o	槨	椁	guo1			
+o	毃		quo1			
+o	濄		wo1			
+o	犖	荦	luo1			
+o	瑴		juo1			
+o	瘧	疟	yuo1			
+o	瞀		muo1			
+o	磋		cuo1			
+o	禚		zhuo1			
+o	箬		rhuo1			
+o	綴	缀	zhuo1			
+o	綽	绰	chuo1			
+o	緺		guo1			
+o	膊		puo1			
+o	膜		muo1			
+o	薖		kuo1			
+o	蝃		zhuo1			
+o	蝸	蜗	guo1			
+o	趖		suo1			
+o	鉻	铬	luo1			
+o	銛		guo1			
+o	雒		luo1			
+o	靺		muo1			
+o	鞄		puo1			
+o	韎		muo1			
+o	頗	颇	puo1			
+o	颮	飑	puo1			
+o	駁	驳	buo1			
+o	魄		tuo1			
+o	魠		tuo1			
+o	說	说	shuo1			
+o	廓		kuo1			
+o	㩇		zhuo1			
+o	䃕		luo1			
+o	䃗		chuo1			
+o	䅵		zhuo1			
+o	䈖		kuo1			
+o	䟾		zhuo1			
+o	䤬		suo1			
+o	䯏		guo1			
+o	劊	刽	guo1			
+o	劐		huo1			
+o	噋		kuo1			
+o	墣		puo1			
+o	嶓		buo1			
+o	撥	拨	buo1			
+o	撮		cuo1			
+o	撮		zuo1			
+o	獡		shuo1			
+o	瘼		muo1			
+o	瞐		muo1			
+o	瞙		muo1			
+o	確	确	quo1			
+o	碻		quo1			
+o	箹		yuo1			
+o	箾		shuo1			
+o	縒		cuo1			
+o	蝌		kuo1			
+o	課	课	kuo1			
+o	諑	诼	zhuo1			
+o	趞		ciuo1			
+o	趠		chuo1			
+o	踒		wo1			
+o	踔		chuo1			
+o	踖		ciuo1			
+o	蹃		nuo1			
+o	輟	辍	zhuo1			
+o	醊		zhuo1			
+o	頢		guo1			
+o	魦		suo1			
+o	數	数	shuo1			
+o	樂	乐	yuo1			
+o	樂	乐	luo1			
+o	㗻		guo1			
+o	㘀		zuo1			
+o	㹒		puo1			
+o	䁨		huo1			
+o	䍸		buo1			
+o	䐞		rhuo1			
+o	䓾		suo1			
+o	䗚		buo1			
+o	䙏		buo1			
+o	䱅		muo1			
+o	䳊		buo1			
+o	䶂		ziuo1			
+o	䶂		zhuo1			
+o	噣		zhuo1			
+o	奯		huo1			
+o	嬒		wo1			
+o	嬳		wo1			
+o	嶨		quo1			
+o	擉		chuo1			
+o	樸	朴	puo1			
+o	橐		tuo1			
+o	濊		huo1			
+o	燋		ziuo1			
+o	璞		puo1			
+o	磭		yuo1			
+o	磭		chuo1			
+o	篧		zhuo1			
+o	翯		xuo1			
+o	謔	谑	xuo1			
+o	蹉		cuo1			
+o	錯	错	cuo1			
+o	鍋	锅	guo1			
+o	霍		huo1			
+o	餟		zhuo1			
+o	駮	驳	buo1			
+o	髺		guo1			
+o	鮁		buo1			
+o	駱	骆	luo1			
+o	諾	诺	nuo1			
+o	㦝		muo1			
+o	㲉		quo1			
+o	䌎		liuo1			
+o	䚥		nuo1			
+o	䩊		wo1			
+o	䫎		zhuo1			
+o	嶽	岳	yuo1			
+o	彍		guo1			
+o	彍		huo1			
+o	斀		zhuo1			
+o	檜	桧	guo1			
+o	瀎		muo1			
+o	燩		quo1			
+o	爵		ziuo1			
+o	瓁		wo1			
+o	皤		buo1			
+o	穛		zhuo1			
+o	簻		kuo1			
+o	臒		wo1			
+o	藐		muo1			
+o	襊		cuo1			
+o	襏		buo1			
+o	觳		quo1			
+o	謈		puo1			
+o	謞		xuo1			
+o	豁		huo1			
+o	邈		muo1			
+o	闊	阔	kuo1			
+o	雘		wo1			
+o	髁		kuo1			
+o	髿		suo1			
+o	鮥		luo1			
+o	鴰	鸹	guo1			
+o	鵅		luo1			
+o	龠		yuo1			
+o	㜰		yuo1			
+o	㜰		shuo1			
+o	㩧		puo1			
+o	㪬		chuo1			
+o	䁷		juo1			
+o	䔾		muo1			
+o	嚗		buo1			
+o	屩		juo1			
+o	懖		guo1			
+o	戳		chuo1			
+o	擽		liuo1			
+o	櫡		zhuo1			
+o	濼	泺	luo1			
+o	濼	泺	puo1			
+o	爇		rhuo1			
+o	礐		quo1			
+o	簙		buo1			
+o	繓		zuo1			
+o	繛		chuo1			
+o	藥	药	liuo1			
+o	藥	药	yuo1			
+o	謶		zhuo1			
+o	鎛		buo1			
+o	鏌	镆	muo1			
+o	霩		huo1			
+o	餺		buo1			
+o	鼧		tuo1			
+o	㿑		yuo1			
+o	䜏		tuo1			
+o	䪙		puo1			
+o	䱜		ciuo1			
+o	䱜		cuo1			
+o	䶅		luo1			
+o	攉		huo1			
+o	櫟	栎	yuo1			
+o	歠		chuo1			
+o	瀖		huo1			
+o	瀥		xuo1			
+o	爆		buo1			
+o	爍	烁	shuo1			
+o	繳	缴	zhuo1			
+o	藿		huo1			
+o	蘀		tuo1			
+o	蠖		wo1			
+o	蹻		juo1			
+o	鐯		zhuo1			
+o	鞹		kuo1			
+o	髆		buo1			
+o	髉		buo1			
+o	鵲	鹊	ciuo1			
+o	鵽		duo1			
+o	龏		yuo1			
+o	㿺		buo1			
+o	䁻		shuo1			
+o	䚫		juo1			
+o	䨰		puo1			
+o	䮤		juo1			
+o	欂		buo1			
+o	瀹		yuo1			
+o	獻	献	suo1			
+o	蘥		yuo1			
+o	蠚		chuo1			
+o	襮		buo1			
+o	覺	觉	juo1			
+o	觷		yuo1			
+o	鏺		puo1			
+o	㩱		ziuo1			
+o	䑈		buo1			
+o	䟏		shuo1			
+o	爚		yuo1			
+o	爚		shuo1			
+o	爝		ziuo1			
+o	癨		huo1			
+o	矐		huo1			
+o	禴		yuo1			
+o	纅		yuo1			
+o	躍	跃	yuo1			
+o	䤕		xuo1			
+o	穱		zhuo1			
+o	籗		kuo1			
+o	籜	箨	tuo1			
+o	躒	跞	luo1			
+o	驋		buo1			
+o	齪	龊	chuo1			
+o	轢	轹	luo1			
+o	䟑		yuo1			
+o	䪝		wo1			
+o	䮸		juo1			
+o	䮸		yuo1			
+o	䶈		buo1			
+o	攥		zuo1			
+o	籥	龠	yuo1			
+o	鑠	铄	shuo1			
+o	鱍		buo1			
+o	鱍		puo1			
+o	齱		chuo1			
+o	䠯		yuo1			
+o	孎		zhuo1			
+o	鑮		buo1			
+o	靃		huo1			
+o	鷽		yuo1			
+o	鸌		wo1			
+o	齷	龌	yuo1			
+o	䵵		zhuo1			
+o	鑰	钥	yuo1			
+o	鸑		yuo1			
+o	龣		juo1			
+o	糳		zuo1			
+o	鑿	凿	zuo1			
+o	鸙		yuo1			
+o	䖃		yuo1			
+o	䰖		zuo1			
+o	𠇱		muo1			
+o	𠈱		suo1			
+o	𠏀		kuo1			
+o	𠛱		zuo1			
+o	𠜖		luo1			
+o	𠠎		kuo1			
+o	𠢓		muo1			
+o	𠩃		yuo1			
+o	𠬛		muo1			
+o	𠭴		zhuo1			
+o	𠴪		shuo1			
+o	𠷑		puo1			
+o	𠻜		shuo1			
+o	𠿟		yuo1			
+o	𡁆		luo1			
+o	𡇱		quo1			
+o	𡈗		muo1			
+o	𡊉		muo1			
+o	𡑟		wo1			
+o	𡴊		quo1			
+o	𢁁		zhuo1			
+o	𢅹		yuo1			
+o	𢊗		muo1			
+o	𢗿		muo1			
+o	𢘿		suo1			
+o	𢯸		puo1			
+o	𢱢		suo1			
+o	𢷕		muo1			
+o	𢷾		shuo1			
+o	𢽚		zhuo1			
+o	𣁳		huo1			
+o	𣁳		wo1			
+o	𣃈		zhuo1			
+o	𣔳		tuo1			
+o	𣛗		luo1			
+o	𣜤		suo1			
+o	𣟄		tuo1			
+o	𣤇		quo1			
+o	𣧳		luo1			
+o	𣩎		muo1			
+o	𣪊		quo1			
+o	𣸍		puo1			
+o	𣽅		guo1			
+o	𤁢		zuo1			
+o	𤃴		huo1			
+o	𤄶		yuo1			
+o	𤅢		yuo1			
+o	𤆝		puo1			
+o	𤒀		yuo1			
+o	𤟭		chuo1			
+o	𤣻		muo1			
+o	𤫵		kuo1			
+o	𤷽		quo1			
+o	𤻲		luo1			
+o	𤽥		luo1			
+o	𤽼		luo1			
+o	𤿩		quo1			
+o	𤿫		chuo1			
+o	𥄗		wo1			
+o	𥄱		puo1			
+o	𥆝		suo1			
+o	𥌺		yuo1			
+o	𥖛		zhuo1			
+o	𥛟		puo1			
+o	𥟿		wo1			
+o	𥢔		zhuo1			
+o	𥬎		muo1			
+o	𥭓		chuo1			
+o	𥭖		buo1			
+o	𥯩		zhuo1			
+o	𥴮		buo1			
+o	𥴮		puo1			
+o	𥼚		zhuo1			
+o	𥽘		muo1			
+o	𦂗		shuo1			
+o	𦋞		shuo1			
+o	𦐦		puo1			
+o	𦗾		guo1			
+o	𦘅		guo1			
+o	𦚈		tuo1			
+o	𦢊		buo1			
+o	𦢸		puo1			
+o	𦥭		puo1			
+o	𦪑		buo1			
+o	𦫔		puo1			
+o	𦫕		muo1			
+o	𦯏		yuo1			
+o	𦰾		xuo1			
+o	𦰿		duo1			
+o	𦳮		zhuo1			
+o	𦵫		suo1			
+o	𦷛		duo1			
+o	𦸈		guo1			
+o	𦿍		puo1			
+o	𧂒		zhuo1			
+o	𧎾		liuo1			
+o	𧒖		guo1			
+o	𧕋		yuo1			
+o	𧖀		zhuo1			
+o	𧘑		zhuo1			
+o	𧘟		puo1			
+o	𧢢		yuo1			
+o	𧢺		nuo1			
+o	𧣺		nuo1			
+o	𧦭		tuo1			
+o	𧨀		suo1			
+o	𧭥		luo1			
+o	𧯆		huo1			
+o	𧴤		puo1			
+o	𨀝		rhuo1			
+o	𨀨		zuo1			
+o	𨂩		puo1			
+o	𨂫		tuo1			
+o	𨈋		yuo1			
+o	𨍋		guo1			
+o	𨏒		luo1			
+o	𨟍		guo1			
+o	𨟠		quo1			
+o	𨡩		puo1			
+o	𨢬		zhuo1			
+o	𨣱		muo1			
+o	𨵫		niuo1			
+o	𨷲		yuo1			
+o	𨸭		puo1			
+o	𨹃		duo1			
+o	𨹄		duo1			
+o	𩂣		luo1			
+o	𩅿		fuo1			
+o	𩊚		luo1			
+o	𩊮		suo1			
+o	𩋁		zhuo1			
+o	𩌈		suo1			
+o	𩌏		buo1			
+o	𩌥		xuo1			
+o	𩐟		buo1			
+o	𩑦		muo1			
+o	𩑷		muo1			
+o	𩓥		yuo1			
+o	𩔈		puo1			
+o	𩟓		wo1			
+o	𩧐		luo1			
+o	𩧐		tuo1			
+o	𩫏		guo1			
+o	𩯌		buo1			
+o	𩰥		ziuo1			
+o	𩰫		guo1			
+o	𩰬		guo1			
+o	𩱲		yuo1			
+o	𩱷		muo1			
+o	𩾷		guo1			
+o	𩿣		muo1			
+o	𪀡		liuo1			
+o	𪇰		buo1			
+o	𪇱		luo1			
+o	𪑱		yuo1			
+o	𪘏		chuo1			
+o	𪘓		cuo1			
+o	𪙍		buo1			
+o	勺		shuo2			
+o	仛		duo2			
+o	仢		shuo2			
+o	犮		buo2			
+o	禾		huo2			
+o	妁		shuo2			
+o	汋		shuo2			
+o	汋		zhuo2			
+o	池		tuo2			
+o	芍		shuo2			
+o	那		nuo2			
+o	佗		tuo2			
+o	吪		wo2			
+o	囮		wo2			
+o	孛		buo2			
+o	杓		shuo2			
+o	谷		juo2			
+o	陀		tuo2			
+o	佸		huo2			
+o	咊		huo2			
+o	和		huo2			
+o	坺		buo2			
+o	妭		buo2			
+o	岝		zuo2			
+o	怍		zuo2			
+o	拔		buo2			
+o	沱		tuo2			
+o	沲		tuo2			
+o	泊		buo2			
+o	瓝		buo2			
+o	茇		buo2			
+o	迱		tuo2			
+o	㓪		luo2			
+o	㤞		duo2			
+o	㸰		tuo2			
+o	㸲		zuo2			
+o	㼠		tuo2			
+o	䎠		nuo2			
+o	勃		buo2			
+o	姡		huo2			
+o	挪		nuo2			
+o	昨		zuo2			
+o	柞		zuo2			
+o	柮		zuo2			
+o	活		huo2			
+o	炦		buo2			
+o	癹		buo2			
+o	胈		buo2			
+o	郣		buo2			
+o	度		duo2			
+o	䄶		buo2			
+o	丵		zhuo2			
+o	亳		buo2			
+o	悖		buo2			
+o	挩		duo2			
+o	挬		buo2			
+o	捔		zhuo2			
+o	浞		zhuo2			
+o	浡		buo2			
+o	瓟		buo2			
+o	盉		huo2			
+o	砟		zuo2			
+o	秨		zuo2			
+o	窇		buo2			
+o	莋		zuo2			
+o	莌		duo2			
+o	袉		tuo2			
+o	㪍		buo2			
+o	㭫		cuo2			
+o	㶿		buo2			
+o	㼎		buo2			
+o	䄆		huo2			
+o	䍫		tuo2			
+o	䒩		huo2			
+o	䟛		buo2			
+o	剫		duo2			
+o	婆		puo2			
+o	捼		nuo2			
+o	敓		duo2			
+o	敚		duo2			
+o	桲		buo2			
+o	秳		huo2			
+o	笮		zuo2			
+o	紽		tuo2			
+o	脖		buo2			
+o	脫	脱	duo2			
+o	艴		buo2			
+o	菝		buo2			
+o	著		zhuo2			
+o	虘		cuo2			
+o	訛	讹	wo2			
+o	䡐		tuo2			
+o	䣮		buo2			
+o	喥		duo2			
+o	堶		tuo2			
+o	嵯		cuo2			
+o	嵳		cuo2			
+o	渤		buo2			
+o	痤		cuo2			
+o	痥		duo2			
+o	睉		cuo2			
+o	矬		cuo2			
+o	确		xuo2			
+o	腡	脶	luo2			
+o	葃		zuo2			
+o	蒫		cuo2			
+o	詑		tuo2			
+o	越		huo2			
+o	跋		buo2			
+o	跎		tuo2			
+o	跑		buo2			
+o	軷		buo2			
+o	酡		tuo2			
+o	酢		zuo2			
+o	鈋		wo2			
+o	䞰		zhuo2			
+o	媻		puo2			
+o	碆		puo2			
+o	碢		tuo2			
+o	筰		zuo2			
+o	鈸	钹	buo2			
+o	鈼		zuo2			
+o	鉌		huo2			
+o	雹		buo2			
+o	飵		zuo2			
+o	馱	驮	tuo2			
+o	䭾		tuo2			
+o	䯋		buo2			
+o	奪	夺	duo2			
+o	搫		puo2			
+o	摞		luo2			
+o	瘥		cuo2			
+o	箔		buo2			
+o	蔖		cuo2			
+o	蔢		puo2			
+o	誖		buo2			
+o	踄		buo2			
+o	鄱		puo2			
+o	颰		buo2			
+o	馛		buo2			
+o	骲		buo2			
+o	魃		buo2			
+o	㽨		cuo2			
+o	㿥		xuo2			
+o	䈏		buo2			
+o	䐘		juo2			
+o	䮀		buo2			
+o	䮂		buo2			
+o	凙		duo2			
+o	摩		muo2			
+o	艖		cuo2			
+o	銼	锉	cuo2			
+o	鋜		zhuo2			
+o	餑	饽	buo2			
+o	駝	驼	tuo2			
+o	駞		tuo2			
+o	魤		wo2			
+o	㗻		huo2			
+o	䑘		cuo2			
+o	䳊		buo2			
+o	噱		juo2			
+o	學	学	xuo2			
+o	嶨		xuo2			
+o	擭		huo2			
+o	濁	浊	zhuo2			
+o	濩		huo2			
+o	磨		muo2			
+o	篧		zhuo2			
+o	縛	缚	fuo2			
+o	翯		xuo2			
+o	薄		buo2			
+o	踱		duo2			
+o	醝		cuo2			
+o	馞		buo2			
+o	鮀		tuo2			
+o	鴕	鸵	tuo2			
+o	㦜		huo2			
+o	㺟		zhuo2			
+o	䟄		zhuo2			
+o	䴾		cuo2			
+o	嬥		zhuo2			
+o	擢		zhuo2			
+o	檴		huo2			
+o	澩	泶	xuo2			
+o	澩	泶	zhuo2			
+o	濯		zhuo2			
+o	皤		puo2			
+o	簎		zhuo2			
+o	繁		puo2			
+o	臄		juo2			
+o	謈		buo2			
+o	豰		buo2			
+o	螺		luo2			
+o	㩧		buo2			
+o	㪬		zhuo2			
+o	䎰		zuo2			
+o	䠡		cuo2			
+o	䣜		cuo2			
+o	䨥		huo2			
+o	懪		buo2			
+o	穫	获	huo2			
+o	襗		duo2			
+o	鮵		duo2			
+o	鵓	鹁	buo2			
+o	鼧		tuo2			
+o	䐾		duo2			
+o	䚨		buo2			
+o	犦		buo2			
+o	簿		buo2			
+o	蠃		luo2			
+o	譌		wo2			
+o	蹻		juo2			
+o	鏍	镙	luo2			
+o	鵫		zhuo2			
+o	羅	罗	luo2			
+o	䯢		muo2			
+o	䰈		cuo2			
+o	嚼		ziuo2			
+o	灂		zhuo2			
+o	蠗		zhuo2			
+o	觷		xuo2			
+o	醵		juo2			
+o	魔		muo2			
+o	鹺	鹾	cuo2			
+o	儸	罗	luo2			
+o	儺	傩	nuo2			
+o	劘		muo2			
+o	爝		ziuo2			
+o	礴		buo2			
+o	蠡		luo2			
+o	覼		luo2			
+o	鐲	镯	zhuo2			
+o	鐸	铎	duo2			
+o	鑊	镬	huo2			
+o	騾	骡	luo2			
+o	囉	罗	luo2			
+o	皭		ziuo2			
+o	驒		tuo2			
+o	鷟		zhuo2			
+o	龢	和	huo2			
+o	蘿	萝	luo2			
+o	㔮		nuo2			
+o	欏	椤	luo2			
+o	驘		luo2			
+o	鬠		huo2			
+o	鑮		buo2			
+o	鷽		xuo2			
+o	鸀		zhuo2			
+o	鸁		luo2			
+o	齹		cuo2			
+o	䭦		buo2			
+o	籮	箩	luo2			
+o	臡		nuo2			
+o	鸐		zhuo2			
+o	鼉	鼍	tuo2			
+o	齺		zhuo2			
+o	躦	躜	cuo2			
+o	䭩		muo2			
+o	鑼	锣	luo2			
+o	饠		luo2			
+o	鑿	凿	zuo2			
+o	𠊬		juo2			
+o	𠶸		juo2			
+o	𠹈		nuo2			
+o	𡋯		buo2			
+o	𡖔		nuo2			
+o	𡙜		duo2			
+o	𡡉		muo2			
+o	𡩆		tuo2			
+o	𢂃		zuo2			
+o	𢇷		buo2			
+o	𢋒		huo2			
+o	𢋱		zhuo2			
+o	𢜬		duo2			
+o	𢠜		buo2			
+o	𢢗		zhuo2			
+o	𢷏		buo2			
+o	𢺡		zhuo2			
+o	𣜄		luo2			
+o	𣩈		cuo2			
+o	𣫞		zuo2			
+o	𣭷		buo2			
+o	𣽅		huo2			
+o	𤄷		luo2			
+o	𤐰		huo2			
+o	𤖱		huo2			
+o	𤘟		nuo2			
+o	𤻙		huo2			
+o	𥀣		xuo2			
+o	𥂓		muo2			
+o	𥡜		luo2			
+o	𥢵		luo2			
+o	𥭓		buo2			
+o	𥰭		cuo2			
+o	𦁎		zuo2			
+o	𦟟		muo2			
+o	𦢊		buo2			
+o	𦣆		muo2			
+o	𦸦		buo2			
+o	𦿌		luo2			
+o	𧃔		zhuo2			
+o	𧄿		luo2			
+o	𧍕		juo2			
+o	𧕛		tuo2			
+o	𧩧		duo2			
+o	𧺡		buo2			
+o	𧺺		buo2			
+o	𨍏		duo2			
+o	𨖮		zhuo2			
+o	𨰠		luo2			
+o	𩃶		buo2			
+o	𩅟		buo2			
+o	𩆸		zhuo2			
+o	𩉺		tuo2			
+o	𩍜		duo2			
+o	𩍿		buo2			
+o	𩑂		zhuo2			
+o	𩑒		duo2			
+o	𩕏		puo2			
+o	𩞁		muo2			
+o	𩣡		buo2			
+o	𩱚		buo2			
+o	𩴓		nuo2			
+o	𩺽		buo2			
+o	𩼊		luo2			
+o	𩽛		buo2			
+o	𪘓		cuo2			
+o	大		duo4			
+o	火		huo3			
+o	叵		puo3			
+o	左		zuo3			
+o	左		zuo4			
+o	划		guo3			
+o	划		guo4			
+o	朵		duo3			
+o	朶		duo3			
+o	那		nuo3			
+o	那		nuo4			
+o	邩		huo3			
+o	佐		zuo4			
+o	作		zuo4			
+o	坐		zuo4			
+o	妥		tuo3			
+o	卵		luo3			
+o	㝾		zuo3			
+o	㝾		zuo4			
+o	㝿		buo3			
+o	㳀		guo4			
+o	些		suo4			
+o	刴		duo4			
+o	剁		duo4			
+o	和		huo4			
+o	拕		duo4			
+o	拖		tuo4			
+o	果		guo3			
+o	沱		duo4			
+o	爸		buo4			
+o	臥	卧	wo4			
+o	陊		duo4			
+o	奈		nuo4			
+o	㛂		nuo3			
+o	㛂		wo3			
+o	㛆		duo4			
+o	㡅		nuo3			
+o	侳		zuo4			
+o	剆		luo3			
+o	剉	锉	cuo4			
+o	哆		duo3			
+o	哆		duo4			
+o	哪		nuo3			
+o	垛		duo4			
+o	娜		nuo3			
+o	挅		duo4			
+o	挆		duo3			
+o	柁		duo4			
+o	科		kuo4			
+o	㟎		tuo3			
+o	俰		huo4			
+o	倭		wo3			
+o	倮		luo3			
+o	夎		zuo4			
+o	娑		suo3			
+o	座		zuo4			
+o	挫		zuo4			
+o	桗		duo4			
+o	毤		tuo4			
+o	爹		duo4			
+o	盉		huo4			
+o	砢		luo3			
+o	破		puo4			
+o	莝		cuo4			
+o	袉		duo4			
+o	袉		tuo3			
+o	袏		zuo4			
+o	做		zuo4			
+o	唾		tuo4			
+o	埵		duo3			
+o	堁		kuo3			
+o	堁		kuo4			
+o	婐		wo3			
+o	惈		guo3			
+o	涴		wo4			
+o	涶		tuo4			
+o	猓		guo3			
+o	痑		duo4			
+o	脞		cuo3			
+o	舵		duo4			
+o	菓		guo3			
+o	貨	货	huo4			
+o	過	过	guo4			
+o	隋		tuo3			
+o	䂳		cuo3			
+o	堧		nuo4			
+o	媠		duo4			
+o	媠		tuo3			
+o	惢		suo3			
+o	惰		duo4			
+o	愞		nuo4			
+o	揣		duo3			
+o	敤		kuo3			
+o	敤		kuo4			
+o	棵		kuo3			
+o	番		buo4			
+o	硰		cuo3			
+o	硰		zuo3			
+o	禍	祸	huo4			
+o	葰		suo3			
+o	袲		nuo3			
+o	詑		duo4			
+o	跛		buo3			
+o	㪜		duo3			
+o	㾧		kuo4			
+o	䅜		duo4			
+o	毻		tuo4			
+o	溑		suo3			
+o	瑳		cuo3			
+o	蓏		luo3			
+o	蛻	蜕	tuo4			
+o	跢		duo4			
+o	跺		duo4			
+o	躲		duo3			
+o	馱	驮	duo4			
+o	裸		luo3			
+o	䤪		duo3			
+o	䭾		duo4			
+o	塺		muo4			
+o	墮	堕	duo4			
+o	墮	堕	tuo3			
+o	夥	伙	huo4			
+o	嫷		duo4			
+o	嫷		tuo4			
+o	嶞		duo4			
+o	憜		duo4			
+o	摞		luo4			
+o	瑣	琐	suo3			
+o	磋		cuo4			
+o	稬		nuo4			
+o	粿		guo3			
+o	綞	缍	duo3			
+o	蜾		guo3			
+o	裹		guo3			
+o	裹		guo4			
+o	褍		duo3			
+o	褨		suo3			
+o	頗	颇	puo3			
+o	頗	颇	puo4			
+o	駄		duo4			
+o	麼	么	muo3			
+o	䈗		suo3			
+o	䙃		duo4			
+o	䫂		duo3			
+o	䴹		guo3			
+o	摩		muo4			
+o	播		buo4			
+o	橢	椭	tuo3			
+o	縒		suo3			
+o	課	课	kuo4			
+o	諎		cuo4			
+o	躶		luo3			
+o	輠		guo3			
+o	輠		huo4			
+o	銼	锉	cuo4			
+o	駊		buo3			
+o	駊		puo3			
+o	䐝		suo4			
+o	橠		nuo3			
+o	瘰		luo3			
+o	磨		muo4			
+o	縛	缚	buo4			
+o	錁	锞	guo3			
+o	鍺	锗	duo3			
+o	餜		guo3			
+o	䤻		duo4			
+o	䵀		suo3			
+o	嬤	嬷	muo3			
+o	懡		muo3			
+o	懦		nuo4			
+o	癉	瘅	duo3			
+o	癉	瘅	duo4			
+o	顆	颗	kuo3			
+o	髁		kuo4			
+o	䇔		luo4			
+o	鎖	锁	suo3			
+o	騍	骒	guo4			
+o	鵎		tuo3			
+o	㰁		luo3			
+o	穤		nuo4			
+o	簸		buo3			
+o	簸		buo4			
+o	蠃		luo3			
+o	譒		buo4			
+o	鐹		guo3			
+o	鐹		guo4			
+o	鬌		duo3			
+o	鬌		duo4			
+o	䰈		cuo3			
+o	嚲		duo3			
+o	糯		nuo4			
+o	臝		luo3			
+o	㦬		luo3			
+o	邏	逻	luo4			
+o	㱻		luo4			
+o	䲊		duo4			
+o	䲊		tuo3			
+o	奲		duo3			
+o	曪		luo3			
+o	欏	椤	luo3			
+o	㿚		luo4			
+o	䃺		muo4			
+o	䌴		luo4			
+o	𠏢		luo4			
+o	𠡃		zuo4			
+o	𠻡		luo3			
+o	𡋲		zuo4			
+o	𡖿		huo4			
+o	𡰠		luo4			
+o	𡱼		kuo4			
+o	𡽠		puo3			
+o	𢀴		wo3			
+o	𢄴		nuo3			
+o	𢫷		nuo3			
+o	𢯽		cuo4			
+o	𢱡		suo3			
+o	𢺆		luo4			
+o	𢿥		buo4			
+o	𣂞		luo3			
+o	𣄸		huo4			
+o	𣋟		muo3			
+o	𣮆		tuo4			
+o	𣵻		duo4			
+o	𤬾		duo4			
+o	𤲬		nuo4			
+o	𤼠		luo3			
+o	𥔭		suo3			
+o	𥙯		huo4			
+o	𥚁		huo4			
+o	𥟿		wo3			
+o	𥠄		duo3			
+o	𥬲		duo4			
+o	𥬸		duo4			
+o	𥳔		duo4			
+o	𥿰		duo3			
+o	𦀉		duo3			
+o	𦝠		luo3			
+o	𧒖		guo4			
+o	𧝍		tuo4			
+o	𧝹		luo3			
+o	𧟌		luo4			
+o	𧱫		duo4			
+o	𧴪		suo3			
+o	𨘌		huo4			
+o	𨝉		suo3			
+o	𨦃		duo3			
+o	𨹃		duo3			
+o	𨹄		duo3			
+o	𨼰		tuo3			
+o	𩊜		duo3			
+o	𩊜		duo4			
+o	𩝢		luo3			
+o	𩟂		guo4			
+o	𩹳		suo3			
+o			zuo3			
