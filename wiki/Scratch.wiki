@@ -80,7 +80,7 @@ COMMIT=<unicode>
 PREEDIT=<unicode>
 CURSOR=<int start>,<int end>
 AUX=<unicode>
-CANDIDATES=5
+CANDIDATES=<int current_page_size>,<int current_page>,<int total_pages>
 <uincode>
 <uincode>
 <uincode>
