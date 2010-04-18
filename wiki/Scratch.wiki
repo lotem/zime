@@ -85,5 +85,5 @@ CANDIDATES=5
 <uincode>
 <uincode>
 <uincode>
-END
+RET true/false
 }}}
