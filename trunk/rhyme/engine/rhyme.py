@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim:set et sts=4 sw=4:
 
+import logging
 import SocketServer
 
 import ibus
@@ -16,27 +17,27 @@ class RhymeSessionHandler(SocketServer.StreamRequestHandler):
         for line in self.rfile:
             tag, params = line.rstrip("\n").split("=", 1)
             if tag == "INIT":
-                print "init session:", params
+                logging.info("init session:", params)
                 self.__lookup_table = ibus.LookupTable()
                 self.__engine = zimeengine.SchemaChooser(self)
             if tag == "EVENT":
                 keycode, mask = map(int, params.split(","))
-                print "process_key_event: '%s'(%x), %08x" % (keysyms.keycode_to_name(keycode), keycode, mask)
+                logging.debug("process_key_event: '%s'(%x), %08x" % (keysyms.keycode_to_name(keycode), keycode, mask))
                 ret = self.__engine.process_key_event(keycode, mask)
                 self.wfile.write("RET=%s\n" % ("true" if ret else "false"))
                 self.wfile.flush()
 
     def commit_string(self, s):
-        print u'commit: [%s]' % s
+        logging.debug(u'commit: [%s]' % s)
         self.wfile.write("COMMIT=%s\n" % s.encode('utf-8'))
 
     def update_preedit(self, s, start, end):
-        print u'preedit: [%s[%s]%s]' % (s[:start], s[start:end], s[end:])
+        logging.debug(u'preedit: [%s[%s]%s]' % (s[:start], s[start:end], s[end:]))
         self.wfile.write("PREEDIT=%s\n" % s.encode('utf-8'))
         self.wfile.write("CURSOR=%d,%d\n" % (start, end))
 
     def update_aux_string(self, s):
-        print u'aux: [%s]' % s
+        logging.debug(u'aux: [%s]' % s)
         self.wfile.write("AUX=%s\n" % s.encode('utf-8'))
 
     def update_candidates(self, candidates):
@@ -107,7 +108,7 @@ class RhymeService:
         self.server = SocketServer.TCPServer(addr, RhymeSessionHandler)
 
     def run(self):
-        print "serving..."
+        logging.info("RhymeService serving...")
         self.server.serve_forever()
 
 def main():
