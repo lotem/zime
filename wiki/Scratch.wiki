@@ -74,17 +74,16 @@ class !RhymeService
 通信消息：
 {{{
 // to service
+INIT=<string, client_id>
 EVENT=<int keycode>,<int mask>
 // from service
-COMMIT=<unicode>
-PREEDIT=<unicode>
+COMMIT=<string>
+PREEDIT=<string>
 CURSOR=<int start>,<int end>
 AUX=<unicode>
 CANDIDATES=<int current_page_size>,<int current_page>,<int total_pages>
-<uincode>
-<uincode>
-<uincode>
-<uincode>
-<uincode>
+<string>
+<string>
+<string>
 RET=true/false
 }}}
