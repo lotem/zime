@@ -2,46 +2,48 @@
 # -*- coding: utf-8 -*-
 # vim:set et sts=4 sw=4:
 
+import SocketServer
+
 import ibus
 from ibus import keysyms
 from ibus import modifier
 
 import zimeengine
 
-class RhymeEngine:
+class RhymeSessionHandler(SocketServer.StreamRequestHandler):
 
-    def __init__(self, frontend):
+    def __init__(self, service):
+        self.__service = service
         self.__lookup_table = ibus.LookupTable()
-        self.__frontend = frontend
-        self.__backend = zimeengine.SchemaChooser(self)
+        self.__engine = zimeengine.SchemaChooser(self)
 
-    def process_key_event(self, keycode, mask):
-        #print "process_key_event: '%s'(%x), %08x" % (keysyms.keycode_to_name(keycode), keycode, mask)
-        return self.__backend.process_key_event(keycode, mask)
+    def handle(self):
+        event = self.rfile.readline().rstrip("\n")
+        tag, params = event.split("=", 1)
+        if tag == "EVENT":
+            keycode, mask = map(int, params.split(","))
+            #print "process_key_event: '%s'(%x), %08x" % (keysyms.keycode_to_name(keycode), keycode, mask)
+            ret = self.__engine.process_key_event(keycode, mask)
+            self.wfile.write("RET=%s\n" % ("true" if ret else "false"))
 
     def commit_string(self, s):
         #print u'commit: [%s]' % s
-        self.__frontend.commit_string(ibus.Text(s))
+        self.wfile.write("COMMIT=%s\n" % s)
 
     def update_preedit(self, s, start, end):
         #print u'preedit: [%s[%s]%s]' % (s[:start], s[start:end], s[end:])
-        if not s:
-            self.__frontend.hide_preedit()
-            return
-        self.__frontend.update_preedit(ibus.Text(s), start, end)
+        self.wfile.write("PREEDIT=%s\n" % s)
+        self.wfile.write("CURSOR=%d,%d\n" % (start, end))
 
     def update_aux_string(self, s):
         #print u'aux: [%s]' % s
-        if not s:
-            self.__frontend.hide_aux_string()
-            return
-        self.__frontend.update_aux_string(ibus.Text(s))
+        self.wfile.write("AUX=%s\n" % s)
 
     def update_candidates(self, candidates):
         self.__lookup_table.clean()
         self.__lookup_table.show_cursor(False)
         if not candidates:
-            self.__frontend.hide_candidates()
+            self.wfile.write("CANDIDATES=0\n")
         else:
             for c in candidates:
                 self.__lookup_table.append_candidate(ibus.Text(c[0]))
@@ -54,7 +56,9 @@ class RhymeEngine:
         p = self.__lookup_table.get_page_size()
         current_page = c / p
         total_number_of_pages = (n + p - 1) / p
-        self.__frontend.update_candidates(candidates, current_page, total_number_of_pages)
+        self.wfile.write("CANDIDATES=%d,%d,%d\n" % (len(candidates), current_page, total_number_of_pages))
+        for x in candidates:
+            self.wfile.write(x + "\n")
             
     def page_up(self):
         if self.__lookup_table.page_up():
@@ -94,3 +98,20 @@ class RhymeEngine:
         #print u'candidate_cursor_pos = %d' % index
         return index
 
+class RhymeService:
+    
+    HOST, PORT = "localhost", 2133
+
+    def __init__(self):
+        addr = (RhymeService.HOST, RhymeService.PORT)
+        self.server = SocketServer.TCPServer(addr, RhymeSessionHandler)
+
+    def run(self):
+        self.server.serve_forever()
+
+def main():
+    service = RhymeService()
+    service.run()
+
+if __name__ == "__main__":
+    main()
