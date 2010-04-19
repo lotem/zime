@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1271641610 source:c:\home\devel\rhyme\src\rhymedemo\main.cpp
+	"rhymeclient.h"
+	"rhymepanel.h"
+	<windows.h>
+
+1271641056 c:\home\devel\rhyme\src\rhymelib\rhymeclient.h
+
+1271641106 c:\home\devel\rhyme\src\rhymelib\rhymepanel.h
+
