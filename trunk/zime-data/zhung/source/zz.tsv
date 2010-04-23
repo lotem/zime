@@ -247,7 +247,7 @@ y	子		zy3			30184
 u	圖	图	tu2			29988
 ang	常		chang2			29977
 ang	腸	肠	chang2			29975
-u	無	无	wu2			29826
+u	無	无	wu2	wu2 mu2		29826
 y	自		zy4			29774
 au	報	报	bau4			29597
 ui	水		shui3			29478
@@ -1094,7 +1094,7 @@ ai	採	采	cai3			7354
 un	溫	温	wun1			7343
 u	屋		wu1			7342
 e	閱	阅	yue1			7308
-an	然		rhan2			7275
+an	然		rhan2	rhan3		7275
 u	佛		fu2			7256
 un	春		chun1			7230
 an	倦		juan4			7223
@@ -1562,29 +1562,29 @@ au	銷	销	siau1			3996
 ing	晶		zing1			3991
 u	敷		fu1			3990
 ung	童		tung2			3986
-y	碩	硕	shy2			3986
+y	碩	硕	shy2	shuo2 shy2*		3986
 i	迪		di2			3981
 i	皮		pi2			3981
 u	孵		fu1			3980
 u	膚	肤	fu1			3980
 ai	艾		ai4			3979
-i	艾		yi4			3979
+i	艾		yi4	*		3979
 au	笑		siau4			3971
 e	決	决	jue1			3967
-e	決	决	xue1			3967
+e	決	决	xue1	*		3967
 u	復	复	fu2			3957
-u	復	复	fu4			3957
+u	復	复	fu4	*		3957
 an	短		duan3			3954
 in	引		yin3			3953
 in	引		yin4			3953
 ou	猷		you2			3929
-iung	宮	宫	jung1			3924
+iung	宮	宫	jung1	gung1		3924
 ing	頂	顶	ding3			3901
 y	識	识	shy1			3887
-y	識	识	zhy4			3887
+y	識	识	zhy4	*		3887
 o	哲		zheo1			3880
 i	莉		li2			3877
-y	莉		chy2			3877
+y	莉		chy2	*		3877
 ui	累		lui3			3854
 ui	累		lui4			3854
 ang	訪	访	fang4			3842
@@ -1593,46 +1593,46 @@ an	券		quan4			3836
 o	末		muo1			3831
 i	廢	废	fi4			3830
 a	夏		xa4			3826
-e	索		she1			3825
+e	索		she1	*		3825
 o	索		suo1			3825
-y	索		shy1			3825
-y	詞	词	sy2			3823
-y	辭	辞	sy2			3822
+y	索		shy1	*		3825
+y	詞	词	sy2	cy2		3823
+y	辭	辞	sy2	cy2		3822
 ung	功		gung1			3814
 ang	棒		bang4			3799
 o	諾	诺	nuo1			3798
 an	寬	宽	kuan1			3797
 an	曼		man2			3764
-an	曼		wan4			3764
+an	曼		wan4	*		3764
 ui	雷		lui2			3760
 u	杜		du4			3759
 an	船		chuan2			3759
 ing	盈		ying2			3757
 ing	評	评	ping2			3752
-ing	評	评	bing4			3752
+ing	評	评	bing4	!		3752
 in	頻	频	pin2			3752
 ing	境		jing3			3752
-in	訊	讯	sin4			3751
-an	唸	念	dian4			3724
+in	訊	讯	sin4	sin4* siun4		3751
+an	唸	念	dian4	nian4		3724
 an	念		nian4			3724
 an	煙	烟	yan1			3710
 au	遭		zau1			3707
 au	耀		yau4			3700
 an	灌		guan4			3691
 an	罐		guan4			3690
-a	跨		kua1			3668
-a	跨		kua3			3668
-a	跨		kua4			3668
-u	跨		ku4			3668
+a	跨		kua1		?	3668
+a	跨		kua3		?	3668
+a	跨		kua4		?	3668
+u	跨		ku4	*		3668
 iun	倫	伦	liun2			3668
 in	錦	锦	jin3			3654
 ang	旁		pang2			3642
-y	砥		zhy1			3630
-y	砥		zhy3			3630
-u	貿	贸	mu4			3624
-en	沈		chen2			3616
+y	砥		zhy1	*		3630
+y	砥		zhy3	zhy3* di3		3630
+u	貿	贸	mu4	mau4		3624
+en	沈		chen2	*		3616
 en	沈		shen3			3616
-en	沈		zhen4			3616
+en	沈		zhen4	*		3616
 iun	詢	询	siun1			3609
 ou	洲		zhou1			3608
 an	顯	显	xan3			3593
@@ -1640,123 +1640,123 @@ ung	弄		lung4			3587
 ou	州		zhou1			3573
 ang	翔		siang2			3555
 e	挾	挟	xe2			3544
-e	耶		ye2			3542
-eng	丁		zheng1			3541
+e	耶		ye2	ye1 ye2*		3542
+eng	丁		zheng1	*		3541
 ing	丁		ding1			3541
 y	雌		cy1			3526
 an	兼		jan1			3526
-an	兼		jan4			3526
+an	兼		jan4	*		3526
 i	雞	鸡	ji1			3524
 un	孫	孙	sun1			3517
 o	魔		muo2			3508
 y	址		zhy3			3502
 au	稍		shau3			3495
-au	稍		shau4			3495
+au	稍		shau4	*		3495
 au	曉	晓	xau3			3491
 au	燒	烧	shau1			3483
-au	燒	烧	shau4			3483
+au	燒	烧	shau4	*		3483
 au	捎		shau1			3482
-au	捎		siau1			3482
+au	捎		siau1	*		3482
 u	舞		wu3			3481
 au	奧	奥	au4			3477
 au	覺	觉	jau4			3471
 o	覺	觉	juo1			3471
 an	眼		yan3			3445
-an	母		guan1			3445
+an	母		guan1	!		3445
 u	母		mu3			3445
-i	尾		vi3			3444
+i	尾		vi3	vi3 yi3*		3444
 au	早		zau3			3435
 ang	狀	状	zhuang4			3431
 u	某		mu3			3430
 au	消		siau1			3420
-i	適	适	di1			3414
+i	適	适	di1	*		3414
 y	適	适	shy1			3414
-y	適	适	zhy1			3414
+y	適	适	zhy1	*		3414
 ing	鼎		ding3			3392
 y	勢	势	shy4			3385
 ing	坪		ping2			3380
-ing	坪		bing4			3380
+ing	坪		bing4	*		3380
 a	沙		sha1			3377
-a	沙		sha4			3377
+a	沙		sha4	*		3377
 an	餐		can1			3369
 an	酸		suan1			3366
 ang	彰		zhang1			3366
-an	賺	赚	zhan4			3363
+an	賺	赚	zhan4	zhuan4		3363
 ang	賞	赏	shang3			3360
 ung	弘		hung2			3360
 i	息		si1			3359
 ou	休		xou1			3352
 o	烙		luo1			3350
 au	刀		dau1			3349
-y	植		shy2			3335
-y	植		zhy4			3335
+y	植		shy2	zhy1		3335
+y	植		zhy4	*		3335
 i	譯	译	yi1			3334
 e	蛂		bie2			3331
 in	勤		qin2			3321
 au	孝		xau4			3307
 y	始		shy3			3306
-an	憸		cian1			3295
-an	憸		sian1			3295
-an	憸		cian3			3295
-an	憸		xan3			3295
-o	略		liuo1			3292
+an	憸		cian1		?	3295
+an	憸		sian1		?	3295
+an	憸		cian3		?	3295
+an	憸		xan3		?	3295
+o	略		liuo1	liuo1 luo1		3292
 au	毛		mau2			3288
-au	毛		mau4			3288
+au	毛		mau4	!		3288
 ang	杖		zhang4			3285
 ang	丈		zhang4			3285
 ang	仗		zhang4			3285
 ang	帳	帐	zhang4			3285
 ang	脹	胀	zhang4			3285
-ang	障		zhang1			3285
+ang	障		zhang1	*		3285
 ang	障		zhang4			3285
-u	肉		rhu1			3269
+u	肉		rhu1	rhou4		3269
 iu	舉	举	ju3			3265
 i	異	异	yi4			3257
-a	哇		ya1			3254
+a	哇		ya1	!		3254
 a	哇		wa1			3254
 ang	坊		fang1			3253
 ang	坊		fang2			3253
 u	毒		du2			3251
-ui	季		gui4			3245
+ui	季		gui4	ji4		3245
 eng	升		sheng1			3242
 eng	冷		leng3			3241
-ing	冷		ling2			3241
-ing	冷		ling3			3241
+ing	冷		ling2	!		3241
+ing	冷		ling3	!		3241
 i	菲		fi1			3239
 i	菲		fi3			3239
-i	菲		fi4			3239
+i	菲		fi4	!		3239
 an	官		guan1			3235
 ang	皇		huang2			3234
-ou	牛		you2			3217
+ou	牛		you2	niou2		3217
 u	獨	独	du2			3217
 o	落		luo1			3214
 u	楚		chu3			3196
-u	楚		chu4			3196
+u	楚		chu4	*		3196
 o	腳	脚	juo1			3192
 au	繳	缴	jau3			3192
-e	繳	缴	he2			3192
-o	繳	缴	zhuo1			3192
+e	繳	缴	he2	!		3192
+o	繳	缴	zhuo1	!		3192
 an	散		san3			3172
 an	散		san4			3172
 iu	漁	渔	yu2			3171
 au	效		xau4			3159
 au	秒		miau3			3157
 iu	序		siu4			3156
-ou	右		you3			3153
+ou	右		you3	!		3153
 ou	右		you4			3153
 ang	網	网	wang3			3152
 en	粉		fen3			3148
 ou	構	构	gou4			3144
 a	夾	夹	ja1			3143
-o	膜		muo1			3136
-u	膜		mu2			3136
+o	膜		muo1	!		3136
+u	膜		mu2	muo2		3136
 ai	菜		cai4			3130
 u	魯	鲁	lu3			3126
 an	戀	恋	liuan4			3112
-u	辜		gu1			3111
+u	辜		gu1	gu3		3111
 an	涵		han2			3110
-an	涵		han4			3110
-e	俠	侠	xe2			3103
+an	涵		han4	*		3110
+e	俠	侠	xe2	xa2		3103
 a	狎		xa2			3100
 i	歷	历	li1			3087
 ing	鏡	镜	jing4			3086
@@ -1768,24 +1768,24 @@ an	泉		ciuan2			3068
 y	釋	释	shy1			3044
 ing	警		jing3			3040
 i	替		ti4			3026
-an	洗		sian3			3024
+an	洗		sian3	*		3024
 i	洗		si3			3024
 y	隻	只	zhy1			3021
 y	貳	贰	el4			3012
 e	捷		zie2			3011
-y	廿		rhy1			3000
+y	廿		rhy1	nian4 rhy1*		3000
 y	慈		cy2			3000
 y	瓷		cy2			3000
 y	磁		cy2			3000
-y	祠		sy2			3000
+y	祠		sy2	cy2	?	3000
 an	豔	艳	yan4			3000
 an	乾	干	gan1			2999
-an	乾	干	qan2			2999
+an	乾		qan2			2999
 an	燕		yan1			2988
 an	燕		yan4			2988
 ang	汪		wang1			2986
-ang	汪		wang3			2986
-ang	汪		wang4			2986
+ang	汪		wang3	!		2986
+ang	汪		wang4	!		2986
 iung	融		yung2			2982
 an	彥	彦	yan4			2967
 an	險	险	xan3			2962
@@ -1802,7 +1802,7 @@ o	爍	烁	shuo1			2915
 ing	聘		ping4			2914
 ing	井		zing3			2911
 e	佰		me1			2909
-e	側	侧	zhe1			2904
+e	側	侧	zhe1	che1		2904
 u	述		shu2			2902
 eng	爭	争	zheng1			2889
 au	僑	侨	qau2			2888
@@ -1812,58 +1812,58 @@ a	瑪	玛	ma3			2878
 o	破		puo4			2867
 i	帝		di4			2866
 au	跑		pau2			2848
-o	跑		buo2			2848
+o	跑		buo2	!		2848
 iu	芋		yu2			2840
 iu	芋		yu4			2840
 ang	壯	壮	zhuang4			2833
 ang	況	况	huang4			2832
 an	岩		yan2			2832
-eng	盟		meng4			2830
-ing	盟		ming2			2830
+eng	盟		meng4	*		2830
+ing	盟		ming2	meng2		2830
 o	洛		luo1			2829
 e	竊	窃	cie1			2826
 e	妾		cie1			2825
 e	切		cie1			2825
-i	切		ci4			2825
+i	切		ci4	*		2825
 o	莫		muo1			2825
 e	冊	册	che1			2822
 o	鞥		eo1			2812
 ang	禳		rhang2			2793
 au	陶		tau2			2793
-au	陶		yau2			2793
+au	陶		yau2	*		2793
 e	擇	择	zhe2			2792
 ung	董		dung3			2783
-ang	湯	汤	shang1			2773
+ang	湯	汤	shang1	*		2773
 ang	湯	汤	tang1			2773
-ang	湯	汤	tang4			2773
+ang	湯	汤	tang4	*		2773
 un	坤		kun1			2769
 an	扂		dian4			2758
 ing	淨	净	zing4			2754
 y	茲	兹	zy1			2753
-y	茲	兹	cy2			2753
+y	茲	兹	cy2	*		2753
 eng	孟		meng4			2749
 e	瞱		ye1			2748
 u	顧	顾	gu4			2747
 an	炎		yan2			2743
-ang	抗		hang2			2730
+ang	抗		hang2	kang2		2730
 ang	抗		kang4			2730
 ei	貝	贝	bei4			2727
 an	肝		gan1			2727
 ou	首		shou3			2727
-ou	首		shou4			2727
+ou	首		shou4	*		2727
 an	竿		gan1			2726
 an	干		gan1			2726
 an	杆		gan4			2726
 an	甘		gan1			2726
 an	柑		gan1			2725
 an	占		zhan1			2720
-an	占		zhan4			2720
+an	占		zhan4	*		2720
 ai	萊	莱	lai2			2710
-ai	萊	莱	lai4			2710
+ai	萊	莱	lai4	*		2710
 y	赤		chy1			2702
 ei	杯		bei1			2700
 au	巧		qau3			2699
-au	巧		qau4			2699
+au	巧		qau4	*		2699
 ei	盃	杯	bei1			2699
 ai	塞		sai4			2693
 e	塞		se1			2693
@@ -1873,29 +1873,29 @@ i	琪		qi2			2685
 ui	追		zhui1			2682
 u	築	筑	zhu1			2676
 eng	賸	剩	sheng4			2673
-ing	賸	剩	ying4			2673
+ing	賸		ying4			2673
 u	步		bu4			2668
 an	潘		pan1			2661
 au	討	讨	tau3			2657
 au	昭		zhau1			2654
 iu	旭		xu1			2651
 an	沾		zhan1			2648
-an	沾		tian1			2648
+an	沾		tian1	*		2648
 an	沾		dian4			2648
 an	詹		zhan1			2647
 a	怕		pa4			2646
-e	怕		pe1			2646
+e	怕		pe1	!		2646
 u	虎		hu3			2644
 e	拍		pe1			2638
 e	藉		zie4			2638
 i	藉		zi2			2638
 an	亂	乱	luan4			2633
 i	幾	几	ji1			2632
-i	幾	几	qi2			2632
+i	幾	几	qi2	*		2632
 i	幾	几	ji3			2632
-i	幾	几	ji4			2632
+i	幾	几	ji4	!		2632
 ung	蟲	虫	chung2			2631
-ung	蟲	虫	zhung4			2631
+ung	蟲	虫	zhung4	!		2631
 un	雯		wun2			2627
 a	牙		ya2			2627
 an	仟		cian1			2626
@@ -1903,39 +1903,39 @@ i	婓		fi1			2623
 i	抵		di3			2617
 o	頗	颇	puo1			2616
 o	頗	颇	puo3			2616
-o	頗	颇	puo4			2616
+o	頗	颇	puo4	!		2616
 an	鑑	鉴	jan1			2613
 an	鑑	鉴	jan4			2613
 u	盧	卢	lu2			2606
-u	租		zu1			2606
+u	租		zu1	zu3		2606
 o	錯	错	cuo1			2604
-u	錯	错	cu4			2604
+u	錯	错	cu4	*		2604
 au	靠		kau4			2601
 en	甚		shen4			2599
 an	典		dian3			2594
-i	否		bi4			2592
+i	否		bi4	*		2592
 u	否		fu3			2592
 o	拓		tuo1			2592
-y	拓		zhy1			2592
-ai	態	态	tai4			2589
+y	拓		zhy1	*		2592
+ai	態	态	tai4		tai1 ?	2589
 an	驒		dian1			2588
 an	驒		tan2			2588
 o	驒		tuo2			2588
-u	勿		wu1			2584
+u	勿		wu1	wu1 hu1*		2584
 ung	銅	铜	tung2			2582
 un	頓	顿	dun4			2573
 in	飲	饮	yin3			2571
-in	飲	饮	yin4			2571
+in	飲	饮	yin4	*		2571
 i	籍		zi2			2565
 ou	鬥	斗	dou4			2560
 an	晚		wan3			2559
 iu	域		yu1			2553
 o	呵		heo1			2547
-o	呵		heo4			2547
+o	呵		heo4	*		2547
 an	痊		ciuan1			2543
 ung	鐘	钟	zhung1			2543
 o	麼	么	muo3			2536
-o	余		cheo2			2514
+o	余		cheo2	sheo2*		2514
 iu	余		yu2			2514
 o	岳		yuo1			2508
 ou	購	购	gou4			2500
@@ -1943,28 +1943,28 @@ un	婚		hun1			2493
 ing	竟		jing4			2493
 au	操		cau1			2490
 au	操		cau4			2490
-ou	操		sou3			2490
+ou	操		sou3	*		2490
 ang	床		chuang2			2488
 an	研		yan2			2474
-an	研		yan4			2474
+an	研		yan4	*		2474
 in	琳		lin2			2473
 y	似		sy4			2466
-an	娟		yuan1			2460
+an	娟		yuan1	juan1		2460
 i	碁	棋	qi2			2459
 e	跌		die2			2456
 an	歡	欢	huan1			2455
 ung	衝	冲	chung1			2453
-ou	悠		you2			2450
+ou	悠		you2	you1 you2*		2450
 ou	侯		hou2			2447
 a	薩	萨	sa1			2446
 a	卅		sa1			2445
 i	席		si2			2436
-e	喝		ye4			2436
+e	喝		ye4	*		2436
 o	喝		heo1			2436
 au	妙		miau4			2434
 iung	勇		yung3			2426
 e	疊	叠	die2			2426
-e	蝶		tie1			2425
+e	蝶		tie1	*		2425
 e	蝶		die2			2425
 eng	芃		feng2			2422
 eng	芃		peng2			2422
@@ -1972,22 +1972,22 @@ u	午		wu3			2418
 en	審	审	shen3			2410
 ing	寧	宁	ning2			2410
 iung	兇	凶	xung1			2407
-iung	兇	凶	xung3			2407
+iung	兇	凶	xung3	*		2407
 iung	兄		xung1			2406
 ai	害		hai4			2401
 e	碟		die2			2400
 e	諜	谍	die2			2400
-an	探		tan1			2399
+an	探		tan1	*		2399
 an	探		tan4			2399
-an	摻	掺	shan1			2398
-an	摻	掺	shan3			2398
+an	摻	掺	shan1	chan1		2398
+an	摻	掺	shan3	chan3		2398
 e	借		zie4			2389
-i	借		zi1			2389
-o	池		tuo2			2387
+i	借		zi1	*		2389
+o	池		tuo2	*		2387
 y	池		chy2			2387
 iu	鈺	钰	yu1			2375
 e	勒		le1			2369
-an	漸	渐	zian1			2368
+an	漸	渐	zian1	*		2368
 an	漸	渐	zian4			2368
 ung	攻		gung1			2365
 e	絕	绝	ziue2			2356
@@ -1995,14 +1995,14 @@ o	葛		geo1			2347
 iu	鋁	铝	liu3			2345
 ung	痛		tung4			2341
 ai	唉		ai1			2340
-ai	唉		yai3			2340
-ui	銳	锐	dui4			2336
-ui	銳	锐	wui4			2336
+ai	唉		yai3	*		2340
+ui	銳	锐	dui4	*		2336
+ui	銳	锐	wui4	rui4		2336
 eng	鵬	鹏	peng2			2334
 ui	類	类	lui4			2332
 ui	淚	泪	lui4			2331
-an	珊		san1			2323
-ing	屏		bing1			2322
+an	珊		san1	shan1		2323
+ing	屏		bing1	*		2322
 ing	屏		ping2			2322
 ing	屏		bing3			2322
 ung	沖	冲	chung2			2314
@@ -2015,41 +2015,41 @@ iu	于		yu2			2291
 un	滾	滚	gun3			2287
 ung	崇		chung2			2277
 ing	丙		bing3			2275
-an	軒	轩	xan1			2272
+an	軒	轩	xan1	xuan1		2272
 a	刷		shua1			2265
-o	刷		shuo1			2265
+o	刷		shuo1	!		2265
 i	蒂		di4			2259
-eng	併	并	beng4			2258
-ing	併	并	bing3			2258
+eng	併	并	beng4	*		2258
+ing	併	并	bing3	*		2258
 ing	併	并	bing4			2258
 ei	妹		mei4			2258
-o	幕		muo1			2256
+o	幕		muo1	mu1		2256
 ui	退		tui4			2255
 an	岸		an4			2253
 ei	陪		pei2			2251
 ei	賠	赔	pei2			2250
 u	呼		hu1			2248
 i	汽		qi4			2243
-an	苑		yuan3			2242
-au	抓		zhau1			2240
-au	抓		zhau3			2240
-au	抓		zhau4			2240
+an	苑		yuan3	yuan4		2242
+au	抓		zhau1	zhua1		2240
+au	抓		zhau3	!		2240
+au	抓		zhau4	!		2240
 eng	騰	腾	teng2			2234
 u	庫	库	ku4			2232
-ui	彙	汇	wui4			2222
+ui	彙	汇	wui4	hui4		2222
 ing	迎		ying2			2219
-ing	迎		ying4			2219
+ing	迎		ying4	* 		2219
 o	昨		zuo2			2218
-i	迄		xi1			2217
+i	迄		xi1		?	2217
 ou	尤		you2			2216
 an	鹽	盐	yan2			2211
-an	鹽	盐	yan4			2211
+an	鹽	盐	yan4	*		2211
 ing	齡	龄	ling2			2207
 i	批		pi1			2207
 u	鹿		lu1			2203
 ang	狂		kuang2			2203
-ang	狂		guang4			2203
-i	媚		mi4			2200
+ang	狂		guang4	*		2203
+i	媚		mi4	mei4		2200
 y	誌	志	zhy4			2199
 a	掛	挂	gua4			2194
 an	纂		zuan3			2189
@@ -2061,37 +2061,37 @@ iung	瓊	琼	qung2			2173
 ang	茪		guang1			2173
 au	曹		cau2			2172
 en	震		zhen4			2170
-iu	疫		yu1			2169
-o	娜		nuo3			2168
-ai	怪		kuai4			2163
+iu	疫		yu1	yi1		2169
+o	娜		nuo3	na1 nuo3		2168
+ai	怪		kuai4	guai4		2163
 ung	翁		wung1			2158
 u	固		gu4			2155
 an	練	练	lian4			2151
-ei	佩		bei4			2146
+ei	佩		bei4	pei3		2146
 ing	瓶		ping2			2144
 an	殿		dian4			2141
-au	喬	乔	jau1			2141
+au	喬	乔	jau1	*		2141
 au	喬	乔	qau2			2141
 an	圈		quan1			2131
 an	圈		juan4			2131
 ai	壞	坏	huai4			2130
-ai	壞	坏	kuai4			2130
+ai	壞	坏	kuai4	*		2130
 a	紗	纱	sha1			2130
 in	臨	临	lin2			2126
-in	臨	临	lin4			2126
+in	臨	临	lin4	*		2126
 u	骨		gu1			2123
-eng	幸		heng4			2109
+eng	幸		heng4	xing4		2109
 i	堤		di1			2106
-i	堤		di3			2106
-y	堤		chy2			2106
+i	堤		di3	*		2106
+y	堤		chy2	*		2106
 un	困		kun4			2103
 a	峽	峡	xa2			2099
 a	霞		xa2			2099
 u	鼓		gu3			2097
-o	播		buo4			2096
+o	播		buo4	buo1 buo4*		2096
 in	欽	钦	qin1			2090
 y	織	织	zhy1			2089
-y	織	织	zhy4			2089
+y	織	织	zhy4	*		2089
 i	錫	锡	si1			2085
 iu	律		liu1			2085
 e	耋		die2			2085
@@ -2100,14 +2100,14 @@ au	廟	庙	miau4			2076
 in	鑫		xin1			2072
 u	祖		zu3			2068
 u	苦		ku3			2060
-u	苦		ku4			2060
+u	苦		ku4	*		2060
 o	確	确	quo1			2056
 ou	抽		chou1			2049
 an	玄		xuan2			2048
-an	艦	舰	xan4			2048
+an	艦	舰	xan4	jan4		2048
 a	辣		la1			2047
 an	爛	烂	lan4			2045
-eng	肯		keng3			2040
+eng	肯		keng3	ken3 keng3*		2040
 an	堅	坚	jan1			2033
 au	掃	扫	sau3			2030
 au	掃	扫	sau4			2030
@@ -2128,45 +2128,45 @@ ang	忙		mang2			1998
 iung	蓉		yung2			1996
 ung	終	终	zhung1			1993
 ang	榜		bang3			1988
-eng	榜		peng2			1988
-eng	榜		beng4			1988
+eng	榜		peng2	*		1988
+eng	榜		beng4	*		1988
 o	惡	恶	eo1			1987
 u	惡	恶	wu1			1987
 u	惡	恶	wu4			1987
 an	騙	骗	pian4			1985
-ang	蔣	蒋	ziang1			1980
+ang	蔣	蒋	ziang1	*		1980
 ang	蔣	蒋	ziang3			1980
-ai	鞋		xai2			1973
-a	鞋		xa2			1973
+ai	鞋		xai2	*		1973
+a	鞋		xa2	xe2		1973
 e	掘		jue2			1970
-iu	掘		ju2			1970
+iu	掘		ju2	*		1970
 ung	孔		kung3			1970
 ing	凌		ling2			1967
 au	釣	钓	diau4			1965
 au	爆		bau4			1965
-o	爆		buo1			1965
+o	爆		buo1	*		1965
 ai	塊	块	kuai4			1963
-ui	塊	块	kui4			1963
+ui	塊	块	kui4	*		1963
 a	瓦		wa3			1961
-a	瓦		wa4			1961
-o	握		yuo1			1955
+a	瓦		wa4	*		1961
+o	握		yuo1	wo1		1955
 o	臥	卧	wo4			1955
 en	針	针	zhen1			1955
-en	針	针	zhen4			1955
+en	針	针	zhen4	*		1955
 an	盼		pan4			1952
 an	判		pan4			1951
-au	槽		zau1			1948
+au	槽		zau1	*		1948
 au	槽		cau2			1948
 o	賀	贺	heo4			1947
-ung	洞		tung2			1944
+ung	洞		tung2	*		1944
 ung	洞		dung4			1944
 iu	逾		yu2			1942
 ai	鈣	钙	gai4			1941
 u	浮		fu2			1941
-a	搭		ta1			1940
+a	搭		ta1	da1		1940
 ing	萍		ping2			1940
 in	麟		lin2			1936
-an	菌		juan4			1933
+an	菌		juan4	*		1933
 iun	菌		jun4			1933
 iun	筍	笋	siun3			1932
 an	犯		fan4			1931
@@ -2175,24 +2175,24 @@ o	妥		tuo3			1931
 an	飯	饭	fan4			1931
 an	販	贩	fan4			1930
 an	泛		fan4			1930
-a	泛		fa2			1930
-an	范		fan1			1930
+a	泛		fa2	*		1930
+an	范		fan1	*		1930
 an	范		fan4			1930
-a	洽		xa2			1925
+a	洽		xa2	qa2 xa2*		1925
 au	尿		niau4			1924
 i	析		si1			1922
 ou	幼		you4			1920
-en	賑	赈	zhen3			1918
+en	賑	赈	zhen3	*		1918
 en	賑	赈	zhen4			1918
 an	犬		quan3			1917
-au	描		mau2			1914
+au	描		mau2	!		1914
 au	描		miau2			1914
 au	苗		miau2			1913
 a	麻		ma2			1913
 in	霖		lin2			1913
 eng	蒙		meng2			1912
 an	淵	渊	yuan1			1908
-eng	鋒	锋	feng1			1908
+eng	鋒	锋	feng1	feng1* feng2		1908
 ang	岡	冈	gang1			1906
 in	賓	宾	bin1			1903
 ing	陵		ling2			1903
@@ -2201,26 +2201,26 @@ in	斌		bin1			1900
 in	濱	滨	bin1			1900
 in	彬		bin1			1900
 u	露		lu4			1898
-a	蝦	虾	xa2			1897
+a	蝦	虾	xa2	xa1		1897
 an	潭		tan2			1896
-in	潭		yin3			1896
+in	潭		yin3	*		1896
 un	紋	纹	wun2			1895
 au	堡		bau3			1893
 ai	帥	帅	shuai4			1892
-u	帥	帅	shu1			1892
+u	帥	帅	shu1	!		1892
 eng	坑		keng1			1888
 y	什		shy2			1888
-iung	穎	颖	yung3			1887
+iung	穎	颖	yung3	ying3		1887
 au	桃		tau2			1882
-an	臉	脸	cian1			1879
-an	臉	脸	lan3			1879
+an	臉	脸	cian1	!		1879
+an	臉	脸	lan3	lian3		1879
 an	蠻	蛮	man2			1870
 an	瞞	瞒	man2			1869
 au	貌		mau4			1863
 i	崎		qi1			1861
 i	崎		qi2			1861
 iu	侶	侣	liu3			1860
-ai	祭		zhai4			1852
+ai	祭		zhai4	zha4* zhai4*		1852
 i	祭		zi4			1852
 ai	耐		nai4			1851
 ung	棟	栋	dung4			1840
@@ -2228,11 +2228,11 @@ an	奻		nuan2			1828
 an	奻		nuan4			1828
 ing	敬		jing4			1827
 in	琴		qin2			1825
-u	姆		mu4			1821
+u	姆		mu4	mu3		1821
 au	潮		chau2			1815
 ou	柳		liou3			1815
 ang	廊		lang2			1814
-au	邀		jau1			1813
+au	邀		jau1	*		1813
 au	邀		yau1			1813
 ang	糖		tang2			1813
 ang	堂		tang2			1812
@@ -2248,16 +2248,16 @@ au	饒	饶	rhau4			1796
 au	寮		liau2			1795
 ang	虹		jang4			1791
 ung	虹		hung2			1791
-ung	虹		gung4			1791
+ung	虹		gung4	*		1791
 un	噸	吨	dun1			1785
 au	磝		yau2			1784
 en	腎	肾	shen4			1783
 a	砂		sha1			1781
 u	烏	乌	wu1			1773
 o	跺		duo4			1768
-ing	醒		sing1			1767
+ing	醒		sing1	*		1767
 ing	醒		sing3			1767
-ing	醒		sing4			1767
+ing	醒		sing4	*		1767
 en	体		ben4			1762
 ing	蠅	蝇	ying2			1762
 ing	炳		bing3			1761
@@ -2272,7 +2272,7 @@ in	勁	劲	jin4			1737
 ing	興	兴	xing1			1734
 ing	興	兴	xing4			1734
 ing	陘	陉	xing2			1733
-a	帕		ma1			1732
+a	帕		ma1	pa2 ma1*	?	1732
 o	括		guo1			1729
 an	翰		han2			1729
 an	翰		han4			1729
@@ -2292,11 +2292,11 @@ ou	佑		you4			1703
 y	尺		chy1			1696
 i	惜		si1			1692
 o	閣	阁	geo1			1686
-an	鏈	链	chan1			1684
+an	鏈	链	chan1	*		1684
 an	鏈	链	lian2			1684
-an	厭	厌	yan3			1684
+an	厭	厌	yan3	*		1684
 an	厭	厌	yan4			1684
-e	厭	厌	ye1			1684
+e	厭	厌	ye1	*		1684
 ui	桂		gui4			1681
 ou	扣		kou3			1679
 ou	扣		kou4			1679
@@ -2313,66 +2313,66 @@ ang	廧		ciang2			1653
 en	晨		chen2			1652
 ing	憑	凭	ping2			1651
 an	番		fan1			1651
-an	番		pan1			1651
+an	番		pan1	*		1651
 an	番		fan2			1651
-o	番		buo1			1651
-o	番		buo4			1651
+o	番		buo1	*		1651
+o	番		buo4	*		1651
 u	軸	轴	zhu2			1651
 an	斑		ban1			1649
 ing	鳴	鸣	ming2			1644
 an	翻		fan1			1642
-ang	橫	横	guang1			1642
+ang	橫	横	guang1	*		1642
 ung	橫	横	hung2			1642
 ung	橫	横	hung4			1642
-eng	瞪		cheng2			1641
-eng	瞪		zheng4			1641
+eng	瞪		cheng2	*		1641
+eng	瞪		zheng4	deng4		1641
 eng	鄧	邓	deng4			1640
 ou	丑		chou3			1636
 o	桌		zhuo1			1626
 ing	菁		zing1			1623
 u	符		fu2			1619
 iung	瑩	莹	yung2			1619
-iung	瑩	莹	yung4			1619
-i	薇		mi2			1618
+iung	瑩	莹	yung4	*		1619
+i	薇		mi2	*		1618
 i	薇		vi2			1618
 an	彈	弹	tan2			1618
 an	彈	弹	dan4			1618
 e	揭		je1			1618
-e	揭		qe1			1618
-e	揭		je2			1618
-i	揭		qi4			1618
+e	揭		qe1	*		1618
+e	揭		je2	*		1618
+i	揭		qi4	*		1618
 iung	頃	顷	qung1			1616
 iung	頃	顷	qung3			1616
-au	跳		tiau2			1613
+au	跳		tiau2	tiau4		1613
 o	脫	脱	tuo1			1607
-o	脫	脱	duo2			1607
+o	脫	脱	duo2	*		1607
 o	拖		tuo1			1607
 o	拖		tuo4			1607
 o	託	托	tuo1			1606
-au	炮		pau2			1606
+au	炮		pau2	*		1606
 au	炮		pau4			1606
 o	托		tuo1			1606
 u	舒		shu1			1605
-an	棧	栈	shan4			1604
+an	棧	栈	shan4	*		1604
 an	棧	栈	zhan4			1604
-u	縮	缩	shu1			1604
+u	縮	缩	shu1	chu1		1604
 an	碳		tan4			1600
 en	塵	尘	chen2			1599
 au	浩		hau4			1591
-o	浩		geo1			1591
+o	浩		geo1	*		1591
 y	旨		zhy3			1590
 ing	馨		xing1			1587
 o	爵		ziuo1			1584
 ai	奈		nai4			1584
-o	奈		nuo4			1584
-a	吾		ya2			1583
+o	奈		nuo4	*		1584
+a	吾		ya2	*		1583
 u	吾		wu2			1583
 ai	債	债	zhai4			1579
-e	債	债	zhe1			1579
+e	債	债	zhe1	*		1579
 eng	贈	赠	zeng4			1577
 ang	框		kuang1			1577
 u	巿		fu1			1576
-iung	詠	咏	yung4			1575
+iung	詠	咏	yung4	yung3	?	1575
 e	杰		je2			1575
 o	卓		zhuo1			1573
 ou	厚		hou4			1571
@@ -2382,7 +2382,7 @@ u	儲	储	chu2			1563
 an	冠		guan1			1560
 an	冠		guan4			1560
 ou	透		tou4			1559
-u	透		shu1			1559
+u	透		shu1	*		1559
 in	晉	晋	zin4			1557
 u	乎		hu2			1555
 an	添		tian1			1554
@@ -2392,51 +2392,51 @@ ui	遂		sui4			1546
 ang	狼		lang2			1544
 un	魂		hun2			1544
 a	莎		sha1			1543
-o	莎		suo1			1543
+o	莎		suo1	*		1543
 iun	鈞	钧	jun1			1541
 au	澳		au4			1540
-iu	澳		yu1			1540
+iu	澳		yu1	*		1540
 ai	敗	败	bai4			1538
 a	賈	贾	ja3			1537
-a	賈	贾	ja4			1537
-u	賈	贾	gu3			1537
-ang	憧		zhuang4			1537
+a	賈	贾	ja4	*		1537
+u	賈	贾	gu3	*		1537
+ang	憧		zhuang4	*		1537
 ung	憧		chung1			1537
 an	禪	禅	chan2			1537
 an	禪	禅	shan4			1537
 au	姚		yau2			1530
 au	鵁		jau1			1529
-iun	竣		ciun1			1529
+iun	竣		ciun1	ziun4 ciun1*		1529
 en	盆		pen2			1524
 iu	趨	趋	ciu1			1522
-i	鼻		bi4			1521
-au	艘		sau1			1520
-au	艘		siau1			1520
-u	媽	妈	mu3			1520
+i	鼻		bi4	bi2		1521
+au	艘		sau1	sou1		1520
+au	艘		siau1	!		1520
+u	媽	妈	mu3	ma1 mu3*		1520
 au	騷	骚	sau1			1519
 ai	概		gai4			1518
-ou	仇		qou2			1516
-au	泡		pau1			1515
-au	泡		pau2			1515
+ou	仇		qou2	chou2 qou2*		1516
+au	泡		pau1	*		1515
+au	泡		pau2	pau4	?	1515
 i	憶	忆	yi1			1514
-an	潛	潜	cian2			1511
-an	潛	潜	zian4			1511
-u	注		zhu4			1510
-ang	崗	岗	gang1			1507
+an	潛	潜	cian2	cian3		1511
+an	潛	潜	zian4	*		1511
+u	注		zhu4	zhu4 zhu3		1510
+ang	崗	岗	gang1	gang1 gang3		1507
 y	肆		sy4			1504
 an	援		yuan2			1503
-an	援		yuan4			1503
+an	援		yuan4	*		1503
 an	畋		tian2			1503
 an	畋		dian4			1503
-y	賜	赐	sy4			1501
+y	賜	赐	sy4	cy4		1501
 iun	芸		yun2			1498
 ui	瑋	玮	wui3			1496
-ung	綜	综	zung4			1486
+ung	綜	综	zung4	zung1 zung4*	?	1486
 u	惚		hu1			1486
 i	埤		pi2			1482
 o	荷		heo2			1480
 o	荷		heo4			1480
-ang	炕		hang1			1477
+ang	炕		hang1	*		1477
 ang	炕		kang4			1477
 ou	豆		dou4			1477
 ou	候		hou4			1476
@@ -2451,43 +2451,43 @@ an	楠		nan2			1465
 eng	逢		feng2			1464
 iu	鮈		ju1			1463
 a	爸		ba4			1459
-o	爸		buo4			1459
+o	爸		buo4	!		1459
 y	嗣		sy4			1456
 a	霸		ba4			1450
 ui	葦	苇	wui3			1447
 u	爐	炉	lu2			1443
-an	淡		tan2			1441
+an	淡		tan2	*		1441
 an	淡		dan4			1441
-an	淡		yan3			1441
+an	淡		yan3	*		1441
 ui	嶲		sui3			1440
 ang	紡	纺	fang3			1432
 i	泣		qi1			1431
 o	鶴	鹤	heo2			1430
-i	幅		bi1			1430
+i	幅		bi1	*		1430
 u	幅		fu1			1430
 i	壁		bi1			1429
 eng	朋		peng2			1427
-un	屯		zhun1			1426
+un	屯		zhun1	*		1426
 un	屯		tun2			1426
 iun	勳	勋	xun1			1425
-un	昆		gun1			1423
+un	昆		gun1	kun1		1423
 u	渡		du4			1420
 an	棉		mian2			1419
 ui	謂	谓	wui4			1419
 iu	羽		yu3			1417
-iu	羽		yu4			1417
+iu	羽		yu4	*		1417
 y	獅	狮	shy1			1413
 e	滅	灭	mie1			1411
-au	搜		shau3			1410
-ou	搜		shou1			1410
-iu	距		ju4			1410
+au	搜		shau3	*		1410
+ou	搜		shou1	sou1	?	1410
+iu	距		ju4	ju3		1410
 au	憿		jau1			1409
 un	混		hun4			1409
-a	楔		ja1			1408
+a	楔		ja1	*		1408
 e	楔		sie1			1408
 ing	嶺	岭	ling3			1407
 o	坡		puo1			1406
-e	涉		die1			1400
+e	涉		die1	*		1400
 o	涉		sheo2			1400
 au	雕		diau1			1400
 au	叼		diau1			1399
@@ -2497,22 +2497,22 @@ au	繞	绕	rhau3			1395
 au	繞	绕	rhau4			1395
 au	遙	遥	yau2			1394
 e	摘		zhe1			1394
-i	摘		ti1			1394
+i	摘		ti1	*		1394
 u	奴		nu2			1392
-ang	浪		lang2			1391
+ang	浪		lang2	*		1391
 ang	浪		lang4			1391
 e	帖		tie1			1390
-ui	睿		wui4			1390
+ui	睿		wui4	rui4		1390
 e	宅		zhe2			1389
 ou	祐	佑	you4			1388
 ui	畏		wui4			1385
 ing	靖		zing4			1384
 ui	陲		chui2			1383
-eng	霧	雾	meng2			1379
+eng	霧	雾	meng2	*		1379
 u	霧	雾	wu4			1379
 iu	炬		ju4			1375
 ou	溝	沟	gou1			1372
-ou	誘	诱	you3			1372
+ou	誘	诱	you3	you4	?	1372
 u	儒		rhu2			1371
 ang	煌		huang2			1369
 en	辰		chen2			1369
@@ -2524,71 +2524,71 @@ y	疵		cy2			1357
 ui	嘴		zui3			1356
 u	估		gu3			1350
 au	暴		bau4			1346
-u	暴		bu2			1346
-au	搞		jau3			1339
+u	暴		bu2	*		1346
+au	搞		jau3	gau3 jau3*		1339
 au	稿		gau3			1338
 ang	倉	仓	cang1			1337
 i	匹		pi1			1335
 o	餓	饿	eo4			1333
-u	粗		zu4			1330
+u	粗		zu4	cu1		1330
 u	孤		gu1			1328
 i	冪	幂	mi1			1325
-an	淺	浅	zian1			1324
+an	淺	浅	zian1	*		1324
 an	淺	浅	cian3			1324
-a	察		chua1			1323
-an	婉		yuan3			1316
+a	察		chua1	cha2		1323
+an	婉		yuan3	wan3		1316
 y	陑		el2			1313
 in	津		zin1			1313
 ang	桑		sang1			1313
 i	肥		fi2			1311
 a	挖		wa1			1308
 ai	齋	斋	zhai1			1308
-an	芄		huan2			1304
-u	懋		mu4			1303
-iung	恐		qung3			1301
-iung	恐		qung4			1301
+an	芄		huan2	wan2	?	1304
+u	懋		mu4		?	1303
+iung	恐		qung3	kung3		1301
+iung	恐		qung4	kung4*		1301
 a	髮	发	fa1			1301
-e	薛		sie1			1301
-o	殼	壳	quo1			1300
+e	薛		sie1	siue1		1301
+o	殼	壳	quo1	quo1 keo1		1300
 an	偏		pian1			1298
-an	偏		pian4			1298
+an	偏		pian4	*		1298
 au	烤		kau3			1296
 o	厝		cuo1			1295
 u	厝		cu4			1295
 ang	湘		siang1			1295
 ing	競	竞	jing4			1294
 e	珀		pe1			1294
-iu	役		yu1			1292
+iu	役		yu1	yi1		1292
 e	革		ge1			1291
 o	駝	驼	tuo2			1289
 an	腕		wan4			1288
 i	姬		ji1			1286
-i	姬		yi2			1286
+i	姬		yi2	*		1286
 ang	朗		lang3			1286
 iu	籲	吁	yu4			1285
 u	撲	扑	pu1			1285
 an	菴	庵	an1			1282
-an	菴	庵	yan1			1282
+an	菴	庵	yan1	*		1282
 o	霍		huo1			1280
 ung	聰	聪	cung1			1280
 iu	鉅	巨	ju4			1274
-i	蛇		yi2			1272
-o	蛇		cheo2			1272
-o	蛇		tuo1			1272
+i	蛇		yi2	*		1272
+o	蛇		cheo2	sheo2		1272
+o	蛇		tuo1	*		1272
 an	串		chuan4			1272
-an	串		guan4			1272
+an	串		guan4	*		1272
 iun	駿	骏	ziun4			1271
-ing	鯨	鲸	qing2			1269
+ing	鯨	鲸	qing2	jing1		1269
 e	仄		zhe1			1268
 iun	薰		xun1			1265
-iun	薰		xun4			1265
+iun	薰		xun4	*		1265
 ing	郱		ping2			1265
 e	烈		lie1			1265
 eng	楞		leng2			1264
 i	禧		xi1			1261
-e	墨		me1			1259
+e	墨		me1	mei1		1259
 ui	蔚		wui4			1259
-iu	蔚		yu1			1259
+iu	蔚		yu1	*		1259
 iu	虛	虚	xu1			1255
 e	截		zie2			1253
 e	隔		ge1			1251
@@ -2597,12 +2597,12 @@ e	契		qe1			1245
 i	契		qi1			1245
 i	契		qi4			1245
 an	漫		man4			1243
-au	挑		tau1			1243
+au	挑		tau1	*		1243
 au	挑		tiau1			1243
-au	挑		diau4			1243
+au	挑		diau4	*		1243
 au	挑		tiau3			1243
 eng	馮	冯	feng2			1243
-ing	馮	冯	ping2			1243
+ing	馮	冯	ping2	*		1243
 an	釩	钒	fan3			1243
 i	翼		yi1			1242
 an	狟		huan2			1237
@@ -2628,31 +2628,31 @@ an	阮		yuan2			1200
 an	阮		yuan3			1200
 i	祕	秘	bi4			1197
 u	茹		rhu2			1197
-u	茹		rhu3			1197
-u	茹		rhu4			1197
-ai	駭	骇	xai4			1196
+u	茹		rhu3	*		1197
+u	茹		rhu4	*		1197
+ai	駭	骇	xai4	hai4		1196
 u	巫		wu2			1195
 i	肺		fi4			1195
 i	膩	腻	ni4			1194
 i	逆		yi1			1193
-e	匿		te1			1193
+e	匿		te1	*		1193
 i	匿		ni1			1193
 ui	吹		chui1			1192
-ui	吹		chui4			1192
+ui	吹		chui4	*		1192
 eng	珩		heng2			1191
 o	徹	彻	cheo1			1191
-o	徹	彻	zheo2			1191
+o	徹	彻	zheo2	*		1191
 en	眕		zhen3			1190
 ing	餅	饼	bing3			1187
 iun	韻	韵	yun4			1186
 eng	衡		heng2			1184
 en	噴	喷	pen1			1184
-en	噴	喷	pen4			1184
+en	噴	喷	pen4	*		1184
 an	拳		quan2			1183
 o	佐		zuo4			1183
 iun	淪	沦	liun2			1183
 an	患		huan4			1181
-i	眉		mi2			1181
+i	眉		mi2	mei2		1181
 an	殘	残	can2			1179
 ing	逕	迳	jing4			1179
 y	齒	齿	chy3			1178
@@ -2669,73 +2669,73 @@ ou	嘔	呕	ou3			1169
 i	誼	谊	yi4			1168
 iu	敘	叙	siu4			1168
 e	邪		sie2			1167
-e	邪		ye2			1167
+e	邪		ye2	*		1167
 en	坋		fen4			1166
-ai	貸	贷	tai4			1164
+ai	貸	贷	tai4	dai4		1164
 au	耗		hau4			1161
 an	寰		huan2			1161
-an	寰		xuan4			1161
+an	寰		xuan4	*		1161
 ai	戒		jai4			1161
 au	窖		jau4			1158
 ang	絳	绛	jang4			1156
-u	觸	触	chu1			1156
-i	悲		bi1			1155
+u	觸	触	chu1	zhu1 chu1*		1156
+i	悲		bi1	bei1		1155
 ou	臭		xou4			1151
 ou	臭		chou4			1151
 i	肌		ji1			1151
 au	堯	尧	yau2			1150
 iu	驉		xu1			1149
 i	蜊		li2			1149
-o	雀		ziuo1			1145
+o	雀		ziuo1	ciuo1 ziuo1*		1145
 in	隱	隐	yin3			1144
-in	隱	隐	yin4			1144
+in	隱	隐	yin4	*		1144
 i	憩		qi4			1142
 o	簿		buo2			1140
 u	簿		bu4			1140
 a	撒		sa1			1140
-iun	尹		yun3			1139
+iun	尹		yun3	yin3		1139
 an	伴		ban4			1138
 ou	猴		hou2			1137
-un	損	损	sun3			1137
+un	損	损	sun3	siun3		1137
 au	狡		jau3			1135
 u	熟		shu2			1133
 u	謖	谡	shu1			1131
-ou	趣		cou3			1128
+ou	趣		cou3	*		1128
 iu	趣		ciu4			1128
 ui	暉	晖	hui1			1126
 an	幻		huan4			1126
 u	哭		ku1			1124
-au	抱		bau4			1123
+au	抱		bau4	bau4 bu4*		1123
 o	螺		luo2			1123
 an	杉		shan1			1123
 ui	韋	韦	wui2			1122
 o	禾		huo2			1119
 au	吵		chau3			1119
-au	吵		miau3			1119
+au	吵		miau3	*		1119
 au	炒		chau3			1118
 iu	昱		yu1			1116
 an	詮	诠	ciuan1			1116
 o	奪	夺	duo2			1115
 ui	隋		sui2			1114
-o	隋		tuo3			1114
+o	隋		tuo3	*		1114
 ui	蕾		lui3			1111
-u	突		du2			1110
+u	突		du2	tu2		1110
 u	佈	布	bu4			1108
 ou	銹	锈	siou4			1105
 ai	呆		dai1			1105
 ai	呆		ai2			1105
 u	荂		fu1			1102
 iu	荂		xu1			1102
-e	椰		ye2			1101
+e	椰		ye2	ye1		1101
 i	棲	栖	si1			1100
 u	薯		shu4			1099
 an	嫌		xan2			1099
-ang	亨		xang3			1095
+ang	亨		xang3	*		1095
 eng	亨		heng1			1095
-ing	亨		ping1			1095
+ing	亨		ping1	*		1095
 in	吟		yin2			1094
-in	吟		yin4			1094
-u	扶		fu1			1092
+in	吟		yin4	*		1094
+u	扶		fu1	*		1092
 u	扶		fu2			1092
 iung	瑽		ciung1			1090
 en	恨		hen4			1090
@@ -2746,18 +2746,18 @@ ou	丘		qou1			1085
 iun	臐		xun1			1081
 iun	臐		xun4			1081
 a	滑		hua2			1080
-u	滑		gu1			1080
-u	滑		hu2			1080
+u	滑		gu1	*		1080
+u	滑		hu2	*		1080
 u	嗚	呜	wu1			1079
 ou	偷		tou1			1078
 an	芊		cian1			1077
 an	芊		cian4			1077
-i	刺		ci1			1075
+i	刺		ci1	*		1075
 y	刺		cy4			1075
 an	遍		bian4			1074
 an	返		fan3			1073
 iun	巡		siun2			1072
-a	罵	骂	ma3			1071
+a	罵	骂	ma3	*		1071
 a	罵	骂	ma4			1071
 ang	艟		zhuang4			1071
 ung	艟		chung1			1071
@@ -2775,38 +2775,38 @@ o	梭		suo1			1054
 ou	揉		rhou2			1053
 ou	柔		rhou2			1052
 ui	閨	闺	gui1			1051
-in	迅		sin4			1049
+in	迅		sin4	*		1049
 iun	迅		siun4			1049
 i	奕		yi1			1048
 an	萱		xuan1			1048
-eng	拼		beng1			1047
-ing	拼		ping1			1047
-i	彼		bi3			1044
+eng	拼		beng1	*		1047
+ing	拼		ping1	pin1 ping1*		1047
+i	彼		bi3	bei1		1044
 ui	奎		kui1			1044
 i	勵	励	li4			1042
 iung	擁	拥	yung3			1041
 in	玟		min2			1041
 ai	柴		chai2			1038
 ui	腿		tui3			1038
-eng	盲		meng2			1038
+eng	盲		meng2	mang2		1038
 y	仕		shy4			1036
 ui	廥		kui4			1036
 a	樺	桦	hua2			1036
 a	樺	桦	hua4			1036
 ai	栽		zai1			1035
-ai	栽		zai4			1035
-an	嘆	叹	tan1			1035
+ai	栽		zai4	*		1035
+an	嘆	叹	tan1	*		1035
 an	嘆	叹	tan4			1035
 ui	皈		gui1			1035
 ai	哉		zai1			1034
 ai	災	灾	zai1			1034
 en	臣		chen2			1034
 u	卜		bu1			1032
-eng	偵	侦	cheng1			1030
-eng	偵	侦	cheng4			1030
-eng	偵	侦	zheng4			1030
+eng	偵	侦	cheng1	zheng1		1030
+eng	偵	侦	cheng4	!		1030
+eng	偵	侦	zheng4	!		1030
 ui	迴	回	hui2			1028
-ui	迴	回	hui4			1028
+ui	迴	回	hui4	*		1028
 ung	种		chung2			1025
 an	銓	铨	ciuan1			1025
 iu	毓		yu1			1024
@@ -2814,7 +2814,7 @@ ing	摒		bing4			1023
 e	脈	脉	me1			1022
 e	赫		he1			1021
 a	鴨	鸭	ya1			1021
-e	嘿		he1			1021
+e	嘿		he1	he1 hei1		1021
 an	炫		xuan4			1020
 an	謙	谦	qan1			1019
 au	窯	窑	yau2			1018
@@ -2826,21 +2826,21 @@ u	誤	误	wu4			1011
 ui	憝		dui4			1010
 ou	鵂	鸺	xou1			1009
 an	箭		zian4			1007
-en	狠		hen4			1005
+en	狠		hen4	hen3		1005
 a	爬		pa2			1004
 ui	蕙		hui4			1003
 an	煩	烦	fan2			1003
 e	拆		che1			1002
 eng	凳		deng4			1000
-eng	蹬		deng4			1000
+eng	蹬		deng4	deng1 deng4*		1000
 au	掏		tau1			1000
-au	掏		tau2			1000
+au	掏		tau2	*		1000
 iu	浴		yu1			999
 an	燦	灿	can4			999
 o	鍋	锅	guo1			998
 i	戚		ci1			997
 au	絞	绞	jau3			996
-an	鉛	铅	yuan2			996
+an	鉛	铅	yuan2	qan1 yuan2*		996
 an	緩	缓	huan4			994
 ung	桐		tung2			993
 ai	擺	摆	bai3			993
@@ -2856,26 +2856,26 @@ iun	循		siun2			984
 an	捐		yuan2			983
 ou	鈕	钮	niou3			982
 an	薦	荐	zian4			980
-o	玻		puo1			978
+o	玻		puo1	buo1		978
 ing	悻		xing4			978
 e	幯		zie1			978
 iu	袪	祛	qu1			973
-au	濤	涛	tau2			972
+au	濤	涛	tau2	tau1		972
 eng	聖	圣	sheng4			970
 iung	炯		jung3			967
-iung	炯		xung4			967
+iung	炯		xung4	*		967
 ou	漏		lou4			964
 an	炭		tan4			964
 ou	瘤		liou2			963
-ou	瘤		liou4			963
+ou	瘤		liou4	*		963
 i	笛		di2			963
 u	慕		mu4			963
 ang	胖		pang4			960
-ou	漱		shou4			960
+ou	漱		shou4	shu4		960
 ou	漱		sou4			960
 e	瑟		she1			958
 ui	穗		sui4			957
-un	潤	润	rhun4			957
+un	潤	润	rhun4	yun4 rhun4		957
 i	踢		ti1			956
 an	壇	坛	tan2			955
 ui	毀	毁	hui3			952
@@ -2884,49 +2884,49 @@ eng	猛		meng3			951
 ai	胎		tai1			950
 an	眠		mian2			948
 u	逐		zhu2			947
-iung	弓		jung1			947
+iung	弓		jung1	gung1		947
 ing	菱		ling2			945
 ou	遘		gou4			944
 an	參	参	can1			944
 an	參	参	san1			944
-an	參	参	can4			944
-en	參	参	chen1			944
+an	參	参	can4	*		944
+en	參	参	chen1	*		944
 en	參	参	shen1			944
 i	熙		xi1			944
-eng	鶯	莺	eng1			944
+eng	鶯	莺	eng1	ying1		944
 y	滋		zy1			943
 ui	夔		kui2			939
-ei	珮	佩	bei4			939
+ei	珮	佩	bei4	pei3		939
 in	薪		sin1			937
 ou	愁		chou2			936
 a	瓜		gua1			935
 u	埠		bu4			934
-un	諢	诨	wun4			934
-ung	桶		dung4			933
+un	諢	诨	wun4	hun4		934
+ung	桶		dung4	*		933
 ung	桶		tung3			933
 in	謹	谨	jin3			932
 an	袁		yuan2			931
 ing	徑	径	jing4			929
 an	菸		yan1			928
-iu	菸		yu4			928
-ou	蒐	搜	shou1			924
+iu	菸		yu4	*		928
+ou	蒐	搜	shou1	sou1		924
 u	捕		bu4			923
 an	墊	垫	dian4			922
-e	墊	垫	die2			922
+e	墊	垫	die2	*		922
 ai	咳		hai2			921
 e	咳		ke1			921
-en	儿		rhen2			920
+en	儿		rhen2	*		920
 u	祿	禄	lu1			919
 an	鑽	钻	zuan4			918
 ou	珛		xou4			918
-ang	擴	扩	huang4			915
-i	蛾		yi3			914
+ang	擴	扩	huang4	kuo1 huang4*		915
+i	蛾		yi3	*		914
 o	蛾		eo2			914
-iung	縱	纵	ziung1			913
+iung	縱	纵	ziung1	*		913
 iung	縱	纵	ziung4			913
 o	躲		duo3			913
 an	遣		qan3			913
-an	遣		qan4			913
+an	遣		qan4	*		913
 o	朵		duo3			912
 i	謎	谜	mi4			912
 an	剪		zian3			911
@@ -2934,35 +2934,35 @@ a	皻		zha1			910
 ou	籌	筹	chou2			905
 ang	擋	挡	dang3			904
 ang	擋	挡	dang4			904
-iung	恭		jung1			903
+iung	恭		jung1	gung1		903
 an	爰		yuan2			903
 au	傲		au4			901
 ang	忘		wang4			901
 an	痰		tan2			901
 iung	溶		yung2			901
-iung	溶		yung3			901
+iung	溶		yung3	*		901
 ou	鄒	邹	zhou1			898
 an	旦		dan4			898
 ang	凰		huang2			897
 ou	瀏	浏	liou2			896
-ou	瀏	浏	liou3			896
+ou	瀏	浏	liou3	*		896
 u	賦	赋	fu4			896
 eng	蜂		feng1			894
-eng	蜂		peng2			894
+eng	蜂		peng2	feng2		894
 an	繁		fan2			893
-an	繁		pan2			893
-o	繁		puo2			893
+an	繁		pan2	*		893
+o	繁		puo2	*		893
 an	殷		yan1			892
 in	殷		yin1			892
 en	臻		zhen1			892
 ui	揆		gui4			891
 ei	培		pei2			890
-u	培		bu4			890
+u	培		bu4	*		890
 eng	証	证	zheng4			890
 y	馳	驰	chy2			889
 ang	悵	怅	chang4			888
-en	恁		rhen2			886
-en	恁		rhen3			886
+en	恁		rhen2	!		886
+en	恁		rhen3	nen4 rhen3*		886
 ang	妝	妆	zhuang1			884
 au	恅		lau3			882
 ou	勾		gou1			880
@@ -2971,18 +2971,18 @@ u	芙		fu2			878
 ui	崔		cui1			878
 ui	崔		cui2			878
 in	閩	闽	min2			877
-un	閩	闽	wun2			877
+un	閩	闽	wun2	*		877
 iu	怴		xu1			875
-a	蝸	蜗	gua1			875
-o	蝸	蜗	guo1			875
+a	蝸	蜗	gua1	!		875
+o	蝸	蜗	guo1	wo1		875
 i	隙		qi1			874
 an	卞		bian4			874
 e	迮		zhe1			873
 o	迮		zuo1			873
 e	斜		sie2			872
-e	斜		ye2			872
+e	斜		ye2	*		872
 ui	垂		chui2			872
-an	撰		shuan4			872
+an	撰		shuan4	zhuan4		872
 an	輓	挽	wan3			869
 an	輓	挽	wan4			869
 e	虴		zhe1			867
@@ -2997,19 +2997,19 @@ ou	舅		jou4			858
 ing	孕		ying4			857
 ou	奏		zou4			855
 u	煮		zhu3			854
-an	燃		rhan2			853
-ou	畜		chou4			853
+an	燃		rhan2	rhan3		853
+ou	畜		chou4	*		853
 u	畜		chu1			853
 iu	畜		xu1			853
 eng	晟		sheng4			852
 iu	与		yu3			852
 i	狄		di2			851
 iu	俱		ju1			849
-ou	謀	谋	miou2			848
+ou	謀	谋	miou2	mu2		848
 i	屁		pi4			846
 i	彌	弥	mi2			844
 an	閃	闪	shan3			844
-an	閃	闪	shan4			844
+an	閃	闪	shan4	*		844
 ou	琇		siou4			842
 ou	琇		you3			842
 u	浦		pu3			842
@@ -3017,26 +3017,26 @@ in	侵		cin1			840
 an	肩		jan1			838
 iu	磲		qu2			838
 a	拔		ba2			838
-a	拔		fa2			838
-o	拔		buo2			838
+a	拔		fa2	*		838
+o	拔		buo2	*		838
 u	膆	嗉	su4			836
 an	譚	谭	tan2			833
-an	譚	谭	dan4			833
+an	譚	谭	dan4	*		833
 ui	醉		zui4			833
 i	蹄		ti2			832
 ang	缸		gang1			830
-ang	缸		xang2			830
+ang	缸		xang2	*		830
 ui	隳		hui1			829
-u	怒		nu3			828
+u	怒		nu3	!		828
 u	怒		nu4			828
 ou	猶	犹	you2			828
-ou	猶	犹	jou4			828
-ou	猶	犹	you4			828
+ou	猶	犹	jou4	*		828
+ou	猶	犹	you4	*		828
 eng	庄		peng2			827
 iun	郡		jun4			827
 u	孚		fu1			826
 u	阻		zhu3			826
-u	阻		zhu4			826
+u	阻		zhu4	*		826
 a	卦		gua4			825
 an	眷		juan4			825
 iu	虞		yu2			825
@@ -3048,11 +3048,11 @@ e	穴		xue2			822
 i	衪		yi2			822
 i	衪		yi3			822
 ui	徽		hui1			822
-an	貫	贯	guan1			819
+an	貫	贯	guan1	*		819
 an	貫	贯	guan4			819
 i	拸		yi2			817
 an	帆		fan2			816
-an	帆		fan4			816
+an	帆		fan4	*		816
 iu	緒	绪	siu4			814
 an	勉		mian3			812
 i	忌		ji4			812
@@ -3061,8 +3061,8 @@ ang	隍		huang2			807
 i	襲	袭	si2			806
 i	懿		yi4			805
 ing	瑛		ying1			804
-ing	頸	颈	jing1			804
-ing	頸	颈	qing2			804
+ing	頸	颈	jing1	*		804
+ing	頸	颈	qing2	*		804
 ing	頸	颈	jing3			804
 en	忍		rhen3			803
 an	扇		shan1			802
@@ -3074,7 +3074,7 @@ ui	堆		dui1			798
 iu	譽	誉	yu2			798
 iu	譽	誉	yu4			798
 ing	挺		ting2			797
-ing	挺		ding4			797
+ing	挺		ding4	*		797
 a	岈		xa1			796
 ang	醬	酱	ziang4			796
 e	侐		xue1			796
@@ -3093,25 +3093,25 @@ ai	黛		dai4			788
 ou	溜		liou4			787
 an	鶠		yan3			787
 ai	裁		cai2			786
-ai	裁		zai4			786
+ai	裁		zai4	*		786
 eng	覂		feng3			784
 an	彎	弯	wan1			784
-ai	罷	罢	bai3			784
-i	罷	罢	pi2			784
-i	罷	罢	pi4			784
+ai	罷	罢	bai3	ba4		784
+i	罷	罢	pi2	*		784
+i	罷	罢	pi4	*		784
 i	梯		ti1			783
 an	闡	阐	chan3			782
-y	殖		shy2			781
+y	殖		shy2	zhy2		781
 ei	煤		mei2			781
-in	听		yin3			780
+in	听		yin3	*		780
 iung	凶		xung1			779
 an	玷		dian3			778
 u	滬	沪	hu4			776
 ou	疣		you2			776
-e	默		me1			776
-iung	頌	颂	yung2			774
+e	默		me1	mei1 me1*		776
+iung	頌	颂	yung2	*		774
 iung	頌	颂	siung4			774
-u	娛	娱	wu4			774
+u	娛	娱	wu4	*		774
 iu	娛	娱	yu2			774
 ai	篩	筛	shai1			773
 y	篩	筛	shy1			773
@@ -3120,12 +3120,12 @@ u	鷺	鹭	lu4			773
 a	珨		xa2			773
 ai	孩		hai2			772
 iung	隴	陇	liung3			771
-iu	屈		ju1			770
+iu	屈		ju1	*		770
 iu	屈		qu1			770
 au	筱		siau3			769
 eng	耕		geng1			769
 in	筋		jin1			768
-au	激		jau4			768
+au	激		jau4	*		768
 i	激		ji1			768
 ang	蒼	苍	cang1			765
 ang	蒼	苍	cang3			765
@@ -3137,22 +3137,22 @@ iu	鋊		yu1			761
 i	蚚		qi2			760
 ui	蚚		hui4			760
 an	膽	胆	dan3			759
-a	娃		ya1			759
+a	娃		ya1	wa2		759
 u	忽		hu1			759
-ui	虫		hui3			758
+ui	虫		hui3	*		758
 an	旋		siuan2			757
 an	旋		siuan4			757
 i	跡	迹	zi1			754
 u	汝		rhu3			753
 eng	宬		cheng2			753
 au	飄	飘	piau1			752
-au	飄	飘	piau2			752
+au	飄	飘	piau2	*		752
 ang	傖	伧	cang1			752
 eng	傖	伧	cheng2			752
 ang	璋		zhang1			751
 ung	哄		hung4			751
-au	謅	诌	chau3			750
-ou	謅	诌	chou1			750
+au	謅	诌	chau3	*		750
+ou	謅	诌	chou1	zhou1		750
 an	藩		fan1			750
 an	藩		fan2			750
 an	磚	砖	zhuan1			750
@@ -3162,7 +3162,7 @@ a	匣		xa2			746
 i	敵	敌	di2			745
 e	荎		die2			745
 y	荎		chy2			745
-iu	嶼	屿	siu4			745
+iu	嶼	屿	siu4	yu3		745
 u	蜀		shu2			744
 an	廉		lian2			743
 u	臚	胪	lu2			742
@@ -3178,13 +3178,13 @@ ui	眭		hui2			740
 i	幦		mi1			738
 ui	鈉	钠	rhui4			737
 u	牯		gu3			737
-o	躍	跃	yuo1			737
+o	躍	跃	yuo1	yau4 yuo1*		737
 e	极		je2			736
 i	斐		fi3			736
 u	疏		shu1			735
 u	疏		shu4			735
 i	飢	饥	ji1			734
-an	辨		ban4			734
+an	辨		ban4	*		734
 an	辨		bian4			734
 en	妊		rhen4			733
 an	梒		han2			733
@@ -3210,12 +3210,12 @@ au	禱	祷	dau4			722
 an	掩		yan3			721
 au	茠		hau1			720
 au	翹	翘	qau2			720
-au	翹	翘	jau4			720
+au	翹	翘	jau4	qau4		720
 i	机		ji1			720
 i	机		ji3			720
-an	弦		xan2			719
+an	弦		xan2	xuan2 xan2*		719
 an	媛		yuan2			718
-an	媛		yuan4			718
+an	媛		yuan4	*		718
 ui	慰		wui4			718
 e	捏		nie1			716
 en	慎		shen4			716
@@ -3223,7 +3223,7 @@ i	迡		ni4			716
 ou	幽		you1			715
 o	抹		muo1			714
 ing	伶		ling2			713
-ai	轄	辖	kai4			713
+ai	轄	辖	kai4	*		713
 a	轄	辖	xa2			713
 u	姑		gu1			712
 ang	謗	谤	bang4			712
@@ -3238,41 +3238,41 @@ eng	秤		cheng4			702
 a	渣		zha1			701
 an	欠		qan4			700
 y	恀		chy3			699
-y	恀		shy4			699
-y	恀		zhy3			699
+y	恀		shy4	*		699
+y	恀		zhy3	*		699
 au	胞		bau1			699
 au	胞		pau1			699
 au	曜		yau4			699
 an	羶	膻	shan1			699
 an	頒	颁	ban1			699
-en	頒	颁	fen2			699
+en	頒	颁	fen2	*		699
 u	穆		mu1			699
-an	趁		nian3			699
-en	趁		chen2			699
+an	趁		nian3	*		699
+en	趁		chen2	*		699
 en	趁		chen4			699
 o	俄		eo2			698
 iu	隅		yu2			697
 ang	諒	谅	liang4			695
 an	嶮		xan3			694
 an	嶮		yan3			694
-a	傻		shua3			693
-a	傻		shua4			693
+a	傻		shua3	sha3		693
+a	傻		shua4	!		693
 an	倩		cian4			692
-ing	倩		cing4			692
+ing	倩		cing4	*		692
 ou	笱		gou3			692
 o	摸		muo1			692
-u	摸		mu2			692
+u	摸		mu2	*		692
 eng	丰		feng1			691
 ui	癸		gui3			691
 a	丫		ya1			691
-a	押		ja1			690
+a	押		ja1	*		690
 a	押		ya1			690
 ui	虧	亏	kui1			690
 ui	炊		chui1			690
 au	炤	照	zhau4			689
-ai	衩		chai4			689
-a	衩		cha4			689
-eng	捧		feng3			688
+ai	衩		chai4	*		689
+a	衩		cha4	cha3		689
+eng	捧		feng3	peng3		688
 ang	惘		wang3			688
 a	葭		ja1			688
 o	陀		tuo2			688
@@ -3283,10 +3283,10 @@ en	紛	纷	fen1			686
 ui	磊		lui3			685
 an	甄		jan1			685
 en	甄		zhen1			685
-ung	筒		tung2			684
-ung	筒		dung4			684
+ung	筒		tung2	tung3		684
+ung	筒		dung4	*		684
 eng	澎		peng2			684
-ing	澎		ping1			684
+ing	澎		ping1	*		684
 ang	樁	桩	zhuang1			683
 iu	肅	肃	siu1			682
 ai	岱		dai4			682
@@ -3303,32 +3303,32 @@ iu	慮	虑	liu4			675
 an	慘	惨	can3			674
 y	汁		zhy1			674
 i	梨		li2			672
-an	鹼	硷	cian1			672
+an	鹼	硷	cian1	*		672
 an	鹼	硷	jan3			672
 i	洩	泄	yi4			672
 o	酌		zhuo1			672
 au	鬧	闹	nau4			668
-ung	凍	冻	dung1			668
+ung	凍	冻	dung1	*		668
 ung	凍	冻	dung4			668
 e	燁	烨	ye1			668
 an	釬	钎	han4			668
 ang	肮		ang1			666
-ang	肮		hang2			666
+ang	肮		hang2	*		666
 ang	滂		pang1			665
 un	淳		chun2			665
 au	豹		bau4			662
-eng	杏		heng4			659
-ai	械		xai4			657
+eng	杏		heng4	heng4 xing4		659
+ai	械		xai4	jai4 xai4*		657
 e	玥		yue1			657
 iu	煦		xu3			656
 iu	煦		xu4			656
 an	梵		fan4			656
-eng	梵		feng2			656
+eng	梵		feng2	*		656
 i	几		ji3			655
-u	几		chu2			655
+u	几		chu2	*		655
 eng	蒸		zheng1			655
 a	筏		fa2			655
-o	筏		buo1			655
+o	筏		buo1	*		655
 eng	恒		heng2			655
 eng	鬙		seng1			655
 ung	蔥	葱	cung1			654
@@ -3346,55 +3346,55 @@ a	疤		ba1			646
 e	嫳		pie1			645
 e	爺	爷	ye2			645
 ou	陡		dou3			644
-iung	螢	萤	xung2			644
+iung	螢	萤	xung2	ying2		644
 a	擦		ca1			644
 au	搖	摇	yau2			641
 an	喊		han3			641
-an	喊		xan3			641
-an	喊		xan4			641
+an	喊		xan3	!		641
+an	喊		xan4	!		641
 i	擠	挤	zi1			640
-i	擠	挤	zi4			640
+i	擠	挤	zi4	*		640
 ui	蕞		zui4			640
 ung	鬆	松	sung1			640
-ung	鬆	松	sung4			640
-iung	鬆	松	ciung1			640
-iung	鬆	松	siung1			640
-eng	繩	绳	cheng2			638
+ung	鬆	松	sung4	*		640
+iung	鬆	松	ciung1	*		640
+iung	鬆	松	siung1	*		640
+eng	繩	绳	cheng2	sheng2		638
 o	朔		shuo1			638
 o	朴		puo1			635
 a	砑		ya4			635
 u	賭	赌	du3			634
 eng	矰		zeng1			634
-e	迫		be1			633
-e	蔔	卜	be2			632
+e	迫		be1	pe1		633
+e	蔔	卜	be2	bu1	?	632
 an	讚	赞	zan4			632
 ui	碎		sui4			632
-u	措		cu4			631
+u	措		cu4	cuo1 cu4	?	631
 an	攀		pan1			631
 ang	螿		ziang1			630
 an	訇		xuan2			629
 ung	訇		hung1			629
 u	叔		shu1			629
-ang	誑	诳	guang4			629
-iung	泳		yung4			628
+ang	誑	诳	guang4	kuang2	?	629
+iung	泳		yung4	yung3		628
 i	儷	俪	li4			628
 au	逃		tau2			627
 ing	倞		jing4			625
 eng	郕		cheng2			625
-an	妗		chan1			623
-an	妗		xan1			623
+an	妗		chan1	*		623
+an	妗		xan1	*		623
 in	妗		jin4			623
 iu	驅	驱	qu1			623
 iu	驅	驱	qu4			623
 ai	閡	阂	ai4			622
-an	粘		nian2			622
+an	粘		nian2	nian2 zhan1		622
 en	痕		hen2			622
 au	稻		dau4			622
 i	嶧	峄	yi1			619
 i	悉		si1			619
 eng	牲		sheng1			619
 u	窟		ku1			619
-e	賊	贼	ze2			618
+e	賊	贼	ze2	ze2 zei2		618
 a	煞		sha1			616
 i	柒		ci1			615
 ung	絨	绒	rhung2			615
@@ -3417,12 +3417,12 @@ ai	抬		tai2			607
 e	劫		je1			606
 iun	峻		siun4			605
 an	扮		ban4			603
-a	扮		hua3			603
-en	扮		fen1			603
-en	扮		fen3			603
-en	扮		fen4			603
+a	扮		hua3	*		603
+en	扮		fen1	*		603
+en	扮		fen3	*		603
+en	扮		fen4	*		603
 iung	傾	倾	qung1			603
-an	怨		yuan1			603
+an	怨		yuan1	*		603
 an	怨		yuan4			603
 ui	悔		hui3			602
 ui	悔		hui4			602
@@ -3434,7 +3434,7 @@ an	茜		cian4			600
 ui	墜	坠	zhui4			600
 an	衫		shan1			599
 ang	闖	闯	chuang3			599
-en	闖	闯	chen4			599
+en	闖	闯	chen4	*		599
 i	祈		qi2			599
 y	遲	迟	chy2			599
 o	齱		chuo1			598
@@ -3449,7 +3449,7 @@ ang	滄	沧	cang1			596
 ang	滄	沧	chuang4			596
 iu	鬱	郁	yu1			596
 e	竭		je2			596
-ang	晃		huang4			595
+ang	晃		huang4	huang3 huang4		595
 an	衍		yan3			594
 an	衍		yan4			594
 an	辯	辩	bian4			594
@@ -3467,7 +3467,7 @@ o	捉		zhuo1			589
 ung	礦	矿	gung3			588
 ang	葬		zang4			588
 i	晰		si1			588
-ei	沛		bei4			586
+ei	沛		bei4	*		586
 ei	沛		pei4			586
 e	獗		jue1			585
 an	誕	诞	dan4			584
@@ -3509,22 +3509,22 @@ ing	釘	钉	ding1			568
 ing	釘	钉	ding4			568
 i	咪		mi3			568
 u	暮		mu4			567
-en	唇		zhen1			567
+en	唇		zhen1	chun2		567
 ou	舟		zhou1			566
 e	歇		xe1			566
 au	妖		yau1			565
 an	銜	衔	xan2			565
-u	鍍	镀	tu2			564
+u	鍍	镀	tu2	*		564
 u	鍍	镀	du4			564
 ing	柄		bing4			564
 an	嵐	岚	lan2			562
 u	妒		du4			562
 in	茵		yin1			562
 an	卵		luan3			561
-o	卵		luo3			561
+o	卵		luo3	*		561
 ang	妨		fang1			561
 ang	妨		fang4			561
-an	汗		gan1			560
+an	汗		gan1	*		560
 an	汗		han2			560
 an	汗		han4			560
 a	扎		zha1			560
@@ -3557,12 +3557,12 @@ au	撩		liau3			552
 ang	爽		shuang3			551
 a	蛙		wa1			551
 u	疰		zhu4			550
-ang	償	偿	chang2			549
+ang	償	偿	chang2	*		549
 ang	償	偿	shang3			549
-ang	償	偿	shang4			549
+ang	償	偿	shang4	*		549
 ai	崴		wai1			548
 an	汎	泛	fan4			548
-eng	汎	泛	feng2			548
+eng	汎	泛	feng2	*		548
 o	褐		heo2			547
 ung	侗		tung1			546
 ung	侗		tung2			546
@@ -3604,8 +3604,8 @@ u	邾		zhu1			531
 o	輒	辄	zheo1			531
 iun	侚	徇	siun4			531
 au	抄		chau1			529
-au	抄		chau3			529
-au	抄		chau4			529
+au	抄		chau3	*		529
+au	抄		chau4	*		529
 an	濫	滥	lan4			529
 an	濫	滥	xan4			529
 y	躓	踬	zhy4			529
@@ -3613,9 +3613,9 @@ i	煜		yi1			529
 iu	煜		yu1			529
 ang	樟		zhang1			528
 ai	灑	洒	shai3			528
-a	灑	洒	sha3			528
-y	灑	洒	shy3			528
-y	灑	洒	shy4			528
+a	灑	洒	sha3	sa3		528
+y	灑	洒	shy3	*		528
+y	灑	洒	shy4	*		528
 ang	膛		tang2			527
 u	硉		lu1			527
 ang	棠		tang2			526
@@ -3631,16 +3631,16 @@ an	攤	摊	tan1			520
 an	攤	摊	nan3			520
 an	攤	摊	nan4			520
 au	敲		qau1			519
-au	敲		qau4			519
-u	粥		zhu1			519
-iu	粥		yu1			519
+au	敲		qau4	*		519
+u	粥		zhu1	zhou1		519
+iu	粥		yu1	*		519
 in	汶		min2			518
 un	汶		wun2			518
 un	汶		wun4			518
 u	涂		chu2			518
 u	涂		tu2			518
 au	巢		chau2			517
-au	巢		zhau4			517
+au	巢		zhau4	*		517
 o	珂		keo1			516
 u	蔬		shu1			516
 au	悼		dau4			514
@@ -3673,23 +3673,23 @@ y	恥	耻	chy3			502
 ing	并		bing1			500
 ing	并		bing4			500
 iung	庸		yung2			500
-an	棵		huan4			500
-an	棵		kuan3			500
+an	棵		huan4	*		500
+an	棵		kuan3	*		500
 o	棵		kuo3			500
 eng	棚		peng2			499
 u	俶		chu1			498
-i	离		li2			497
+i	离		li2	*		497
 y	离		chy1			497
 o	娥		eo2			497
 ui	膇		zhui4			497
 y	諮	谘	zy1			497
-ung	汞		hung4			496
+ung	汞		hung4	gung3		496
 y	摯	挚	zhy4			496
 au	佼		jau1			496
 au	佼		jau3			496
 au	佼		xau4			496
-a	摺		la1			495
-a	摺		za1			495
+a	摺		la1	*		495
+a	摺		za1	*		495
 o	摺		zheo1			495
 an	瓣		ban4			495
 y	屍	尸	shy1			495
@@ -3700,9 +3700,9 @@ ui	葵		kui2			492
 ang	磅		pang1			491
 ing	磅		ping1			491
 u	茱		chu2			490
-a	絮		na4			489
-u	絮		chu4			489
-iu	絮		niu4			489
+a	絮		na4	*		489
+u	絮		chu4	*		489
+iu	絮		niu4	*		489
 iu	絮		siu4			489
 au	藻		zau3			489
 an	棺		guan1			488
@@ -3767,11 +3767,11 @@ o	裸		luo3			465
 un	墩		dun1			464
 in	磷		lin2			463
 in	磷		lin4			463
-ai	偕		jai1			462
+ai	偕		jai1	*		462
 ai	偕		xai2			462
 an	灨		gan3			462
 an	灨		gan4			462
-ang	掠		liang4			461
+ang	掠		liang4	*		461
 o	掠		liuo1			461
 ui	椎		chui2			460
 an	璇		siuan2			460
@@ -3781,13 +3781,13 @@ un	盾		dun4			459
 un	盾		shun4			459
 e	窄		zhe1			458
 an	焉		yan1			457
-an	焉		yan2			457
+an	焉		yan2	*		457
 i	饑	饥	ji1			456
 in	蘋	苹	pin2			456
 an	釆	采	ban4			456
 ung	塚	冢	zhung3			455
 i	璃		li2			455
-e	窒		die1			455
+e	窒		die1	*		455
 y	窒		zhy1			455
 a	擖		zha1			455
 a	擖		ja1			455
@@ -3800,7 +3800,7 @@ an	巖	岩	yan2			452
 an	瘨		dian1			451
 ou	鳩	鸠	jou1			451
 e	劣		liue1			450
-a	舌		hua2			450
+a	舌		hua2	*		450
 o	舌		sheo2			450
 o	挫		zuo4			450
 en	蓁		zhen1			450
@@ -3890,28 +3890,28 @@ o	撤		zheo2			425
 y	洏		el2			425
 a	捱		ya2			425
 i	蟻	蚁	yi3			425
-u	僕	仆	bu2			424
+u	僕	仆	bu2	pu2		424
 iu	癒	愈	yu3			424
 eng	楨	桢	zheng1			424
-an	万		wan4			423
+an	万		wan4	*		423
 e	万		me1			423
 ui	賄	贿	hui3			423
 iung	悀		yung3			421
 ang	羌		qang1			421
 a	耍		shua3			421
 ang	荒		huang1			421
-ang	荒		huang4			421
+ang	荒		huang4	*		421
 eng	耿		geng3			421
 e	覈	核	he2			421
-e	覈	核	xe2			421
+e	覈	核	xe2	*		421
 an	歎	叹	tan4			421
-a	怖		fa1			420
-u	怖		pu4			420
+a	怖		fa1	*		420
+u	怖		pu4	bu4		420
 ing	桯		ting1			420
 ing	桯		xing2			420
 ung	戎		rhung2			418
 a	伐		fa2			418
-ou	惆		qou1			417
+ou	惆		qou1	*		417
 ou	惆		chou1			417
 ang	殤	殇	shang1			417
 u	礎	础	chu3			417
@@ -3944,7 +3944,7 @@ un	棍		hun4			410
 an	籤	签	cian1			410
 iun	畯		ziun4			410
 ang	綁	绑	bang3			409
-ai	衰		chuai1			409
+ai	衰		chuai1	*		409
 ai	衰		shuai1			409
 ing	錠	锭	ding4			408
 au	擾	扰	rhau3			408
@@ -3954,12 +3954,12 @@ a	刮		gua1			407
 en	襯	衬	chen4			406
 an	繭	茧	jan3			406
 au	冒		mau4			406
-e	冒		me1			406
+e	冒		me1	*		406
 au	洨		xau2			406
 au	拋	抛	pau1			406
 o	削		siuo1			406
 ai	寨		zhai4			405
-e	寨		se1			405
+e	寨		se1	*		405
 y	豕		shy3			405
 y	懘		chy3			405
 y	懘		chy4			405
@@ -3970,7 +3970,7 @@ ui	煒	炜	wui3			404
 eng	膨		peng2			404
 eng	膨		beng4			404
 ang	芒		mang2			403
-ang	芒		wang2			403
+ang	芒		wang2	*		403
 an	憐	怜	lian2			403
 au	俏		ciau4			403
 u	酴		tu2			402
@@ -3981,8 +3981,8 @@ i	迤		yi2			401
 en	璊		men2			401
 iun	裙		qun2			400
 an	灘	滩	tan1			400
-an	灘	滩	han3			400
-an	灘	滩	nan4			400
+an	灘	滩	han3	*		400
+an	灘	滩	nan4	*		400
 au	鍬	锹	ciau1			399
 in	庈		qin2			398
 e	蕨		jue1			397
@@ -6842,12 +6842,12 @@ o	喆		zheo1			100
 a	觰		zha1			100
 a	觰		zha3			100
 un	飩	饨	tun2			100
-ang	曏	向	shang3			100
-ang	曏	向	shang4			100
+ang	曏	向	shang3	*		100
+ang	曏	向	shang4	*		100
 ang	曏	向	xang3			100
 ang	曏	向	xang4			100
 an	耽		dan1			100
-an	耽		tan3			100
+an	耽		tan3	*		100
 ang	蟒		mang3			100
 y	莿		cy4			100
 ang	炴		yang3			100
@@ -6865,7 +6865,7 @@ an	鉆	钻	qan2			99
 e	鉆	钻	tie1			99
 ang	堭		huang2			99
 an	鏟	铲	chan3			99
-an	鏟	铲	chan4			99
+an	鏟	铲	chan4	*		99
 u	鋈		wu1			99
 i	蜴		yi1			99
 i	眯		mi3			99
@@ -6910,9 +6910,9 @@ y	寔		shy2			97
 o	勺		zhuo1			97
 o	勺		shuo2			97
 iu	戮		liu1			97
-e	霓		ye1			97
+e	霓		ye1	*		97
 i	霓		yi2			97
-i	霓		yi4			97
+i	霓		yi4	*		97
 e	薜		be1			97
 i	薜		bi4			97
 iu	矞		yu1			97
@@ -6924,7 +6924,7 @@ ou	侜		zhou1			96
 an	嬋	婵	chan2			96
 ang	璗		dang4			96
 a	荼		cha2			96
-o	荼		cheo2			96
+o	荼		cheo2	sheo2		96
 u	荼		tu2			96
 an	蹎		dian1			96
 un	暾		tun1			96
