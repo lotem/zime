@@ -1,12 +1,11 @@
 # ZIME Schema v3
 Schema = TonalPinyin
 DisplayName = 標調拼音
-Dict = tonal_pinyin
+Dict = pinyin
 Parser = roman
-AutoPrompt = no
-Predict = no
+AutoPrompt = yes
 AutoDelimit = yes
-Alphabet = abcdefghijklmnopqrstuvwxyz 1234567;/,.
+Alphabet = abcdefghijklmnopqrstuvwxyz ;/,.
 Delimiter = [ '-]
 MaxKeywordLength = 6
 # 輕聲不標
@@ -47,8 +46,6 @@ SpellingRule = v ü
 SplitRule = [ng]$ ^[aeiou]
 #DivideRule = ^.*[iu]([āáǎàaēéěèeōóǒòo].*)$ \1
 TransformRule = ([aeio])gn \1ng
-TransformRule = 6 2
-TransformRule = 7 5
 TransformRule = ; 1
 TransformRule = / 2
 TransformRule = , 3
