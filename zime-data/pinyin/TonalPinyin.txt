@@ -119,12 +119,12 @@ Punct = ] 」 】 ］
 Punct = { 『 ｛
 Punct = } 』 ｝
 # edit keys
-#EditKey = bracketleft Left
-#EditKey = bracketright Right
+EditKey = bracketleft Page_Up
+EditKey = bracketright Page_Down
 EditKey = minus Up
 EditKey = equal Down
-EditKey = comma Page_Up
-EditKey = period Page_Down
+#EditKey = comma Page_Up
+#EditKey = period Page_Down
 EditKey = I Up
 EditKey = K Down
 EditKey = J Left
