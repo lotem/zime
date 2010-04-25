@@ -1,0 +1,106 @@
+#summary ZIME方案展示
+#labels Featured,Phase-Support
+
+= 拼音 =
+無調全拼、簡拼輸入、兼容偽尖團音。簡體詞庫取自開源項目Android PinyinIME。
+
+方案文件：
+  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/Pinyin.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/pinyin-keywords.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/pinyin-phrases.txt
+
+安裝指令：
+{{{
+python create-schema.py -v Pinyin.txt
+}}}
+
+= 雙拼 =
+MSPY雙拼方案。與「拼音」輸入方案共用一部辭典。
+
+方案文件：
+  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/DoublePinyin.txt
+
+安裝指令：
+{{{
+# 請先安裝 Pinyin 輸入方案
+python create-schema.py -v -k DoublePinyin.txt
+}}}
+
+= 宮保拼音 =
+以多鍵並擊的方式輸入拼音音節。詳見[http://zime.googlecode.com/files/combo-pinyin-doc.pdf 宮保拼音快速入門指南]。
+
+方案文件：
+  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/ComboPinyin.txt
+
+安裝指令：
+{{{
+# 請先安裝 Pinyin 輸入方案
+python create-schema.py -v -k ComboPinyin.txt
+}}}
+
+= 標調拼音 =
+在全拼的基礎上可選用符號鍵` ; / , . `標注四聲。
+詞庫為繁體，資料來源於注音輸入法。
+
+方案文件：
+  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/TonalPinyin.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/tonal-pinyin-keywords.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/tonal-pinyin-phrases.txt
+
+安裝指令：
+{{{
+python create-schema.py -v TonalPinyin.txt
+}}}
+
+= 注音 =
+採用新酷音輸入法的注音詞庫。
+
+方案文件：
+  * http://zime.googlecode.com/svn/trunk/zime-data/zhuyin/Zhuyin.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/zhuyin/zhuyin-keywords.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/zhuyin/zhuyin-phrases.txt
+
+安裝指令：
+{{{
+python create-schema.py -v Zhuyin.txt
+}}}
+
+= 粵拼 =
+採用香港語言學學會粵語拼音方案／Jyutping。
+詞庫乃是對預設詞庫 phrase.txt 進行粵拼標注而生成。
+
+方案文件：
+  * http://zime.googlecode.com/svn/trunk/zime-data/jyutping/Jyutping.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/jyutping/jyutping-keywords.txt
+
+安裝指令：
+{{{
+python make-phrases.py jyutping
+python create-schema.py -v Jyutping.txt
+}}}
+
+= 廣韻 =
+採用有女同車的廣韻羅馬字拼音方案。
+
+方案文件：
+  * http://zime.googlecode.com/svn/trunk/zime-data/kuankhiunn/Kuankhiunn.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/kuankhiunn/kuankhiunn-keywords.txt
+
+安裝指令：
+{{{
+python make-phrases.py kuankhiunn
+python create-schema.py -v Kuankhiunn.txt
+}}}
+
+= 速成 =
+也稱簡易輸入法，每字取倉頡碼首尾兩碼。可連打。
+
+方案文件：
+  * http://zime.googlecode.com/svn/trunk/zime-data/table/Quick.txt
+  * http://zime.googlecode.com/svn/trunk/zime-data/table/quick-keywords.txt
+
+安裝指令：
+{{{
+python make-phrases.py quick
+python create-schema.py -v Quick.txt
+}}}
