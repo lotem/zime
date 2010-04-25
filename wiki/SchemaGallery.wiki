@@ -1,4 +1,4 @@
-#summary ZIME方案展示
+#summary ZIME方案輸入展示
 #labels Featured,Phase-Support
 
 安裝以下方案，將下載的文件，置於ZIME軟件的 data/ 目錄，而後在終端／控制台裡切換到 data/ 目錄執行命令。
