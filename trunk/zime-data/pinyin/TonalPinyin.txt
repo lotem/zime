@@ -46,10 +46,10 @@ SpellingRule = v ü
 SplitRule = [ng]$ ^[aeiou]
 #DivideRule = ^.*[iu]([āáǎàaēéěèeōóǒòo].*)$ \1
 TransformRule = ([aeio])gn \1ng
-TransformRule = ; 1
-TransformRule = / 2
-TransformRule = , 3
-TransformRule = \. 4
+TransformRule = (?<=[a-z]); 1
+TransformRule = (?<=[a-z])/ 2
+TransformRule = (?<=[a-z]), 3
+TransformRule = (?<=[a-z])\. 4
 TransformRule = ([aoeiuv])([rn]|ng)([12345]) \1\3\2
 TransformRule = ([aoe])([iou])([12345]) \1\3\2
 TransformRule = ([nl])ue \1üe
