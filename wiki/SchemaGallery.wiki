@@ -6,7 +6,7 @@
 ibus-zime用戶，如果正在使用ZIME輸入法，請重新啟動一遍IBus再安裝。
 
 = 拼音 =
-無調全拼、簡拼輸入、兼容偽尖團音。簡體詞庫取自開源項目Android PinyinIME。
+無調全拼、簡拼輸入、兼容偽尖團音。簡體詞庫取自開源項目Android Pinyin IME。
 
 方案文件：
   * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/Pinyin.txt
