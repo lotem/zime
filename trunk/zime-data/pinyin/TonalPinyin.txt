@@ -1,7 +1,7 @@
 # ZIME Schema v3
 Schema = TonalPinyin
 DisplayName = 標調拼音
-Dict = pinyin
+Dict = tonal_pinyin
 Parser = roman
 AutoPrompt = yes
 AutoDelimit = yes
