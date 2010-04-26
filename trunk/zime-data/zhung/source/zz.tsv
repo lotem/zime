@@ -7,11 +7,11 @@ e	得		de1			170044
 ang	上		shang4			169018
 ung	中		zhung1			163520
 ung	中		zhung4			163520
-i	的		di1			161997
+i	的		di1	di1 le1		161997
 o	我		eo3	wo3		160394
 ou	有		you3			153109
-au	了		liau3			127241
-e	或		hue2			123208
+au	了		liau3	liau3 leo		127241
+e	或		hue2	huai2 hue2*		123208
 en	人		rhen2			120173
 o	和		huo2			114567
 o	和		huo4	*		114567
@@ -369,7 +369,7 @@ e	客		ke1			20607
 i	欺		qi1			20600
 i	起		qi3			20421
 ang	光		guang1			20415
-ang	光		guang4	!		20415
+ang	光		guang4	*		20415
 ang	想		siang3			20353
 ang	享		xang3			20352
 ang	響	响	xang3			20352
@@ -380,7 +380,7 @@ an	田		tian2			20239
 an	甜		tian2			20239
 in	品		pin3			20237
 an	篇		pian1			20223
-e	特		de2			20129
+e	特		de2	te1 te2		20129
 ou	樓	楼	lou2			20055
 au	叫		jau4			20029
 ung	東	东	dung1			20017
@@ -888,7 +888,7 @@ u	傅		fu4			10100
 ai	買	买	mai3			10019
 o	河		heo2			9999
 o	盒		heo2			9999
-e	核		he2			9999
+e	核		he2	hai2 he2		9999
 o	何		heo2			9999
 o	何		heo4	!		9999
 e	葉	叶	ye1			9991
@@ -1246,7 +1246,7 @@ i	尼		ni2			5862
 au	招		zhau1			5861
 au	朝		zhau1			5860
 au	朝		chau2			5860
-e	獲	获	hue2			5847
+e	獲	获	hue2	huai2 hue2*		5847
 i	企		qi3			5844
 i	企		qi4	*		5844
 ung	宏		hung2			5843
@@ -3902,7 +3902,7 @@ a	耍		shua3			421
 ang	荒		huang1			421
 ang	荒		huang4	*		421
 eng	耿		geng3			421
-e	覈	核	he2			421
+e	覈	核	he2	hai2 he2		421
 e	覈	核	xe2	*		421
 an	歎	叹	tan4			421
 a	怖		fa1	*		420
