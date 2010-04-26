@@ -1,43 +1,28 @@
 # -*- coding: utf-8 -*-
 # vim:set et sts=4 sw=4:
 
-import os
 import time
 from ibus import keysyms
 from ibus import modifier
 
 from zimecore import *
 from zimedb import *
-import zimeparser
-
-def __initialize():
-    zimeparser.register_parsers()
-    IBUS_ZIME_LOCATION = os.getenv('IBUS_ZIME_LOCATION')
-    HOME_PATH = os.getenv('HOME')
-    db_path = os.path.join(HOME_PATH, '.ibus', 'zime')
-    user_db = os.path.join(db_path, 'zime.db')
-    if not os.path.exists(user_db):
-        sys_db = IBUS_ZIME_LOCATION and os.path.join(IBUS_ZIME_LOCATION, 'data', 'zime.db')
-        if sys_db and os.path.exists(sys_db):
-            DB.open(sys_db, read_only=True)
-            return
-        else:
-            if not os.path.isdir(db_path):
-                os.makedirs(db_path)
-    DB.open(user_db)
-
-__initialize()
 
 class Engine:
+
+    ROLLBACK_COUNTDOWN = 5  # seconds
+
     def __init__(self, frontend, name):
         self.__frontend = frontend
         self.__schema = schema = Schema(name)
+        self.__db = schema.get_db()
         self.__parser = Parser.create(schema)
         self.__ctx = Context(self, schema)
         self.__auto_prompt = schema.get_config_value(u'AutoPrompt') in (u'yes', u'true')
         self.__punct = None
         self.__punct_key = 0
         self.__punct_rep = 0
+        self.__rollback_time = 0
         self.update_ui()
     def process_key_event(self, keycode, mask):
         # disable engine when Caps Lock is on
@@ -125,6 +110,12 @@ class Engine:
     def __judge(self, event):
         if event.mask & modifier.RELEASE_MASK == 0:
             self.update_ui()
+            now = time.time()
+            if now < self.__rollback_time:
+                if event.keycode == keysyms.BackSpace:
+                    self.__db.cancel_pending_updates()
+            else:
+                self.__db.proceed_pending_updates()
         if event.coined:
             if not event.mask:
                 self.__frontend.commit_string(event.get_char())
@@ -168,6 +159,8 @@ class Engine:
         if event.keycode == keysyms.Return:
             if event.mask & modifier.SHIFT_MASK:
                 self.__commit(raw_input=True)
+            elif self.__auto_prompt:
+                self.__commit(code_input=True)
             elif ctx.being_converted():
                 self.__confirm_current()
             else:
@@ -257,11 +250,17 @@ class Engine:
             self.__commit()
         else:
             self.__ctx.forward()
-    def __commit(self, raw_input=False):
-        s = self.__ctx.get_input_string() if raw_input else self.__ctx.get_commit_string()
+    def __commit(self, code_input=False, raw_input=False):
+        if raw_input:
+            s = self.__ctx.get_input_string() 
+        elif code_input:
+            s = self.__ctx.get_display_string()
+        else:
+            s = self.__ctx.get_commit_string()
         self.__frontend.commit_string(s)
         self.__parser.clear()
         self.__ctx.commit()
+        self.__rollback_time = time.time() + Engine.ROLLBACK_COUNTDOWN
     def __update_preedit(self):
         preedit, start, end = self.__ctx.get_preedit()
         self.__frontend.update_preedit(preedit, start, end)
@@ -278,6 +277,9 @@ class Engine:
         self.__frontend.update_candidates(self.__ctx.get_candidates())
         
 class SchemaChooser:
+    SELECTED = u'選用【%s】'
+    MENU = u'方案選單'
+    NO_SCHEMA = u'無方案'
     def __init__(self, frontend, schema_name=None):
         self.__frontend = frontend
         self.__engine = None
@@ -304,18 +306,18 @@ class SchemaChooser:
             DB.update_setting(u'SchemaChooser/LastUsed/%s' % s[c], unicode(now))
             self.__deactivate()
             self.__engine = Engine(self.__frontend, s[c])
-            self.__frontend.update_aux_string(u'選用【%s】' % d[c])
+            self.__frontend.update_aux_string(SchemaChooser.SELECTED % d[c])
     def __activate(self):
         self.__active = True
         self.__load_schema_list()
-        self.__frontend.update_aux_string(u'方案選單')
+        self.__frontend.update_aux_string(SchemaChooser.MENU)
         self.__frontend.update_candidates(self.__schema_list)
     def __deactivate(self):
         self.__active = False
         self.__schema_list = []
     def process_key_event(self, keycode, mask):
         if not self.__engine:
-            self.__frontend.update_aux_string(u'無方案')
+            self.__frontend.update_aux_string(SchemaChooser.NO_SCHEMA)
             return False
         if not self.__active:
             # Ctrl-` calls schema chooser menu
