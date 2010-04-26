@@ -17,7 +17,7 @@ class TestEngine:
         self.__lookup_table = ibus.LookupTable()
         self.__sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.__sock.connect((HOST, PORT))
-        self.__sock.send("INIT=rhymetest\n")
+        self.__sock.send("INIT=%s\n" % schema)
 
     def close(self):
         self.__sock.close()
@@ -87,6 +87,7 @@ def main():
     e = TestEngine(u'Jyutping')
     e.test('jyuhomindeoicangjatheizaugwodikjatzi')
     #e.test('fanhoifongziganbunsamgikci')
+
     e.close()
 
     pass

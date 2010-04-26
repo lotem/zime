@@ -17,18 +17,15 @@ from zimedb import DB
 def _initialize():
     zimeparser.register_parsers()
     # initialize DB 
-    IBUS_ZIME_LOCATION = os.getenv('IBUS_ZIME_LOCATION')
     HOME_PATH = os.getenv('HOME')
-    db_path = os.path.join(HOME_PATH, '.ibus', 'zime')
+    if HOME_PATH:
+        db_path = os.path.join(HOME_PATH, '.ibus', 'zime')
+    else:
+        db_path = '.'
     user_db = os.path.join(db_path, 'zime.db')
     if not os.path.exists(user_db):
-        sys_db = IBUS_ZIME_LOCATION and os.path.join(IBUS_ZIME_LOCATION, 'data', 'zime.db')
-        if sys_db and os.path.exists(sys_db):
-            DB.open(sys_db, read_only=True)
-            return
-        else:
-            if not os.path.isdir(db_path):
-                os.makedirs(db_path)
+        if not os.path.isdir(db_path):
+            os.makedirs(db_path)
     DB.open(user_db)
 
 _initialize()
@@ -41,7 +38,7 @@ class RhymeSessionHandler(SocketServer.StreamRequestHandler):
             if tag == "INIT":
                 logging.info("init session:", params)
                 self.__lookup_table = ibus.LookupTable()
-                self.__engine = zimeengine.SchemaChooser(self)
+                self.__engine = zimeengine.SchemaChooser(self, params)
             if tag == "EVENT":
                 keycode, mask = map(int, params.split(","))
                 logging.debug("process_key_event: '%s'(%x), %08x" % (keysyms.keycode_to_name(keycode), keycode, mask))
