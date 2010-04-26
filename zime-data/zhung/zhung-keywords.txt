@@ -7,10 +7,13 @@ shang4	上
 zhung1	中
 zhung4	中
 di1	的
+le1	的
 wo3	我
 you3	有
 liau3	了
-hue2	或
+leo	了
+huai2	或
+hue2	*或
 rhen2	人
 huo2	和
 huo4	*和
@@ -345,6 +348,7 @@ ke1	客
 qi1	欺
 qi3	起
 guang1	光
+guang4	*光
 siang3	想
 xang3	享
 xang3	響
@@ -355,7 +359,8 @@ tian2	田
 tian2	甜
 pin3	品
 pian1	篇
-de2	特
+te1	特
+te2	特
 lou2	樓
 jau4	叫
 dung1	東
@@ -826,6 +831,7 @@ fu4	傅
 mai3	買
 heo2	河
 heo2	盒
+hai2	核
 he2	核
 heo2	何
 ye1	葉
@@ -1173,7 +1179,8 @@ ni2	尼
 zhau1	招
 zhau1	朝
 chau2	朝
-hue2	獲
+huai2	獲
+hue2	*獲
 qi3	企
 qi4	*企
 hung2	宏
@@ -3821,6 +3828,7 @@ shua3	耍
 huang1	荒
 huang4	*荒
 geng3	耿
+hai2	覈
 he2	覈
 xe2	*覈
 tan4	歎
