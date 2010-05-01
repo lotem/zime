@@ -34,6 +34,9 @@
 				</Linker>
 			</Target>
 		</Build>
+		<Compiler>
+			<Add option="-DWINVER=0x0500" />
+		</Compiler>
 		<Unit filename="rhymeclient.cpp" />
 		<Unit filename="rhymeclient.h" />
 		<Unit filename="rhymepanel.cpp" />

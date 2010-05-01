@@ -1,13 +1,15 @@
+#include <windows.h>
+
 #include "rhymeclient.h"
 #include "rhymepanel.h"
 
-#include <windows.h>
+#define IDC_MAIN_EDIT   101
 
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure (HWND, UINT, WPARAM, LPARAM);
 
 /*  Make the class name into a global variable  */
-char szClassName[ ] = "CodeBlocksWindowsApp";
+char szClassName[ ] = "RhymeDemoApp";
 
 int WINAPI WinMain (HINSTANCE hThisInstance,
                     HINSTANCE hPrevInstance,
@@ -40,13 +42,16 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
 
     /* Register the window class, and if it fails quit the program */
     if (!RegisterClassEx (&wincl))
-        return 0;
+        return -1;
+
+    if (!RhymePanel::registerClass(hThisInstance))
+        return -1;
 
     /* The class is registered, let's create the program*/
     hwnd = CreateWindowEx (
                0,                   /* Extended possibilites for variation */
                szClassName,         /* Classname */
-               "Code::Blocks Template Windows App",       /* Title Text */
+               "Rhyme Demo App",       /* Title Text */
                WS_OVERLAPPEDWINDOW, /* default window */
                CW_USEDEFAULT,       /* Windows decides the position */
                CW_USEDEFAULT,       /* where the window ends up on the screen */
@@ -57,9 +62,23 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
                hThisInstance,       /* Program Instance handler */
                NULL                 /* No Window Creation data */
            );
+    if (!hwnd)
+    {
+        MessageBox(hwnd, "Could not create Demo window.", "Error", MB_OK | MB_ICONERROR);
+        return -1;
+    }
+
+    if (!panel.create(hwnd))
+    {
+        MessageBox(hwnd, "Could not create Rhyme Panel.", "Error", MB_OK | MB_ICONERROR);
+        return -1;
+    }
 
     /* Make the window visible on the screen */
-    ShowWindow (hwnd, nCmdShow);
+    ShowWindow(hwnd, nCmdShow);
+    UpdateWindow(hwnd);
+
+    panel.show();
 
     /* Run the message loop. It will run until GetMessage() returns 0 */
     while (GetMessage (&messages, NULL, 0, 0) > 0)
@@ -81,6 +100,47 @@ LRESULT CALLBACK WindowProcedure (HWND hwnd, UINT message, WPARAM wParam, LPARAM
 {
     switch (message)                  /* handle the messages */
     {
+    case WM_CREATE:
+    {
+        HFONT hfDefault;
+        HWND hEdit;
+
+        hEdit = CreateWindowEx(WS_EX_CLIENTEDGE, "EDIT", "",
+                               WS_CHILD | WS_VISIBLE | WS_VSCROLL | WS_HSCROLL | ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL,
+                               0, 0, 100, 100, hwnd, (HMENU)IDC_MAIN_EDIT, GetModuleHandle(NULL), NULL);
+        if (hEdit == NULL)
+        {
+            MessageBox(hwnd, "Could not create edit box.", "Error", MB_OK | MB_ICONERROR);
+            break;
+        }
+
+        hfDefault = (HFONT)GetStockObject(DEFAULT_GUI_FONT);
+        SendMessage(hEdit, WM_SETFONT, (WPARAM)hfDefault, MAKELPARAM(FALSE, 0));
+
+        SetFocus(hEdit);
+    }
+    break;
+    case WM_SIZE:
+    {
+        HWND hEdit;
+        RECT rcClient;
+
+        GetClientRect(hwnd, &rcClient);
+
+        hEdit = GetDlgItem(hwnd, IDC_MAIN_EDIT);
+        SetWindowPos(hEdit, NULL, 0, 0, rcClient.right, rcClient.bottom, SWP_NOZORDER);
+    }
+    break;
+    /*
+    case WM_LBUTTONDOWN:
+    {
+        char szFileName[MAX_PATH];
+        HINSTANCE hInstance = GetModuleHandle(NULL);
+        GetModuleFileName(hInstance, szFileName, MAX_PATH);
+        MessageBox(hwnd, szFileName, "This program is:", MB_OK | MB_ICONINFORMATION);
+    }
+    break;
+    */
     case WM_DESTROY:
         PostQuitMessage (0);       /* send a WM_QUIT to the message queue */
         break;

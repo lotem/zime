@@ -34,10 +34,10 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Linker>
-			<Add library="gdi32" />
-			<Add library="user32" />
-			<Add library="kernel32" />
 			<Add library="..\rhymelib\librhymelib.a" />
+			<Add library="kernel32" />
+			<Add library="user32" />
+			<Add library="gdi32" />
 		</Linker>
 		<Unit filename="main.cpp" />
 		<Extensions>

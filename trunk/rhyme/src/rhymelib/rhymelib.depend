@@ -1,11 +1,1 @@
 # depslib dependency file v1.0
-1271641108 source:c:\home\devel\rhyme\src\rhymelib\rhymepanel.cpp
-	"rhymepanel.h"
-
-1271641106 c:\home\devel\rhyme\src\rhymelib\rhymepanel.h
-
-1271641056 source:c:\home\devel\rhyme\src\rhymelib\rhymeclient.cpp
-	"rhymeclient.h"
-
-1271641056 c:\home\devel\rhyme\src\rhymelib\rhymeclient.h
-
