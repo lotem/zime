@@ -36,6 +36,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-DWINVER=0x0500" />
+			<Add option="-DUNICODE" />
 		</Compiler>
 		<Unit filename="rhymeclient.cpp" />
 		<Unit filename="rhymeclient.h" />

@@ -78,6 +78,11 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
     ShowWindow(hwnd, nCmdShow);
     UpdateWindow(hwnd);
 
+    panel.setPreedit(L"中州韻輸入平臺！我看中！！");
+    panel.setAux(L"Abracadabra!");
+    panel.getCandidates().push_back(L"我看中");
+    panel.getCandidates().push_back(L"我看");
+    panel.getCandidates().push_back(L"我");
     panel.show();
 
     /* Run the message loop. It will run until GetMessage() returns 0 */
