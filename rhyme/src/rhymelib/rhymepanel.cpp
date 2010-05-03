@@ -1,10 +1,16 @@
 #include <windows.h>
+#include <algorithm>
 
 #include "rhymepanel.h"
 
 static const WCHAR RHYME_PANEL_CLASS[] = L"RhymePanelClass";
 
 static const int FONT_POINT_SIZE = 16;
+
+static const int BORDER = 3;
+static const int X_MARGIN = 18;
+static const int Y_MARGIN = 12;
+static const int SPACING = 4;
 
 HINSTANCE RhymePanel::hModuleInstance = NULL;
 
@@ -108,7 +114,7 @@ void RhymePanel::onPaint(PAINTSTRUCT& ps)
     DeleteObject(rgn);
 
     // black border
-    HPEN pen = CreatePen(PS_SOLID | PS_INSIDEFRAME, 3, fgColor);
+    HPEN pen = CreatePen(PS_SOLID | PS_INSIDEFRAME, BORDER, fgColor);
     HPEN oldPen = (HPEN)SelectObject(memDC, pen);
     Rectangle(memDC, rc.left, rc.top, rc.right, rc.bottom);
     SelectObject(memDC, oldPen);
@@ -121,18 +127,47 @@ void RhymePanel::onPaint(PAINTSTRUCT& ps)
     SetTextColor(memDC, fgColor);
     SetBkColor(memDC, bgColor);
 
-    // TODO: draw preedit string
+    SIZE sz;
     RECT rout;
-    CopyRect(&rout, &rc);
-    InflateRect(&rout, -10, -10);
-    ExtTextOut(memDC, 10, 10, ETO_CLIPPED | ETO_OPAQUE, &rout, preedit.c_str(), preedit.length(), NULL);
+    int xLeft = rc.left + X_MARGIN;
+    int xRight = rc.right - X_MARGIN;
+    int y = rc.top + Y_MARGIN;
+    int yBottom = rc.bottom - Y_MARGIN;
+
+    // TODO: draw preedit string
+    ZeroMemory(&sz, sizeof(sz));
+    GetTextExtentPoint32(memDC, preedit.c_str(), preedit.length(), &sz);
+    SetRect(&rout, xLeft, y, xRight, y + sz.cy);
+    ExtTextOut(memDC, xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, preedit.c_str(), preedit.length(), NULL);
+    y += sz.cy + SPACING;
 
     // TODO: draw aux string
+    ZeroMemory(&sz, sizeof(sz));
+    GetTextExtentPoint32(memDC, aux.c_str(), aux.length(), &sz);
+    SetRect(&rout, xLeft, y, xRight, y + sz.cy);
+    ExtTextOut(memDC, xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, aux.c_str(), aux.length(), NULL);
+    y += sz.cy + SPACING;
 
     // TODO: draw candidates
+    WCHAR cand[100];
+    for (size_t i = 0; i < candidates.size(); ++i)
+    {
+        snwprintf(cand, sizeof(cand), L"%d.  %s", (i + 1), candidates[i].c_str());
+        ZeroMemory(&sz, sizeof(sz));
+        GetTextExtentPoint32(memDC, cand, wcslen(cand), &sz);
+        SetRect(&rout, xLeft, y, xRight, std::min(int(y + sz.cy), yBottom));
+        ExtTextOut(memDC, xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, cand, wcslen(cand), NULL);
+        y += sz.cy + SPACING;
+        if (y >= yBottom)
+            break;
+    }
 
     SelectObject(memDC, oldFont);
     DeleteObject(font);
+
+    // TODO: draw ZIME icon at the bottom right corner
+    HICON icon = LoadIcon(NULL, IDI_INFORMATION);
+    DrawIcon(memDC, xRight - 32, yBottom - 32, icon);
 
     BitBlt(ps.hdc, ps.rcPaint.left, ps.rcPaint.top,
         (ps.rcPaint.right - ps.rcPaint.left), (ps.rcPaint.bottom - ps.rcPaint.top),
