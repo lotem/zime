@@ -83,6 +83,10 @@ int WINAPI WinMain (HINSTANCE hThisInstance,
     panel.getCandidates().push_back(L"我看中");
     panel.getCandidates().push_back(L"我看");
     panel.getCandidates().push_back(L"我");
+    panel.getCandidates().push_back(L"我我");
+    panel.getCandidates().push_back(L"我我我");
+    panel.getCandidates().push_back(L"我我我我");
+    panel.getCandidates().push_back(L"我我我我我");
     panel.show();
 
     /* Run the message loop. It will run until GetMessage() returns 0 */
