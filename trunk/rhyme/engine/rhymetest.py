@@ -4,20 +4,56 @@
 
 import socket 
 import cStringIO
+from ctypes import *
 
 import ibus
 from ibus import keysyms
 from ibus import modifier
 
+ERROR_ALREADY_EXISTS = 183
+MUTEX_ALL_ACCESS = 0x1F0001
+SW_HIDE = 0
+
 HOST, PORT = "localhost", 2133
+MUTEX_NAME = "RhymeService"
+EVENT_NAME = "RhymeServiceReadyEvent"
 
 class TestEngine:
 
     def __init__(self, schema):
         self.__lookup_table = ibus.LookupTable()
         self.__sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        if not self.__check_service():
+            return
         self.__sock.connect((HOST, PORT))
         self.__sock.send("INIT=%s\n" % schema)
+
+    def __check_service(self):
+        mutex = windll.kernel32.OpenMutexA(MUTEX_ALL_ACCESS, False, MUTEX_NAME)
+        if mutex:
+            print "service already started."
+            windll.kernel32.CloseHandle(mutex)
+            return True
+        return self.__start_service()
+
+    def __start_service(self):
+        event = windll.kernel32.CreateEventA(None, True, False, EVENT_NAME)
+        if not event:
+            print "error creating event %s." % EVENT_NAME
+            return False
+        if windll.kernel32.GetLastError() == ERROR_ALREADY_EXISTS:
+            print "waiting for service to be ready..."
+        else:
+            print "lauching Rhyme service...",
+            handle = windll.shell32.ShellExecuteA(None, "open", "pythonw.exe", "rhyme.py", None, SW_HIDE)
+            if handle <= 32:
+                print "error launching service: %d" % handle
+                windll.kernel32.CloseHandle(event)
+                return False
+        windll.kernel32.WaitForSingleObject(event, 15000)
+        print "ok."
+        windll.kernel32.CloseHandle(event)
+        return True
 
     def close(self):
         self.__sock.close()
@@ -85,8 +121,9 @@ def main():
     #e.process_key_event(keysyms.space, modifier.RELEASE_MASK)
 
     e = TestEngine(u'Jyutping')
-    e.test('jyuhomindeoicangjatheizaugwodikjatzi')
+    #e.test('jyuhomindeoicangjatheizaugwodikjatzi')
     #e.test('fanhoifongziganbunsamgikci')
+    e.test('zung ')
 
     e.close()
 
