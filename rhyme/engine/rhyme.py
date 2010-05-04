@@ -3,8 +3,16 @@
 # vim:set et sts=4 sw=4:
 
 import os
-import logging
 import SocketServer
+from ctypes import *
+
+ERROR_ALREADY_EXISTS = 183
+
+import logging
+import logging.config
+
+logging.config.fileConfig("logging.conf")
+logger = logging.getLogger("rhyme")
 
 import ibus
 from ibus import keysyms
@@ -36,27 +44,27 @@ class RhymeSessionHandler(SocketServer.StreamRequestHandler):
         for line in self.rfile:
             tag, params = line.rstrip("\n").split("=", 1)
             if tag == "INIT":
-                logging.info("init session:", params)
+                logger.info("init session:", params)
                 self.__lookup_table = ibus.LookupTable()
                 self.__engine = zimeengine.SchemaChooser(self, params)
             if tag == "EVENT":
                 keycode, mask = map(int, params.split(","))
-                logging.debug("process_key_event: '%s'(%x), %08x" % (keysyms.keycode_to_name(keycode), keycode, mask))
+                logger.debug("process_key_event: '%s'(%x), %08x" % (keysyms.keycode_to_name(keycode), keycode, mask))
                 ret = self.__engine.process_key_event(keycode, mask)
                 self.wfile.write("RET=%s\n" % ("true" if ret else "false"))
                 self.wfile.flush()
 
     def commit_string(self, s):
-        logging.debug(u'commit: [%s]' % s)
+        logger.debug(u'commit: [%s]' % s)
         self.wfile.write("COMMIT=%s\n" % s.encode('utf-8'))
 
     def update_preedit(self, s, start, end):
-        logging.debug(u'preedit: [%s[%s]%s]' % (s[:start], s[start:end], s[end:]))
+        logger.debug(u'preedit: [%s[%s]%s]' % (s[:start], s[start:end], s[end:]))
         self.wfile.write("PREEDIT=%s\n" % s.encode('utf-8'))
         self.wfile.write("CURSOR=%d,%d\n" % (start, end))
 
     def update_aux_string(self, s):
-        logging.debug(u'aux: [%s]' % s)
+        logger.debug(u'aux: [%s]' % s)
         self.wfile.write("AUX=%s\n" % s.encode('utf-8'))
 
     def update_candidates(self, candidates):
@@ -121,14 +129,25 @@ class RhymeSessionHandler(SocketServer.StreamRequestHandler):
 class RhymeService:
     
     HOST, PORT = "localhost", 2133
-
-    def __init__(self):
-        addr = (RhymeService.HOST, RhymeService.PORT)
-        self.server = SocketServer.TCPServer(addr, RhymeSessionHandler)
+    MUTEX_NAME = "RhymeService"
 
     def run(self):
-        logging.info("RhymeService serving...")
+        if self.check_existing_instance():
+            return
+        addr = (RhymeService.HOST, RhymeService.PORT)
+        self.server = SocketServer.TCPServer(addr, RhymeSessionHandler)
+        logger.info("RhymeService running...")
         self.server.serve_forever()
+
+    def check_existing_instance(self):
+        hMutex = windll.kernel32.CreateMutexA(None, True, RhymeService.MUTEX_NAME)
+        if not hMutex:
+            logger.error("error creating mutex %s; exiting." % RhymeService.MUTEX_NAME)
+            return True
+        if windll.kernel32.GetLastError() == ERROR_ALREADY_EXISTS:
+            logger.info("existing RhymeService found; exiting.")
+            return True
+        return False
 
 def main():
     service = RhymeService()
