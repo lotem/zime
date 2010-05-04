@@ -7,6 +7,7 @@ import SocketServer
 from ctypes import *
 
 ERROR_ALREADY_EXISTS = 183
+EVENT_ALL_ACCESS = 0x1F0003
 
 import logging
 import logging.config
@@ -44,7 +45,7 @@ class RhymeSessionHandler(SocketServer.StreamRequestHandler):
         for line in self.rfile:
             tag, params = line.rstrip("\n").split("=", 1)
             if tag == "INIT":
-                logger.info("init session:", params)
+                logger.info("init session: %s", params)
                 self.__lookup_table = ibus.LookupTable()
                 self.__engine = zimeengine.SchemaChooser(self, params)
             if tag == "EVENT":
@@ -130,24 +131,35 @@ class RhymeService:
     
     HOST, PORT = "localhost", 2133
     MUTEX_NAME = "RhymeService"
+    EVENT_NAME = "RhymeServiceReadyEvent"
 
     def run(self):
-        if self.check_existing_instance():
+        if not self.check_single_instance():
             return
+        self.service_ready_notify()
         addr = (RhymeService.HOST, RhymeService.PORT)
         self.server = SocketServer.TCPServer(addr, RhymeSessionHandler)
         logger.info("RhymeService running...")
         self.server.serve_forever()
 
-    def check_existing_instance(self):
-        hMutex = windll.kernel32.CreateMutexA(None, True, RhymeService.MUTEX_NAME)
-        if not hMutex:
-            logger.error("error creating mutex %s; exiting." % RhymeService.MUTEX_NAME)
-            return True
+    def check_single_instance(self):
+        mutex = windll.kernel32.CreateMutexA(None, True, RhymeService.MUTEX_NAME)
+        if not mutex:
+            logger.error("error creating mutex '%s'; exiting." % RhymeService.MUTEX_NAME)
+            return False
         if windll.kernel32.GetLastError() == ERROR_ALREADY_EXISTS:
             logger.info("existing RhymeService found; exiting.")
-            return True
-        return False
+            windll.kernel32.CloseHandle(mutex)
+            return Flase
+        return True
+
+    def service_ready_notify(self):
+        event = windll.kernel32.OpenEventA(EVENT_ALL_ACCESS, False, RhymeService.EVENT_NAME)
+        if not event:
+            logger.warning("error opening event '%s'." % RhymeService.EVENT_NAME)
+            return
+        windll.kernel32.SetEvent(event)
+        windll.kernel32.CloseHandle(event)
 
 def main():
     service = RhymeService()
