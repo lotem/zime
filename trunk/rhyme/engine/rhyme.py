@@ -150,7 +150,7 @@ class RhymeService:
         if windll.kernel32.GetLastError() == ERROR_ALREADY_EXISTS:
             logger.info("existing RhymeService found; exiting.")
             windll.kernel32.CloseHandle(mutex)
-            return Flase
+            return False
         return True
 
     def service_ready_notify(self):
