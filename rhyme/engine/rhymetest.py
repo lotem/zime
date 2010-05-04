@@ -121,9 +121,8 @@ def main():
     #e.process_key_event(keysyms.space, modifier.RELEASE_MASK)
 
     e = TestEngine(u'Jyutping')
-    #e.test('jyuhomindeoicangjatheizaugwodikjatzi')
+    e.test('jyuhomindeoicangjatheizaugwodikjatzi ')
     #e.test('fanhoifongziganbunsamgikci')
-    e.test('zung ')
 
     e.close()
 
