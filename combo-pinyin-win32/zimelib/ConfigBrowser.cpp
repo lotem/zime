@@ -14,27 +14,26 @@
 #include "stdafx.h"
 #include "ConfigBrowser.h"
 #include "TextReader.h"
-#include "Encoding.h"
 #include <boost/filesystem.hpp>
 
 namespace fs = boost::filesystem;
 
-char const * const ConfigBrowser::CONFIG_DIR = "config";
-char const * const ConfigBrowser::FILE_EXT = ".txt";
-char const * const ConfigBrowser::AUTO_LOAD = "autoload";
+wstring const ConfigBrowser::CONFIG_DIR = L"config";
+wstring const ConfigBrowser::FILE_EXT = L".txt";
+wstring const ConfigBrowser::AUTO_LOAD = L"autoload";
 
 void ConfigBrowser::Browse()
 {
 	list_.clear();
 
-	fs::path path(CONFIG_DIR);
+	fs::wpath path(CONFIG_DIR);
 	if (!fs::exists(path) || !fs::is_directory(path))
 	{
 		return;
 	}
 	
-	fs::directory_iterator end_iter;
-	for (fs::directory_iterator iter(path); iter != end_iter; ++iter)
+	fs::wdirectory_iterator end_iter;
+	for (fs::wdirectory_iterator iter(path); iter != end_iter; ++iter)
 	{
 		try
 		{
@@ -73,17 +72,16 @@ const wstring& ConfigBrowser::Title( size_t n ) const
 {
 	if (n >= list_.size())
 	{
-		static const wstring null_string;
-		return null_string;
+		return wstring();
 	}
 	return list_[n].title;
 }
 
-const string ConfigBrowser::FileName( size_t n ) const
+wstring const ConfigBrowser::FileName( size_t n ) const
 {
 	if (n >= list_.size())
 	{
-		return string();
+		return wstring();
 	}
 	return list_[n].file_name;
 }
@@ -96,7 +94,7 @@ void ConfigBrowser::get_title( config_info& info )
 	if (!reader.IsOpen())
 		return;
 
-	info.title = Encoding::ToWide(fs::basename(info.file_name));
+	info.title = fs::basename(info.file_name);
 
 	wstring line;
 	wstring directive;

@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "combo-pinyin", "combo-pinyin\combo-pinyin.vcproj", "{856EDF76-A193-4484-9369-26E66A10CE2A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8A6FC468-A32C-46FD-87A0-8BE398C51CF3} = {8A6FC468-A32C-46FD-87A0-8BE398C51CF3}

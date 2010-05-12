@@ -14,7 +14,7 @@
 #include "stdafx.h"
 #include "ImportReader.h"
 
-ImportReader::ImportReader(const fs::path file_name)
+ImportReader::ImportReader(const fs::wpath file_name)
 {
 	Open(file_name);
 }
@@ -65,7 +65,7 @@ const wstring ImportReader::GetDirective()
 	return directive;
 }
 
-void ImportReader::Open( const fs::path file_name )
+void ImportReader::Open( const fs::wpath file_name )
 {
 	reader_handle new_reader(new TextReader(file_name));
 	if (new_reader->IsOpen())
@@ -89,7 +89,7 @@ bool ImportReader::IsImported() const
 	return readers_.size() > 1;
 }
 
-const fs::path ImportReader::FileName() const
+const fs::wpath ImportReader::FileName() const
 {
-	return readers_.empty() ? fs::path() : readers_.top()->FileName();
+	return readers_.empty() ? fs::wpath() : readers_.top()->FileName();
 }

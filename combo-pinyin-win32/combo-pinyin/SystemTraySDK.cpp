@@ -477,7 +477,7 @@ BOOL CSystemTray::StepAnimation()
         return FALSE;
 
     m_nCurrentIcon++;
-    if (m_nCurrentIcon >= m_IconList.size())
+    if (m_nCurrentIcon >= (int)m_IconList.size())
         m_nCurrentIcon = 0;
 
     return SetIcon(m_IconList[m_nCurrentIcon]);

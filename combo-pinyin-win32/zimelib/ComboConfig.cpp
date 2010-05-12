@@ -14,7 +14,6 @@
 #include "stdafx.h"
 #include "ComboConfig.h"
 #include "ImportReader.h"
-#include "Encoding.h"
 #include <boost/filesystem.hpp>
 
 namespace fs = boost::filesystem;
@@ -27,13 +26,13 @@ ComboConfig::ComboConfig()
 {
 }
 
-void ComboConfig::Load( const fs::path file_name )
+void ComboConfig::Load( const fs::wpath file_name )
 {
 	ImportReader reader(file_name);
 	if (!reader.IsOpen())
 		return;
 
-	title_ = Encoding::ToWide(fs::basename(file_name));
+	title_ = fs::basename(file_name);
 	opt_enabled_ = false;
 	opt_enabled_set_ = false;
 	opt_repeat_ = false;
@@ -68,9 +67,9 @@ void ComboConfig::process_directives( ImportReader &reader )
 	{
 		if (starts_with(directive, L"@import "))
 		{
-			fs::path import_file_name(reader.FileName());
+			fs::wpath import_file_name(reader.FileName());
 			import_file_name.remove_leaf();
-			import_file_name /=	Encoding::ToUTF8(erase_head_copy(directive, 8));
+			import_file_name /=	erase_head_copy(directive, 8);
 			reader.Import(import_file_name);
 			continue;
 		}

@@ -22,19 +22,19 @@ namespace fs = boost::filesystem;
 class ImportReader : public AbstractReader
 {
 public:
-	ImportReader(const fs::path file_name);
+	ImportReader(const fs::wpath file_name);
 	virtual ~ImportReader();	
-	void Import(const fs::path file_name) { Open(file_name); }
+	void Import(const fs::wpath file_name) { Open(file_name); }
 	void Close();
 	const wstring ReadLine();
 	const wstring GetDirective();
 	bool IsOpen() const;
 	bool Eof() const;
 	bool IsImported() const; 
-	const fs::path FileName() const;
+	const fs::wpath FileName() const;
 
 private:
-	void Open(const fs::path file_name);
+	void Open(const fs::wpath file_name);
 	typedef shared_ptr<TextReader> reader_handle;
 	std::stack<reader_handle> readers_;
 };

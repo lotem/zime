@@ -23,16 +23,16 @@ class TextReader : AbstractReader
 {
 public:
 	TextReader();
-	TextReader(const fs::path file_name);
+	TextReader(const fs::wpath file_name);
 	virtual ~TextReader();
 
-	void Open(const fs::path file_name);
+	void Open(const fs::wpath file_name);
 	void Close();
-	const wstring ReadLine() { return read_line_aux(); }
-	const wstring GetDirective() { return read_line_aux(DIRECTIVE); }
+	wstring const ReadLine() { return read_line_aux(); }
+	wstring const GetDirective() { return read_line_aux(DIRECTIVE); }
 	bool IsOpen() const;
 	bool Eof() const;
-	const fs::path& FileName() const { return file_name_; }
+	fs::wpath const& FileName() const { return file_name_; }
 	const unsigned long GetLineNo() const { return line_no_; }
 
 private:
@@ -41,9 +41,9 @@ private:
 		TEXT = 0,
 		DIRECTIVE = 1
 	};
-	const wstring read_line_aux(what_to_read wanted = TEXT);
+	wstring const read_line_aux(what_to_read wanted = TEXT);
 	std::ifstream stream_;
 	unsigned long line_no_;
 	wstring next_line_;
-	fs::path file_name_;
+	fs::wpath file_name_;
 };

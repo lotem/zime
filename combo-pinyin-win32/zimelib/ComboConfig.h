@@ -21,7 +21,7 @@ class ComboConfig
 {
 public:
 	ComboConfig();
-	void Load(const fs::path file_name);
+	void Load(const fs::wpath file_name);
 	const wstring ApplyRules( const wstring& text );
 
 	wstring XlitFrom() const { return xlit_from_; }
