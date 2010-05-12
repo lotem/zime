@@ -1,15 +1,12 @@
 ﻿#--------------------------------------------------------------
-# config/5.txt
+# config/6.txt
 # 
-# 宫保拼音鍵位佈局 五式
+# 宫保拼音鍵位佈局 六式
 # 
-# 適用於：
-# Google拼音、搜狗拼音、紫光拼音、微軟拼音2003+（新體驗）
-# 
-# 西元2008年 中州式恕堂 弓辰謹訂
+# 西元2009年 中州式恕堂 弓辰謹訂
 #--------------------------------------------------------------
 
-#@title 佈局五(&5)
+#@title 佈局六(&6)
 
 
 #--------------------------------------------------------------
@@ -88,8 +85,8 @@ IKJLUOYHNMP
 # 並擊「V J」二鍵，無論二者誰先按下，都將得到組合「BA」。
 #--------------------------------------------------------------
 
-VCXZREWQFDSAGTB_HYNJUMKI<LO>P
-BPF~DTL!ZCS!GKHIaeoAEUni<gu>r
+BVCXZTREWQGFDSA_HYNJUMKI<LO>P
+PBFZ~TDLC!KGHS!IaeoAEUni<gu>r
 
 
 #--------------------------------------------------------------
@@ -121,11 +118,10 @@ BPF~DTL!ZCS!GKHIaeoAEUni<gu>r
 !	$1
 
 ^I$	_
-
-[ni<]?g	g
-
 ^<$	\xBC
 ^>$	\xBE
+
+[ni<]?g	g
 [<n]?>	g
 <	n
 
@@ -145,34 +141,36 @@ UONG	UNG
 I?UE$	IUE
 
 [AE]i?u	AU
-iu	OU
+i?u	OU
 u	O
 ([AOE])i	$1I
 
 ([AOEIU])r	$1R
 r	ER
 
-BP	M
-DT	N
-ZC	R
+G(H?S|H)	R
+BF?Z	W
+BF	M
+DL	N
+FZ	ZH
+LC	CH
+HS	SH
 
-^ZI	ZHI
-^CI	CHI
-^SI	SHI
-
+^([ZCS])i$	$1
 I?i	I
 
 ^GI	JI
 ^KI	QI
 ^HI	XI
+^ZI	JI
+^CI	QI
+^SI	XI
 
 ^([BPMFW])UN	$1EN
 ^([BPMFW])U(.+)$	$1$2
 ^([ZCS]H|R)IN	$1EN
-^([ZCS]H|R)I(.)	$1$2
-
-^([ZCSR])$	$1I
-^([ZCS])H$	$1HI
+^([ZCS]H|R)I(.+)	$1$2
+^([ZCS]H?|R)$	$1I
 
 IUA$	IUE
 IUO$	IO
@@ -189,7 +187,7 @@ IUO$	IO
 AU	AO
 UNG	ONG
 
-([NL])IU$	$1V
+^([NL])IU$	$1V
 IU	U
 
 ([IU])EN	$1N

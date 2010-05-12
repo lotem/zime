@@ -22,7 +22,7 @@ TextReader::TextReader()
 {
 }
 
-TextReader::TextReader( const fs::path file_name )
+TextReader::TextReader( const fs::wpath file_name )
 {
 	Open(file_name);
 }
@@ -95,7 +95,7 @@ const wstring TextReader::read_line_aux( what_to_read wanted )
 	}
 }
 
-void TextReader::Open( const fs::path file_name )
+void TextReader::Open( const fs::wpath file_name )
 {
 	Close();
 	stream_.open(fs::system_complete(file_name).string().c_str());
