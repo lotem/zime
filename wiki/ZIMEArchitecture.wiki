@@ -1,7 +1,7 @@
 #summary ZIME輸入法軟件結構簡析
 #labels Phase-Design,Featured
 
-= ZIME輸入法軟件結構 =
+= ZIME輸入法軟件結構簡析 =
 
 概念：
 
