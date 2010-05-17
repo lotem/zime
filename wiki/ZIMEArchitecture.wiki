@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary ZIME輸入法軟件結構
 #labels Phase-Design,Featured
 
 = ZIME輸入法軟件結構 =
