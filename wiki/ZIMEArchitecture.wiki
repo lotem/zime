@@ -1,0 +1,67 @@
+#summary One-sentence summary of this page.
+#labels Phase-Design,Featured
+
+= ZIME輸入法軟件結構 =
+
+概念：
+
+輸入方案  詞庫  
+輸入法引擎  解析器  上下文  語言模型
+拼寫運算  單字  編碼  詞組  編碼串（oKey）  索引編碼（iKey）
+
+{{{
+輸入方案生成工具部份：
+    ---- 解析用戶編寫的方案定義文件，計算用來實現簡拼、模糊音的拼式映射表（oKey --> iKey）
+    ---- 讀取單字編碼表（oKey --> 中文單字）
+    ---- 對詞庫注音（由單獨的程序完成，也可手工編輯）
+    ---- 製作詞庫，取編碼串裏的前N個編碼（iKey）做詞庫索引
+
+ZIMEEngine部份：
+
+Schema  輸入方案對象
+    記錄了輸入方案的名稱、對應的詞庫（DB對象）、拼寫運算規則等配置信息
+
+SchemaChooser  輸入方案選擇菜單
+    __init__()  從DB讀取數據庫中配置的輸入方案列表
+    choose(schema)  根據用戶選定的輸入方案，初始化Engine
+
+Engine  實現與IBus框架的接口
+    commit_string(commit_string)  上屏
+    update_preedit_string(preedit_string, selected_range)  更新編輯串
+    update_aux_string(aux_string)  更新輔助串
+    update_candidate_list(candidate_list)  更新候選列表
+    process_key_event(keycode, mask)  處理鍵盤事件，由IBus調用
+        ---- 功能鍵處理（刪詞、切換輸入法狀態等組合鍵）
+        ---- 調用Parser將事件轉換為輸入碼
+        ---- 若Parser不做處理，則對編輯功能鍵做默認處理
+        ---- 處理標調符號，或字符直接上屏
+
+Parser  解析用戶輸入
+    ---- 有若干實現：羅馬字解析器、碼表解析器、並擊解析器等
+    process_input(event, context)
+        ---- 判斷鍵盤事件是否產生輸入碼，更新Context中的輸入串
+        ---- 可對用戶的原始輸入做一些變形，如雙拼 --> 全拼，給字母加聲調符號等
+
+Context
+    edit(new_input)  更新輸入串，调用Model来做转换
+    select(candidate_number)  從當前候選項列表中確認一個詞
+    get_preedit()  取得輸入串
+    get_aux_string()  取得輔助串，為當前選中的詞對應的輸入碼
+    get_commit_string()  取得結果串
+    get_candidates()  取得当前的候选列表
+    selected[]  已轉換的詞的序列
+    current[]  當前選中的詞（可能是若干單字組成的詞組，故形式是個數組）
+
+Model  包含音節切分算法、詞庫和二元語言模型
+    init()  從schema對象中獲取輸入方案的音節編碼表（用於音節切分）
+    query(context)  對上下文中的輸入串做音節切分、候選詞檢索和智能組句運算
+        ----  音節切分
+        ----  候選詞檢索
+        ----  生成詞組選項
+        ----  選取最優的整句結果
+
+     DB   存取數據：方案配置信息、詞庫
+         ---- 無系統詞庫、用戶詞庫的劃分
+         ---- 初始狀態二元模型未經訓練，以用戶的輸入來做訓練
+         ---- 用戶自造詞是以詞組的方式由二元模型來產生
+}}}
