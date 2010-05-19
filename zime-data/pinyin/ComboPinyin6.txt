@@ -1,6 +1,6 @@
 # ZIME Schema v3
-Schema = ComboPinyin
-DisplayName = 宮保拼音
+Schema = ComboPinyin6
+DisplayName = 宮保拼音第六式
 Dict = pinyin
 Parser = combo
 AutoPrompt = yes
@@ -22,6 +22,7 @@ TransformRule = n?G$ ng
 TransformRule = (^|[^aeiouy])(ng?)$ \1e\2
 TransformRule = ue(i|ng?)$ u\1
 TransformRule = uo?ng$ ong
+TransformRule = uoi$ ui
 TransformRule = ^zf zh
 TransformRule = ^cl ch
 TransformRule = ^bf m
