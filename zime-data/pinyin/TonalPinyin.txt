@@ -46,12 +46,12 @@ SpellingRule = v ü
 SplitRule = [ng]$ ^[aeiou]
 #DivideRule = ^.*[iu]([āáǎàaēéěèeōóǒòo].*)$ \1
 TransformRule = ([aeio])gn \1ng
-TransformRule = (?<=[a-z]); 1
-TransformRule = (?<=[a-z])/ 2
-TransformRule = (?<=[a-z]), 3
-TransformRule = (?<=[a-z])\. 4
-TransformRule = ([aoeiuv])([rn]|ng)([12345]) \1\3\2
-TransformRule = ([aoe])([iou])([12345]) \1\3\2
+TransformRule = ([aoeiuv])([rn]|ng)([1-5;/,.]) \1\3\2
+TransformRule = ([aoe])([iou])([1-5;/,.]) \1\3\2
+TransformRule = (?<=[aeiouv]); 1
+TransformRule = (?<=[aeiouv])/ 2
+TransformRule = (?<=[aeiouv]), 3
+TransformRule = (?<=[aeiouv])\. 4
 TransformRule = ([nl])ue \1üe
 TransformRule = eh(?![aoeiuv])[1-5]? ê
 TransformRule = a1 ā
@@ -84,7 +84,7 @@ TransformRule = v2 ǘ
 TransformRule = v3 ǚ
 TransformRule = v4 ǜ
 TransformRule = v5 ü
-TransformRule = v ü
+TransformRule = (?<=[jqxynlzcs])v ü
 # punctuation
 Punct = , ，
 Punct = . 。
