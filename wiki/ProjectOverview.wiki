@@ -28,7 +28,7 @@
     * 輸入方案規格：v3
 
   * 其他ZIME相關資源
-    * Combo Pinyin ／宮保拼音
-    * Typewriter ／打字機
+    * 宮保拼音／Combo Pinyin
+    * 打字機／Typewriter
     * 中州羅馬字拼寫法
     * 東風破拼寫法
