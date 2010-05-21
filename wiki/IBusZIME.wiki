@@ -1,4 +1,4 @@
-#summary 中州韻Linux輸入法介紹頁.
+#summary 中州韻Linux輸入法介紹頁
 
 = ibus-zime =
 
