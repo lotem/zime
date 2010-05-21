@@ -1,0 +1,13 @@
+#summary ZIME輸入方案倉庫介紹頁
+
+= ZIME輸入方案倉庫 =
+
+通用於ZIME計劃各產品線的輸入方案原始檔
+
+    * [SchemaGallery ZIME輸入方案展示]
+
+    * [http://code.google.com/p/zime/source/browse/#svn/trunk/zime-data 瀏覽全部方案]
+
+    * [ZIMESchemaSpecificationV3 ZIME輸入方案定義文件規格（第三版）]
+
+    * [ZIMESchemaDeveloperGuide ZIME輸入方案開發者指南]（[http://zime.googlecode.com/files/zime-schema-developer-guide.pdf 圖解PDF]）
