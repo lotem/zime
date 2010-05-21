@@ -3,7 +3,7 @@
 
 = 項目綜覽 =
 
-中州韻輸入法引擎／ZIME
+中州韻輸入法引擎／ZIME Input Method Engine
 
 項目組成：
 
