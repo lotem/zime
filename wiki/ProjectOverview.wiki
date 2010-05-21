@@ -1,0 +1,24 @@
+#summary ZIME項目綜覽
+#labels Featured
+
+= 項目綜覽 =
+
+中州韻輸入法套件
+
+組成：
+  * ZIME ／中州韻輸入法引擎
+    * 當前版本：v3 
+    * 計劃中：v4 開發代號 "Rhyme"／平水韻
+  * ibus-zime ／中州韻IBus輸入法
+    * 當前版本：3.4
+  * Rhyme ／中州韻Windows輸入法
+    * 研製中 開發代號："Weasel"／小狼毫
+  * Plume ／中州韻網頁輸入法
+    * 當前版本：2.1
+  * zime-data ／ZIME輸入方案倉庫
+    * 輸入方案規格：v3
+  * 其他ZIME相關資源
+    * Combo Pinyin ／宮保拼音
+    * Typewriter ／打字機
+    * 中州羅馬字拼寫法
+    * 東風破拼寫法
