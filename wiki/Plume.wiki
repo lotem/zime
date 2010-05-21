@@ -1,0 +1,16 @@
+#summary 中州韻網頁輸入法介紹頁
+
+= 中州韻網頁輸入法 =
+
+開發代號："Plume"／大白雲
+
+    * 下載網頁輸入法 Plume.js：
+      * [http://zime.googlecode.com/files/plume-2.1.zip Plume.js 2.1]
+
+    * 下載已編譯的輸入方案：
+      * [http://zime.googlecode.com/files/plume-2.0-data-pinyin.zip 拼音、雙拼、宮保拼音]
+      * [http://zime.googlecode.com/files/plume-2.0-data-zhuyin.zip 注音]
+      * [http://zime.googlecode.com/files/plume-2.0-data-jyutping.zip 粵拼、Penkyamp]
+      * [http://zime.googlecode.com/files/plume-2.0-data-quick.zip 速成]
+
+    * [PlumeUserManual Plume.js 用戶手冊]
