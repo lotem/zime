@@ -1,0 +1,16 @@
+#summary 中州韻Linux輸入法介紹頁.
+
+= ibus-zime =
+
+基於Linux／IBus的中州韻輸入法
+
+
+  * 版本資訊：[ReleaseNotes]
+
+    * 下載：[http://zime.googlecode.com/files/ibus-zime-3.4.tar.gz ibus-zime 3.4]
+      * 內含輸入方案：拼音、雙拼、宮保拼音、粵拼
+
+    * 演示視頻：
+      * [http://v.youku.com/v_show/id_XMTM4ODkwMzgw.html 其一、功能展示]
+      * [http://v.youku.com/v_show/id_XMTM5Mjk5Mjc2.html 其二、立體標調]
+      * [http://v.youku.com/v_show/id_XMTQ1NjExNzQ4.html 其三、形碼連打]
