@@ -6,7 +6,7 @@
 
     * [SchemaGallery ZIME輸入方案展示]
 
-    * [http://code.google.com/p/zime/source/browse/#svn/trunk/zime-data 瀏覽全部方案]
+    * [http://code.google.com/p/zime/source/browse/#svn/trunk/zime-data 瀏覽方案源碼]
 
     * [ZIMESchemaSpecificationV3 ZIME輸入方案定義文件規格（第三版）]
 
