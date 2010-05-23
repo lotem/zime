@@ -1,0 +1,13 @@
+#summary 打字機介紹頁
+
+= 打字機／Typewriter =
+
+    在網頁中練習宮保拼音、注音打字的指法
+
+    * 在線體驗：
+      * [http://zime-web.appspot.com/typewriter/v6 宮保拼音第六式]
+      * [http://zime-web.appspot.com/typewriter/zhuyin 注音鍵盤]
+      * [http://zime-web.appspot.com/typewriter/canton 拉丁粵文]
+      * [http://zime-web.appspot.com/typewriter/lmz 中州羅馬字]
+
+    * 打包下載：[http://zime.googlecode.com/files/typewriter-0.7.1.zip 打字機0.7.1]
