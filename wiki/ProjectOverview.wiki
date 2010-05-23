@@ -12,19 +12,19 @@
     * 當前版本：v3
     * 計劃中 v4
 
-  * 中州韻IBus輸入法／ibus-zime
+  * [IBusZIME 中州韻IBus輸入法／ibus-zime]
     * 當前版本：3.4
 
-  * 中州韻Windows輸入法
+  * [Weasel 中州韻Windows輸入法]
     開發代號：小狼毫／"Weasel"
     * 研製中 
 
-  * 中州韻網頁輸入法
+  * [Plume 中州韻網頁輸入法]
     開發代號：大白雲／"Plume"
     * 當前版本：2.1
     * 在線模式計劃中 
 
-  * ZIME輸入方案倉庫／zime-data
+  * [ZIMEData ZIME輸入方案倉庫／zime-data]
     * 輸入方案規格：v3
 
   * 其他ZIME相關資源
