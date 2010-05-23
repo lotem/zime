@@ -4,7 +4,7 @@
 
 開發代號 平水韻／"Rhyme"
 
-目前ZIME的核心算法是用!Python來編寫，與[IBusZIME ibus-zime]一同開發和發佈；
+目前ZIME的核心算法用Python來編寫，與[IBusZIME ibus-zime]一同開發和發佈；
 研製當中的[Weasel Windows版本]的核心算法也直接移植這部份代碼。
 網頁版則是仿照這套算法用!JavaScript改寫的。
 等到新版本的核心算法成熟、穩定之後，並且有熱心的朋友來幫忙，可以考慮用C++來重寫。
