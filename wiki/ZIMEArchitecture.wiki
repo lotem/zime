@@ -1,5 +1,5 @@
 #summary ZIME輸入法結構簡析
-#labels Phase-Design,Featured
+#labels Phase-Design
 
 = ZIME輸入法結構簡析 =
 
