@@ -1,5 +1,5 @@
 #summary Plume.js 網頁輸入法用戶手冊
-#labels Phase-Support,Featured
+#labels Phase-Support
 
 = 系統需求 =
 
