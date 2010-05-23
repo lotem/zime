@@ -1,7 +1,7 @@
-#summary ZIME Schema Specification v3
+#summary ZIME輸入方案定義文件規格（第三版）
 #labels Featured,Phase-Design
 
-=ZIME 輸入方案定義文件規格（第三版）=
+=ZIME輸入方案定義文件規格（第三版）=
 2010-01-13
 
 ==方案定義文件==
