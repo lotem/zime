@@ -1,4 +1,4 @@
-#summary release notes
+#summary 版本資訊
 #labels Featured
 
 = ibus-zime release notes =
