@@ -31,7 +31,7 @@ python create-schema.py -v -k DoublePinyin.txt
 }}}
 
 = 宮保拼音 =
-以多鍵並擊的方式輸入拼音音節。詳見[http://zime.googlecode.com/files/combo-pinyin-doc.pdf 宮保拼音快速入門指南]。
+以多鍵並擊的方式輸入拼音音節。詳見[ComboPinyin 宮保拼音介紹頁]。
 
 方案文件：
   * http://zime.googlecode.com/svn/trunk/zime-data/pinyin/ComboPinyin.txt
