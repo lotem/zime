@@ -46,7 +46,7 @@ Parser  解析用戶輸入
 Context
     edit(new_input)  更新輸入串，调用Model来做转换
     select(candidate_number)  從當前候選項列表中確認一個詞
-    get_preedit()  取得輸入串
+    get_preedit()  取得輸入編輯串
     get_aux_string()  取得輔助串，為當前選中的詞對應的輸入碼
     get_commit_string()  取得結果串
     get_candidates()  取得当前的候选列表
