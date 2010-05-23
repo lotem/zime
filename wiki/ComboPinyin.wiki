@@ -1,10 +1,6 @@
 #summary 宮保拼音介紹頁
 
-= 宮保拼音 =
-
-
-
-  * 宮保拼音／Combo Pinyin
+= 宮保拼音／Combo Pinyin =
 
     PC鍵盤上的簡易並擊輸入方法
 
