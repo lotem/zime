@@ -17,6 +17,7 @@ setting_values (
 );
 }}}
 
+{{{
 alpha_dict_keys (
   id integer primary key,
   ikey text
@@ -28,3 +29,4 @@ alpha_dict_entries (
   use_count integer,
   last_used datetime
 );
+}}}
