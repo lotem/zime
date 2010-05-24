@@ -1,0 +1,30 @@
+#summary 平水韻數據庫佈局
+#labels Phase-Design
+
+（草稿）
+
+設定值，採用KEY = VALUE對的形式。一個KEY可以對應多個VALUE，這時VALUE表示一個有序的列表。
+一部份設定值從各輸入方案定義文件中直接導入，加前綴 `Config/<SchemaName>/`；另一部分是全局设置。
+
+{{{
+setting_keys (
+  id integer primary key, 
+  skey text
+);
+setting_values (
+  key_id integer, 
+  value text
+);
+}}}
+
+alpha_dict_keys (
+  id integer primary key,
+  ikey text
+);
+
+alpha_dict_entries (
+  key_id integer, 
+  phrase_id integer, 
+  use_count integer,
+  last_used datetime
+);
