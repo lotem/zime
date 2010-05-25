@@ -2,8 +2,6 @@
 
 = ZIME核心算法庫 =
 
-聰明的拼音輸入法懂我心意
-
 開發代號 平水韻／"Rhyme"
 
 目前ZIME的核心算法用Python來編寫，與[IBusZIME ibus-zime]一同開發和發佈；
