@@ -1,6 +1,8 @@
 #summary 項目綜覽
 #labels Featured
 
+----
+
 == 佛振說ZIME ==
 
 啊，不是吧，又一款輸入法平臺。
