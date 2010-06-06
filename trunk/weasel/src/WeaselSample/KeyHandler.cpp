@@ -140,18 +140,21 @@ HRESULT CTextService::_HandleCharacterKey(TfEditCookie ec, ITfContext *pContext,
         }
     }
 
-    // update the selection, and make it an insertion point just past
-    // the inserted text.
-    if (tfSelection.range->Collapse(ec, TF_ANCHOR_END) != S_OK)
-        goto Exit;
-
     // insert the text
     // Use SetText here instead of InsertTextAtSelection because a composition is already started
     // Don't allow the app to adjust the insertion point inside our composition
     if (tfSelection.range->SetText(ec, 0, &ch, 1) != S_OK)
         goto Exit;
 
-    //pContext->SetSelection(ec, 1, &tfSelection);
+    // update the selection, and make it an insertion point just past
+    // the inserted text.
+    tfSelection.range->Collapse(ec, TF_ANCHOR_END);
+    pContext->SetSelection(ec, 1, &tfSelection);
+
+    //
+    // set the display attribute to the composition range.
+    //
+    _SetCompositionDisplayAttributes(ec, pContext, _gaDisplayAttributeInput);
 
 Exit:
     tfSelection.range->Release();
@@ -179,6 +182,15 @@ HRESULT CTextService::_HandleReturnKey(TfEditCookie ec, ITfContext *pContext)
 
 HRESULT CTextService::_HandleSpaceKey(TfEditCookie ec, ITfContext *pContext)
 {
+    //
+    // set the display attribute to the composition range.
+    //
+    // The real text service may have linguistic logic here and set 
+    // the specific range to apply the display attribute rather than 
+    // applying the display attribute to the entire composition range.
+    //
+    _SetCompositionDisplayAttributes(ec, pContext, _gaDisplayAttributeConverted);
+
     // 
     // create an instance of the candidate list class.
     // 

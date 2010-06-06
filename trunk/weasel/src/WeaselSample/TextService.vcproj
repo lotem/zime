@@ -173,7 +173,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\DisplayAttributeInfo.h"
+				>
+			</File>
+			<File
 				RelativePath=".\EditSession.h"
+				>
+			</File>
+			<File
+				RelativePath=".\EnumDisplayAttributeInfo.h"
 				>
 			</File>
 			<File
@@ -229,11 +237,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\DisplayAttribute.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\DisplayAttributeInfo.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\DisplayAttributeProvider.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\DllMain.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\EndComposition.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\EnumDisplayAttributeInfo.cpp"
 				>
 			</File>
 			<File

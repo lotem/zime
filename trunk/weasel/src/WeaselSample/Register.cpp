@@ -126,6 +126,14 @@ BOOL RegisterCategories()
                                         GUID_TFCAT_TIP_KEYBOARD, 
                                         c_clsidTextService);
 
+    //
+    // register this text service to GUID_TFCAT_DISPLAYATTRIBUTEPROVIDER category.
+    //
+    hr = pCategoryMgr->RegisterCategory(c_clsidTextService,
+                                        GUID_TFCAT_DISPLAYATTRIBUTEPROVIDER, 
+                                        c_clsidTextService);
+
+
     pCategoryMgr->Release();
     return (hr == S_OK);
 }
@@ -152,6 +160,13 @@ void UnregisterCategories()
     //
     pCategoryMgr->UnregisterCategory(c_clsidTextService,
                                      GUID_TFCAT_TIP_KEYBOARD, 
+                                     c_clsidTextService);
+
+    //
+    // unregister this text service from GUID_TFCAT_DISPLAYATTRIBUTEPROVIDER category.
+    //
+    pCategoryMgr->UnregisterCategory(c_clsidTextService,
+                                     GUID_TFCAT_DISPLAYATTRIBUTEPROVIDER, 
                                      c_clsidTextService);
 
     pCategoryMgr->Release();
