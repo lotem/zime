@@ -106,6 +106,7 @@ private:
 
     // utility function for KeyEventSink
     BOOL _IsKeyEaten(ITfContext *pContext, WPARAM wParam);
+	BOOL _ProcessKeyEvent(ITfContext *pContext, WPARAM wParam, LPARAM lParam);
 
     //
     // state

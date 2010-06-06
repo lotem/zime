@@ -37,6 +37,22 @@ void DllRelease();
 #define TEXTSERVICE_ICON_INDEX  0
 #define LANGBAR_ITEM_DESC   L"ÞD“Q î‘B"
 
+struct KeyInfo
+{
+	UINT repeatCount:16;
+	UINT scanCode:8;
+	UINT isExtended:1;
+	UINT reserved:4;
+	UINT contextCode:1;
+	UINT prevKeyState:1;
+	UINT isKeyUp:1;	// transition state
+};
+
+inline KeyInfo GetKeyInfo(LPARAM lparam)
+{
+	return *(KeyInfo*)&lparam;
+}
+
 //+---------------------------------------------------------------------------
 //
 // SafeStringCopy
