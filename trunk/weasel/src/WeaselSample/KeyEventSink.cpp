@@ -98,6 +98,15 @@ BOOL CTextService::_IsKeyEaten(ITfContext *pContext, WPARAM wParam)
     return FALSE;
 }
 
+BOOL CTextService::_ProcessKeyEvent(ITfContext *pContext, WPARAM wParam, LPARAM lParam)
+{
+	BOOL fEaten = _IsKeyEaten(pContext, wParam);
+	if (fEaten && !GetKeyInfo(lParam).isKeyUp)
+	{
+		_InvokeKeyHandler(pContext, wParam, lParam);
+	}
+	return fEaten;
+}
 
 //+---------------------------------------------------------------------------
 //
@@ -120,7 +129,7 @@ STDAPI CTextService::OnSetFocus(BOOL fForeground)
 
 STDAPI CTextService::OnTestKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
 {
-    *pfEaten = _IsKeyEaten(pContext, wParam);
+    *pfEaten = _ProcessKeyEvent(pContext, wParam, lParam);
     return S_OK;
 }
 
@@ -134,12 +143,6 @@ STDAPI CTextService::OnTestKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM l
 
 STDAPI CTextService::OnKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
 {
-    *pfEaten = _IsKeyEaten(pContext, wParam);
-
-    if (*pfEaten)
-    {
-        _InvokeKeyHandler(pContext, wParam, lParam);
-    }
     return S_OK;
 }
 
@@ -152,7 +155,7 @@ STDAPI CTextService::OnKeyDown(ITfContext *pContext, WPARAM wParam, LPARAM lPara
 
 STDAPI CTextService::OnTestKeyUp(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
 {
-    *pfEaten = _IsKeyEaten(pContext, wParam);
+    *pfEaten = _ProcessKeyEvent(pContext, wParam, lParam);
     return S_OK;
 }
 
@@ -166,7 +169,6 @@ STDAPI CTextService::OnTestKeyUp(ITfContext *pContext, WPARAM wParam, LPARAM lPa
 
 STDAPI CTextService::OnKeyUp(ITfContext *pContext, WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
 {
-    *pfEaten = _IsKeyEaten(pContext, wParam);
     return S_OK;
 }
 
