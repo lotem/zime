@@ -56,8 +56,20 @@ BOOL RegisterProfiles()
     achIconFile[cchIconFile] = '\0';
 
     hr = pInputProcessProfiles->AddLanguageProfile(c_clsidTextService,
-                                  TEXTSERVICE_LANGID, 
-                                  c_guidProfile, 
+                                  TEXTSERVICE_LANGID_HANT, 
+                                  c_guidProfileHant, 
+                                  TEXTSERVICE_DESC, 
+                                  (ULONG)wcslen(TEXTSERVICE_DESC),
+                                  achIconFile,
+                                  cchIconFile,
+                                  TEXTSERVICE_ICON_INDEX);
+
+    if (hr != S_OK)
+        goto Exit;
+
+    hr = pInputProcessProfiles->AddLanguageProfile(c_clsidTextService,
+                                  TEXTSERVICE_LANGID_HANS, 
+                                  c_guidProfileHans, 
                                   TEXTSERVICE_DESC, 
                                   (ULONG)wcslen(TEXTSERVICE_DESC),
                                   achIconFile,
@@ -114,14 +126,6 @@ BOOL RegisterCategories()
                                         GUID_TFCAT_TIP_KEYBOARD, 
                                         c_clsidTextService);
 
-    //
-    // register this text service to GUID_TFCAT_DISPLAYATTRIBUTEPROVIDER category.
-    //
-    //hr = pCategoryMgr->RegisterCategory(c_clsidTextService,
-    //                                    GUID_TFCAT_DISPLAYATTRIBUTEPROVIDER, 
-    //                                    c_clsidTextService);
-
-
     pCategoryMgr->Release();
     return (hr == S_OK);
 }
@@ -149,13 +153,6 @@ void UnregisterCategories()
     pCategoryMgr->UnregisterCategory(c_clsidTextService,
                                      GUID_TFCAT_TIP_KEYBOARD, 
                                      c_clsidTextService);
-
-    //
-    // unregister this text service from GUID_TFCAT_DISPLAYATTRIBUTEPROVIDER category.
-    //
-    //pCategoryMgr->UnregisterCategory(c_clsidTextService,
-    //                                 GUID_TFCAT_DISPLAYATTRIBUTEPROVIDER, 
-    //                                 c_clsidTextService);
 
     pCategoryMgr->Release();
     return;

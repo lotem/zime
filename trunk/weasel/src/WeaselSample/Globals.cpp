@@ -21,23 +21,30 @@ LONG g_cRefDll = -1; // -1 /w no refs, for win95 InterlockedIncrement/Decrement 
 
 CRITICAL_SECTION g_cs;
 
-/* e7ea138e-69f8-11d7-a6ea-00065b84435c */
+/* e7eb138e-69f8-11d7-a6ea-00065b84435c */
 const CLSID c_clsidTextService = {
-    0xe7ea138e,
+    0xe7eb138e,
     0x69f8,
     0x11d7,
     {0xa6, 0xea, 0x00, 0x06, 0x5b, 0x84, 0x43, 0x5c}
   };
-/* e7ea138f-69f8-11d7-a6ea-00065b84435c */
-const GUID c_guidProfile = {
-    0xe7ea138f,
+/* e7eb138f-69f8-11d7-a6ea-00065b84435c */
+const GUID c_guidProfileHant = {
+    0xe7eb138f,
     0x69f8,
     0x11d7,
     {0xa6, 0xea, 0x00, 0x06, 0x5b, 0x84, 0x43, 0x5c}
   };
-/* 41f46e67-86d5-49fb-a1d9-3dc0941a66a3 */
+/* e7eb1390-69f8-11d7-a6ea-00065b84435c */
+const GUID c_guidProfileHans = {
+    0xe7eb1390,
+    0x69f8,
+    0x11d7,
+    {0xa6, 0xea, 0x00, 0x06, 0x5b, 0x84, 0x43, 0x5c}
+  };
+/* 41f56e67-86d5-49fb-a1d9-3dc0941a66a3 */
 const GUID c_guidLangBarItemButton = {
-    0x41f46e67,
+    0x41f56e67,
     0x86d5,
     0x49fb,
     {0xa1, 0xd9, 0x3d, 0xc0, 0x94, 0x1a, 0x66, 0xa3}

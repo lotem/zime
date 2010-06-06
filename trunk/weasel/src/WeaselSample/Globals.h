@@ -27,14 +27,15 @@ void DllRelease();
 
 //#define ARRAYSIZE(a) (sizeof(a)/sizeof(a[0]))
 
-#define TEXTSERVICE_LANGID    MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED)
+#define TEXTSERVICE_LANGID_HANT    MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL)
+#define TEXTSERVICE_LANGID_HANS    MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED)
 
 #define TEXTSERVICE_DESC    L"中州韻輸入法引擎"
 #define TEXTSERVICE_DESC_A   "ZIME"
 #define TEXTSERVICE_MODEL   TEXT("Apartment")
 
 #define TEXTSERVICE_ICON_INDEX  0
-#define LANGBAR_ITEM_DESC   L"ZIME Button"
+#define LANGBAR_ITEM_DESC   L"轉換狀態"
 
 //+---------------------------------------------------------------------------
 //
@@ -48,7 +49,7 @@ inline void SafeStringCopy(WCHAR *pchDst, ULONG cchMax, const WCHAR *pchSrc)
 {
     if (cchMax > 0)
     {
-        wcsncpy(pchDst, pchSrc, cchMax);
+        wcsncpy_s(pchDst, cchMax, pchSrc, cchMax);
         pchDst[cchMax-1] = '\0';
     }
 }
@@ -61,7 +62,9 @@ extern CRITICAL_SECTION g_cs;
 
 extern const CLSID c_clsidTextService;
 
-extern const GUID c_guidProfile;
+extern const GUID c_guidProfileHant;
+
+extern const GUID c_guidProfileHans;
 
 extern const GUID c_guidLangBarItemButton;
 
