@@ -23,7 +23,7 @@
 //----------------------------------------------------------------------------
 
 // the registry key of this text service to save the custmized display attribute
-const TCHAR c_szAttributeInfoKey[] = TEXT("Software\\Sample Text Service");
+const TCHAR c_szAttributeInfoKey[] = TEXT("Software\\ZIME");
 
 // the registry values of the custmized display attributes
 const TCHAR CDisplayAttributeInfoInput::_s_szValueName[] = TEXT("DisplayAttributeInput");
@@ -47,22 +47,22 @@ const WCHAR CDisplayAttributeInfoConverted::_s_szDescription[] = L"TextService D
 
 const TF_DISPLAYATTRIBUTE CDisplayAttributeInfoInput::_s_DisplayAttribute =
 {
-    { TF_CT_COLORREF, RGB(255, 0, 0) },     // text color
+    { TF_CT_NONE, 0 },						// text color
     { TF_CT_NONE, 0 },                      // background color (TF_CT_NONE => app default)
     TF_LS_SOLID,                            // underline style
     FALSE,                                  // underline boldness
-    { TF_CT_COLORREF, RGB(255, 0, 0) },     // underline color
+    { TF_CT_NONE, 0 },						// underline color
     TF_ATTR_INPUT                           // attribute info
 };
 
 const TF_DISPLAYATTRIBUTE CDisplayAttributeInfoConverted::_s_DisplayAttribute =
 {
-    { TF_CT_COLORREF, RGB(255, 255, 255) }, // text color
-    { TF_CT_COLORREF, RGB(  0, 255, 255) }, // background color (TF_CT_NONE => app default)
-    TF_LS_NONE,                             // underline style
+    { TF_CT_SYSCOLOR, COLOR_HIGHLIGHTTEXT }, // text color
+    { TF_CT_SYSCOLOR, COLOR_HIGHLIGHT },    // background color (TF_CT_NONE => app default)
+    TF_LS_SOLID,                            // underline style
     FALSE,                                  // underline boldness
     { TF_CT_NONE, 0 },                      // underline color
-    TF_ATTR_TARGET_CONVERTED                // attribute info
+    TF_ATTR_TARGET_CONVERTED				// attribute info
 };
 
 //+---------------------------------------------------------------------------
