@@ -23,7 +23,8 @@ class CTextService : public ITfTextInputProcessor,
                      public ITfThreadMgrEventSink,
                      public ITfTextEditSink,
                      public ITfKeyEventSink,
-                     public ITfCompositionSink
+                     public ITfCompositionSink,
+                     public ITfDisplayAttributeProvider
 {
 public:
     CTextService();
@@ -59,6 +60,10 @@ public:
     // ITfCompositionSink
     STDMETHODIMP OnCompositionTerminated(TfEditCookie ecWrite, ITfComposition *pComposition);
 
+    // ITfDisplayAttributeProvider
+    STDMETHODIMP EnumDisplayAttributeInfo(IEnumTfDisplayAttributeInfo **ppEnum);
+    STDMETHODIMP GetDisplayAttributeInfo(REFGUID guidInfo, ITfDisplayAttributeInfo **ppInfo);
+
     // CClassFactory factory callback
     static HRESULT CreateInstance(IUnknown *pUnkOuter, REFIID riid, void **ppvObj);
 
@@ -83,6 +88,10 @@ public:
     HRESULT _HandleReturnKey(TfEditCookie ec, ITfContext *pContext);
     HRESULT _HandleSpaceKey(TfEditCookie ec, ITfContext *pContext);
     HRESULT _InvokeKeyHandler(ITfContext *pContext, WPARAM wParam, LPARAM lParam);
+
+    void _ClearCompositionDisplayAttributes(TfEditCookie ec, ITfContext *pContext);
+    BOOL _SetCompositionDisplayAttributes(TfEditCookie ec, ITfContext *pContext, TfGuidAtom gaDisplayAttribute);
+    BOOL _InitDisplayAttributeGuidAtom();
 
 private:
     // initialize and uninitialize ThreadMgrEventSink.
@@ -127,6 +136,10 @@ private:
 
     // the current composition object.
     ITfComposition *_pComposition;
+
+    // guidatom for the display attibute.
+    TfGuidAtom _gaDisplayAttributeInput;
+    TfGuidAtom _gaDisplayAttributeConverted;
 
     // the candidate list object.
     CCandidateList *_pCandidateList;

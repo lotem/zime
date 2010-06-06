@@ -225,6 +225,12 @@ STDAPI CTextService::Activate(ITfThreadMgr *pThreadMgr, TfClientId tfClientId)
     if (!_InitPreservedKey())
         goto ExitError;
 
+    //
+    // Initialize display guid atom
+    //
+    if (!_InitDisplayAttributeGuidAtom())
+        goto ExitError;
+
     return S_OK;
 
 ExitError:

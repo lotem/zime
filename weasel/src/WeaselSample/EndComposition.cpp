@@ -52,7 +52,7 @@ void CTextService::_TerminateComposition(TfEditCookie ec, ITfContext *pContext)
         //
         // remove the display attribute from the composition range.
         //
-        //_ClearCompositionDisplayAttributes(ec, pContext);
+        _ClearCompositionDisplayAttributes(ec, pContext);
 
         _pComposition->EndComposition(ec);
         _pComposition->Release();
