@@ -19,7 +19,7 @@ BOOL CCandidateDlg::OnIdle()
 	return FALSE;
 }
 
-//不使用全局messageloop
+//not using messageloop
 
 LRESULT CCandidateDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
@@ -77,10 +77,10 @@ LRESULT CCandidateDlg::OnCancel(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/
 void CCandidateDlg::CloseDialog(int nVal)
 {
 	//DestroyWindow();
-	//在退出时销毁窗口
+	//do not destroy here
 }
 
-//单例
+//Singleton
 CCandidateDlg* CCandidateDlg::getInstance()
 {
 	if(!mInstance)
@@ -96,7 +96,7 @@ CCandidateDlg* CCandidateDlg::getInstance()
 	return mInstance;
 };
 
-//销毁实例
+//Delete
 void CCandidateDlg::deleteInstance()
 {
 	if(mInstance)
