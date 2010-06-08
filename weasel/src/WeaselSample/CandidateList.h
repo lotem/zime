@@ -66,7 +66,7 @@ private:
     DWORD _dwCookieTextLayoutSink; // Cookie for ITfContextKeyEventSink
 
     HWND _hwndParent;
-    CCandidateWindow *_pCandidateWindow;
+    //CCandidateWindow *_pCandidateWindow;
 
     LONG _cRef; // COM ref count
 };

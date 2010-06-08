@@ -13,10 +13,11 @@
 //
 //////////////////////////////////////////////////////////////////////
 
+#include "stdafx.h"
 #include "Globals.h"
 #include "TextService.h"
 #include "EditSession.h"
-#include "CandidateWindow.h"
+#include "CandidateDlg.h"
 #include "CandidateList.h"
 
 //+---------------------------------------------------------------------------
@@ -28,11 +29,11 @@
 class CGetTextExtentEditSession : public CEditSessionBase
 {
 public:
-    CGetTextExtentEditSession(CTextService *pTextService, ITfContext *pContext, ITfContextView *pContextView, ITfRange *pRangeComposition, CCandidateWindow *pCandidateWindow) : CEditSessionBase(pTextService, pContext)
+    CGetTextExtentEditSession(CTextService *pTextService, ITfContext *pContext, ITfContextView *pContextView, ITfRange *pRangeComposition/*, CCandidateWindow *pCandidateWindow*/) : CEditSessionBase(pTextService, pContext)
     {
         _pContextView = pContextView;
         _pRangeComposition = pRangeComposition;
-        _pCandidateWindow = pCandidateWindow;
+        //_pCandidateWindow = pCandidateWindow;
     }
 
     // ITfEditSession
@@ -41,7 +42,7 @@ public:
 private:
     ITfContextView *_pContextView;
     ITfRange *_pRangeComposition;
-    CCandidateWindow *_pCandidateWindow;
+    //CCandidateWindow *_pCandidateWindow;
 };
 
 //+---------------------------------------------------------------------------
@@ -56,7 +57,10 @@ STDAPI CGetTextExtentEditSession::DoEditSession(TfEditCookie ec)
     BOOL fClipped;
 
     if (SUCCEEDED(_pContextView->GetTextExt(ec, _pRangeComposition, &rc, &fClipped)))
-        _pCandidateWindow->_Move(rc.left, rc.bottom);
+        //_pCandidateWindow->_Move(rc.left, rc.bottom);
+	{
+
+	}
     return S_OK;
 }
 
@@ -72,7 +76,7 @@ CCandidateList::CCandidateList(CTextService *pTextService)
     _pTextService = pTextService;
 
     _hwndParent = NULL;
-    _pCandidateWindow = NULL;
+    //_pCandidateWindow = NULL;
     _pRangeComposition = NULL;
     _pContextCandidateWindow = NULL;
     _pContextDocument = NULL;
@@ -174,7 +178,7 @@ STDAPI CCandidateList::OnKeyDown(WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
         return E_INVALIDARG;
 
     *pfEaten = TRUE;
-    _pCandidateWindow->_OnKeyDown((UINT)wParam);
+    //_pCandidateWindow->_OnKeyDown((UINT)wParam);
 
     return S_OK;
 }
@@ -198,7 +202,7 @@ STDAPI CCandidateList::OnKeyUp(WPARAM wParam, LPARAM lParam, BOOL *pfEaten)
     if (wParam == VK_RETURN)
         _EndCandidateList();
     else
-        _pCandidateWindow->_OnKeyUp((UINT)wParam);
+        ;//_pCandidateWindow->_OnKeyUp((UINT)wParam);
 
     return S_OK;
 }
@@ -250,11 +254,11 @@ STDAPI CCandidateList::OnLayoutChange(ITfContext *pContext, TfLayoutCode lcode, 
     switch (lcode)
     {
         case TF_LC_CHANGE:
-            if (_pCandidateWindow != NULL)
+            if (TRUE)//_pCandidateWindow != NULL)
             {
                 CGetTextExtentEditSession *pEditSession;
 
-                if ((pEditSession = new CGetTextExtentEditSession(_pTextService, pContext, pContextView, _pRangeComposition, _pCandidateWindow)) != NULL)
+                if ((pEditSession = new CGetTextExtentEditSession(_pTextService, pContext, pContextView, _pRangeComposition/*, _pCandidateWindow*/)) != NULL)
                 {
                     HRESULT hr;
                     // a lock is required
@@ -287,7 +291,6 @@ HRESULT CCandidateList::_StartCandidateList(TfClientId tfClientId, ITfDocumentMg
     TfEditCookie ecTmp;
     HRESULT hr = E_FAIL;
     BOOL fClipped;
-
     //
     // clear the previous candidate list.
     // only one candidate window is supported.
@@ -331,37 +334,39 @@ HRESULT CCandidateList::_StartCandidateList(TfClientId tfClientId, ITfDocumentMg
     // 
     // create an instance of CCandidateWindow class.
     //
-    if (_pCandidateWindow = new CCandidateWindow())
-    {
-        RECT rc;
-        ITfContextView *pContextView;
+    //if (_pCandidateWindow = new CCandidateWindow())
+    //{
+    //    RECT rc;
+    //    ITfContextView *pContextView;
 
-        //
-        // get an active view of the document context.
-        //
-        if (FAILED(pContextDocument->GetActiveView(&pContextView)))
-            goto Exit;
+    //    //
+    //    // get an active view of the document context.
+    //    //
+    //    if (FAILED(pContextDocument->GetActiveView(&pContextView)))
+    //        goto Exit;
 
-        //
-        // get text extent for the range of the composition.
-        //
-        if (FAILED(pContextView->GetTextExt(ec, pRangeComposition, &rc, &fClipped)))
-            goto Exit;
+    //    //
+    //    // get text extent for the range of the composition.
+    //    //
+    //    if (FAILED(pContextView->GetTextExt(ec, pRangeComposition, &rc, &fClipped)))
+    //        goto Exit;
 
-        pContextView->Release();
+    //    pContextView->Release();
 
-        
-        //
-        // create the dummy candidate window
-        //
-        if (!_pCandidateWindow->_Create())
-            goto Exit;
+    //    
+    //    //
+    //    // create the dummy candidate window
+    //    //
+    //    //if (!_pCandidateWindow->_Create())
+    //    //    goto Exit;
 
-        _pCandidateWindow->_Move(rc.left, rc.bottom);
-        _pCandidateWindow->_Show();
+    //    //_pCandidateWindow->_Move(rc.left, rc.bottom);
+    //    //_pCandidateWindow->_Show();
 
-        hr = S_OK;
-    }
+    //    hr = S_OK;
+    //}
+	CCandidateDlg::getInstance()->ShowWindow(SW_SHOW);
+	hr = S_OK;
 
 Exit:
     if (FAILED(hr))
@@ -379,12 +384,12 @@ Exit:
 
 void CCandidateList::_EndCandidateList()
 {
-    if (_pCandidateWindow)
-    {
-        _pCandidateWindow->_Destroy();
-        delete _pCandidateWindow;
-        _pCandidateWindow = NULL;
-    }
+    //if (_pCandidateWindow)
+    //{
+    //    //_pCandidateWindow->_Destroy();
+    //    //delete _pCandidateWindow;
+    //    //_pCandidateWindow = NULL;
+    //}
 
     if (_pRangeComposition)
     {

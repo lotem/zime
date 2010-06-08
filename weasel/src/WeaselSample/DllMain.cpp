@@ -14,7 +14,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "Globals.h"
-#include "CandidateWindow.h"
+#include "stdafx.h"
+#include "CandidateDlg.h"
 
 //+---------------------------------------------------------------------------
 //
@@ -24,6 +25,9 @@
 
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID pvReserved)
 {
+	CMessageLoop theLoop;
+	HRESULT hRes;
+
     switch (dwReason)
     {
         case DLL_PROCESS_ATTACH:
@@ -33,18 +37,13 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID pvReserved)
             if (!InitializeCriticalSectionAndSpinCount(&g_cs, 0))
                 return FALSE;
 
-            // register candidate window class.
-            CCandidateWindow::_InitWindowClass();
-
             break;
 
         case DLL_PROCESS_DETACH:
 
-            // unregister candidate window class.
-            CCandidateWindow::_UninitWindowClass();
-
             DeleteCriticalSection(&g_cs);
 
+			CCandidateDlg::getInstance()->deleteInstance();
             break;
     }
 
