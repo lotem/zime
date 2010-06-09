@@ -26,7 +26,7 @@
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID pvReserved)
 {
 	CMessageLoop theLoop;
-	HRESULT hRes;
+	HRESULT hRes = TRUE;
 
     switch (dwReason)
     {
@@ -47,5 +47,5 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID pvReserved)
             break;
     }
 
-    return TRUE;
+    return hRes;
 }
