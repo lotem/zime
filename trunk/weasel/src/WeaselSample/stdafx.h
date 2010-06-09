@@ -6,10 +6,10 @@
 #pragma once
 
 // Change these values to use different versions
-#define WINVER		0x0500
-#define _WIN32_WINNT	0x0501
-#define _WIN32_IE	0x0501
-#define _RICHEDIT_VER	0x0200
+//#define WINVER		0x0500
+//#define _WIN32_WINNT	0x0501
+//#define _WIN32_IE	0x0501
+//#define _RICHEDIT_VER	0x0200
 
 #pragma warning(disable : 4996)
 
@@ -21,6 +21,23 @@
 #include <atlframe.h>
 #include <atlctrls.h>
 #include <atldlgs.h>
+#include <atlwin.h>
+
+#include <atlframe.h>
+#include <atlmisc.h>  // WTL 实用工具类，例如：CString ，和MainDlg类相关
+#include <atlcrack.h> // WTL 增强的消息宏，，和MainDlg类相关
+#include <atlddx.h>
+#include <atlctrls.h>
+#include <atlctrlw.h>
+#include <atlctrlx.h>
+#include <atlctl.h>
+#include <atlcoll.h>
+#include <atldlgs.h>
+#include <atlsplit.h>
+#include <wingdi.h>
+#include <atlcom.h>
+#include <atlhost.h>
+#include <atlscrl.h>
 
 #if defined _M_IX86
   #pragma comment(linker, "/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='x86' publicKeyToken='6595b64144ccf1df' language='*'\"")

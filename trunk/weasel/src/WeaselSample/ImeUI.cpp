@@ -69,7 +69,16 @@ LRESULT CImeUI::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOO
     PAINTSTRUCT ps;
 	hdc = BeginPaint(&ps);
 
+	CRect rcWnd;
+	GetWindowRect(&rcWnd);
+
+    COLORREF m_clrBackColor=RGB(255,255,255);
+	
+	CClientDC cdc(m_hWnd);
+    cdc.FillSolidRect(rcWnd, m_clrBackColor );
+
     SetBkMode(hdc, TRANSPARENT);
+
     TextOut(hdc, 0, 0, TEXT("中国"), lstrlen( TEXT("中国")));
 
     EndPaint(&ps);
