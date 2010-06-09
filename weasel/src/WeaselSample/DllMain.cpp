@@ -15,7 +15,7 @@
 
 #include "Globals.h"
 #include "stdafx.h"
-#include "CandidateDlg.h"
+#include "ImeUI.h"
 
 //+---------------------------------------------------------------------------
 //
@@ -43,7 +43,7 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID pvReserved)
 
             DeleteCriticalSection(&g_cs);
 
-			CCandidateDlg::getInstance()->deleteInstance();
+			CImeUI::getInstance()->deleteInstance();
             break;
     }
 

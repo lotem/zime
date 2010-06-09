@@ -17,7 +17,7 @@
 #include "Globals.h"
 #include "TextService.h"
 #include "EditSession.h"
-#include "CandidateDlg.h"
+#include "ImeUI.h"
 #include "CandidateList.h"
 
 //+---------------------------------------------------------------------------
@@ -59,7 +59,7 @@ STDAPI CGetTextExtentEditSession::DoEditSession(TfEditCookie ec)
     if (SUCCEEDED(_pContextView->GetTextExt(ec, _pRangeComposition, &rc, &fClipped)))
         //_pCandidateWindow->_Move(rc.left, rc.bottom);
 	{
-
+		CImeUI::getInstance()->MoveWindow(rc.left, rc.bottom, 100, 50);
 	}
     return S_OK;
 }
@@ -331,41 +331,26 @@ HRESULT CCandidateList::_StartCandidateList(TfClientId tfClientId, ITfDocumentMg
     if (FAILED(_AdviseTextLayoutSink()))
         goto Exit;
 
-    // 
-    // create an instance of CCandidateWindow class.
+
+    RECT rc;
+    ITfContextView *pContextView;
+
     //
-    //if (_pCandidateWindow = new CCandidateWindow())
-    //{
-    //    RECT rc;
-    //    ITfContextView *pContextView;
+    // get an active view of the document context.
+    //
+    if (FAILED(pContextDocument->GetActiveView(&pContextView)))
+        goto Exit;
 
-    //    //
-    //    // get an active view of the document context.
-    //    //
-    //    if (FAILED(pContextDocument->GetActiveView(&pContextView)))
-    //        goto Exit;
+    //
+    // get text extent for the range of the composition.
+    //
+    if (FAILED(pContextView->GetTextExt(ec, pRangeComposition, &rc, &fClipped)))
+        goto Exit;
 
-    //    //
-    //    // get text extent for the range of the composition.
-    //    //
-    //    if (FAILED(pContextView->GetTextExt(ec, pRangeComposition, &rc, &fClipped)))
-    //        goto Exit;
+    pContextView->Release();
 
-    //    pContextView->Release();
-
-    //    
-    //    //
-    //    // create the dummy candidate window
-    //    //
-    //    //if (!_pCandidateWindow->_Create())
-    //    //    goto Exit;
-
-    //    //_pCandidateWindow->_Move(rc.left, rc.bottom);
-    //    //_pCandidateWindow->_Show();
-
-    //    hr = S_OK;
-    //}
-	CCandidateDlg::getInstance()->ShowWindow(SW_SHOW);
+	CImeUI::getInstance()->MoveWindow(rc.left, rc.bottom, 100, 50);
+	CImeUI::getInstance()->ShowWindow(SW_SHOW);
 	hr = S_OK;
 
 Exit:
@@ -390,6 +375,8 @@ void CCandidateList::_EndCandidateList()
     //    //delete _pCandidateWindow;
     //    //_pCandidateWindow = NULL;
     //}
+	CImeUI::getInstance()->ShowWindow(SW_HIDE);
+	CImeUI::getInstance()->deleteInstance();
 
     if (_pRangeComposition)
     {

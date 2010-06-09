@@ -277,7 +277,7 @@
 				Name="WTLUi"
 				>
 				<File
-					RelativePath=".\CandidateDlg.cpp"
+					RelativePath=".\ImeUI.cpp"
 					>
 				</File>
 			</Filter>
@@ -311,10 +311,6 @@
 			Filter="h;hpp;hxx;hm;inl;inc"
 			>
 			<File
-				RelativePath=".\CandidateDlg.h"
-				>
-			</File>
-			<File
 				RelativePath=".\CandidateList.h"
 				>
 			</File>
@@ -332,6 +328,10 @@
 			</File>
 			<File
 				RelativePath=".\Globals.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ImeUI.h"
 				>
 			</File>
 			<File
