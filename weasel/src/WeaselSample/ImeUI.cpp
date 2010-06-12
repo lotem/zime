@@ -6,6 +6,11 @@
 #include "resource.h"
 
 #include "ImeUI.h"
+#include <vector>
+#include <string>
+
+using namespace std;
+
 
 CImeUI* CImeUI::mInstance = NULL;
 
@@ -27,6 +32,28 @@ void CImeUI::CloseDialog(int nVal)
 {
 	//DestroyWindow();
 	//do not destroy here
+}
+
+LRESULT CImeUI::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
+{
+    HDC hdc;
+    PAINTSTRUCT ps;
+	hdc = BeginPaint(&ps);
+
+	CRect rcWnd;
+	GetWindowRect(&rcWnd);
+
+    COLORREF m_clrBackColor=RGB(255,255,255);
+	
+	CClientDC cdc(m_hWnd);
+    cdc.FillSolidRect(rcWnd, m_clrBackColor );
+
+    SetBkMode(hdc, TRANSPARENT);
+
+    TextOut(hdc, 0, 0, TEXT("中国"), lstrlen( TEXT("中国")));
+
+    EndPaint(&ps);
+    return 0;
 }
 
 //Singleton
@@ -62,25 +89,43 @@ void CImeUI::deleteInstance()
 	}
 };
 
-
-LRESULT CImeUI::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
+void CImeUI::Show()
 {
-    HDC hdc;
-    PAINTSTRUCT ps;
-	hdc = BeginPaint(&ps);
+	ShowWindow(SW_SHOWNOACTIVATE);
+}
 
-	CRect rcWnd;
-	GetWindowRect(&rcWnd);
+void CImeUI::Hide()
+{
+	ShowWindow(SW_HIDE);
+}
 
-    COLORREF m_clrBackColor=RGB(255,255,255);
-	
-	CClientDC cdc(m_hWnd);
-    cdc.FillSolidRect(rcWnd, m_clrBackColor );
+/**
 
-    SetBkMode(hdc, TRANSPARENT);
+*/
+void CImeUI::getWindowSize(int &width, int &height)
+{
+	//getmax
+	string str = mCand.pinyin;
+	int len;// = str.length();
+	for(int i = 0; i < 5; i++)
+	{
+		str = mCand.candList[i];
+		len += (str.length() + 1);
+	}
+	width = len * 20;
+	height = 2 * 20;
+}
 
-    TextOut(hdc, 0, 0, TEXT("中国"), lstrlen( TEXT("中国")));
+void CImeUI::Move(CRect rc)
+{
+	//ShowWindow(SW_HIDE);
+}
 
-    EndPaint(&ps);
-    return 0;
+void CImeUI::Update()
+{
+	for(int i = 0; i < 5; i++)
+	{
+		//str = mCand.candList[i];
+	}
+	//ShowWindow(SW_HIDE);
 }
