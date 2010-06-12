@@ -3,14 +3,26 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#include   "resource.h "
+#include "resource.h "
+#include <vector>
+#include <string>
+
+using namespace std;
+
+	typedef struct _Candidate
+	{
+		string pinyin;
+		string candList[6];
+		int candSub;//0-5
+		int totalPages;
+		int currentPage;
+	}Candidate, *pCandidate;
 
 typedef CWinTraits<WS_BORDER|WS_POPUP|WS_CLIPSIBLINGS, WS_EX_TOOLWINDOW|WS_EX_TOPMOST> CImeUITraits;
 
 class CImeUI : public CWindowImpl<CImeUI, CWindow, CImeUITraits>
 {
 public:
-	enum { IDD = IDD_MAINDLG };
 
 	BEGIN_MSG_MAP(CImeUI)
 		MESSAGE_HANDLER(WM_INITDIALOG, OnInitDialog)
@@ -29,12 +41,20 @@ public:
 	*/
 private:
 	static CImeUI* mInstance;
+	CStatic ctrls[6];
+
+	Candidate mCand;
 	/*
 	Methods
 	*/
 public:
 	static CImeUI* getInstance();
 	void deleteInstance();
+	void Show();
+	void Hide();
+	void Update();
+	void Move(CRect rc);
+	void getWindowSize(int &width, int &height);
 
 	~CImeUI(){};
 private:
