@@ -149,10 +149,10 @@ void CImeUI::getWindowSize(int &width, int &height)
 
 	string str = mCand.pinyin;
 	int len = 0;// = str.length();
-	for(int i = 0; i < 5; i++)
+	for(int i = 0; i < 6; i++)
 	{
 		str = mCand.candList[i];
-		len += (str.length() + 1);
+		len += (str.length());
 	}
 	
 	width = len * dx;
