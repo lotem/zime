@@ -59,17 +59,20 @@ LRESULT CImeUI::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOO
 
     SetBkMode(hdc, TRANSPARENT);
 
-	//HFONT font = GetFont();
-	//CLogFont f = font;
-	int margin = 2;
-	int interval = 10;//f.GetHeight();
-	int x = margin;
+	HFONT g_hfFont = (HFONT)GetStockObject(SYSTEM_FONT);
+	HFONT hfOld = (HFONT)SelectObject(hdc, g_hfFont);
+
+	int dx, dy;
+	getFontSize(dx, dy);
+	int x = 0;
 	for(int i = 0; i < 6; i++)
 	{
 		int len =  mCand.candList[i].length();
-		TextOut(hdc,x, interval, mCand.candList[i].c_str(), len);
-		x += interval*(len + 1);
+		TextOut(hdc,x, 2 + dy, mCand.candList[i].c_str(), len);
+		x += dx*(len + 1);
 	}
+
+	SelectObject(hdc, hfOld);
 
     EndPaint(&ps);
     return 0;
@@ -141,12 +144,9 @@ void CImeUI::Hide()
 */
 void CImeUI::getWindowSize(int &width, int &height)
 {
-	//HFONT font = GetFont();
-	//CLogFont f = font;
-	int margin = 2;
-	int interval = 10;//f.GetHeight();
+	int dx, dy;
+	getFontSize(dx, dy);
 
-	//getmax
 	string str = mCand.pinyin;
 	int len = 0;// = str.length();
 	for(int i = 0; i < 5; i++)
@@ -154,8 +154,9 @@ void CImeUI::getWindowSize(int &width, int &height)
 		str = mCand.candList[i];
 		len += (str.length() + 1);
 	}
-	width = len * interval;
-	height = 2 * 20;
+	
+	width = len * dx;
+	height = 2 * dy + 4;
 }
 
 void CImeUI::Move(int posx, int posy)
@@ -171,4 +172,13 @@ void CImeUI::Update(int posx, int posy)
 	Move(posx, posy);
 
 	Show();
+}
+
+void CImeUI::getFontSize(int &fWidth, int &fHeight)
+{
+	HFONT g_hfFont = (HFONT)GetStockObject(SYSTEM_FONT);
+	LOGFONT lf;
+	GetObject(g_hfFont, sizeof(LOGFONT), &lf);
+	fWidth = (int)lf.lfWidth;
+	fHeight = (int)lf.lfHeight;
 }

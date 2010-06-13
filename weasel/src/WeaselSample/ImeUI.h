@@ -59,6 +59,7 @@ public:
 	~CImeUI(){};
 private:
 	CImeUI();
+	void getFontSize(int &fWidth, int &fHeight);
 public:
 	LRESULT OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/);
 };
