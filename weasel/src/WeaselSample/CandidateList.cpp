@@ -349,8 +349,8 @@ HRESULT CCandidateList::_StartCandidateList(TfClientId tfClientId, ITfDocumentMg
 
     pContextView->Release();
 
-	CImeUI::getInstance()->MoveWindow(rc.left, rc.bottom, 100, 50);
-	CImeUI::getInstance()->ShowWindow(SW_SHOW);
+	CImeUI::getInstance()->Update(rc.left, rc.bottom);
+
 	hr = S_OK;
 
 Exit:

@@ -18,7 +18,7 @@ using namespace std;
 		int currentPage;
 	}Candidate, *pCandidate;
 
-typedef CWinTraits<WS_BORDER|WS_POPUP|WS_CLIPSIBLINGS, WS_EX_TOOLWINDOW|WS_EX_TOPMOST> CImeUITraits;
+typedef CWinTraits<WS_BORDER|WS_POPUP|WS_CLIPSIBLINGS|WS_DISABLED, WS_EX_TOOLWINDOW|WS_EX_TOPMOST> CImeUITraits;
 
 class CImeUI : public CWindowImpl<CImeUI, CWindow, CImeUITraits>
 {
@@ -52,13 +52,13 @@ public:
 	void deleteInstance();
 	void Show();
 	void Hide();
-	void Update();
-	void Move(CRect rc);
+	void Update(int posx, int posy);
+	void Move(int posx, int posy);
 	void getWindowSize(int &width, int &height);
 
 	~CImeUI(){};
 private:
-	CImeUI(){};
+	CImeUI();
 public:
 	LRESULT OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/);
 };
