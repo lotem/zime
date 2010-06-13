@@ -20,6 +20,11 @@ LRESULT CImeUI::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/
 {
 	// center the dialog on the screen
 	CenterWindow();
+
+	//for(int i = 0; i < 5; i++)
+	//{
+	//	ctrls[i].Create(m_hWnd);
+	//}
 	return TRUE;
 }
 
@@ -30,6 +35,10 @@ LRESULT CImeUI::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, B
 
 void CImeUI::CloseDialog(int nVal)
 {
+	for(int i = 0; i < 5; i++)
+	{
+		ctrls[i].DestroyWindow();
+	}
 	//DestroyWindow();
 	//do not destroy here
 }
@@ -50,10 +59,38 @@ LRESULT CImeUI::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOO
 
     SetBkMode(hdc, TRANSPARENT);
 
-    TextOut(hdc, 0, 0, TEXT("中国"), lstrlen( TEXT("中国")));
+	//HFONT font = GetFont();
+	//CLogFont f = font;
+	int margin = 2;
+	int interval = 10;//f.GetHeight();
+	int x = margin;
+	for(int i = 0; i < 6; i++)
+	{
+		int len =  mCand.candList[i].length();
+		TextOut(hdc,x, interval, mCand.candList[i].c_str(), len);
+		x += interval*(len + 1);
+	}
 
     EndPaint(&ps);
     return 0;
+}
+
+CImeUI::CImeUI()
+{
+	mCand.pinyin = "fff";
+	//string list[6] = {"fdfjdk", "ddfdfd", "gdffd", "dfdfdfd", "fd", "ss"};
+	//mCand.candList[0] = "ffff";
+	//mCand.candList[1] = "fff";
+	//mCand.candList[2] = "fff";
+	//mCand.candList[3] = "ff";
+	//mCand.candList[4] = "fff";
+	//mCand.candList[5] = "ff";
+	mCand.candList[0] = "中国改革";
+	mCand.candList[1] = "政治改革";
+	mCand.candList[2] = "置之高阁";
+	mCand.candList[3] = "站长广告";
+	mCand.candList[4] = "在中国";
+	mCand.candList[5] = "珍珠港";
 }
 
 //Singleton
@@ -104,28 +141,34 @@ void CImeUI::Hide()
 */
 void CImeUI::getWindowSize(int &width, int &height)
 {
+	//HFONT font = GetFont();
+	//CLogFont f = font;
+	int margin = 2;
+	int interval = 10;//f.GetHeight();
+
 	//getmax
 	string str = mCand.pinyin;
-	int len;// = str.length();
+	int len = 0;// = str.length();
 	for(int i = 0; i < 5; i++)
 	{
 		str = mCand.candList[i];
 		len += (str.length() + 1);
 	}
-	width = len * 20;
+	width = len * interval;
 	height = 2 * 20;
 }
 
-void CImeUI::Move(CRect rc)
+void CImeUI::Move(int posx, int posy)
 {
 	//ShowWindow(SW_HIDE);
+	int width, height;
+	getWindowSize(width, height);
+	MoveWindow(posx, posy, width, height);
 }
 
-void CImeUI::Update()
+void CImeUI::Update(int posx, int posy)
 {
-	for(int i = 0; i < 5; i++)
-	{
-		//str = mCand.candList[i];
-	}
-	//ShowWindow(SW_HIDE);
+	Move(posx, posy);
+
+	Show();
 }
