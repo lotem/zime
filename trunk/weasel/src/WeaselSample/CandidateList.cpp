@@ -59,7 +59,7 @@ STDAPI CGetTextExtentEditSession::DoEditSession(TfEditCookie ec)
     if (SUCCEEDED(_pContextView->GetTextExt(ec, _pRangeComposition, &rc, &fClipped)))
         //_pCandidateWindow->_Move(rc.left, rc.bottom);
 	{
-		CImeUI::getInstance()->MoveWindow(rc.left, rc.bottom, 100, 50);
+		CImeUI::getInstance()->Move(rc.left, rc.bottom);
 	}
     return S_OK;
 }
@@ -349,7 +349,7 @@ HRESULT CCandidateList::_StartCandidateList(TfClientId tfClientId, ITfDocumentMg
 
     pContextView->Release();
 
-	CImeUI::getInstance()->Update(rc.left, rc.bottom);
+	//CImeUI::getInstance()->Update(rc.left, rc.bottom);
 
 	hr = S_OK;
 
@@ -375,7 +375,7 @@ void CCandidateList::_EndCandidateList()
     //    //delete _pCandidateWindow;
     //    //_pCandidateWindow = NULL;
     //}
-	CImeUI::getInstance()->ShowWindow(SW_HIDE);
+	CImeUI::getInstance()->Hide();
 	CImeUI::getInstance()->deleteInstance();
 
     if (_pRangeComposition)

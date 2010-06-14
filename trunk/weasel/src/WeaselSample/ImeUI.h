@@ -41,8 +41,6 @@ public:
 	*/
 private:
 	static CImeUI* mInstance;
-	CStatic ctrls[6];
-
 	Candidate mCand;
 	/*
 	Methods
