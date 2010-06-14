@@ -20,11 +20,6 @@ LRESULT CImeUI::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/
 {
 	// center the dialog on the screen
 	CenterWindow();
-
-	//for(int i = 0; i < 5; i++)
-	//{
-	//	ctrls[i].Create(m_hWnd);
-	//}
 	return TRUE;
 }
 
@@ -35,12 +30,7 @@ LRESULT CImeUI::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, B
 
 void CImeUI::CloseDialog(int nVal)
 {
-	for(int i = 0; i < 5; i++)
-	{
-		ctrls[i].DestroyWindow();
-	}
-	//DestroyWindow();
-	//do not destroy here
+	
 }
 
 LRESULT CImeUI::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
@@ -61,15 +51,20 @@ LRESULT CImeUI::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOO
 
 	HFONT g_hfFont = (HFONT)GetStockObject(SYSTEM_FONT);
 	HFONT hfOld = (HFONT)SelectObject(hdc, g_hfFont);
-
+	
 	int dx, dy;
 	getFontSize(dx, dy);
-	int x = 0;
+
+	int x = dx;
+	int len =  mCand.pinyin.length();
+
+	TextOut(hdc, x, 4, mCand.pinyin.c_str(), len);
+
 	for(int i = 0; i < 6; i++)
 	{
-		int len =  mCand.candList[i].length();
-		TextOut(hdc,x, 2 + dy, mCand.candList[i].c_str(), len);
-		x += dx*(len + 1);
+		len =  mCand.candList[i].length();
+		TextOut(hdc, x, 8 + dy, mCand.candList[i].c_str(), len);
+		x += dx*(len + 2);
 	}
 
 	SelectObject(hdc, hfOld);
@@ -80,20 +75,13 @@ LRESULT CImeUI::OnPaint(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOO
 
 CImeUI::CImeUI()
 {
-	mCand.pinyin = "fff";
-	//string list[6] = {"fdfjdk", "ddfdfd", "gdffd", "dfdfdfd", "fd", "ss"};
-	//mCand.candList[0] = "ffff";
-	//mCand.candList[1] = "fff";
-	//mCand.candList[2] = "fff";
-	//mCand.candList[3] = "ff";
-	//mCand.candList[4] = "fff";
-	//mCand.candList[5] = "ff";
-	mCand.candList[0] = "中国改革";
-	mCand.candList[1] = "政治改革";
-	mCand.candList[2] = "置之高阁";
-	mCand.candList[3] = "站长广告";
-	mCand.candList[4] = "在中国";
-	mCand.candList[5] = "珍珠港";
+	mCand.pinyin = "zzgz";
+	mCand.candList[0] = "1.中国改革";
+	mCand.candList[1] = "2.政治改革";
+	mCand.candList[2] = "3.置之高阁";
+	mCand.candList[3] = "4.站长广告";
+	mCand.candList[4] = "5.在中国";
+	mCand.candList[5] = "6.珍珠港";
 }
 
 //Singleton
@@ -152,11 +140,11 @@ void CImeUI::getWindowSize(int &width, int &height)
 	for(int i = 0; i < 6; i++)
 	{
 		str = mCand.candList[i];
-		len += (str.length());
+		len += (str.length() + 2);
 	}
 	
 	width = len * dx;
-	height = 2 * dy + 4;
+	height = 2 * dy + 12;
 }
 
 void CImeUI::Move(int posx, int posy)
