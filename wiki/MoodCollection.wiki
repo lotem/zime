@@ -1,7 +1,7 @@
-#summary ZIME心情
+#summary ZIME心情集
 #labels Featured
 
-= ZIME心情 =
+= ZIME心情集 =
 
   * 聰明的拼音輸入法懂我心意
   * 生活要有激情！
