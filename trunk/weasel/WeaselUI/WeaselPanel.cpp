@@ -15,7 +15,7 @@ WeaselPanel::WeaselPanel()
 	CandidateInfo cinfo;
 	std::vector<Text> candies;
 
-	Text t1(L"中");
+	Text t1(L"中中中");
 	Text t2(L"总");
 	Text t3(L"种");
 	candies.push_back(t1);
@@ -24,7 +24,7 @@ WeaselPanel::WeaselPanel()
 
 	cinfo.totalPages = 10;
 	cinfo.currentPage = 1;
-	cinfo.highlighted = 1;
+	cinfo.highlighted = 0;
 	cinfo.candies = candies;
 
 	m_Info.aux = aux;
@@ -50,21 +50,20 @@ void WeaselPanel::_UpdateUI()
 
 LRESULT WeaselPanel::OnPaint(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
-	WeaselPanel* pT = static_cast<WeaselPanel*>(this);
-	ATLASSERT(::IsWindow(pT->m_hWnd));
+	ATLASSERT(::IsWindow(m_hWnd));
 
 	if(wParam != NULL)
 	{
 		RECT rect = { 0 };
-		pT->GetClientRect(&rect);
+		GetClientRect(&rect);
 		CMemoryDC dcMem((HDC)wParam, rect);
-		pT->DoPaint(dcMem.m_hDC);
+		DoPaint(dcMem.m_hDC);
 	}
 	else
 	{
-		CPaintDC dc(pT->m_hWnd);
+		CPaintDC dc(m_hWnd);
 		CMemoryDC dcMem(dc.m_hDC, dc.m_ps.rcPaint);
-		pT->DoPaint(dcMem.m_hDC);
+		DoPaint(dcMem.m_hDC);
 	}
 
 	return 0;
@@ -80,7 +79,7 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 	COLORREF bgColor = GetSysColor(COLOR_WINDOW);
 	COLORREF fgColor = GetSysColor(COLOR_WINDOWTEXT);
 
-	// white background
+	// background
 	HBRUSH brush = CreateSolidBrush(bgColor);
 	HRGN rgn = CreateRectRgnIndirect(&rc);
 	dc.FillRgn(rgn, brush);
@@ -118,7 +117,7 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 
 	// draw aux string
 	ZeroMemory(&sz, sizeof(sz));
-	std:wstring aux = m_Info.aux.str;
+	wstring aux = m_Info.aux.str;
 	GetTextExtentPoint32(dc.m_hDC, aux.c_str(), aux.length(), &sz);
 	SetRect(&rout, xLeft, y, xRight, y + sz.cy);
 	ExtTextOut(dc.m_hDC, xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, aux.c_str(), aux.length(), NULL);
@@ -129,11 +128,19 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 	vector<Text> candidates = m_Info.cinfo.candies;
 	for (size_t i = 0; i < candidates.size(); ++i)
 	{
-		_snwprintf(cand, sizeof(cand), L"%d.  %s", (i + 1), candidates[i].str.c_str());
+		_snwprintf(cand, sizeof(cand), L"%d.%s", (i + 1), candidates[i].str.c_str());
 		ZeroMemory(&sz, sizeof(sz));
 		GetTextExtentPoint32(dc.m_hDC, cand, wcslen(cand), &sz);
 		SetRect(&rout, xLeft, y, xRight, min(int(y + sz.cy), yBottom));
 		ExtTextOut(dc.m_hDC, xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, cand, wcslen(cand), NULL);
+		if(i == m_Info.cinfo.highlighted)
+		{
+			////高亮显示
+			//HBRUSH brsh = CreateSolidBrush(RGB(160, 190 ,0));
+			//dc.FillRect(&rout, brsh);
+			//DeleteObject(brsh);
+			dc.BitBlt(rout.left, rout.top, rout.right - rout.left, rout.bottom - rout.top, dc.m_hDC, rout.left, rout.top, SRCINVERT);
+		}
 		y += sz.cy + SPACING;
 		if (y >= yBottom)
 			break;
@@ -154,7 +161,6 @@ LRESULT WeaselPanel::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lPa
 
 	MoveWindow(0, 0, screenX / 4, screenY / 4);
 	CenterWindow();
-	SendMessage(WM_PAINT);
 	return TRUE;
 }
 
