@@ -29,6 +29,8 @@ public:
 
 private:
 	void _UpdateUI();
+	void _GetWindowSize(int &width, int &height);
+
 	void DoPaint(CDCHandle /*dc*/);
 	weasel::ZIMEInfo m_Info;
 	weasel::ZIMEStatus m_Status;
