@@ -15,7 +15,7 @@ WeaselPanel::WeaselPanel()
 	CandidateInfo cinfo;
 	std::vector<Text> candies;
 
-	Text t1(L"中中中");
+	Text t1(L"中中");
 	Text t2(L"总");
 	Text t3(L"种");
 	candies.push_back(t1);
@@ -35,6 +35,7 @@ WeaselPanel::WeaselPanel()
 void WeaselPanel::SetContent(const weasel::ZIMEInfo &info)
 {
 	m_Info = info;
+	_UpdateUI();
 }
 
 void WeaselPanel::SetStatus(const weasel::ZIMEStatus &status)
@@ -42,10 +43,57 @@ void WeaselPanel::SetStatus(const weasel::ZIMEStatus &status)
 	m_Status = status;
 }
 
+void WeaselPanel::_GetWindowSize(int &width, int &height)
+{
+	width = 0;
+	height = 0;
+	wstring preedit = m_Info.preedit.str;
+	wstring aux = m_Info.aux.str;
+	vector<Text> candidates = m_Info.cinfo.candies;
+	HDC hDC = GetDC();
+	SIZE sz;
+
+	height += Y_MARGIN;
+	//preedit
+	GetTextExtentPoint32(hDC, preedit.c_str(), preedit.length(), &sz);
+	if(width < sz.cx + X_MARGIN + X_MARGIN)
+		width = sz.cx + X_MARGIN + X_MARGIN;
+	height += SPACING;
+	height += sz.cy;
+
+	//aux
+	GetTextExtentPoint32(hDC, aux.c_str(), aux.length(), &sz);
+	if(width < sz.cx + X_MARGIN + X_MARGIN)
+		width = sz.cx + X_MARGIN + X_MARGIN;
+	height += SPACING;
+	height += sz.cy;
+
+	//max candidate
+	WCHAR cand[100];
+	
+	for (size_t i = 0; i < candidates.size(); ++i)
+	{
+		_snwprintf(cand, sizeof(cand), L"%d.%s", (i + 1), candidates[i].str.c_str());
+		int len = (int) wcslen( cand );
+		GetTextExtentPoint32W(hDC, cand, len, &sz);
+		if(width < sz.cx + X_MARGIN + X_MARGIN)
+			width = sz.cx + X_MARGIN + X_MARGIN;
+		height += SPACING;
+		height += sz.cy;
+	}
+
+	width += X_MARGIN;
+	//trim the last spacing
+	height -= SPACING;
+	height += Y_MARGIN;
+}
+
 //更新界面
 void WeaselPanel::_UpdateUI()
 {
-
+	int width, height;
+	_GetWindowSize(width, height);
+	SetWindowPos( NULL, 0, 0, width, height, SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER);
 }
 
 LRESULT WeaselPanel::OnPaint(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& /*bHandled*/)
@@ -65,7 +113,6 @@ LRESULT WeaselPanel::OnPaint(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BO
 		CMemoryDC dcMem(dc.m_hDC, dc.m_ps.rcPaint);
 		DoPaint(dcMem.m_hDC);
 	}
-
 	return 0;
 }
 
@@ -147,15 +194,16 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 	
 	//draw others
 	//
-
+	
 }
 
 LRESULT WeaselPanel::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
-	int screenX = GetSystemMetrics(SM_CXSCREEN);
-	int screenY = GetSystemMetrics(SM_CYSCREEN);
+	//int screenX = GetSystemMetrics(SM_CXSCREEN);
+	//int screenY = GetSystemMetrics(SM_CYSCREEN);
 
-	MoveWindow(0, 0, screenX / 4, screenY / 4);
+	//MoveWindow(0, 0, screenX / 4, screenY / 4);
+	_UpdateUI();
 	CenterWindow();
 	return TRUE;
 }
