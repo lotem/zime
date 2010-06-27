@@ -61,7 +61,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="imm32.lib"
+				OutputFile="$(OutDir)\weasel.dll"
 				LinkIncremental="2"
+				ModuleDefinitionFile="weasel.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -214,6 +217,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\weasel.def"
+				>
+			</File>
+			<File
 				RelativePath=".\WeaselIME.cpp"
 				>
 			</File>
@@ -223,6 +230,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\Imm.h"
+				>
+			</File>
 			<File
 				RelativePath=".\stdafx.h"
 				>

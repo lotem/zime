@@ -13,7 +13,7 @@ WeaselPanel::WeaselPanel()
 	Text aux(L"zhong");
 	Text preedit(L"中");
 	CandidateInfo cinfo;
-	std::vector<Text> candies;
+	vector<Text> candies;
 
 	Text t1(L"中中");
 	Text t2(L"总");
@@ -156,7 +156,7 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 
 	// draw preedit string
 	ZeroMemory(&sz, sizeof(sz));
-	std::wstring preedit = m_Info.preedit.str;
+	wstring preedit = m_Info.preedit.str;
 	GetTextExtentPoint32(dc.m_hDC, preedit.c_str(), preedit.length(), &sz);	
 	SetRect(&rout, xLeft, y, xRight, y + sz.cy);
 	ExtTextOut(dc.m_hDC, xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, preedit.c_str(), preedit.length(), NULL);
