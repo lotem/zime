@@ -4,6 +4,7 @@
 
 class WeaselUI::Impl : public WeaselPanel
 {
+
 };
 
 bool WeaselUI::Create(HWND parent)
@@ -54,7 +55,7 @@ void WeaselUI::UpdateContent(const weasel::ZIMEInfo &info)
 {
 	if (pimpl_)
 	{
-		pimpl_->SetContent(info);
+		pimpl_->SetContent(info);		
 		pimpl_->RedrawWindow();
 	}
 }
