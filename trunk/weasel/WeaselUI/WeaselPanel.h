@@ -1,10 +1,10 @@
 #pragma once
 #include <WeaselCommon.h>
 
-static const int FONT_POINT_SIZE = 16;
+static const int FONT_POINT_SIZE = 12;
 
 static const int BORDER = 1;
-static const int X_MARGIN = 18;
+static const int X_MARGIN = 12;
 static const int Y_MARGIN = 12;
 static const int SPACING = 4;
 
