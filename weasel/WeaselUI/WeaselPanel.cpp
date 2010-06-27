@@ -139,7 +139,7 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 			//HBRUSH brsh = CreateSolidBrush(RGB(160, 190 ,0));
 			//dc.FillRect(&rout, brsh);
 			//DeleteObject(brsh);
-			dc.BitBlt(rout.left, rout.top, rout.right - rout.left, rout.bottom - rout.top, dc.m_hDC, rout.left, rout.top, SRCINVERT);
+			dc.BitBlt(rout.left, rout.top, rout.right - rout.left, rout.bottom - rout.top, dc.m_hDC, rout.left, rout.top, DSTINVERT);
 		}
 		y += sz.cy + SPACING;
 		if (y >= yBottom)
