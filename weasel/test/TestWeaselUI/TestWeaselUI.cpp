@@ -12,7 +12,7 @@ HINSTANCE hInst;								// current instance
 TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
 
-WeaselUI weaselUI;
+WeaselUI ui;
 
 // Forward declarations of functions included in this code module:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
@@ -121,8 +121,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
-	weaselUI.Create(hWnd);
-	weaselUI.Show();
+	ui.Create(hWnd);
+	ui.Show();
 
 	return TRUE;
 }
@@ -152,12 +152,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		switch (wmId)
 		{
 		case IDM_ABOUT:
+			ui.Hide();
 			DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
 			break;
 		case IDM_EXIT:
-			weaselUI.Hide();
-			weaselUI.Destroy();
-			DestroyWindow(hWnd);
+			PostMessage(hWnd, WM_CLOSE, 0, 0);
 			break;
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
@@ -167,6 +166,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		hdc = BeginPaint(hWnd, &ps);
 		// TODO: Add any drawing code here...
 		EndPaint(hWnd, &ps);
+		break;
+	case WM_CLOSE:
+		ui.Destroy();
+		DestroyWindow(hWnd);
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
