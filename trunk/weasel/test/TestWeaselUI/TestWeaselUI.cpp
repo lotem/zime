@@ -122,6 +122,19 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	UpdateWindow(hWnd);
 
 	ui.Create(hWnd);
+	weasel::ZIMEInfo info;
+	info.preedit = weasel::Text(L"中州韻輸入法引擎");
+	info.aux = weasel::Text(L"zhung'zhou'yun'shu'ru'fa'yin'qing");
+	info.cinfo.currentPage = 1;
+	info.cinfo.totalPages = 1;
+	info.cinfo.highlighted = 0;
+	info.cinfo.candies.push_back(weasel::Text(L"中州韻輸入法"));
+	info.cinfo.candies.push_back(weasel::Text(L"中州韻"));
+	info.cinfo.candies.push_back(weasel::Text(L"中州"));
+	info.cinfo.candies.push_back(weasel::Text(L"中"));
+	info.cinfo.candies.push_back(weasel::Text(L"重"));
+	ui.UpdateContent(info);
+	ui.UpdateInputPosition(300, 200);
 	ui.Show();
 
 	return TRUE;

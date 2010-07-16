@@ -9,27 +9,6 @@ using namespace std;
 
 WeaselPanel::WeaselPanel()
 {
-	//test info
-	Text aux(L"zhong");
-	Text preedit(L"中");
-	CandidateInfo cinfo;
-	vector<Text> candies;
-
-	Text t1(L"中中");
-	Text t2(L"总");
-	Text t3(L"种");
-	candies.push_back(t1);
-	candies.push_back(t2);
-	candies.push_back(t3);
-
-	cinfo.totalPages = 10;
-	cinfo.currentPage = 1;
-	cinfo.highlighted = 0;
-	cinfo.candies = candies;
-
-	m_Info.aux = aux;
-	m_Info.preedit = preedit;
-	m_Info.cinfo = cinfo;
 }
 
 void WeaselPanel::SetContent(const weasel::ZIMEInfo &info)
@@ -52,6 +31,10 @@ void WeaselPanel::_GetWindowSize(int &width, int &height)
 	vector<Text> candidates = m_Info.cinfo.candies;
 	HDC hDC = GetDC();
 	SIZE sz;
+	// TODO: this is a quick fix to incorrect sizing issue; consider doing this in the WTL way
+	long h = -MulDiv(FONT_POINT_SIZE, GetDeviceCaps(hDC, LOGPIXELSY), 72);
+	HFONT font = CreateFont(h, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, NULL);
+	HFONT oldFont = (HFONT)SelectObject(hDC, font);
 
 	height += Y_MARGIN;
 	//preedit
@@ -73,7 +56,7 @@ void WeaselPanel::_GetWindowSize(int &width, int &height)
 	
 	for (size_t i = 0; i < candidates.size(); ++i)
 	{
-		_snwprintf(cand, sizeof(cand), L"%d.%s", (i + 1), candidates[i].str.c_str());
+		_snwprintf(cand, sizeof(cand), L"%d. %s", (i + 1), candidates[i].str.c_str());
 		int len = (int) wcslen( cand );
 		GetTextExtentPoint32W(hDC, cand, len, &sz);
 		if(width < sz.cx + X_MARGIN + X_MARGIN)
@@ -86,6 +69,10 @@ void WeaselPanel::_GetWindowSize(int &width, int &height)
 	//trim the last spacing
 	height -= SPACING;
 	height += Y_MARGIN;
+
+	// TODO: ...
+	SelectObject(hDC, oldFont);
+	DeleteObject(font);
 }
 
 //更新界面
@@ -175,7 +162,7 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 	vector<Text> candidates = m_Info.cinfo.candies;
 	for (size_t i = 0; i < candidates.size(); ++i)
 	{
-		_snwprintf(cand, sizeof(cand), L"%d.%s", (i + 1), candidates[i].str.c_str());
+		_snwprintf(cand, sizeof(cand), L"%d. %s", (i + 1), candidates[i].str.c_str());
 		ZeroMemory(&sz, sizeof(sz));
 		GetTextExtentPoint32(dc.m_hDC, cand, wcslen(cand), &sz);
 		SetRect(&rout, xLeft, y, xRight, min(int(y + sz.cy), yBottom));
