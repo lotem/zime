@@ -147,6 +147,21 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 	GetTextExtentPoint32(dc.m_hDC, preedit.c_str(), preedit.length(), &sz);	
 	SetRect(&rout, xLeft, y, xRight, y + sz.cy);
 	ExtTextOut(dc.m_hDC, xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, preedit.c_str(), preedit.length(), NULL);
+	vector<weasel::TextAttribute> const& attrs = m_Info.preedit.attributes;
+	for (size_t j = 0; j < attrs.size(); ++j)
+	{
+		if (attrs[j].type == weasel::HIGHLIGHTED)
+		{
+			weasel::TextRange const& range = attrs[j].range;
+			SIZE sz;
+			int hlLeft = 0, hlWidth = 0;
+			GetTextExtentPoint32(dc.m_hDC, preedit.c_str(), range.start, &sz);
+			hlLeft = xLeft + sz.cx;
+			GetTextExtentPoint32(dc.m_hDC, preedit.c_str() + range.start, range.end - range.start, &sz);
+			hlWidth = sz.cx;
+			dc.BitBlt(hlLeft, y, hlWidth, min(sz.cy, yBottom - y), dc.m_hDC, hlLeft, y, DSTINVERT);
+		}
+	}
 	y += sz.cy + SPACING;
 
 	// draw aux string
