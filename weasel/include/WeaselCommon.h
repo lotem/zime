@@ -15,11 +15,8 @@ namespace weasel
 
 	struct TextRange
 	{
-		TextRange()
-		{
-			start = 0;
-			end = 0;
-		}
+		TextRange() : start(0), end(0) {}
+		TextRange(int _start, int _end) : start(_start), end(_end) {}
 		int start;
 		int end;
 	};
@@ -27,6 +24,7 @@ namespace weasel
 	struct TextAttribute
 	{
 		TextAttribute() {}
+		TextAttribute(int _start, int _end, TextAttributeType _type) : range(_start, _end), type(_type) {}
 		TextRange range;
 		TextAttributeType type;
 	};

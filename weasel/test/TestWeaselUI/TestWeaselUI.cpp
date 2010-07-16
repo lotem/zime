@@ -124,7 +124,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	ui.Create(hWnd);
 	weasel::ZIMEInfo info;
 	info.preedit = weasel::Text(L"中州韻輸入法引擎");
-	info.aux = weasel::Text(L"zhung'zhou'yun'shu'ru'fa'yin'qing");
+	info.preedit.attributes.push_back(weasel::TextAttribute(0, 6, weasel::HIGHLIGHTED));
+	info.aux = weasel::Text(L"zung zau wan syu jap faat");
 	info.cinfo.currentPage = 1;
 	info.cinfo.totalPages = 1;
 	info.cinfo.highlighted = 0;
@@ -134,7 +135,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	info.cinfo.candies.push_back(weasel::Text(L"中"));
 	info.cinfo.candies.push_back(weasel::Text(L"重"));
 	ui.UpdateContent(info);
-	ui.UpdateInputPosition(300, 200);
+	ui.UpdateInputPosition(400, 300);
 	ui.Show();
 
 	return TRUE;
