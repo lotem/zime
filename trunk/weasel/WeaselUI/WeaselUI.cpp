@@ -48,7 +48,9 @@ void WeaselUI::Hide()
 void WeaselUI::UpdateInputPosition(int x, int y)
 {
 	if (pimpl_)
-		pimpl_->SetWindowPos(HWND_TOPMOST, x, y, 0, 0, SWP_NOSIZE|SWP_NOACTIVATE);
+	{
+		pimpl_->MoveTo(x, y);
+	}
 }
 
 void WeaselUI::UpdateContent(const weasel::ZIMEInfo &info)
@@ -56,7 +58,6 @@ void WeaselUI::UpdateContent(const weasel::ZIMEInfo &info)
 	if (pimpl_)
 	{
 		pimpl_->SetContent(info);		
-		pimpl_->RedrawWindow();
 	}
 }
 
@@ -65,6 +66,5 @@ void WeaselUI::UpdateStatus(const weasel::ZIMEStatus &status)
 	if (pimpl_)
 	{
 		pimpl_->SetStatus(status);
-		pimpl_->RedrawWindow();
 	}
 }

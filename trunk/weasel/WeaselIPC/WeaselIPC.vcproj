@@ -169,6 +169,14 @@
 					/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath=".\WeaselIPC.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\WeaselIPCImpl.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -185,6 +193,10 @@
 			</File>
 			<File
 				RelativePath="..\include\WeaselIPC.h"
+				>
+			</File>
+			<File
+				RelativePath=".\WeaselIPCImpl.h"
 				>
 			</File>
 		</Filter>
