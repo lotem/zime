@@ -20,6 +20,7 @@ void WeaselPanel::SetContent(const weasel::ZIMEInfo &info)
 void WeaselPanel::SetStatus(const weasel::ZIMEStatus &status)
 {
 	m_Status = status;
+	_UpdateUI();
 }
 
 void WeaselPanel::_GetWindowSize(int &width, int &height)
@@ -220,3 +221,22 @@ void WeaselPanel::CloseDialog(int nVal)
 	
 }
 
+void WeaselPanel::MoveTo(int x, int y)
+{
+	RECT rcWorkArea;
+	SystemParametersInfo(SPI_GETWORKAREA, 0, &rcWorkArea, 0);
+	RECT rcWindow;
+	GetWindowRect(&rcWindow);
+	// keep panel visible
+	rcWorkArea.right -= (rcWindow.right - rcWindow.left);
+	rcWorkArea.bottom -= (rcWindow.bottom - rcWindow.top);
+	if (x > rcWorkArea.right)
+		x = rcWorkArea.right;
+	if (x < rcWorkArea.left)
+		x = rcWorkArea.left;
+	if (y > rcWorkArea.bottom)
+		y = rcWorkArea.bottom;
+	if (y < rcWorkArea.top)
+		y = rcWorkArea.top;
+	SetWindowPos(HWND_TOPMOST, x, y, 0, 0, SWP_NOSIZE|SWP_NOACTIVATE);
+}
