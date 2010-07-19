@@ -135,7 +135,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	info.cinfo.candies.push_back(weasel::Text(L"жа"));
 	info.cinfo.candies.push_back(weasel::Text(L"жи"));
 	ui.UpdateContent(info);
-	ui.UpdateInputPosition(400, 300);
 	ui.Show();
 
 	return TRUE;
@@ -166,8 +165,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		switch (wmId)
 		{
 		case IDM_ABOUT:
-			ui.UpdateInputPosition(1000, 1000);
-			//ui.Hide();
+			{
+				RECT rc;
+				SetRect(&rc, 1000, 680, 1005, 700);
+				ui.UpdateInputPosition(rc);
+				//ui.Hide();
+			}
 			DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
 			break;
 		case IDM_EXIT:

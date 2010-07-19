@@ -45,11 +45,11 @@ void WeaselUI::Hide()
 
 }
 
-void WeaselUI::UpdateInputPosition(int x, int y)
+void WeaselUI::UpdateInputPosition(RECT const& rc)
 {
 	if (pimpl_)
 	{
-		pimpl_->MoveTo(x, y);
+		pimpl_->MoveTo(rc);
 	}
 }
 
