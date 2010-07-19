@@ -29,7 +29,7 @@ public:
 	void Hide();
 	
 	// 置输入焦点位置（光标跟随时移动候选窗）
-	void UpdateInputPosition(int x, int y);
+	void UpdateInputPosition(RECT const& rc);
 
 	// 更新界面显示内容
 	void UpdateContent(weasel::ZIMEInfo const& info);

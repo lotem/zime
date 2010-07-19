@@ -221,19 +221,26 @@ void WeaselPanel::CloseDialog(int nVal)
 	
 }
 
-void WeaselPanel::MoveTo(int x, int y)
+void WeaselPanel::MoveTo(RECT const& rc)
 {
+	const int offset = 5;
+	int x = rc.left;
+	int y = rc.bottom + offset;
 	RECT rcWorkArea;
 	SystemParametersInfo(SPI_GETWORKAREA, 0, &rcWorkArea, 0);
 	RECT rcWindow;
 	GetWindowRect(&rcWindow);
+	int width = (rcWindow.right - rcWindow.left);
+	int height = (rcWindow.bottom - rcWindow.top);
 	// keep panel visible
-	rcWorkArea.right -= (rcWindow.right - rcWindow.left);
-	rcWorkArea.bottom -= (rcWindow.bottom - rcWindow.top);
+	rcWorkArea.right -= width;
+	rcWorkArea.bottom -= height;
 	if (x > rcWorkArea.right)
 		x = rcWorkArea.right;
 	if (x < rcWorkArea.left)
 		x = rcWorkArea.left;
+	if (y > rcWorkArea.bottom)
+		y = rc.top - offset - height;
 	if (y > rcWorkArea.bottom)
 		y = rcWorkArea.bottom;
 	if (y < rcWorkArea.top)
