@@ -122,19 +122,19 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	UpdateWindow(hWnd);
 
 	ui.Create(hWnd);
-	weasel::ZIMEInfo info;
-	info.preedit = weasel::Text(L"中州韻輸入法引擎");
-	info.preedit.attributes.push_back(weasel::TextAttribute(0, 6, weasel::HIGHLIGHTED));
-	info.aux = weasel::Text(L"zung zau wan syu jap faat");
-	info.cinfo.currentPage = 1;
-	info.cinfo.totalPages = 1;
-	info.cinfo.highlighted = 0;
-	info.cinfo.candies.push_back(weasel::Text(L"中州韻輸入法"));
-	info.cinfo.candies.push_back(weasel::Text(L"中州韻"));
-	info.cinfo.candies.push_back(weasel::Text(L"中州"));
-	info.cinfo.candies.push_back(weasel::Text(L"中"));
-	info.cinfo.candies.push_back(weasel::Text(L"重"));
-	ui.UpdateContent(info);
+	weasel::Context ctx;
+	ctx.preedit = weasel::Text(L"中州韻輸入法引擎");
+	ctx.preedit.attributes.push_back(weasel::TextAttribute(0, 6, weasel::HIGHLIGHTED));
+	ctx.aux = weasel::Text(L"zung zau wan syu jap faat");
+	ctx.cinfo.currentPage = 1;
+	ctx.cinfo.totalPages = 1;
+	ctx.cinfo.highlighted = 0;
+	ctx.cinfo.candies.push_back(weasel::Text(L"中州韻輸入法"));
+	ctx.cinfo.candies.push_back(weasel::Text(L"中州韻"));
+	ctx.cinfo.candies.push_back(weasel::Text(L"中州"));
+	ctx.cinfo.candies.push_back(weasel::Text(L"中"));
+	ctx.cinfo.candies.push_back(weasel::Text(L"重"));
+	ui.UpdateContext(ctx);
 	ui.Show();
 
 	return TRUE;

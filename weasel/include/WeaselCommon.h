@@ -33,6 +33,11 @@ namespace weasel
 	{
 		Text() : str(L"") {}
 		Text(std::wstring const& _str) : str(_str) {}
+		void clear()
+		{
+			str.clear();
+			attributes.clear();
+		}
 		std::wstring str;
 		std::vector<TextAttribute> attributes;
 	};
@@ -45,23 +50,36 @@ namespace weasel
 			totalPages = 0;
 			highlighted = 0;
 		}
+		void clear()
+		{
+			currentPage = 0;
+			totalPages = 0;
+			highlighted = 0;
+			candies.clear();
+		}
 		int currentPage;
 		int totalPages;
 		int highlighted;
 		std::vector<Text> candies;
 	};
 
-	struct ZIMEInfo
+	struct Context
 	{
-		ZIMEInfo() {}
+		Context() {}
+		void clear()
+		{
+			preedit.clear();
+			aux.clear();
+			cinfo.clear();
+		}
 		Text preedit;
 		Text aux;
 		CandidateInfo cinfo;
 	};
 
-	struct ZIMEStatus
+	struct Status
 	{
-		ZIMEStatus() { zhMode = false; }
+		Status() { zhMode = false; }
 		// 转换开关，false：西文，true：中文
 		bool zhMode;
 	};

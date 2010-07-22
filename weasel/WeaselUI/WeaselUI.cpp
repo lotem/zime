@@ -10,7 +10,7 @@ class WeaselUI::Impl : public WeaselPanel
 bool WeaselUI::Create(HWND parent)
 {
 	if (pimpl_)
-		Destroy();
+		return true;
 
 	pimpl_ = new WeaselUI::Impl();
 	if (!pimpl_)
@@ -53,15 +53,15 @@ void WeaselUI::UpdateInputPosition(RECT const& rc)
 	}
 }
 
-void WeaselUI::UpdateContent(const weasel::ZIMEInfo &info)
+void WeaselUI::UpdateContext(const weasel::Context &ctx)
 {
 	if (pimpl_)
 	{
-		pimpl_->SetContent(info);		
+		pimpl_->SetContext(ctx);		
 	}
 }
 
-void WeaselUI::UpdateStatus(const weasel::ZIMEStatus &status)
+void WeaselUI::UpdateStatus(const weasel::Status &status)
 {
 	if (pimpl_)
 	{
