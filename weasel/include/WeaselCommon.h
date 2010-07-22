@@ -38,6 +38,10 @@ namespace weasel
 			str.clear();
 			attributes.clear();
 		}
+		bool empty() const
+		{
+			return str.empty();
+		}
 		std::wstring str;
 		std::vector<TextAttribute> attributes;
 	};
@@ -57,6 +61,10 @@ namespace weasel
 			highlighted = 0;
 			candies.clear();
 		}
+		bool empty() const
+		{
+			return candies.empty();
+		}
 		int currentPage;
 		int totalPages;
 		int highlighted;
@@ -71,6 +79,10 @@ namespace weasel
 			preedit.clear();
 			aux.clear();
 			cinfo.clear();
+		}
+		bool empty() const
+		{
+			return preedit.empty() && aux.empty() && cinfo.empty();
 		}
 		Text preedit;
 		Text aux;
