@@ -25,9 +25,6 @@ void WeaselPanel::SetStatus(const weasel::Status &status)
 
 CSize WeaselPanel::_GetWindowSize()
 {
-	wstring const& preedit = m_ctx.preedit.str;
-	wstring const& aux = m_ctx.aux.str;
-	vector<Text> const& candidates = m_ctx.cinfo.candies;
 	CDC dc = GetDC();
 	long fontHeight = -MulDiv(FONT_POINT_SIZE, dc.GetDeviceCaps(LOGPIXELSY), 72);
 
@@ -40,38 +37,39 @@ CSize WeaselPanel::_GetWindowSize()
 	CSize sz;
 
 	// draw preedit string
+	wstring const& preedit = m_ctx.preedit.str;
+	if (!preedit.empty())
 	{
-		wstring const& preedit = m_ctx.preedit.str;
 		dc.GetTextExtent(preedit.c_str(), preedit.length(), &sz);
 		width = max(width, sz.cx);
 		height += sz.cy + SPACING;
 	}
 
 	// draw aux string
+	wstring const& aux = m_ctx.aux.str;
+	if (!aux.empty())
 	{
-		wstring const& aux = m_ctx.aux.str;
 		dc.GetTextExtent(aux.c_str(), aux.length(), &sz);
 		width = max(width, sz.cx);
 		height += sz.cy + SPACING;
 	}
 
 	// draw candidates
+	vector<Text> const& candidates = m_ctx.cinfo.candies;
+	for (size_t i = 0; i < candidates.size(); ++i)
 	{
-		vector<Text> const& candidates = m_ctx.cinfo.candies;
-		for (size_t i = 0; i < candidates.size(); ++i)
-		{
-			wstring cand = (boost::wformat(L"%1%. %2%") % (i + 1) % candidates[i].str).str();
-			dc.GetTextExtent(cand.c_str(), cand.length(), &sz);
-			width = max(width, sz.cx);
-			height += sz.cy + SPACING;
-		}
+		wstring cand = (boost::wformat(L"%1%. %2%") % (i + 1) % candidates[i].str).str();
+		dc.GetTextExtent(cand.c_str(), cand.length(), &sz);
+		width = max(width, sz.cx);
+		height += sz.cy + SPACING;
 	}
 
 	//trim the last spacing
-	height -= SPACING;
+	if (height > 0)
+		height -= SPACING;
 
-	width += 2 * X_MARGIN;
-	height += 2 * Y_MARGIN;
+	width += 2 * MARGIN_X;
+	height += 2 * MARGIN_Y;
 	
 	return CSize(width, height);
 }
@@ -140,14 +138,15 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 	dc.SetTextColor(fgColor);
 	dc.SetBkColor(bgColor);
 
-	int xLeft = rc.left + X_MARGIN;
-	int xRight = rc.right - X_MARGIN;
-	int y = rc.top + Y_MARGIN;
-	int yBottom = rc.bottom - Y_MARGIN;
+	int xLeft = rc.left + MARGIN_X;
+	int xRight = rc.right - MARGIN_X;
+	int y = rc.top + MARGIN_Y;
+	int yBottom = rc.bottom - MARGIN_Y;
 
 	// draw preedit string
+	wstring const& preedit = m_ctx.preedit.str;
+	if (!preedit.empty())
 	{
-		wstring const& preedit = m_ctx.preedit.str;
 		vector<weasel::TextAttribute> const& attrs = m_ctx.preedit.attributes;
 		CSize sz;
 		dc.GetTextExtent(preedit.c_str(), preedit.length(), &sz);
@@ -158,52 +157,49 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 			if (attrs[j].type == weasel::HIGHLIGHTED)
 			{
 				weasel::TextRange const& range = attrs[j].range;
-				CSize sz;
-				dc.GetTextExtent(preedit.c_str(), range.start, &sz);
-				int xx = xLeft + sz.cx;
-				int yy = y - HIGHLIGHT_PADDING_TOP;
-				dc.GetTextExtent(preedit.c_str() + range.start, range.end - range.start, &sz);
-				sz.cy += HIGHLIGHT_PADDING_TOP + HIGHLIGHT_PADDING_BOTTOM;
-				dc.BitBlt(xx, yy, sz.cx, sz.cy, dc.m_hDC, xx, yy, DSTINVERT);
+				CSize szout;
+				dc.GetTextExtent(preedit.c_str(), range.start, &szout);
+				CPoint p(xLeft + szout.cx, y);
+				dc.GetTextExtent(preedit.c_str() + range.start, range.end - range.start, &szout);
+				p.y -= HIGHLIGHT_PADDING_TOP;
+				szout.cy += HIGHLIGHT_PADDING_TOP;
+				szout.cy += HIGHLIGHT_PADDING_BOTTOM;
+				dc.BitBlt(p.x, p.y, szout.cx, szout.cy, dc.m_hDC, p.x, p.y, DSTINVERT);
 			}
 		}
-		y += sz.cy;
+		y += sz.cy + SPACING;
 	}
-	y += SPACING;
 
 	// draw aux string
+	wstring const& aux = m_ctx.aux.str;
+	if (!aux.empty())
 	{
-		wstring const& aux = m_ctx.aux.str;
 		CSize sz;
 		dc.GetTextExtent(aux.c_str(), aux.length(), &sz);
 		CRect rout(xLeft, y, xRight, y + sz.cy);
 		dc.ExtTextOutW(xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, aux.c_str(), aux.length(), 0);
-		y += sz.cy;
+		y += sz.cy + SPACING;
 	}
-	y += SPACING;
 
 	// draw candidates
+	vector<Text> const& candidates = m_ctx.cinfo.candies;
+	for (size_t i = 0; i < candidates.size(); ++i)
 	{
-		vector<Text> const& candidates = m_ctx.cinfo.candies;
-		for (size_t i = 0; i < candidates.size(); ++i)
+		if (y >= yBottom)
+			break;
+		wstring cand = (boost::wformat(L"%1%. %2%") % (i + 1) % candidates[i].str).str();
+		CSize sz;
+		dc.GetTextExtent(cand.c_str(), cand.length(), &sz);
+		CRect rout(xLeft, y, xRight, y + sz.cy);
+		dc.ExtTextOutW(xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, cand.c_str(), cand.length(), 0);
+		if (i == m_ctx.cinfo.highlighted)
 		{
-			if (y >= yBottom)
-				break;
-			wstring cand = (boost::wformat(L"%1%. %2%") % (i + 1) % candidates[i].str).str();
-			CSize sz;
-			dc.GetTextExtent(cand.c_str(), cand.length(), &sz);
-			CRect rout(xLeft, y, xRight, y + sz.cy);
-			dc.ExtTextOutW(xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, cand.c_str(), cand.length(), 0);
-			if (i == m_ctx.cinfo.highlighted)
-			{
-				rout.top -= HIGHLIGHT_PADDING_TOP;
-				rout.bottom += HIGHLIGHT_PADDING_BOTTOM;
-				int width = rout.right - rout.left;
-				int height = rout.bottom - rout.top;
-				dc.BitBlt(rout.left, rout.top, width, height, dc, rout.left, rout.top, DSTINVERT);
-			}
-			y += sz.cy + SPACING;
+			rout.InflateRect(0, HIGHLIGHT_PADDING_TOP, 
+				             0, HIGHLIGHT_PADDING_BOTTOM);
+			CSize szout = rout.Size();
+			dc.BitBlt(rout.left, rout.top, szout.cx, szout.cy, dc, rout.left, rout.top, DSTINVERT);
 		}
+		y += sz.cy + SPACING;
 	}
 
 	// TODO: draw other parts
