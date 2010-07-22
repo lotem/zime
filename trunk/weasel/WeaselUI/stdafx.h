@@ -12,6 +12,8 @@
 #include <string>
 #include <vector>
 
+#include <boost/format.hpp>
+
 #pragma warning(disable : 4996)
 
 #include <atlbase.h>

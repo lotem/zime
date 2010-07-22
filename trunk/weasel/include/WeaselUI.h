@@ -32,10 +32,10 @@ public:
 	void UpdateInputPosition(RECT const& rc);
 
 	// 更新界面显示内容
-	void UpdateContent(weasel::ZIMEInfo const& info);
+	void UpdateContext(weasel::Context const& ctx);
 
 	// 更新输入法状态
-	void UpdateStatus(weasel::ZIMEStatus const& status);
+	void UpdateStatus(weasel::Status const& status);
 
 private:
 	class Impl;

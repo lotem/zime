@@ -11,86 +11,86 @@ WeaselPanel::WeaselPanel()
 {
 }
 
-void WeaselPanel::SetContent(const weasel::ZIMEInfo &info)
+void WeaselPanel::SetContext(const weasel::Context &ctx)
 {
-	m_Info = info;
-	_UpdateUI();
+	m_ctx = ctx;
+	_Refresh();
 }
 
-void WeaselPanel::SetStatus(const weasel::ZIMEStatus &status)
+void WeaselPanel::SetStatus(const weasel::Status &status)
 {
-	m_Status = status;
-	_UpdateUI();
+	m_status = status;
+	_Refresh();
 }
 
-void WeaselPanel::_GetWindowSize(int &width, int &height)
+CSize WeaselPanel::_GetWindowSize()
 {
-	width = 0;
-	height = 0;
-	wstring preedit = m_Info.preedit.str;
-	wstring aux = m_Info.aux.str;
-	vector<Text> candidates = m_Info.cinfo.candies;
-	HDC hDC = GetDC();
-	SIZE sz;
-	// TODO: this is a quick fix to incorrect sizing issue; consider doing this in the WTL way
-	long h = -MulDiv(FONT_POINT_SIZE, GetDeviceCaps(hDC, LOGPIXELSY), 72);
-	HFONT font = CreateFont(h, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, NULL);
-	HFONT oldFont = (HFONT)SelectObject(hDC, font);
+	wstring const& preedit = m_ctx.preedit.str;
+	wstring const& aux = m_ctx.aux.str;
+	vector<Text> const& candidates = m_ctx.cinfo.candies;
+	CDC dc = GetDC();
+	long fontHeight = -MulDiv(FONT_POINT_SIZE, dc.GetDeviceCaps(LOGPIXELSY), 72);
 
-	height += Y_MARGIN;
-	//preedit
-	GetTextExtentPoint32(hDC, preedit.c_str(), preedit.length(), &sz);
-	if(width < sz.cx + X_MARGIN + X_MARGIN)
-		width = sz.cx + X_MARGIN + X_MARGIN;
-	height += SPACING;
-	height += sz.cy;
+	CFont font;
+	font.CreateFontW(fontHeight, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, FONT_FACE);
+	CFontHandle oldFont = dc.SelectFont(font);
 
-	//aux
-	GetTextExtentPoint32(hDC, aux.c_str(), aux.length(), &sz);
-	if(width < sz.cx + X_MARGIN + X_MARGIN)
-		width = sz.cx + X_MARGIN + X_MARGIN;
-	height += SPACING;
-	height += sz.cy;
+	long width = 0;
+	long height = 0;
+	CSize sz;
 
-	//max candidate
-	WCHAR cand[100];
-	
-	for (size_t i = 0; i < candidates.size(); ++i)
+	// draw preedit string
 	{
-		_snwprintf(cand, sizeof(cand), L"%d. %s", (i + 1), candidates[i].str.c_str());
-		int len = (int) wcslen( cand );
-		GetTextExtentPoint32W(hDC, cand, len, &sz);
-		if(width < sz.cx + X_MARGIN + X_MARGIN)
-			width = sz.cx + X_MARGIN + X_MARGIN;
-		height += SPACING;
-		height += sz.cy;
+		wstring const& preedit = m_ctx.preedit.str;
+		dc.GetTextExtent(preedit.c_str(), preedit.length(), &sz);
+		width = max(width, sz.cx);
+		height += sz.cy + SPACING;
 	}
 
-	width += X_MARGIN;
+	// draw aux string
+	{
+		wstring const& aux = m_ctx.aux.str;
+		dc.GetTextExtent(aux.c_str(), aux.length(), &sz);
+		width = max(width, sz.cx);
+		height += sz.cy + SPACING;
+	}
+
+	// draw candidates
+	{
+		vector<Text> const& candidates = m_ctx.cinfo.candies;
+		for (size_t i = 0; i < candidates.size(); ++i)
+		{
+			wstring cand = (boost::wformat(L"%1%. %2%") % (i + 1) % candidates[i].str).str();
+			dc.GetTextExtent(cand.c_str(), cand.length(), &sz);
+			width = max(width, sz.cx);
+			height += sz.cy + SPACING;
+		}
+	}
+
 	//trim the last spacing
 	height -= SPACING;
-	height += Y_MARGIN;
 
-	// TODO: ...
-	SelectObject(hDC, oldFont);
-	DeleteObject(font);
+	width += 2 * X_MARGIN;
+	height += 2 * Y_MARGIN;
+	
+	return CSize(width, height);
 }
 
 //更新界面
-void WeaselPanel::_UpdateUI()
+void WeaselPanel::_Refresh()
 {
-	int width, height;
-	_GetWindowSize(width, height);
-	SetWindowPos( NULL, 0, 0, width, height, SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER);
+	CSize sz = _GetWindowSize();
+	SetWindowPos( NULL, 0, 0, sz.cx, sz.cy, SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER);
+	RedrawWindow();
 }
 
-LRESULT WeaselPanel::OnPaint(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BOOL& /*bHandled*/)
+LRESULT WeaselPanel::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& Handled)
 {
 	ATLASSERT(::IsWindow(m_hWnd));
 
 	if(wParam != NULL)
 	{
-		RECT rect = { 0 };
+		CRect rect;
 		GetClientRect(&rect);
 		CMemoryDC dcMem((HDC)wParam, rect);
 		DoPaint(dcMem.m_hDC);
@@ -107,111 +107,118 @@ LRESULT WeaselPanel::OnPaint(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/, BO
 //draw client area
 void WeaselPanel::DoPaint(CDCHandle dc)
 {
-	// must be implemented in a derived class
-	RECT rc;
+	CRect rc;
 	GetClientRect(&rc);
 
 	COLORREF bgColor = GetSysColor(COLOR_WINDOW);
 	COLORREF fgColor = GetSysColor(COLOR_WINDOWTEXT);
 
 	// background
-	HBRUSH brush = CreateSolidBrush(bgColor);
-	HRGN rgn = CreateRectRgnIndirect(&rc);
-	dc.FillRgn(rgn, brush);
-	DeleteObject(brush);
-	DeleteObject(rgn);
+	{
+		CBrush brush;
+		CRgn rgn;
+		brush.CreateSolidBrush(bgColor);
+		rgn.CreateRectRgnIndirect(&rc);
+		dc.FillRgn(rgn, brush);
+	}
 
 	// black border
-	HPEN pen = CreatePen(PS_SOLID | PS_INSIDEFRAME, BORDER, fgColor);
-	HPEN oldPen = (HPEN)SelectObject(dc.m_hDC, pen);
-	Rectangle(dc.m_hDC, rc.left, rc.top, rc.right, rc.bottom);
-	SelectObject(dc.m_hDC, oldPen);
-	DeleteObject(pen);
+	{
+		CPen pen;
+		pen.CreatePen(PS_SOLID | PS_INSIDEFRAME, BORDER, fgColor);
+		CPenHandle oldPen = dc.SelectPen(pen);
+		dc.Rectangle(&rc);
+		dc.SelectPen(oldPen);
+	}
 
-	long height = -MulDiv(FONT_POINT_SIZE, GetDeviceCaps(dc.m_hDC, LOGPIXELSY), 72);
-	HFONT font = CreateFont(height, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, NULL);
-	HFONT oldFont = (HFONT)SelectObject(dc.m_hDC, font);
+	long height = -MulDiv(FONT_POINT_SIZE, dc.GetDeviceCaps(LOGPIXELSY), 72);
 
-	SetTextColor(dc.m_hDC, fgColor);
-	SetBkColor(dc.m_hDC, bgColor);
+	CFont font;
+	font.CreateFontW(height, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, FONT_FACE);
+	CFontHandle oldFont = dc.SelectFont(font);
 
-	SIZE sz;
-	RECT rout;
+	dc.SetTextColor(fgColor);
+	dc.SetBkColor(bgColor);
+
 	int xLeft = rc.left + X_MARGIN;
 	int xRight = rc.right - X_MARGIN;
 	int y = rc.top + Y_MARGIN;
 	int yBottom = rc.bottom - Y_MARGIN;
 
 	// draw preedit string
-	ZeroMemory(&sz, sizeof(sz));
-	wstring preedit = m_Info.preedit.str;
-	GetTextExtentPoint32(dc.m_hDC, preedit.c_str(), preedit.length(), &sz);	
-	SetRect(&rout, xLeft, y, xRight, y + sz.cy);
-	ExtTextOut(dc.m_hDC, xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, preedit.c_str(), preedit.length(), NULL);
-	vector<weasel::TextAttribute> const& attrs = m_Info.preedit.attributes;
-	for (size_t j = 0; j < attrs.size(); ++j)
 	{
-		if (attrs[j].type == weasel::HIGHLIGHTED)
+		wstring const& preedit = m_ctx.preedit.str;
+		vector<weasel::TextAttribute> const& attrs = m_ctx.preedit.attributes;
+		CSize sz;
+		dc.GetTextExtent(preedit.c_str(), preedit.length(), &sz);
+		CRect rout(xLeft, y, xRight, y + sz.cy);
+		dc.ExtTextOutW(xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, preedit.c_str(), preedit.length(), 0);
+		for (size_t j = 0; j < attrs.size(); ++j)
 		{
-			weasel::TextRange const& range = attrs[j].range;
-			SIZE sz;
-			int hlLeft = 0, hlWidth = 0;
-			GetTextExtentPoint32(dc.m_hDC, preedit.c_str(), range.start, &sz);
-			hlLeft = xLeft + sz.cx;
-			GetTextExtentPoint32(dc.m_hDC, preedit.c_str() + range.start, range.end - range.start, &sz);
-			hlWidth = sz.cx;
-			dc.BitBlt(hlLeft, y, hlWidth, min(sz.cy, yBottom - y), dc.m_hDC, hlLeft, y, DSTINVERT);
+			if (attrs[j].type == weasel::HIGHLIGHTED)
+			{
+				weasel::TextRange const& range = attrs[j].range;
+				CSize sz;
+				dc.GetTextExtent(preedit.c_str(), range.start, &sz);
+				int xx = xLeft + sz.cx;
+				int yy = y - HIGHLIGHT_PADDING_TOP;
+				dc.GetTextExtent(preedit.c_str() + range.start, range.end - range.start, &sz);
+				sz.cy += HIGHLIGHT_PADDING_TOP + HIGHLIGHT_PADDING_BOTTOM;
+				dc.BitBlt(xx, yy, sz.cx, sz.cy, dc.m_hDC, xx, yy, DSTINVERT);
+			}
 		}
+		y += sz.cy;
 	}
-	y += sz.cy + SPACING;
+	y += SPACING;
 
 	// draw aux string
-	ZeroMemory(&sz, sizeof(sz));
-	wstring aux = m_Info.aux.str;
-	GetTextExtentPoint32(dc.m_hDC, aux.c_str(), aux.length(), &sz);
-	SetRect(&rout, xLeft, y, xRight, y + sz.cy);
-	ExtTextOut(dc.m_hDC, xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, aux.c_str(), aux.length(), NULL);
-	y += sz.cy + SPACING;
+	{
+		wstring const& aux = m_ctx.aux.str;
+		CSize sz;
+		dc.GetTextExtent(aux.c_str(), aux.length(), &sz);
+		CRect rout(xLeft, y, xRight, y + sz.cy);
+		dc.ExtTextOutW(xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, aux.c_str(), aux.length(), 0);
+		y += sz.cy;
+	}
+	y += SPACING;
 
 	// draw candidates
-	WCHAR cand[100];
-	vector<Text> candidates = m_Info.cinfo.candies;
-	for (size_t i = 0; i < candidates.size(); ++i)
 	{
-		_snwprintf(cand, sizeof(cand), L"%d. %s", (i + 1), candidates[i].str.c_str());
-		ZeroMemory(&sz, sizeof(sz));
-		GetTextExtentPoint32(dc.m_hDC, cand, wcslen(cand), &sz);
-		SetRect(&rout, xLeft, y, xRight, min(int(y + sz.cy), yBottom));
-		ExtTextOut(dc.m_hDC, xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, cand, wcslen(cand), NULL);
-		if(i == m_Info.cinfo.highlighted)
+		vector<Text> const& candidates = m_ctx.cinfo.candies;
+		for (size_t i = 0; i < candidates.size(); ++i)
 		{
-			dc.BitBlt(rout.left, rout.top, rout.right - rout.left, rout.bottom - rout.top, dc.m_hDC, rout.left, rout.top, DSTINVERT);
+			if (y >= yBottom)
+				break;
+			wstring cand = (boost::wformat(L"%1%. %2%") % (i + 1) % candidates[i].str).str();
+			CSize sz;
+			dc.GetTextExtent(cand.c_str(), cand.length(), &sz);
+			CRect rout(xLeft, y, xRight, y + sz.cy);
+			dc.ExtTextOutW(xLeft, y, ETO_CLIPPED | ETO_OPAQUE, &rout, cand.c_str(), cand.length(), 0);
+			if (i == m_ctx.cinfo.highlighted)
+			{
+				rout.top -= HIGHLIGHT_PADDING_TOP;
+				rout.bottom += HIGHLIGHT_PADDING_BOTTOM;
+				int width = rout.right - rout.left;
+				int height = rout.bottom - rout.top;
+				dc.BitBlt(rout.left, rout.top, width, height, dc, rout.left, rout.top, DSTINVERT);
+			}
+			y += sz.cy + SPACING;
 		}
-		y += sz.cy + SPACING;
-		if (y >= yBottom)
-			break;
 	}
 
-	SelectObject(dc.m_hDC, oldFont);
-	DeleteObject(font);
-	
-	//draw others
-	//
-	
+	// TODO: draw other parts
+
+	dc.SelectFont(oldFont);	
 }
 
-LRESULT WeaselPanel::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
+LRESULT WeaselPanel::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-	//int screenX = GetSystemMetrics(SM_CXSCREEN);
-	//int screenY = GetSystemMetrics(SM_CYSCREEN);
-
-	//MoveWindow(0, 0, screenX / 4, screenY / 4);
-	_UpdateUI();
+	_Refresh();
 	CenterWindow();
 	return TRUE;
 }
 
-LRESULT WeaselPanel::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
+LRESULT WeaselPanel::OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	return 0;
 }
@@ -223,7 +230,7 @@ void WeaselPanel::CloseDialog(int nVal)
 
 void WeaselPanel::MoveTo(RECT const& rc)
 {
-	const int offset = 5;
+	const int offset = 6;
 	int x = rc.left;
 	int y = rc.bottom + offset;
 	RECT rcWorkArea;
