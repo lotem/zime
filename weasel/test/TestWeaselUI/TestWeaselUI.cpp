@@ -123,6 +123,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 	ui.Create(hWnd);
 	weasel::Context ctx;
+
 	ctx.preedit = weasel::Text(L"中州韻輸入法引擎");
 	ctx.preedit.attributes.push_back(weasel::TextAttribute(0, 6, weasel::HIGHLIGHTED));
 	ctx.aux = weasel::Text(L"zung zau wan syu jap faat");
@@ -134,6 +135,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	ctx.cinfo.candies.push_back(weasel::Text(L"中州"));
 	ctx.cinfo.candies.push_back(weasel::Text(L"中"));
 	ctx.cinfo.candies.push_back(weasel::Text(L"重"));
+	
 	ui.UpdateContext(ctx);
 	ui.Show();
 
