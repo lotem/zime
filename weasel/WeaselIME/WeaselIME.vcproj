@@ -62,7 +62,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="imm32.lib"
-				OutputFile="$(OutDir)\weasel.dll"
+				OutputFile="C:\windows\system32\weasel.ime"
 				LinkIncremental="2"
 				ModuleDefinitionFile="weasel.def"
 				GenerateDebugInformation="true"
@@ -197,6 +197,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\ime.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -235,6 +239,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.h"
 				>
 			</File>
@@ -246,12 +254,32 @@
 				RelativePath=".\WeaselIME.h"
 				>
 			</File>
+			<File
+				RelativePath="..\include\WeaselIPC.h"
+				>
+			</File>
+			<File
+				RelativePath="..\include\WeaselUI.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+			<File
+				RelativePath="..\resource\alpha.ico"
+				>
+			</File>
+			<File
+				RelativePath=".\WeaselIME.rc"
+				>
+			</File>
+			<File
+				RelativePath="..\resource\zhung.ico"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"

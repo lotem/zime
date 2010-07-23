@@ -14,3 +14,15 @@
 #include <windows.h>
 
 #include "Imm.h"
+
+#include <map>
+#include <string>
+#include <boost/format.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/thread.hpp>
+
+using std::wstring;
+using boost::shared_ptr;
+
+#include <WeaselUI.h>
+#include <WeaselIPC.h>
