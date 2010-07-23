@@ -62,8 +62,9 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="imm32.lib"
-				OutputFile="C:\windows\system32\weasel.ime"
+				OutputFile="$(OutDir)\weasel.ime"
 				LinkIncremental="2"
+				AdditionalLibraryDirectories="$(SolutionDir)\lib"
 				ModuleDefinitionFile="weasel.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -118,6 +119,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;WEASELIME_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -137,6 +139,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="$(SolutionDir)\lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"

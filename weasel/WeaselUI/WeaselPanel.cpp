@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "WeaselPanel.h"
-#include <string>
-#include <vector>
 #include <WeaselCommon.h>
 
 using namespace weasel;
