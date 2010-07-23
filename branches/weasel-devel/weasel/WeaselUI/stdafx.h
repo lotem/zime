@@ -17,27 +17,9 @@
 #pragma warning(disable : 4996)
 
 #include <atlbase.h>
-#include <atlapp.h>
-
 #include <atlwin.h>
 
-#include <atlframe.h>
-#include <atlctrls.h>
-#include <atlgdi.h>
-#include <atlwin.h>
-
-#include <atlframe.h>
-#include <atlmisc.h> 
-#include <atlcrack.h>
-#include <atlddx.h>
-#include <atlctrls.h>
-#include <atlctrlw.h>
-#include <atlctrlx.h>
-#include <atlctl.h>
-#include <atlcoll.h>
-#include <atldlgs.h>
-#include <atlsplit.h>
-#include <atlcom.h>
-#include <atlhost.h>
-#include <atlscrl.h>
-#include <wingdi.h>
+#include <wtl/atlapp.h>
+#include <wtl/atlframe.h>
+#include <wtl/atlgdi.h>
+#include <wtl/atlmisc.h>
