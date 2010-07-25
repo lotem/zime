@@ -21,7 +21,7 @@ int Run(LPTSTR /*lpstrCmdLine*/ = NULL, int nCmdShow = SW_SHOWDEFAULT)
 		return 0;
 	}
 
-	//wndServer.ShowWindow(nCmdShow);
+	wndServer.StartServer();
 
 	int nRet = theLoop.Run();
 
