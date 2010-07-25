@@ -35,7 +35,16 @@ void WeaselIPC::WeaselIPCImpl::CloseServer()
 
 void WeaselIPC::WeaselIPCImpl::SendKey(UINT keyVal,  LONG mask)
 {
-	  SendMessage( serverWnd, WM_WEASEL_CMD_SEND_KEY, keyVal, mask );
+	UINT keyEvent = 0x00000000;
+	//	keyVal + mask -> keyEvent
+	//后16位
+	UINT keyVal32 = (UINT)keyVal & 0x0000ffff;
+	//前16位
+	UINT mask32 = (UINT)mask & 0x0000ffff;
+	mask32 << 16;
+	keyEvent =   mask32 |	keyVal32;
+
+	SendMessage( serverWnd, WM_WEASEL_CMD_SEND_KEY, keyEvent, clientID );
 }
 
 void WeaselIPC::WeaselIPCImpl::AddClient()
