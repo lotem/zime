@@ -9,9 +9,10 @@ public:
 	~WeaselIPCImpl(void);
 
 	void ConnectServer();
+	void CloseServer();
 	void SendKey(UINT keyVal, LONG mask);
-	UINT AddClient();
-	void RemoveClient(UINT clientID);
+	void AddClient();
+	void RemoveClient();
 	UINT EchoFromServer();
 
 private:
