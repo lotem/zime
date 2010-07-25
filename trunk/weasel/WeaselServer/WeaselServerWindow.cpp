@@ -98,8 +98,13 @@ LRESULT WeaselServerWindow::OnRemoveClient(UINT /*uMsg*/, WPARAM /*wParam*/, LPA
 
 LRESULT WeaselServerWindow::OnSendKey(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam, BOOL& /*bHandled*/)
 {
-	UINT keyVal = (UINT)wParam;
-	LONG mask = (LONG)lParam;
+	UINT keyEvent = (UINT)wParam;
+	//keyEvent -> keyVal, mask
+	UINT keyVal32 = (UINT) keyEvent && 0x0000ffff;
+	keyEvent >>16;
+	UINT mask = (UINT) keyEvent && 0x0000ffff;
+
+	UINT clientID = (UINT)lParam;
 
 	return 0;
 }
