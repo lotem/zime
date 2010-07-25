@@ -4,6 +4,9 @@
 #include "stdafx.h"
 #include "TestWeaselUI.h"
 #include <WeaselUI.h>
+#include <WeaselIPC.h>
+#include "windows.h"
+#include "shellapi.h"
 
 #define MAX_LOADSTRING 100
 
@@ -121,7 +124,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
-	ui.Create(hWnd);
+	/*ui.Create(hWnd);
 	weasel::Context ctx;
 
 	ctx.preedit = weasel::Text(L"中州韻輸入法引擎");
@@ -137,7 +140,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	ctx.cinfo.candies.push_back(weasel::Text(L"重"));
 	
 	ui.UpdateContext(ctx);
-	ui.Show();
+	ui.Show();*/
 
 	return TRUE;
 }
@@ -168,12 +171,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 		case IDM_ABOUT:
 			{
-				RECT rc;
-				SetRect(&rc, 1000, 680, 1005, 700);
-				ui.UpdateInputPosition(rc);
+				//UINT ret = (UINT)ShellExecute( NULL, L"open", L"D:\\WareHouse\\Workspace\\Weasel\\Debug\\WeaselServer.exe", NULL, NULL, SW_HIDE );
+				//RECT rc;
+				//SetRect(&rc, 1000, 680, 1005, 700);
+				//ui.UpdateInputPosition(rc);
 				//ui.Hide();
+				WeaselIPC weaselIPC;
+				UINT clientID = weaselIPC.AddClient();
+				//weaselIPC.RemoveClient(clientID);
+				//weaselIPC.EchoFromServer();
 			}
-			DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+			//DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
 			break;
 		case IDM_EXIT:
 			PostMessage(hWnd, WM_CLOSE, 0, 0);
