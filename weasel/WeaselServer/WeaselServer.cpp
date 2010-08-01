@@ -3,30 +3,20 @@
 //	WTL MessageLoop 封装了消息循环. 实现了 getmessage/dispatchmessage....
 
 #include "stdafx.h"
-#include "WeaselServerWindow.h"
+#include <WeaselIPC.h>
 
 CAppModule _Module;
 
 int Run(LPTSTR /*lpstrCmdLine*/ = NULL, int nCmdShow = SW_SHOWDEFAULT)
 {
-	CMessageLoop theLoop;
-	_Module.AddMessageLoop(&theLoop);
+	WeaselServer server;
 
-	//CMainFrame wndMain;
-	WeaselServerWindow	wndServer;
+	if (!server.StartServer())
+		return -1;
 
-	if(wndServer.Create(NULL) == NULL)
-	{
-		ATLTRACE(_T("Main window creation failed!\n"));
-		return 0;
-	}
+	int ret = server.Run();
 
-	wndServer.StartServer();
-
-	int nRet = theLoop.Run();
-
-	_Module.RemoveMessageLoop();
-	return nRet;
+	return ret;
 }
 
 int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lpstrCmdLine, int nCmdShow)
