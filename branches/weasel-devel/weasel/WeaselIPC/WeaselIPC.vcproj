@@ -170,11 +170,15 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\WeaselClientImpl.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\WeaselIPC.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\WeaselIPCImpl.cpp"
+				RelativePath=".\WeaselServerImpl.cpp"
 				>
 			</File>
 		</Filter>

@@ -1,49 +1,84 @@
 #pragma once
 #include "stdafx.h"
-#include "WeaselIPC.h"
+#include <WeaselIPC.h>
 #include "WeaselIPCImpl.h"
 
-WeaselIPC::WeaselIPC(void) 
-	: m_pImpl(new WeaselIPCImpl())
+// WeaselClient
+
+WeaselClient::WeaselClient() 
+	: m_pImpl(new WeaselClient::Impl())
 {}
 
-WeaselIPC::~WeaselIPC(void)
+WeaselClient::~WeaselClient()
 {
-	delete	 m_pImpl;
+	if (m_pImpl)
+		delete m_pImpl;
 }
 
-//IPC Functions
-void WeaselIPC::ConnectServer()
+void WeaselClient::ConnectServer()
 {
 	m_pImpl->ConnectServer();
 }
 
-void WeaselIPC::CloseServer()
+void WeaselClient::ShutdownServer()
 {
-	m_pImpl->CloseServer();
+	m_pImpl->ShutdownServer();
 }
 
-void WeaselIPC::SendKey(UINT keyVal, LONG mask)
+bool WeaselClient::ProcessKeyEvent(KeyEvent keyEvent)
 {
-	m_pImpl->SendKey(keyVal, mask);
+	return m_pImpl->ProcessKeyEvent(keyEvent);
 }
 
-void WeaselIPC::AddClient()
+void WeaselClient::AddClient()
 {
 	m_pImpl->AddClient();
 }
 
-void WeaselIPC::RemoveClient()
+void WeaselClient::RemoveClient()
 {
 	m_pImpl->RemoveClient();
 }
 
-UINT WeaselIPC::EchoFromServer()
+bool WeaselClient::EchoFromServer()
 {
 	return m_pImpl->EchoFromServer();
 }
 
-UCHAR* WeaselIPC::GetDataFromSharedMem()
- {
+UCHAR* WeaselClient::GetData()
+{
+	// TODO
 	return NULL;
+}
+
+// WeaselServer
+
+WeaselServer::WeaselServer()
+	: m_pImpl(new WeaselServer::Impl())
+{}
+
+WeaselServer::~WeaselServer()
+{
+	if (m_pImpl)
+		delete m_pImpl;
+}
+
+int WeaselServer::StartServer()
+{
+	return m_pImpl->StartServer();
+}
+
+int WeaselServer::StopServer()
+{
+	return m_pImpl->StopServer();
+}
+
+int WeaselServer::Run()
+{
+	return m_pImpl->Run();
+}
+
+void WeaselServer::RegisterRequestHandler(WeaselServer::RequestHandler handler)
+{
+	m_pImpl->RegisterRequestHandler(handler);
 }

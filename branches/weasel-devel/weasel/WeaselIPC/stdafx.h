@@ -9,6 +9,15 @@
 
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 
+#include <windows.h>
+#include <shellapi.h>
 
+#pragma warning(disable : 4996)
 
-// TODO: reference additional headers your program requires here
+#include <atlbase.h>
+#include <atlwin.h>
+
+#include <wtl/atlapp.h>
+#include <wtl/atlframe.h>
+
+extern CAppModule _Module;

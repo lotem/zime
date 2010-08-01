@@ -40,12 +40,12 @@
   };
 #endif // _WTL_SUPPORT_SDK_ATL3
 
-#include <atlapp.h>
+#include <wtl/atlapp.h>
 
 extern CAppModule _Module;
 
 #include <atlwin.h>
 
-#include <atlframe.h>
-#include <atlctrls.h>
-#include <atldlgs.h>
+#include <wtl/atlframe.h>
+#include <wtl/atlctrls.h>
+#include <wtl/atldlgs.h>

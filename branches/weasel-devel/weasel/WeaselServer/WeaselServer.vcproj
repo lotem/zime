@@ -216,10 +216,6 @@
 				RelativePath=".\WeaselServer.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\WeaselServerWindow.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -227,10 +223,6 @@
 			>
 			<File
 				RelativePath=".\stdafx.h"
-				>
-			</File>
-			<File
-				RelativePath=".\WeaselServerWindow.h"
 				>
 			</File>
 		</Filter>
