@@ -45,10 +45,14 @@ bool WeaselClient::EchoFromServer()
 	return m_pImpl->EchoFromServer();
 }
 
-UCHAR* WeaselClient::GetData()
+LPWSTR WeaselClient::GetDataBuffer()
 {
-	// TODO
-	return NULL;
+	return m_pImpl->GetDataBuffer();
+}
+
+UINT WeaselClient::GetDataBufferLength()
+{
+	return DATA_BUFFER_SIZE / sizeof(WCHAR);
 }
 
 // WeaselServer

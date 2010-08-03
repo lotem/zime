@@ -7,7 +7,7 @@
 
 CAppModule _Module;
 
-int Run(LPTSTR /*lpstrCmdLine*/ = NULL, int nCmdShow = SW_SHOWDEFAULT)
+int Run(LPTSTR lpstrCmdLine = NULL, int nCmdShow = SW_SHOWDEFAULT)
 {
 	WeaselServer server;
 
@@ -34,6 +34,14 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 
 	hRes = _Module.Init(NULL, hInstance);
 	ATLASSERT(SUCCEEDED(hRes));
+
+	// command line option /q stops the running server
+	if (!wcscmp(L"/q", lpstrCmdLine))
+	{
+		WeaselClient client;
+		client.ShutdownServer();
+		return 0;
+	}
 
 	int nRet = Run(lpstrCmdLine, nCmdShow);
 
