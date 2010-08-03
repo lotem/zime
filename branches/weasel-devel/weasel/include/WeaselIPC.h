@@ -34,7 +34,8 @@ public:
 	// ping server
 	bool EchoFromServer();
 	// 读取server返回的数据
-	UCHAR* GetData();
+	LPWSTR GetDataBuffer();
+	UINT GetDataBufferLength();
 
 private:
 	class Impl;

@@ -10,16 +10,6 @@ WeaselServer::Impl::~Impl()
 {
 }
 
-BOOL WeaselServer::Impl::PreTranslateMessage(MSG* pMsg)
-{
-	return PreTranslateMessage(pMsg);
-}
-
-BOOL WeaselServer::Impl::OnIdle()
-{
-	return FALSE;
-}
-
 LRESULT WeaselServer::Impl::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
 	// clients connects to server via calls to FindWindow() with SERVER_WND_NAME
@@ -52,7 +42,12 @@ LRESULT WeaselServer::Impl::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /
 
 int WeaselServer::Impl::StartServer()
 {
-	// TODO: assure single instance
+	// assure single instance
+	if (FindWindow(SERVER_WND_NAME, NULL) != NULL)
+	{
+		return 0;
+	}
+
 	HWND hwnd = Create(NULL);
 	return (int)hwnd;
 }
@@ -70,14 +65,8 @@ int WeaselServer::Impl::Run()
 	CMessageLoop theLoop;
 	_Module.AddMessageLoop(&theLoop);
 	
-	theLoop.AddMessageFilter(this);
-	theLoop.AddIdleHandler(this);
-
 	int nRet = theLoop.Run();
 
-	theLoop.RemoveMessageFilter(this);
-	theLoop.RemoveIdleHandler(this);
-	
 	_Module.RemoveMessageLoop();
 	return nRet;
 }

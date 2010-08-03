@@ -3,8 +3,7 @@
 
 WeaselClient::Impl::Impl()
 	: clientID(0),
-	  serverWnd(NULL),
-	  sharedMem(INVALID_HANDLE_VALUE)
+	  serverWnd(NULL)
 {
 	ConnectServer();
 }
@@ -19,7 +18,18 @@ void WeaselClient::Impl::ConnectServer()
 	if( !serverWnd )
 	{
 		HANDLE hEvent = CreateEvent( NULL, TRUE, FALSE, SERVER_EVENT_NAME );
-		HINSTANCE ret = ShellExecute( NULL, L"open", SERVER_EXEC, SERVER_ARGS, SERVER_DIR, SW_HIDE );
+		{
+			// 启动服务进程
+			// TODO: 暂写定一个路径 应改为从注册表读取安装目录
+			int ret = (int)ShellExecute( NULL, L"open", SERVER_EXEC, SERVER_ARGS, SERVER_DIR, SW_HIDE );
+			if (ret <= 32)
+			{
+				MessageBox(NULL, L"服務進程啓動不起來:(", L"小狼毫", MB_OK | MB_ICONERROR);
+				CloseHandle(hEvent);
+				serverWnd = NULL;
+				return;
+			}
+		}
 		WaitForSingleObject( hEvent, 10000 );
 		CloseHandle(hEvent);
 		serverWnd = FindWindow( SERVER_WND_NAME, NULL );
@@ -51,4 +61,10 @@ bool WeaselClient::Impl::EchoFromServer()
 {
 	UINT serverEcho = SendMessage( serverWnd, WM_WEASEL_CMD_ECHO, 0, clientID );
 	return (serverEcho == clientID);
+}
+
+LPWSTR WeaselClient::Impl::GetDataBuffer()
+{
+	// TODO: return pointer to shared memory content
+	return NULL;
 }

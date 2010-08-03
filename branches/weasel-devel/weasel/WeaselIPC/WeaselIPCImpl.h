@@ -11,10 +11,11 @@ enum WEASEL_CMD
 	WM_WEASEL_CMD_SHUTDOWN_SERVER
 };
 
+#define DATA_BUFFER_SIZE 4096
+
 #define SERVER_WND_NAME L"WeaselServerWindow"
 #define SERVER_EVENT_NAME L"Local\\WeaselServerEvent"
 
-// TODO:
 #define SERVER_EXEC L"WeaselServer.exe"
 #define SERVER_ARGS NULL
 #define SERVER_DIR NULL
@@ -33,12 +34,11 @@ public:
 	void AddClient();
 	void RemoveClient();
 	bool EchoFromServer();
+	LPWSTR GetDataBuffer();
 
 private:
 	UINT clientID;
 	HWND serverWnd;
-	HANDLE sharedMem;
-	WCHAR fileMapName[MAX_PATH];
 };
 
 // WeaselServer::Impl definition
@@ -46,14 +46,9 @@ private:
 typedef CWinTraits<WS_DISABLED, WS_EX_TRANSPARENT> WeaselServerWinTraits;
 
 class WeaselServer::Impl :
-	public CWindowImpl<WeaselServer::Impl, CWindow, WeaselServerWinTraits>,
-	public CMessageFilter, 
-	public CIdleHandler
+	public CWindowImpl<WeaselServer::Impl, CWindow, WeaselServerWinTraits>
 {
 public:
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	virtual BOOL OnIdle();
-
 	DECLARE_WND_CLASS (SERVER_WND_NAME)
 
 	BEGIN_MSG_MAP(WeaselServerWindow)	   
