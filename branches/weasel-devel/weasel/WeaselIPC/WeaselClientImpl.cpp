@@ -63,8 +63,8 @@ bool WeaselClient::Impl::EchoFromServer()
 	return (serverEcho == clientID);
 }
 
-LPWSTR WeaselClient::Impl::GetDataBuffer()
+bool WeaselClient::Impl::GetResponseData(WeaselClient::ResponseHandler handler)
 {
-	// TODO: return pointer to shared memory content
-	return NULL;
+	// TODO:
+	return false;
 }

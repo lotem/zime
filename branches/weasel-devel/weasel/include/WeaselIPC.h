@@ -1,5 +1,6 @@
 #pragma once
 #include <WeaselCommon.h>
+#include <boost/function.hpp>
 
 struct KeyEvent
 {
@@ -18,6 +19,8 @@ struct KeyEvent
 class WeaselClient
 {
 public:
+	typedef boost::function<BOOL (LPWSTR buffer, UINT length)> ResponseHandler;
+
 	WeaselClient();
 	virtual ~WeaselClient();
 	
@@ -34,8 +37,7 @@ public:
 	// ping server
 	bool EchoFromServer();
 	// 读取server返回的数据
-	LPWSTR GetDataBuffer();
-	UINT GetDataBufferLength();
+	bool GetResponseData(ResponseHandler handler);
 
 private:
 	class Impl;
@@ -45,7 +47,7 @@ private:
 class WeaselServer
 {
 public:
-	typedef LRESULT (*RequestHandler)(UINT cmd, WPARAM param, LPARAM clientID);
+	typedef boost::function<LRESULT (UINT cmd, WPARAM param, LPARAM clientID)> RequestHandler;
 
 	WeaselServer();
 	virtual ~WeaselServer();

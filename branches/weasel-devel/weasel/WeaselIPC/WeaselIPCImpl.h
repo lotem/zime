@@ -34,7 +34,7 @@ public:
 	void AddClient();
 	void RemoveClient();
 	bool EchoFromServer();
-	LPWSTR GetDataBuffer();
+	bool GetResponseData(ResponseHandler handler);
 
 private:
 	UINT clientID;
