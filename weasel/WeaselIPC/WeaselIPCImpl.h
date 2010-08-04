@@ -83,4 +83,6 @@ public:
 
 private:
 	RequestHandler m_handler;
+	class SharedMemory;
+	SharedMemory* m_pSharedMemory;
 };
