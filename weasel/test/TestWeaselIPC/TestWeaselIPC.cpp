@@ -47,7 +47,6 @@ bool launch_server()
 		cerr << "failed to launch server." << endl;
 		return false;
 	}
-	system("pause");
 	return true;
 }
 

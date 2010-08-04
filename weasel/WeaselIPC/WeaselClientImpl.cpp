@@ -68,6 +68,11 @@ bool WeaselClient::Impl::EchoFromServer()
 
 bool WeaselClient::Impl::GetResponseData(WeaselClient::ResponseHandler const& handler)
 {
+	if (handler.empty())
+	{
+		return false;
+	}
+
 	try
 	{
 		windows_shared_memory shm(open_only, SHARED_MEMORY_NAME, read_only);
