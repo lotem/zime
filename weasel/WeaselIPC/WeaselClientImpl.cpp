@@ -11,7 +11,7 @@ WeaselClient::Impl::~Impl()
 {
 }
 
-bool WeaselClient::Impl::ConnectServer(ServerLauncher launcher)
+bool WeaselClient::Impl::ConnectServer(ServerLauncher const& launcher)
 {
 	serverWnd = FindWindow( SERVER_WND_NAME, NULL );
 	if( !serverWnd && !launcher.empty() )
@@ -66,7 +66,7 @@ bool WeaselClient::Impl::EchoFromServer()
 	return (serverEcho == clientID);
 }
 
-bool WeaselClient::Impl::GetResponseData(WeaselClient::ResponseHandler handler)
+bool WeaselClient::Impl::GetResponseData(WeaselClient::ResponseHandler const& handler)
 {
 	try
 	{

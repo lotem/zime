@@ -52,8 +52,8 @@ bool WeaselClient::GetResponseData(WeaselClient::ResponseHandler handler)
 
 // WeaselServer
 
-WeaselServer::WeaselServer()
-	: m_pImpl(new WeaselServer::Impl())
+WeaselServer::WeaselServer(WeaselServer::RequestHandler* pHandler)
+	: m_pImpl(new WeaselServer::Impl(pHandler))
 {}
 
 WeaselServer::~WeaselServer()
@@ -75,9 +75,4 @@ int WeaselServer::StopServer()
 int WeaselServer::Run()
 {
 	return m_pImpl->Run();
-}
-
-void WeaselServer::RegisterRequestHandler(WeaselServer::RequestHandler handler)
-{
-	m_pImpl->RegisterRequestHandler(handler);
 }

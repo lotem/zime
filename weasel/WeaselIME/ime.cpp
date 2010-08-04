@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "WeaselIME.h"
 
+#pragma warning(disable: 4996)
+
 //
 // IME export functions
 //

@@ -25,13 +25,15 @@ private:
 	mapped_region* m_pRegion;
 };
 
-WeaselServer::Impl::Impl()
-: m_handler(0), m_pSharedMemory(0)
+WeaselServer::Impl::Impl(WeaselServer::RequestHandler* pHandler)
+: m_pHandler(pHandler), m_pSharedMemory(0)
 {
 }
 
 WeaselServer::Impl::~Impl()
 {
+	if (m_pHandler)
+		delete m_pHandler;
 	if (m_pSharedMemory)
 		delete m_pSharedMemory;
 }
@@ -62,8 +64,6 @@ LRESULT WeaselServer::Impl::OnClose(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*l
 
 LRESULT WeaselServer::Impl::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& bHandled)
 {
-	// TODO: clean up engines
-
 	bHandled = FALSE;
 	return 1;
 }
@@ -103,37 +103,35 @@ int WeaselServer::Impl::Run()
 	return nRet;
 }
 
-void WeaselServer::Impl::RegisterRequestHandler(WeaselServer::RequestHandler handler)
+LRESULT WeaselServer::Impl::OnClientEcho(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-	m_handler = handler;
+	if (!m_pHandler)
+		return 0;
+	return m_pHandler->FindClient(lParam);
 }
 
-LRESULT WeaselServer::Impl::OnClientEcho(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam, BOOL& /*bHandled*/)
+LRESULT WeaselServer::Impl::OnAddClient(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-	// TODO: lookup clientID
-	// client not registered
-	return 0;
+	if (!m_pHandler)
+		return 0;
+	return m_pHandler->AddClient();
 }
 
-LRESULT WeaselServer::Impl::OnAddClient(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
+LRESULT WeaselServer::Impl::OnRemoveClient(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-	// TODO: 
-	return 0;
+	if (!m_pHandler)
+		return 0;
+	return m_pHandler->RemoveClient(lParam);
 }
 
-LRESULT WeaselServer::Impl::OnRemoveClient(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam, BOOL& /*bHandled*/)
+LRESULT WeaselServer::Impl::OnKeyEvent(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-	// TODO: 
-	return 0;
+	if (!m_pHandler)
+		return 0;
+	return m_pHandler->ProcessKeyEvent(KeyEvent(wParam), lParam);
 }
 
-LRESULT WeaselServer::Impl::OnKeyEvent(UINT /*uMsg*/, WPARAM wParam, LPARAM lParam, BOOL& /*bHandled*/)
-{
-	// TODO:
-	return 0;
-}
-
-LRESULT WeaselServer::Impl::OnShutdownServer(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
+LRESULT WeaselServer::Impl::OnShutdownServer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	StopServer();
 	return 0;

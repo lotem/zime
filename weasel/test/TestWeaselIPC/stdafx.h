@@ -13,9 +13,11 @@
 #include <windows.h>
 
 #include <atlbase.h>
+
+#pragma warning(disable : 4996)
+
 #include <wtl/atlapp.h>
 
+#pragma warning(default : 4996)
+
 extern CAppModule _Module;
-
-#include <WeaselIPC.h>
-
