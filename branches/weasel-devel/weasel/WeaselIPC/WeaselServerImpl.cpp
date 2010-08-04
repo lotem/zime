@@ -1,8 +1,5 @@
 #include "stdafx.h"
 #include "WeaselIPCImpl.h"
-#include <boost/interprocess/windows_shared_memory.hpp>
-#include <boost/interprocess/mapped_region.hpp>
-using namespace boost::interprocess;
 
 class WeaselServer::Impl::SharedMemory
 {
