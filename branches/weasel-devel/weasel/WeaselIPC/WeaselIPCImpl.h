@@ -11,6 +11,7 @@ enum WEASEL_CMD
 	WM_WEASEL_CMD_SHUTDOWN_SERVER
 };
 
+#define SHARED_MEMORY_NAME "WeaselIPCSharedMemory"
 #define DATA_BUFFER_SIZE 4096
 
 #define SERVER_WND_NAME L"WeaselServerWindow"

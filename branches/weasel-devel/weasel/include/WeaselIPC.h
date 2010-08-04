@@ -19,7 +19,7 @@ struct KeyEvent
 class WeaselClient
 {
 public:
-	typedef boost::function<BOOL (LPWSTR buffer, UINT length)> ResponseHandler;
+	typedef boost::function<bool (LPWSTR buffer, UINT length)> ResponseHandler;
 
 	WeaselClient();
 	virtual ~WeaselClient();
