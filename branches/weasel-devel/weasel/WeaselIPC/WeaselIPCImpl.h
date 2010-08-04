@@ -29,7 +29,7 @@ public:
 	Impl();
 	~Impl();
 
-	void ConnectServer();
+	bool ConnectServer(ServerLauncher launcher);
 	void ShutdownServer();
 	bool ProcessKeyEvent(KeyEvent keyEvent);
 	void AddClient();

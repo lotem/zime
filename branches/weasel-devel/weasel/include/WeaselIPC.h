@@ -1,5 +1,6 @@
 #pragma once
 #include <WeaselCommon.h>
+#include <windows.h>
 #include <boost/function.hpp>
 
 struct KeyEvent
@@ -20,12 +21,13 @@ class WeaselClient
 {
 public:
 	typedef boost::function<bool (LPWSTR buffer, UINT length)> ResponseHandler;
+	typedef boost::function<bool ()> ServerLauncher;
 
 	WeaselClient();
 	virtual ~WeaselClient();
 	
 	// 连接到服务，必要时启动服务进程
-	void ConnectServer();
+	bool ConnectServer(ServerLauncher launcher = ServerLauncher());
 	// 终止服务
 	void ShutdownServer();
 	// 请求服务处理按键消息
