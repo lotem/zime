@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "WeaselIPCImpl.h"
-#include <boost/interprocess/shared_memory_object.hpp>
+#include <boost/interprocess/windows_shared_memory.hpp>
 #include <boost/interprocess/mapped_region.hpp>
+using namespace boost::interprocess;
 
 WeaselClient::Impl::Impl()
 	: clientID(0),
@@ -67,23 +68,12 @@ bool WeaselClient::Impl::EchoFromServer()
 
 bool WeaselClient::Impl::GetResponseData(WeaselClient::ResponseHandler handler)
 {
-	using namespace boost::interprocess;
 	try
 	{
-		shared_memory_object shm(
-			open_only,
-			SHARED_MEMORY_NAME,
-			read_only
-			);
-		mapped_region region(
-			shm, 
-			read_only
-			);
+		windows_shared_memory shm(open_only, SHARED_MEMORY_NAME, read_only);
+		mapped_region region(shm, read_only);
 
-		void *addr = region.get_address();
-		size_t size = region.get_size();
-		
-		return handler((LPWSTR)addr, size / sizeof(WCHAR));
+		return handler((LPWSTR)region.get_address(), DATA_BUFFER_SIZE / sizeof(WCHAR));
 	}
 	catch (interprocess_exception& /*ex*/)
 	{

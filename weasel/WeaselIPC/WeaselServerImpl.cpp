@@ -1,5 +1,31 @@
 #include "stdafx.h"
 #include "WeaselIPCImpl.h"
+#include <boost/interprocess/windows_shared_memory.hpp>
+#include <boost/interprocess/mapped_region.hpp>
+using namespace boost::interprocess;
+
+class SharedMemory
+{
+	SharedMemory() 
+	{
+		m_pShm = new windows_shared_memory(create_only, SHARED_MEMORY_NAME, read_write, DATA_BUFFER_SIZE);
+		m_pRegion = new mapped_region(*m_pShm, read_write);
+	}
+	~SharedMemory()
+	{
+		delete m_pRegion;
+		delete m_pShm;
+	}
+
+	LPWSTR GetBuffer()
+	{
+		return (LPWSTR)m_pRegion->get_address();
+	}
+
+private:
+	windows_shared_memory* m_pShm;
+	mapped_region* m_pRegion;
+};
 
 WeaselServer::Impl::Impl()
 : m_handler(0)
@@ -12,6 +38,8 @@ WeaselServer::Impl::~Impl()
 
 LRESULT WeaselServer::Impl::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
+	// create shared memory
+
 	// clients connects to server via calls to FindWindow() with SERVER_WND_NAME
 	::SetWindowText( m_hWnd,  SERVER_WND_NAME ); 
 
