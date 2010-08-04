@@ -4,6 +4,10 @@
 #include "stdafx.h"
 #include <WeaselIPC.h>
 
+#include <boost/bind.hpp>
+#include <boost/interprocess/streams/bufferstream.hpp>
+using namespace boost::interprocess;
+
 #include <iostream>
 using namespace std;
 
@@ -50,22 +54,37 @@ bool launch_server()
 	return true;
 }
 
+bool read_buffer(LPWSTR buffer, UINT length, wstring& dest)
+{
+	wbufferstream bs(buffer, length);
+	getline(bs, dest);
+	return bs.good();
+}
+
 int client_main()
 {
 	WeaselClient client;
 	if (!client.ConnectServer(launch_server))
 	{
 		cerr << "failed to connect to server." << endl;
-		return -1;
+		return -2;
 	}
 	client.AddClient();
 	if (!client.EchoFromServer())
 	{
 		cerr << "failed to login." << endl;
-		return -1;
+		return -3;
 	}
 	bool eaten = client.ProcessKeyEvent(KeyEvent(L'A', 0));
 	cout << "server replies: " << eaten << endl;
+	if (eaten)
+	{
+		wstring ctxdata;
+		client.GetResponseData(boost::bind<bool>(read_buffer, _1, _2, boost::ref(ctxdata)));
+		char tmpstr[8192];
+		WideCharToMultiByte(CP_OEMCP, NULL, ctxdata.c_str(), -1, tmpstr, 8192, NULL, FALSE);
+		cout << "buffer reads: " << tmpstr << endl;
+	}
 	client.RemoveClient();
 
 	return 0;
@@ -97,8 +116,12 @@ public:
 		cerr << "RemoveClient: " << clientID << endl;
 		return 0;
 	}
-	virtual BOOL ProcessKeyEvent(KeyEvent keyEvent, UINT clientID) {
-		cerr << "ProcessKeyEvent: " << clientID << " keycode: " << keyEvent.keyCode << " mask:" << keyEvent.mask << endl;
+	virtual BOOL ProcessKeyEvent(KeyEvent keyEvent, UINT clientID, LPWSTR buffer) {
+		cerr << "ProcessKeyEvent: " << clientID 
+			  << " keycode: " << keyEvent.keyCode 
+			  << " mask: " << keyEvent.mask 
+			  << endl;
+		wsprintf(buffer, L"Greeting\tHello, Ð¡ÀÇºÁ.\n");
 		return TRUE;
 	}
 private:
@@ -112,7 +135,7 @@ int server_main()
 
 	WeaselServer server(new TestRequestHandler());
 	if (!server.StartServer())
-		return -1;
+		return -4;
 	cerr << "server running." << endl;
 	int ret = server.Run();
 	cerr << "server quitting." << endl;

@@ -60,7 +60,7 @@ public:
 		virtual UINT FindClient(UINT clientID) { return 0; }
 		virtual UINT AddClient() { return 0; }
 		virtual UINT RemoveClient(UINT clientID) { return 0; }
-		virtual BOOL ProcessKeyEvent(KeyEvent keyEvent, UINT clientID) { return FALSE; }
+		virtual BOOL ProcessKeyEvent(KeyEvent keyEvent, UINT clientID, LPWSTR buffer) { return FALSE; }
 	};
 
 	WeaselServer(RequestHandler* pHandler = 0);
