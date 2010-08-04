@@ -4,8 +4,9 @@
 #include <boost/interprocess/mapped_region.hpp>
 using namespace boost::interprocess;
 
-class SharedMemory
+class WeaselServer::Impl::SharedMemory
 {
+public:
 	SharedMemory() 
 	{
 		m_pShm = new windows_shared_memory(create_only, SHARED_MEMORY_NAME, read_write, DATA_BUFFER_SIZE);
@@ -28,17 +29,19 @@ private:
 };
 
 WeaselServer::Impl::Impl()
-: m_handler(0)
+: m_handler(0), m_pSharedMemory(0)
 {
 }
 
 WeaselServer::Impl::~Impl()
 {
+	if (m_pSharedMemory)
+		delete m_pSharedMemory;
 }
 
 LRESULT WeaselServer::Impl::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
-	// create shared memory
+	m_pSharedMemory = new SharedMemory();
 
 	// clients connects to server via calls to FindWindow() with SERVER_WND_NAME
 	::SetWindowText( m_hWnd,  SERVER_WND_NAME ); 
