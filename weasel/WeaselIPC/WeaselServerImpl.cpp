@@ -26,7 +26,7 @@ private:
 };
 
 WeaselServer::Impl::Impl(WeaselServer::RequestHandler* pHandler)
-: m_pHandler(pHandler), m_pSharedMemory(0)
+: m_pHandler(pHandler), m_pSharedMemory(new SharedMemory())
 {
 }
 
@@ -40,8 +40,6 @@ WeaselServer::Impl::~Impl()
 
 LRESULT WeaselServer::Impl::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
-	m_pSharedMemory = new SharedMemory();
-
 	// clients connects to server via calls to FindWindow() with SERVER_WND_NAME
 	::SetWindowText( m_hWnd,  SERVER_WND_NAME ); 
 
@@ -126,9 +124,9 @@ LRESULT WeaselServer::Impl::OnRemoveClient(UINT uMsg, WPARAM wParam, LPARAM lPar
 
 LRESULT WeaselServer::Impl::OnKeyEvent(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
-	if (!m_pHandler)
+	if (!m_pHandler || !m_pSharedMemory)
 		return 0;
-	return m_pHandler->ProcessKeyEvent(KeyEvent(wParam), lParam);
+	return m_pHandler->ProcessKeyEvent(KeyEvent(wParam), lParam, m_pSharedMemory->GetBuffer());
 }
 
 LRESULT WeaselServer::Impl::OnShutdownServer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
