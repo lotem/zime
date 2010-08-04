@@ -8,6 +8,10 @@ struct KeyEvent
 	UINT keyCode : 16;
 	UINT mask : 16;
 	KeyEvent() : keyCode(0), mask(0) {}
+	KeyEvent(UINT x)
+	{
+		*((UINT*)this) = x;
+	}
 	KeyEvent(UINT _keyCode, UINT _mask) : keyCode(_keyCode), mask(_mask) {}
 	operator UINT() const
 	{
@@ -27,7 +31,7 @@ public:
 	virtual ~WeaselClient();
 	
 	// 连接到服务，必要时启动服务进程
-	bool ConnectServer(ServerLauncher launcher = ServerLauncher());
+	bool ConnectServer(ServerLauncher launcher = 0);
 	// 终止服务
 	void ShutdownServer();
 	// 请求服务处理按键消息
@@ -49,9 +53,17 @@ private:
 class WeaselServer
 {
 public:
-	typedef boost::function<LRESULT (UINT cmd, WPARAM param, LPARAM clientID)> RequestHandler;
+	struct RequestHandler
+	{
+		RequestHandler() {}
+		virtual ~RequestHandler() {}
+		virtual UINT FindClient(UINT clientID) { return 0; }
+		virtual UINT AddClient() { return 0; }
+		virtual UINT RemoveClient(UINT clientID) { return 0; }
+		virtual BOOL ProcessKeyEvent(KeyEvent keyEvent, UINT clientID) { return FALSE; }
+	};
 
-	WeaselServer();
+	WeaselServer(RequestHandler* pHandler = 0);
 	virtual ~WeaselServer();
 
 	// 初始化服务
@@ -60,8 +72,6 @@ public:
 	int StopServer();
 	// 消息循环
 	int Run();
-	// 注册回调函数
-	void RegisterRequestHandler(RequestHandler handler);
 
 private:
 	class Impl;

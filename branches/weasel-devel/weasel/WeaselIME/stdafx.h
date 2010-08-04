@@ -15,14 +15,16 @@
 
 #include "Imm.h"
 
-#include <map>
-#include <string>
+#pragma warning(disable : 4819)
+
 #include <boost/format.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/thread.hpp>
 
-using std::wstring;
-using boost::shared_ptr;
+#pragma warning(default : 4819)
 
-#include <WeaselUI.h>
-#include <WeaselIPC.h>
+#include <map>
+#include <string>
+
+using boost::shared_ptr;
+using std::wstring;

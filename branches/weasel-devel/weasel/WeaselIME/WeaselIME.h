@@ -1,5 +1,8 @@
 #pragma once
 
+#include <WeaselIPC.h>
+#include <WeaselUI.h>
+
 #define MAX_COMPOSITION_SIZE 256
 
 struct CompositionInfo

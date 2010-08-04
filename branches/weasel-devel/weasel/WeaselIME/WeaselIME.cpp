@@ -429,3 +429,11 @@ void WeaselIME::_UpdateContext(wstring const& composition)
 		m_ui.UpdateContext(m_ctx);
 	}
 }
+
+			//// TODO: 暂写定一个路径 应改为从注册表读取安装目录
+			//int ret = (int)ShellExecute( NULL, L"open", SERVER_EXEC, SERVER_ARGS, SERVER_DIR, SW_HIDE );
+			//if (ret <= 32)
+			//{
+			//	MessageBox(NULL, L"服務進程啓動不起來:(", L"小狼毫", MB_OK | MB_ICONERROR);
+			//	return false;
+			//}

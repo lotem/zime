@@ -40,12 +40,16 @@
   };
 #endif // _WTL_SUPPORT_SDK_ATL3
 
-#include <wtl/atlapp.h>
-
-extern CAppModule _Module;
-
 #include <atlwin.h>
+
+#pragma warning(disable : 4996)
+
+#include <wtl/atlapp.h>
 
 #include <wtl/atlframe.h>
 #include <wtl/atlctrls.h>
 #include <wtl/atldlgs.h>
+
+#pragma warning(default : 4996)
+
+extern CAppModule _Module;

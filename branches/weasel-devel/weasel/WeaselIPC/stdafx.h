@@ -12,19 +12,23 @@
 #include <windows.h>
 #include <shellapi.h>
 
-#pragma warning(disable : 4996)
-
 #include <atlbase.h>
 #include <atlwin.h>
+
+#pragma warning(disable : 4996)
 
 #include <wtl/atlapp.h>
 #include <wtl/atlframe.h>
 
+#pragma warning(default: 4996)
+
 extern CAppModule _Module;
+
+#pragma warning(disable : 4819)
 
 #include <boost/interprocess/windows_shared_memory.hpp>
 #include <boost/interprocess/mapped_region.hpp>
 
-using namespace boost::interprocess;
+#pragma warning(default: 4819)
 
-#include <WeaselIPC.h>
+using namespace boost::interprocess;

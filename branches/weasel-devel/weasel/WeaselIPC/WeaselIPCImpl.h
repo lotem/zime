@@ -29,13 +29,13 @@ public:
 	Impl();
 	~Impl();
 
-	bool ConnectServer(ServerLauncher launcher);
+	bool ConnectServer(ServerLauncher const& launcher);
 	void ShutdownServer();
 	bool ProcessKeyEvent(KeyEvent keyEvent);
 	void AddClient();
 	void RemoveClient();
 	bool EchoFromServer();
-	bool GetResponseData(ResponseHandler handler);
+	bool GetResponseData(ResponseHandler const& handler);
 
 private:
 	UINT clientID;
@@ -73,7 +73,7 @@ public:
 	LRESULT OnShutdownServer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 
 public:
-	Impl();
+	Impl(RequestHandler* pHandler);
 	~Impl();
 
 	int StartServer();
@@ -82,7 +82,7 @@ public:
 	void RegisterRequestHandler(WeaselServer::RequestHandler handler);
 
 private:
-	RequestHandler m_handler;
+	RequestHandler* m_pHandler;
 	class SharedMemory;
 	SharedMemory* m_pSharedMemory;
 };

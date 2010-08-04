@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include <WeaselIPC.h>
 
 #include <iostream>
 using namespace std;
@@ -71,13 +72,46 @@ int client_main()
 	return 0;
 }
 
+class TestRequestHandler : public WeaselServer::RequestHandler
+{
+public:
+	TestRequestHandler() : m_counter(0)
+	{
+		cerr << "handler ctor." << endl;
+	}
+	virtual ~TestRequestHandler()
+	{
+		cerr << "handler dtor: " << m_counter << endl;
+	}
+	virtual UINT FindClient(UINT clientID)
+	{
+		cerr << "FindClient: " << clientID << endl;
+		return (clientID <= m_counter ? clientID : 0);
+	}
+	virtual UINT AddClient()
+	{
+		cerr << "AddClient: " << m_counter + 1 << endl;
+		return ++m_counter;
+	}
+	virtual UINT RemoveClient(UINT clientID)
+	{
+		cerr << "RemoveClient: " << clientID << endl;
+		return 0;
+	}
+	virtual BOOL ProcessKeyEvent(KeyEvent keyEvent, UINT clientID) {
+		cerr << "ProcessKeyEvent: " << clientID << " keycode: " << keyEvent.keyCode << " mask:" << keyEvent.mask << endl;
+		return TRUE;
+	}
+private:
+	unsigned int m_counter;
+};
+
 int server_main()
 {
 	HRESULT hRes = _Module.Init(NULL, GetModuleHandle(NULL));
 	ATLASSERT(SUCCEEDED(hRes));
 
-	WeaselServer server;
-	//server.RegisterRequestHandler(...);
+	WeaselServer server(new TestRequestHandler());
 	if (!server.StartServer())
 		return -1;
 	cerr << "server running." << endl;
