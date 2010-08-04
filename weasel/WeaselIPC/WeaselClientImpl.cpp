@@ -5,35 +5,30 @@ WeaselClient::Impl::Impl()
 	: clientID(0),
 	  serverWnd(NULL)
 {
-	ConnectServer();
 }
 
 WeaselClient::Impl::~Impl()
 {
 }
 
-void WeaselClient::Impl::ConnectServer()
+bool WeaselClient::Impl::ConnectServer(ServerLauncher launcher)
 {
 	serverWnd = FindWindow( SERVER_WND_NAME, NULL );
-	if( !serverWnd )
+	if( !serverWnd && !launcher.empty() )
 	{
 		HANDLE hEvent = CreateEvent( NULL, TRUE, FALSE, SERVER_EVENT_NAME );
+		// 启动服务进程
+		if (!launcher())
 		{
-			// 启动服务进程
-			// TODO: 暂写定一个路径 应改为从注册表读取安装目录
-			int ret = (int)ShellExecute( NULL, L"open", SERVER_EXEC, SERVER_ARGS, SERVER_DIR, SW_HIDE );
-			if (ret <= 32)
-			{
-				MessageBox(NULL, L"服務進程啓動不起來:(", L"小狼毫", MB_OK | MB_ICONERROR);
-				CloseHandle(hEvent);
-				serverWnd = NULL;
-				return;
-			}
+			CloseHandle(hEvent);
+			serverWnd = NULL;
+			return false;
 		}
 		WaitForSingleObject( hEvent, 10000 );
 		CloseHandle(hEvent);
 		serverWnd = FindWindow( SERVER_WND_NAME, NULL );
 	}
+	return (serverWnd != NULL);
 }
 
 void WeaselClient::Impl::ShutdownServer()
@@ -49,7 +44,11 @@ bool WeaselClient::Impl::ProcessKeyEvent(KeyEvent keyEvent)
 
 void WeaselClient::Impl::AddClient()
 {
-	clientID = SendMessage( serverWnd, WM_WEASEL_CMD_ADD_CLIENT, 0, 0 );	  
+	LRESULT ret = SendMessage( serverWnd, WM_WEASEL_CMD_ADD_CLIENT, 0, 0 );
+	if (ret > 0)
+	{
+		clientID = ret;
+	}
 }
 
 void WeaselClient::Impl::RemoveClient()
@@ -59,6 +58,10 @@ void WeaselClient::Impl::RemoveClient()
 
 bool WeaselClient::Impl::EchoFromServer()
 {
+	if (clientID == 0)
+	{
+		return false;
+	}
 	UINT serverEcho = SendMessage( serverWnd, WM_WEASEL_CMD_ECHO, 0, clientID );
 	return (serverEcho == clientID);
 }

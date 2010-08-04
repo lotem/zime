@@ -82,6 +82,10 @@ int WeaselServer::Impl::StartServer()
 
 int WeaselServer::Impl::StopServer()
 {
+	if (!IsWindow())
+	{
+		return 0;
+	}
 	DestroyWindow();
 	//quit the server
 	::PostQuitMessage(0);

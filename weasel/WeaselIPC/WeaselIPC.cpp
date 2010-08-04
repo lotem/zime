@@ -15,9 +15,9 @@ WeaselClient::~WeaselClient()
 		delete m_pImpl;
 }
 
-void WeaselClient::ConnectServer()
+bool WeaselClient::ConnectServer(ServerLauncher launcher)
 {
-	m_pImpl->ConnectServer();
+	return m_pImpl->ConnectServer(launcher);
 }
 
 void WeaselClient::ShutdownServer()

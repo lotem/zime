@@ -39,7 +39,8 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 	if (!wcscmp(L"/q", lpstrCmdLine))
 	{
 		WeaselClient client;
-		client.ShutdownServer();
+		if (client.ConnectServer())
+			client.ShutdownServer();
 		return 0;
 	}
 
