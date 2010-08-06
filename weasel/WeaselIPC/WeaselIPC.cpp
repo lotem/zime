@@ -20,6 +20,11 @@ bool WeaselClient::ConnectServer(ServerLauncher launcher)
 	return m_pImpl->ConnectServer(launcher);
 }
 
+void WeaselClient::DisconnectServer()
+{
+	m_pImpl->DisconnectServer();
+}
+
 void WeaselClient::ShutdownServer()
 {
 	m_pImpl->ShutdownServer();
