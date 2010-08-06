@@ -62,7 +62,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="imm32.lib"
-				OutputFile="$(OutDir)\weasel.ime"
+				OutputFile="$(WinDir)\system32\weasel.ime"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(SolutionDir)\lib"
 				ModuleDefinitionFile="weasel.def"
@@ -138,6 +138,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				OutputFile="$(OutDir)\weasel.ime"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(SolutionDir)\lib"
 				GenerateDebugInformation="true"
