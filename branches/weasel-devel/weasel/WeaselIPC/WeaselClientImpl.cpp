@@ -9,6 +9,8 @@ WeaselClient::Impl::Impl()
 
 WeaselClient::Impl::~Impl()
 {
+	if (_Connected())
+		DisconnectServer();
 }
 
 bool WeaselClient::Impl::ConnectServer(ServerLauncher const& launcher)
@@ -28,40 +30,57 @@ bool WeaselClient::Impl::ConnectServer(ServerLauncher const& launcher)
 		CloseHandle(hEvent);
 		serverWnd = FindWindow( SERVER_WND_NAME, NULL );
 	}
-	return (serverWnd != NULL);
+	return _Connected();
+}
+
+void WeaselClient::Impl::DisconnectServer()
+{
+	if (_Active())
+		RemoveClient();
+	serverWnd = NULL;
 }
 
 void WeaselClient::Impl::ShutdownServer()
 {
-	SendMessage( serverWnd, WM_WEASEL_CMD_SHUTDOWN_SERVER, 0, 0 );
+	if (_Connected())
+	{
+		SendMessage( serverWnd, WM_WEASEL_CMD_SHUTDOWN_SERVER, 0, 0 );
+	}
 }
 
 bool WeaselClient::Impl::ProcessKeyEvent(KeyEvent keyEvent)
 {
+	if (!_Active())
+		return false;
+
 	LRESULT ret = SendMessage( serverWnd, WM_WEASEL_CMD_PROCESS_KEY_EVENT, keyEvent, clientID );
 	return ret != 0;
 }
 
 void WeaselClient::Impl::AddClient()
 {
-	LRESULT ret = SendMessage( serverWnd, WM_WEASEL_CMD_ADD_CLIENT, 0, 0 );
-	if (ret > 0)
-	{
-		clientID = ret;
-	}
+	if (!_Connected())
+		return;
+
+	if (_Active())
+		RemoveClient();
+
+	UINT ret = SendMessage( serverWnd, WM_WEASEL_CMD_ADD_CLIENT, 0, 0 );
+	clientID = ret;
 }
 
 void WeaselClient::Impl::RemoveClient()
 {
-	SendMessage( serverWnd, WM_WEASEL_CMD_REMOVE_CLIENT, 0, clientID );
+	if (_Connected())
+		PostMessage( serverWnd, WM_WEASEL_CMD_REMOVE_CLIENT, 0, clientID );
+	clientID = 0;
 }
 
 bool WeaselClient::Impl::EchoFromServer()
 {
-	if (clientID == 0)
-	{
+	if (!_Active())
 		return false;
-	}
+
 	UINT serverEcho = SendMessage( serverWnd, WM_WEASEL_CMD_ECHO, 0, clientID );
 	return (serverEcho == clientID);
 }

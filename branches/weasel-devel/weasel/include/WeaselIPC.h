@@ -32,6 +32,8 @@ public:
 	
 	// 连接到服务，必要时启动服务进程
 	bool ConnectServer(ServerLauncher launcher = 0);
+	// 断开连接
+	void DisconnectServer();
 	// 终止服务
 	void ShutdownServer();
 	// 请求服务处理按键消息
@@ -40,7 +42,7 @@ public:
 	void AddClient();
 	// 向server请求移除一个客户端(以ID标识)
 	void RemoveClient();
-	// ping server
+	// 测试连接
 	bool EchoFromServer();
 	// 读取server返回的数据
 	bool GetResponseData(ResponseHandler handler);
