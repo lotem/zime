@@ -1,4 +1,4 @@
-set PATH=%PATH%;C:\Python26;C:\Python27
+set PATH=%PATH%;C:\Python27;C:\Python26
 set HOME=D:\home\devel\weasel
 cd /d %HOME%
 cmd
