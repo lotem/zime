@@ -155,8 +155,8 @@ def main():
     #e = TestEngine(u'Zhuyin')
     #e.test('rm/3rm/3u.3gp6zj/ {Escape}2k7al {Tab}{Return}')
 
-    #e = TestEngine(u'Pinyin')
-    #e.test("pinyin-shuru'fa' ")
+    e = TestEngine(u'Pinyin')
+    e.test("pinyin-shuru'fa' ")
     #e.test('henanquan{Home}{Tab} ')
 
     #e = TestEngine(u'ComboPinyin')
