@@ -7,20 +7,11 @@
 
 CAppModule _Module;
 
-int Run(LPTSTR lpstrCmdLine = NULL, int nCmdShow = SW_SHOWDEFAULT)
-{
-	WeaselServer server;
-
-	if (!server.StartServer())
-		return -1;
-
-	int ret = server.Run();
-
-	return ret;
-}
-
 int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lpstrCmdLine, int nCmdShow)
 {
+	// 防止服务进程开启输入法
+	ImmDisableIME(-1);
+
 	HRESULT hRes = ::CoInitialize(NULL);
 // If you are running on NT 4.0 or higher you can use the following call instead to 
 // make the EXE free threaded. This means that calls come in on a random RPC thread.
@@ -44,7 +35,11 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 		return 0;
 	}
 
-	int nRet = Run(lpstrCmdLine, nCmdShow);
+	WeaselServer server;
+	if (!server.StartServer())
+		return -1;
+
+	int nRet = server.Run();
 
 	_Module.Term();
 	::CoUninitialize();
