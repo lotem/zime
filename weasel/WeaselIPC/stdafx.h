@@ -22,8 +22,6 @@
 
 #pragma warning(default: 4996)
 
-extern CAppModule _Module;
-
 #pragma warning(disable : 4819)
 
 #include <boost/interprocess/windows_shared_memory.hpp>

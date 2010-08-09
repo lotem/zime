@@ -18,6 +18,7 @@
 #pragma warning(disable : 4819)
 
 #include <boost/format.hpp>
+#include <boost/interprocess/streams/bufferstream.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/thread.hpp>
 
@@ -27,13 +28,6 @@
 #include <string>
 #include <iostream>
 
-
-
-#include "boost/interprocess/streams/bufferstream.hpp"
-
-bool read_buffer(LPWSTR buffer, UINT length, std::wstring& dest);
-bool launch_server();
-
-using namespace boost::interprocess;
 using namespace std;
 using boost::shared_ptr;
+using boost::interprocess::wbufferstream;

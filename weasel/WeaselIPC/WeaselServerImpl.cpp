@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "WeaselIPCImpl.h"
 
+extern CAppModule _Module;
+
 class WeaselServer::Impl::SharedMemory
 {
 public:
