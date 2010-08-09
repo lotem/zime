@@ -3,6 +3,21 @@
 #include <windows.h>
 #include <boost/function.hpp>
 
+#define WEASEL_IPC_SHARED_MEMORY "WeaselIPCSharedMemory"
+#define WEASEL_IPC_BUFFER_SIZE 4096
+
+#define WEASEL_IPC_WINDOW L"WeaselIPCWindow"
+#define WEASEL_IPC_READY_EVENT L"Local\\WeaselIPCReadyEvent"
+
+enum WEASEL_IPC_COMMAND
+{	
+	WEASEL_IPC_ECHO = (WM_APP + 1),
+	WEASEL_IPC_ADD_CLIENT,
+	WEASEL_IPC_REMOVE_CLIENT,
+	WEASEL_IPC_PROCESS_KEY_EVENT,
+	WEASEL_IPC_SHUTDOWN_SERVER
+};
+
 struct KeyEvent
 {
 	UINT keyCode : 16;
