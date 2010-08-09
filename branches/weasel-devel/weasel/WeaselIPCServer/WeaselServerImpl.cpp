@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "WeaselIPCImpl.h"
+#include "WeaselServerImpl.h"
 
 extern CAppModule _Module;
 
@@ -8,7 +8,10 @@ class WeaselServer::Impl::SharedMemory
 public:
 	SharedMemory() 
 	{
-		m_pShm = new windows_shared_memory(create_only, SHARED_MEMORY_NAME, read_write, DATA_BUFFER_SIZE);
+		m_pShm = new windows_shared_memory(create_only, 
+			                               WEASEL_IPC_SHARED_MEMORY, 
+										   read_write, 
+										   WEASEL_IPC_BUFFER_SIZE);
 		m_pRegion = new mapped_region(*m_pShm, read_write);
 	}
 	~SharedMemory()
@@ -43,10 +46,10 @@ WeaselServer::Impl::~Impl()
 LRESULT WeaselServer::Impl::OnCreate(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
 {
 	// clients connects to server via calls to FindWindow() with SERVER_WND_NAME
-	::SetWindowText( m_hWnd,  SERVER_WND_NAME ); 
+	::SetWindowText( m_hWnd,  WEASEL_IPC_WINDOW ); 
 
 	// notify clients that we are ready serving
-	HANDLE hEvent = OpenEvent( EVENT_ALL_ACCESS, FALSE,  SERVER_EVENT_NAME );
+	HANDLE hEvent = OpenEvent( EVENT_ALL_ACCESS, FALSE,  WEASEL_IPC_READY_EVENT );
 	if( hEvent != INVALID_HANDLE_VALUE )
 	{
 		SetEvent(hEvent);
@@ -71,7 +74,7 @@ LRESULT WeaselServer::Impl::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /
 int WeaselServer::Impl::StartServer()
 {
 	// assure single instance
-	if (FindWindow(SERVER_WND_NAME, NULL) != NULL)
+	if (FindWindow(WEASEL_IPC_WINDOW, NULL) != NULL)
 	{
 		return 0;
 	}
@@ -135,4 +138,31 @@ LRESULT WeaselServer::Impl::OnShutdownServer(UINT uMsg, WPARAM wParam, LPARAM lP
 {
 	StopServer();
 	return 0;
+}
+
+// WeaselServer
+
+WeaselServer::WeaselServer(WeaselServer::RequestHandler* pHandler)
+	: m_pImpl(new WeaselServer::Impl(pHandler))
+{}
+
+WeaselServer::~WeaselServer()
+{
+	if (m_pImpl)
+		delete m_pImpl;
+}
+
+int WeaselServer::StartServer()
+{
+	return m_pImpl->StartServer();
+}
+
+int WeaselServer::StopServer()
+{
+	return m_pImpl->StopServer();
+}
+
+int WeaselServer::Run()
+{
+	return m_pImpl->Run();
 }
