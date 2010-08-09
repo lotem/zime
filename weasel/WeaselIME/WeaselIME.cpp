@@ -3,9 +3,11 @@
 
 #include "stdafx.h"
 #include "WeaselIME.h"
-
+#include <iostream>
+#include "..\WeaselIPC\stdafx.h"
+using namespace std;
 HINSTANCE WeaselIME::_hModule = 0;
-std::map<HIMC, shared_ptr<WeaselIME> > WeaselIME::_instances;
+std::map<HIMC, boost::shared_ptr<WeaselIME> > WeaselIME::_instances;
 boost::mutex WeaselIME::_mutex;
 
 LPCWSTR WeaselIME::GetIMEName()
@@ -73,7 +75,7 @@ LRESULT WINAPI WeaselIME::UIWndProc(HWND hWnd, UINT uMsg, WPARAM wp, LPARAM lp)
 	HIMC hIMC = (HIMC)GetWindowLongPtr(hWnd, 0);
 	if (hIMC)
 	{
-		shared_ptr<WeaselIME> p = WeaselIME::GetInstance(hIMC);
+		boost::shared_ptr<WeaselIME> p = WeaselIME::GetInstance(hIMC);
 		if (!p)
 			return 0;
 		return p->OnUIMessage(hWnd, uMsg, wp, lp);
@@ -110,10 +112,10 @@ BOOL WeaselIME::IsIMEMessage(UINT uMsg)
 	return FALSE;
 }
 
-shared_ptr<WeaselIME> WeaselIME::GetInstance(HIMC hIMC)
+boost::shared_ptr<WeaselIME> WeaselIME::GetInstance(HIMC hIMC)
 {
 	boost::lock_guard<boost::mutex> lock(_mutex);
-	shared_ptr<WeaselIME>& p = _instances[hIMC];
+	boost::shared_ptr<WeaselIME>& p = _instances[hIMC];
 	if (!p)
 	{
 		p.reset(new WeaselIME(hIMC));
@@ -124,9 +126,9 @@ shared_ptr<WeaselIME> WeaselIME::GetInstance(HIMC hIMC)
 void WeaselIME::Cleanup()
 {
 	boost::lock_guard<boost::mutex> lock(_mutex);
-	for (std::map<HIMC, shared_ptr<WeaselIME> >::const_iterator i = _instances.begin(); i != _instances.end(); ++i)
+	for (std::map<HIMC, boost::shared_ptr<WeaselIME> >::const_iterator i = _instances.begin(); i != _instances.end(); ++i)
 	{
-		shared_ptr<WeaselIME> p = i->second;
+		boost::shared_ptr<WeaselIME> p = i->second;
 		p->OnIMESelect(FALSE);
 	}
 	_instances.clear();
@@ -139,11 +141,15 @@ LRESULT WeaselIME::OnIMESelect(BOOL fSelect)
 		if (!m_ui.Create(NULL))
 			return 0;
 		m_ui.UpdateStatus(m_status);
+		//Initialize WeaselClient
+		m_client.ConnectServer(/*serverlauncher*/);
+		m_client.AddClient();
 		return _Initialize();
 	}
 	else
 	{
 		m_ui.Destroy();
+		m_client.RemoveClient();
 		return _Finalize();
 	}
 }
@@ -245,22 +251,35 @@ BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeySta
 	}
 	static wstring composition;
 	WORD ch = 0;
-	ToAscii(vKey, kinfo.scanCode, lpbKeyState, &ch, 0);
-	if (ch >= L'a' && ch <= L'z')
+	if (!m_client.EchoFromServer()) { m_client.ConnectServer(); m_client.AddClient(); }
+	KeyEvent ke;
+	ke.keyCode = ch;
+	ke.mask = 0;	
+	if (m_client.ProcessKeyEvent(ke))
 	{
-		bEaten = TRUE;
-		if (composition.empty())
-			_StartComposition();
-		composition.push_back(ch);
-		_UpdateContext(composition);
+		wstring ctxdata;
+		m_client.GetResponseData(boost::bind<bool>(read_buffer, _1, _2, boost::ref(ctxdata)));
+		char tmpstr[8192];
+		WideCharToMultiByte(CP_OEMCP, NULL, ctxdata.c_str(), -1, tmpstr, 8192, NULL, FALSE);
+		cout << "buffer reads: " << tmpstr << endl;
 	}
-	else if (!composition.empty())
-	{
-		bEaten = FALSE;
-		_EndComposition(composition.c_str());
-		composition.clear();
-		_UpdateContext(composition);
-	}
+	//m_client.GetResponseData(boost::bind<bool>(read_buffer, _1, _2, boost::ref(ctxdata)));
+	//ToAscii(vKey, kinfo.scanCode, lpbKeyState, &ch, 0);
+	//if (ch >= L'a' && ch <= L'z')
+	//{
+	//	bEaten = TRUE;
+	//	if (composition.empty())
+	//		_StartComposition();
+	//	composition.push_back(ch);
+	//	_UpdateContext(composition);
+	//}
+	//else if (!composition.empty())
+	//{
+	//	bEaten = FALSE;
+	//	_EndComposition(composition.c_str());
+	//	composition.clear();
+	//	_UpdateContext(composition);
+	//}
 	
 	return bEaten;
 }

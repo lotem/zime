@@ -1,8 +1,7 @@
 #pragma once
-
+#include "stdafx.h"
 #include <WeaselIPC.h>
 #include <WeaselUI.h>
-
 #define MAX_COMPOSITION_SIZE 256
 
 struct CompositionInfo
@@ -78,6 +77,7 @@ private:
 	static boost::mutex _mutex;
 	HIMC m_hIMC;
 	WeaselUI m_ui;
+	WeaselClient m_client;
 	weasel::Context m_ctx;
 	weasel::Status m_status;
 };
