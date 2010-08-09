@@ -139,15 +139,15 @@ LRESULT WeaselIME::OnIMESelect(BOOL fSelect)
 		if (!m_ui.Create(NULL))
 			return 0;
 		m_ui.UpdateStatus(m_status);
-		//Initialize WeaselClient
-		m_client.ConnectServer(/*serverlauncher*/);
-		m_client.AddClient();
+		// initialize weasel client
+		m_client.Connect(/*serverlauncher*/);
+		m_client.StartSession();
 		return _Initialize();
 	}
 	else
 	{
 		m_ui.Destroy();
-		m_client.RemoveClient();
+		m_client.EndSession();
 		return _Finalize();
 	}
 }
@@ -249,10 +249,14 @@ BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeySta
 	}
 	static wstring composition;
 	WORD ch = 0;
-	if (!m_client.EchoFromServer()) { m_client.ConnectServer(); m_client.AddClient(); }
-	KeyEvent ke;
+	if (!m_client.Echo())
+	{
+		m_client.Connect();
+		m_client.StartSession();
+	}
+	weasel::KeyEvent ke;
 	ke.keyCode = ch;
-	ke.mask = 0;	
+	ke.mask = 0;
 	if (m_client.ProcessKeyEvent(ke))
 	{
 		wstring ctxdata;

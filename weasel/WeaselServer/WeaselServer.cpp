@@ -29,14 +29,14 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 	// command line option /q stops the running server
 	if (!wcscmp(L"/q", lpstrCmdLine))
 	{
-		WeaselClient client;
-		if (client.ConnectServer())
+		weasel::Client client;
+		if (client.Connect())
 			client.ShutdownServer();
 		return 0;
 	}
 
-	WeaselServer server;
-	if (!server.StartServer())
+	weasel::Server server;
+	if (!server.Start())
 		return -1;
 
 	int nRet = server.Run();
