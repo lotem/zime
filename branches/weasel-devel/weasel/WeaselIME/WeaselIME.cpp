@@ -3,11 +3,9 @@
 
 #include "stdafx.h"
 #include "WeaselIME.h"
-#include <iostream>
-#include "..\WeaselIPC\stdafx.h"
-using namespace std;
+
 HINSTANCE WeaselIME::_hModule = 0;
-std::map<HIMC, boost::shared_ptr<WeaselIME> > WeaselIME::_instances;
+map<HIMC, shared_ptr<WeaselIME> > WeaselIME::_instances;
 boost::mutex WeaselIME::_mutex;
 
 LPCWSTR WeaselIME::GetIMEName()
@@ -75,7 +73,7 @@ LRESULT WINAPI WeaselIME::UIWndProc(HWND hWnd, UINT uMsg, WPARAM wp, LPARAM lp)
 	HIMC hIMC = (HIMC)GetWindowLongPtr(hWnd, 0);
 	if (hIMC)
 	{
-		boost::shared_ptr<WeaselIME> p = WeaselIME::GetInstance(hIMC);
+		shared_ptr<WeaselIME> p = WeaselIME::GetInstance(hIMC);
 		if (!p)
 			return 0;
 		return p->OnUIMessage(hWnd, uMsg, wp, lp);
@@ -112,10 +110,10 @@ BOOL WeaselIME::IsIMEMessage(UINT uMsg)
 	return FALSE;
 }
 
-boost::shared_ptr<WeaselIME> WeaselIME::GetInstance(HIMC hIMC)
+shared_ptr<WeaselIME> WeaselIME::GetInstance(HIMC hIMC)
 {
 	boost::lock_guard<boost::mutex> lock(_mutex);
-	boost::shared_ptr<WeaselIME>& p = _instances[hIMC];
+	shared_ptr<WeaselIME>& p = _instances[hIMC];
 	if (!p)
 	{
 		p.reset(new WeaselIME(hIMC));
@@ -126,9 +124,9 @@ boost::shared_ptr<WeaselIME> WeaselIME::GetInstance(HIMC hIMC)
 void WeaselIME::Cleanup()
 {
 	boost::lock_guard<boost::mutex> lock(_mutex);
-	for (std::map<HIMC, boost::shared_ptr<WeaselIME> >::const_iterator i = _instances.begin(); i != _instances.end(); ++i)
+	for (map<HIMC, shared_ptr<WeaselIME> >::const_iterator i = _instances.begin(); i != _instances.end(); ++i)
 	{
-		boost::shared_ptr<WeaselIME> p = i->second;
+		shared_ptr<WeaselIME> p = i->second;
 		p->OnIMESelect(FALSE);
 	}
 	_instances.clear();
@@ -449,10 +447,23 @@ void WeaselIME::_UpdateContext(wstring const& composition)
 	}
 }
 
-			//// TODO: 暂写定一个路径 应改为从注册表读取安装目录
-			//int ret = (int)ShellExecute( NULL, L"open", SERVER_EXEC, SERVER_ARGS, SERVER_DIR, SW_HIDE );
-			//if (ret <= 32)
-			//{
-			//	MessageBox(NULL, L"服務進程啓動不起來:(", L"小狼毫", MB_OK | MB_ICONERROR);
-			//	return false;
-			//}
+bool read_buffer(LPWSTR buffer, UINT length, wstring& dest)
+{
+	wbufferstream bs(buffer, length);
+	getline(bs, dest);
+	return bs.good();
+}
+
+bool launch_server()
+{
+	//// TODO: 暂写定一个路径 应改为从注册表读取安装目录
+	//int ret = (int)ShellExecute( NULL, L"open", SERVER_EXEC, SERVER_ARGS, SERVER_DIR, SW_HIDE );
+	int ret = (int)ShellExecute( NULL, L"open", L"TestWeaselIPC.exe", L"/start", NULL, SW_HIDE );
+	if (ret <= 32)
+	{
+		// MessageBox(NULL, L"服務進程啓動不起來:(", L"小狼毫", MB_OK | MB_ICONERROR);
+		cerr << "failed to launch server." << endl;
+		return false;
+	}
+	return true;
+}

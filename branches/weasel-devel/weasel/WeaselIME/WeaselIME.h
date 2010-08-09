@@ -1,7 +1,7 @@
 #pragma once
-#include "stdafx.h"
 #include <WeaselIPC.h>
 #include <WeaselUI.h>
+
 #define MAX_COMPOSITION_SIZE 256
 
 struct CompositionInfo
@@ -81,3 +81,7 @@ private:
 	weasel::Context m_ctx;
 	weasel::Status m_status;
 };
+
+// TODO: make these private memeber functions
+bool read_buffer(LPWSTR buffer, UINT length, std::wstring& dest);
+bool launch_server();
