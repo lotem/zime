@@ -1,19 +1,21 @@
 #include "stdafx.h"
 #include "WeaselClientImpl.h"
 
-WeaselClient::Impl::Impl()
-	: clientID(0),
+using namespace weasel;
+
+ClientImpl::ClientImpl()
+	: sessionID(0),
 	  serverWnd(NULL)
 {
 }
 
-WeaselClient::Impl::~Impl()
+ClientImpl::~ClientImpl()
 {
 	if (_Connected())
-		DisconnectServer();
+		Disconnect();
 }
 
-bool WeaselClient::Impl::ConnectServer(ServerLauncher const& launcher)
+bool ClientImpl::Connect(ServerLauncher const& launcher)
 {
 	serverWnd = FindWindow( WEASEL_IPC_WINDOW, NULL );
 	if( !serverWnd && !launcher.empty() )
@@ -33,14 +35,14 @@ bool WeaselClient::Impl::ConnectServer(ServerLauncher const& launcher)
 	return _Connected();
 }
 
-void WeaselClient::Impl::DisconnectServer()
+void ClientImpl::Disconnect()
 {
 	if (_Active())
-		RemoveClient();
+		EndSession();
 	serverWnd = NULL;
 }
 
-void WeaselClient::Impl::ShutdownServer()
+void ClientImpl::ShutdownServer()
 {
 	if (_Connected())
 	{
@@ -48,44 +50,44 @@ void WeaselClient::Impl::ShutdownServer()
 	}
 }
 
-bool WeaselClient::Impl::ProcessKeyEvent(KeyEvent keyEvent)
+bool ClientImpl::ProcessKeyEvent(KeyEvent keyEvent)
 {
 	if (!_Active())
 		return false;
 
-	LRESULT ret = SendMessage( serverWnd, WEASEL_IPC_PROCESS_KEY_EVENT, keyEvent, clientID );
+	LRESULT ret = SendMessage( serverWnd, WEASEL_IPC_PROCESS_KEY_EVENT, keyEvent, sessionID );
 	return ret != 0;
 }
 
-void WeaselClient::Impl::AddClient()
+void ClientImpl::StartSession()
 {
 	if (!_Connected())
 		return;
 
 	if (_Active())
-		RemoveClient();
+		EndSession();
 
-	UINT ret = SendMessage( serverWnd, WEASEL_IPC_ADD_CLIENT, 0, 0 );
-	clientID = ret;
+	UINT ret = SendMessage( serverWnd, WEASEL_IPC_START_SESSION, 0, 0 );
+	sessionID = ret;
 }
 
-void WeaselClient::Impl::RemoveClient()
+void ClientImpl::EndSession()
 {
 	if (_Connected())
-		PostMessage( serverWnd, WEASEL_IPC_REMOVE_CLIENT, 0, clientID );
-	clientID = 0;
+		PostMessage( serverWnd, WEASEL_IPC_END_SESSION, 0, sessionID );
+	sessionID = 0;
 }
 
-bool WeaselClient::Impl::EchoFromServer()
+bool ClientImpl::Echo()
 {
 	if (!_Active())
 		return false;
 
-	UINT serverEcho = SendMessage( serverWnd, WEASEL_IPC_ECHO, 0, clientID );
-	return (serverEcho == clientID);
+	UINT serverEcho = SendMessage( serverWnd, WEASEL_IPC_ECHO, 0, sessionID );
+	return (serverEcho == sessionID);
 }
 
-bool WeaselClient::Impl::GetResponseData(WeaselClient::ResponseHandler const& handler)
+bool ClientImpl::GetResponseData(ResponseHandler const& handler)
 {
 	if (handler.empty())
 	{
@@ -107,54 +109,54 @@ bool WeaselClient::Impl::GetResponseData(WeaselClient::ResponseHandler const& ha
 	return false;
 }
 
-// WeaselClient
+// weasel::Client
 
-WeaselClient::WeaselClient() 
-	: m_pImpl(new WeaselClient::Impl())
+Client::Client() 
+	: m_pImpl(new ClientImpl())
 {}
 
-WeaselClient::~WeaselClient()
+Client::~Client()
 {
 	if (m_pImpl)
 		delete m_pImpl;
 }
 
-bool WeaselClient::ConnectServer(ServerLauncher launcher)
+bool Client::Connect(ServerLauncher launcher)
 {
-	return m_pImpl->ConnectServer(launcher);
+	return m_pImpl->Connect(launcher);
 }
 
-void WeaselClient::DisconnectServer()
+void Client::Disconnect()
 {
-	m_pImpl->DisconnectServer();
+	m_pImpl->Disconnect();
 }
 
-void WeaselClient::ShutdownServer()
+void Client::ShutdownServer()
 {
 	m_pImpl->ShutdownServer();
 }
 
-bool WeaselClient::ProcessKeyEvent(KeyEvent keyEvent)
+bool Client::ProcessKeyEvent(KeyEvent keyEvent)
 {
 	return m_pImpl->ProcessKeyEvent(keyEvent);
 }
 
-void WeaselClient::AddClient()
+void Client::StartSession()
 {
-	m_pImpl->AddClient();
+	m_pImpl->StartSession();
 }
 
-void WeaselClient::RemoveClient()
+void Client::EndSession()
 {
-	m_pImpl->RemoveClient();
+	m_pImpl->EndSession();
 }
 
-bool WeaselClient::EchoFromServer()
+bool Client::Echo()
 {
-	return m_pImpl->EchoFromServer();
+	return m_pImpl->Echo();
 }
 
-bool WeaselClient::GetResponseData(WeaselClient::ResponseHandler handler)
+bool Client::GetResponseData(ResponseHandler handler)
 {
 	return m_pImpl->GetResponseData(handler);
 }

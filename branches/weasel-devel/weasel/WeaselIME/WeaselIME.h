@@ -77,7 +77,7 @@ private:
 	static boost::mutex _mutex;
 	HIMC m_hIMC;
 	WeaselUI m_ui;
-	WeaselClient m_client;
+	weasel::Client m_client;
 	weasel::Context m_ctx;
 	weasel::Status m_status;
 };

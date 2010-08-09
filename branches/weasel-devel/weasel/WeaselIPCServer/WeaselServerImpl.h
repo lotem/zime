@@ -1,47 +1,61 @@
 #pragma once
 #include <WeaselIPC.h>
 
-// WeaselServer::Impl definition
-
-typedef CWinTraits<WS_DISABLED, WS_EX_TRANSPARENT> WeaselServerWinTraits;
-
-class WeaselServer::Impl :
-	public CWindowImpl<WeaselServer::Impl, CWindow, WeaselServerWinTraits>
+namespace weasel
 {
-public:
-	DECLARE_WND_CLASS (WEASEL_IPC_WINDOW)
 
-	BEGIN_MSG_MAP(WeaselServerWindow)	   
-		MESSAGE_HANDLER(WM_CREATE, OnCreate)
-		MESSAGE_HANDLER(WM_DESTROY, OnDestroy)
-		MESSAGE_HANDLER(WM_CLOSE, OnClose)
-		MESSAGE_HANDLER(WEASEL_IPC_ECHO, OnClientEcho)
-		MESSAGE_HANDLER(WEASEL_IPC_ADD_CLIENT, OnAddClient)			  
-		MESSAGE_HANDLER(WEASEL_IPC_REMOVE_CLIENT, OnRemoveClient)	
-		MESSAGE_HANDLER(WEASEL_IPC_PROCESS_KEY_EVENT, OnKeyEvent)	
-		MESSAGE_HANDLER(WEASEL_IPC_SHUTDOWN_SERVER, OnShutdownServer)	
-	END_MSG_MAP()
+	class SharedMemory
+	{
+	public:
+		SharedMemory();
+		~SharedMemory();
+		LPWSTR GetBuffer();
 
-	LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnClientEcho(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnAddClient(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnRemoveClient(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnKeyEvent(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	LRESULT OnShutdownServer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	private:
+		windows_shared_memory* m_pShm;
+		mapped_region* m_pRegion;
+	};
 
-public:
-	Impl(RequestHandler* pHandler);
-	~Impl();
+	typedef CWinTraits<WS_DISABLED, WS_EX_TRANSPARENT> ServerWinTraits;
 
-	int StartServer();
-	int StopServer();
-	int Run();
-	void RegisterRequestHandler(WeaselServer::RequestHandler handler);
+	class ServerImpl :
+		public CWindowImpl<ServerImpl, CWindow, ServerWinTraits>
+	{
+	public:
+		DECLARE_WND_CLASS (WEASEL_IPC_WINDOW)
 
-private:
-	RequestHandler* m_pHandler;
-	class SharedMemory;
-	SharedMemory* m_pSharedMemory;
-};
+		BEGIN_MSG_MAP(WEASEL_IPC_WINDOW)
+			MESSAGE_HANDLER(WM_CREATE, OnCreate)
+			MESSAGE_HANDLER(WM_DESTROY, OnDestroy)
+			MESSAGE_HANDLER(WM_CLOSE, OnClose)
+			MESSAGE_HANDLER(WEASEL_IPC_ECHO, OnEcho)
+			MESSAGE_HANDLER(WEASEL_IPC_START_SESSION, OnStartSession)			  
+			MESSAGE_HANDLER(WEASEL_IPC_END_SESSION, OnEndSession)	
+			MESSAGE_HANDLER(WEASEL_IPC_PROCESS_KEY_EVENT, OnKeyEvent)	
+			MESSAGE_HANDLER(WEASEL_IPC_SHUTDOWN_SERVER, OnShutdownServer)	
+		END_MSG_MAP()
+
+		LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+		LRESULT OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+		LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+		LRESULT OnEcho(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+		LRESULT OnStartSession(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+		LRESULT OnEndSession(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+		LRESULT OnKeyEvent(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+		LRESULT OnShutdownServer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+
+	public:
+		ServerImpl(RequestHandler* pHandler);
+		~ServerImpl();
+
+		int Start();
+		int Stop();
+		int Run();
+		void RegisterRequestHandler(RequestHandler handler);
+
+	private:
+		RequestHandler* m_pHandler;
+		SharedMemory* m_pSharedMemory;
+	};
+
+}

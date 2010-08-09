@@ -1,26 +1,31 @@
 #pragma once
 #include <WeaselIPC.h>
 
-class WeaselClient::Impl
+namespace weasel
 {
-public:
-	Impl();
-	~Impl();
 
-	bool ConnectServer(ServerLauncher const& launcher);
-	void DisconnectServer();
-	void ShutdownServer();
-	bool ProcessKeyEvent(KeyEvent keyEvent);
-	void AddClient();
-	void RemoveClient();
-	bool EchoFromServer();
-	bool GetResponseData(ResponseHandler const& handler);
+	class ClientImpl
+	{
+	public:
+		ClientImpl();
+		~ClientImpl();
 
-protected:
-	bool _Connected() const { return serverWnd != NULL; }
-	bool _Active() const { return _Connected() && clientID != 0; }
+		bool Connect(ServerLauncher const& launcher);
+		void Disconnect();
+		void ShutdownServer();
+		bool ProcessKeyEvent(KeyEvent keyEvent);
+		void StartSession();
+		void EndSession();
+		bool Echo();
+		bool GetResponseData(ResponseHandler const& handler);
 
-private:
-	UINT clientID;
-	HWND serverWnd;
-};
+	protected:
+		bool _Connected() const { return serverWnd != NULL; }
+		bool _Active() const { return _Connected() && sessionID != 0; }
+
+	private:
+		UINT sessionID;
+		HWND serverWnd;
+	};
+
+}

@@ -12,85 +12,93 @@
 enum WEASEL_IPC_COMMAND
 {	
 	WEASEL_IPC_ECHO = (WM_APP + 1),
-	WEASEL_IPC_ADD_CLIENT,
-	WEASEL_IPC_REMOVE_CLIENT,
+	WEASEL_IPC_START_SESSION,
+	WEASEL_IPC_END_SESSION,
 	WEASEL_IPC_PROCESS_KEY_EVENT,
 	WEASEL_IPC_SHUTDOWN_SERVER
 };
 
-struct KeyEvent
+namespace weasel
 {
-	UINT keyCode : 16;
-	UINT mask : 16;
-	KeyEvent() : keyCode(0), mask(0) {}
-	KeyEvent(UINT x)
+
+	struct KeyEvent
 	{
-		*((UINT*)this) = x;
-	}
-	KeyEvent(UINT _keyCode, UINT _mask) : keyCode(_keyCode), mask(_mask) {}
-	operator UINT() const
-	{
-		return *((UINT32*)this);
-	}
-};
+		UINT keyCode : 16;
+		UINT mask : 16;
+		KeyEvent() : keyCode(0), mask(0) {}
+		KeyEvent(UINT x)
+		{
+			*((UINT*)this) = x;
+		}
+		KeyEvent(UINT _keyCode, UINT _mask) : keyCode(_keyCode), mask(_mask) {}
+		operator UINT() const
+		{
+			return *((UINT32*)this);
+		}
+	};
 
-// IPC接口
-
-class WeaselClient
-{
-public:
-	typedef boost::function<bool (LPWSTR buffer, UINT length)> ResponseHandler;
-	typedef boost::function<bool ()> ServerLauncher;
-
-	WeaselClient();
-	virtual ~WeaselClient();
-	
-	// 连接到服务，必要时启动服务进程
-	bool ConnectServer(ServerLauncher launcher = 0);
-	// 断开连接
-	void DisconnectServer();
-	// 终止服务
-	void ShutdownServer();
-	// 请求服务处理按键消息
-	bool ProcessKeyEvent(KeyEvent keyEvent);
-	// 向server注册一个客户端。server返回一个ID用于标识客户端
-	void AddClient();
-	// 向server请求移除一个客户端(以ID标识)
-	void RemoveClient();
-	// 测试连接
-	bool EchoFromServer();
-	// 读取server返回的数据
-	bool GetResponseData(ResponseHandler handler);
-
-private:
-	class Impl;
-	Impl* m_pImpl;
-};
-
-class WeaselServer
-{
-public:
 	struct RequestHandler
 	{
 		RequestHandler() {}
 		virtual ~RequestHandler() {}
-		virtual UINT FindClient(UINT clientID) { return 0; }
-		virtual UINT AddClient() { return 0; }
-		virtual UINT RemoveClient(UINT clientID) { return 0; }
-		virtual BOOL ProcessKeyEvent(KeyEvent keyEvent, UINT clientID, LPWSTR buffer) { return FALSE; }
+		virtual UINT FindSession(UINT sessionID) { return 0; }
+		virtual UINT AddSession() { return 0; }
+		virtual UINT RemoveSession(UINT sessionID) { return 0; }
+		virtual BOOL ProcessKeyEvent(KeyEvent keyEvent, UINT sessionID, LPWSTR buffer) { return FALSE; }
+	};
+	typedef boost::function<bool (LPWSTR buffer, UINT length)> ResponseHandler;
+	typedef boost::function<bool ()> ServerLauncher;
+
+	// 實現類聲明
+
+	class ClientImpl;
+	class ServerImpl;
+
+	// IPC接口類
+
+	class Client
+	{
+	public:
+
+		Client();
+		virtual ~Client();
+		
+		// 连接到服务，必要时启动服务进程
+		bool Connect(ServerLauncher launcher = 0);
+		// 断开连接
+		void Disconnect();
+		// 终止服务
+		void ShutdownServer();
+		// 请求服务处理按键消息
+		bool ProcessKeyEvent(KeyEvent keyEvent);
+		// 發起會話
+		void StartSession();
+		// 結束會話
+		void EndSession();
+		// 测试连接
+		bool Echo();
+		// 读取server返回的数据
+		bool GetResponseData(ResponseHandler handler);
+
+	private:
+		ClientImpl* m_pImpl;
 	};
 
-	WeaselServer(RequestHandler* pHandler = 0);
-	virtual ~WeaselServer();
+	class Server
+	{
+	public:
+		Server(RequestHandler* pHandler = 0);
+		virtual ~Server();
 
-	// 初始化服务
-	int StartServer();
-	// 结束服务
-	int StopServer();
-	// 消息循环
-	int Run();
+		// 初始化服务
+		int Start();
+		// 结束服务
+		int Stop();
+		// 消息循环
+		int Run();
 
-private:
-	class Impl;
-	Impl* m_pImpl;
-};
+	private:
+		ServerImpl* m_pImpl;
+	};
+
+}

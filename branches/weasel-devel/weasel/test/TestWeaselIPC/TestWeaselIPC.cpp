@@ -30,8 +30,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 	else if (argc > 1 && !wcscmp(L"/stop", argv[1]))
 	{
-		WeaselClient client;
-		if (!client.ConnectServer())
+		weasel::Client client;
+		if (!client.Connect())
 		{
 			cerr << "server not running." << endl;
 			return 0;
@@ -61,36 +61,42 @@ bool read_buffer(LPWSTR buffer, UINT length, wstring& dest)
 	return bs.good();
 }
 
+const char* wcstomb(const wchar_t* wcs)
+{
+	const int buffer_len = 8192;
+	static char buffer[buffer_len];
+	WideCharToMultiByte(CP_OEMCP, NULL, wcs, -1, buffer, buffer_len, NULL, FALSE);
+	return buffer;
+}
+
 int client_main()
 {
-	WeaselClient client;
-	if (!client.ConnectServer(launch_server))
+	weasel::Client client;
+	if (!client.Connect(launch_server))
 	{
 		cerr << "failed to connect to server." << endl;
 		return -2;
 	}
-	client.AddClient();
-	if (!client.EchoFromServer())
+	client.StartSession();
+	if (!client.Echo())
 	{
 		cerr << "failed to login." << endl;
 		return -3;
 	}
-	bool eaten = client.ProcessKeyEvent(KeyEvent(L'A', 0));
+	bool eaten = client.ProcessKeyEvent(weasel::KeyEvent(L'A', 0));
 	cout << "server replies: " << eaten << endl;
 	if (eaten)
 	{
 		wstring ctxdata;
 		client.GetResponseData(boost::bind<bool>(read_buffer, _1, _2, boost::ref(ctxdata)));
-		char tmpstr[8192];
-		WideCharToMultiByte(CP_OEMCP, NULL, ctxdata.c_str(), -1, tmpstr, 8192, NULL, FALSE);
-		cout << "buffer reads: " << tmpstr << endl;
+		cout << "buffer reads: " << wcstomb(ctxdata.c_str()) << endl;
 	}
-	client.RemoveClient();
+	client.EndSession();
 
 	return 0;
 }
 
-class TestRequestHandler : public WeaselServer::RequestHandler
+class TestRequestHandler : public weasel::RequestHandler
 {
 public:
 	TestRequestHandler() : m_counter(0)
@@ -101,23 +107,23 @@ public:
 	{
 		cerr << "handler dtor: " << m_counter << endl;
 	}
-	virtual UINT FindClient(UINT clientID)
+	virtual UINT FindSession(UINT sessionID)
 	{
-		cerr << "FindClient: " << clientID << endl;
-		return (clientID <= m_counter ? clientID : 0);
+		cerr << "FindSession: " << sessionID << endl;
+		return (sessionID <= m_counter ? sessionID : 0);
 	}
-	virtual UINT AddClient()
+	virtual UINT AddSession()
 	{
-		cerr << "AddClient: " << m_counter + 1 << endl;
+		cerr << "AddSession: " << m_counter + 1 << endl;
 		return ++m_counter;
 	}
-	virtual UINT RemoveClient(UINT clientID)
+	virtual UINT RemoveSession(UINT sessionID)
 	{
-		cerr << "RemoveClient: " << clientID << endl;
+		cerr << "RemoveClient: " << sessionID << endl;
 		return 0;
 	}
-	virtual BOOL ProcessKeyEvent(KeyEvent keyEvent, UINT clientID, LPWSTR buffer) {
-		cerr << "ProcessKeyEvent: " << clientID 
+	virtual BOOL ProcessKeyEvent(weasel::KeyEvent keyEvent, UINT sessionID, LPWSTR buffer) {
+		cerr << "ProcessKeyEvent: " << sessionID 
 			  << " keycode: " << keyEvent.keyCode 
 			  << " mask: " << keyEvent.mask 
 			  << endl;
@@ -133,8 +139,8 @@ int server_main()
 	HRESULT hRes = _Module.Init(NULL, GetModuleHandle(NULL));
 	ATLASSERT(SUCCEEDED(hRes));
 
-	WeaselServer server(new TestRequestHandler());
-	if (!server.StartServer())
+	weasel::Server server(new TestRequestHandler());
+	if (!server.Start())
 		return -4;
 	cerr << "server running." << endl;
 	int ret = server.Run();
