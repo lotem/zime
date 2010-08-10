@@ -2,17 +2,16 @@
 #include <WeaselUI.h>
 #include "WeaselPanel.h"
 
-class WeaselUI::Impl : public WeaselPanel
-{
+using namespace weasel;
 
-};
+class weasel::UIImpl : public WeaselPanel {};
 
-bool WeaselUI::Create(HWND parent)
+bool UI::Create(HWND parent)
 {
 	if (pimpl_)
 		return true;
 
-	pimpl_ = new WeaselUI::Impl();
+	pimpl_ = new UIImpl();
 	if (!pimpl_)
 	{
 		return false;
@@ -22,7 +21,7 @@ bool WeaselUI::Create(HWND parent)
 	return true;
 }
 
-void WeaselUI::Destroy()
+void UI::Destroy()
 {
 	if (pimpl_)
 	{
@@ -32,20 +31,20 @@ void WeaselUI::Destroy()
 	}
 }
 
-void WeaselUI::Show()
+void UI::Show()
 {
 	if (pimpl_)
 		pimpl_->ShowWindow(SW_SHOWNA);
 }
 
-void WeaselUI::Hide()
+void UI::Hide()
 {
 	if (pimpl_)
 		pimpl_->ShowWindow(SW_HIDE);
 
 }
 
-void WeaselUI::UpdateInputPosition(RECT const& rc)
+void UI::UpdateInputPosition(RECT const& rc)
 {
 	if (pimpl_)
 	{
@@ -53,7 +52,7 @@ void WeaselUI::UpdateInputPosition(RECT const& rc)
 	}
 }
 
-void WeaselUI::UpdateContext(const weasel::Context &ctx)
+void UI::UpdateContext(const weasel::Context &ctx)
 {
 	if (pimpl_)
 	{
@@ -61,7 +60,7 @@ void WeaselUI::UpdateContext(const weasel::Context &ctx)
 	}
 }
 
-void WeaselUI::UpdateStatus(const weasel::Status &status)
+void UI::UpdateStatus(const weasel::Status &status)
 {
 	if (pimpl_)
 	{

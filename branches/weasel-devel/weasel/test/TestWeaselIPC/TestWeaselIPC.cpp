@@ -127,7 +127,7 @@ public:
 			  << " keycode: " << keyEvent.keyCode 
 			  << " mask: " << keyEvent.mask 
 			  << endl;
-		wsprintf(buffer, L"Greeting\tHello, Ğ¡ÀÇºÁ.\n");
+		wsprintf(buffer, L"Greeting=Hello, Ğ¡ÀÇºÁ.\n");
 		return TRUE;
 	}
 private:

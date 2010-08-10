@@ -40,8 +40,8 @@ private:
 	weasel::Status m_status;
 
 public:
-	WeaselPanel();
-	~WeaselPanel(){};	
+	WeaselPanel() {}
+	~WeaselPanel() {}
 	void SetContext(const weasel::Context &ctx);
 	void SetStatus(const weasel::Status &status);
 };
