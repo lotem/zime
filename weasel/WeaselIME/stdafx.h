@@ -10,9 +10,9 @@
 #define NOIME
 
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
-// Windows Header Files:
 #include <windows.h>
 #include <shellapi.h>
+
 #include "Imm.h"
 
 #pragma warning(disable : 4819)
@@ -26,7 +26,6 @@
 
 #include <map>
 #include <string>
-#include <iostream>
 
 using namespace std;
 using boost::shared_ptr;

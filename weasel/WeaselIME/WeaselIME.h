@@ -69,7 +69,7 @@ private:
 	HRESULT _EndComposition(LPCWSTR composition);
 	HRESULT _AddIMEMessage(UINT msg, WPARAM wp, LPARAM lp);
 	void _UpdateInputPosition(LPINPUTCONTEXT lpIMC, POINT pt);
-	void _UpdateContext(wstring const& composition);
+	void _UpdateContext(weasel::Context const& ctx);
 
 private:
 	static HINSTANCE _hModule;

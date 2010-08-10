@@ -8,6 +8,32 @@ HINSTANCE WeaselIME::_hModule = 0;
 map<HIMC, shared_ptr<WeaselIME> > WeaselIME::_instances;
 boost::mutex WeaselIME::_mutex;
 
+
+bool launch_server()
+{
+	//// TODO: 暂写定一个路径 应改为从注册表读取安装目录
+	int ret = (int)ShellExecute( NULL, L"open", L"D:\\home\\devel\\weasel\\Debug\\TestWeaselIPC.exe", L"/start", NULL, SW_HIDE );
+	if (ret <= 32)
+	{
+		MessageBox(NULL, L"服務進程啓動不起來:(", L"小狼毫", MB_OK | MB_ICONERROR);
+		return false;
+	}
+	return true;
+}
+
+bool read_context(LPWSTR buffer, UINT length, weasel::Context& ctx)
+{
+	wbufferstream bs(buffer, length);
+	// TODO: parse context data
+	wstring line;
+	getline(bs, line);
+	if (!bs.good())
+		return false;
+	ctx.preedit = line;
+
+	return bs.good();
+}
+
 LPCWSTR WeaselIME::GetIMEName()
 {
 	return L"中州韻輸入法引擎";
@@ -136,18 +162,22 @@ LRESULT WeaselIME::OnIMESelect(BOOL fSelect)
 {
 	if (fSelect)
 	{
+		// initialize weasel client
+		m_client.Connect(launch_server);
+		m_client.StartSession();
+		
 		if (!m_ui.Create(NULL))
 			return 0;
+		
 		m_ui.UpdateStatus(m_status);
-		// initialize weasel client
-		m_client.Connect(/*serverlauncher*/);
-		m_client.StartSession();
+		
 		return _Initialize();
 	}
 	else
 	{
-		m_ui.Destroy();
 		m_client.EndSession();
+		m_ui.Destroy();
+
 		return _Finalize();
 	}
 }
@@ -242,46 +272,38 @@ LRESULT WeaselIME::_OnIMENotify(LPINPUTCONTEXT lpIMC, WPARAM wp, LPARAM lp)
 BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeyState)
 {
 	BOOL bEaten = FALSE;
-	// TODO: 
+
+	// TODO: 暂不处理KEY_UP事件（宫保拼音用KEY_UP）
 	if (kinfo.isKeyUp)
 	{
 		return FALSE;
 	}
-	static wstring composition;
-	WORD ch = 0;
+
 	if (!m_client.Echo())
 	{
-		m_client.Connect();
+		m_client.Connect(launch_server);
 		m_client.StartSession();
 	}
-	weasel::KeyEvent ke;
-	ke.keyCode = ch;
-	ke.mask = 0;
-	if (m_client.ProcessKeyEvent(ke))
+	
+	if (m_client.ProcessKeyEvent(weasel::KeyEvent(vKey, 0)))
 	{
-		wstring ctxdata;
-		m_client.GetResponseData(boost::bind<bool>(read_buffer, _1, _2, boost::ref(ctxdata)));
-		char tmpstr[8192];
-		WideCharToMultiByte(CP_OEMCP, NULL, ctxdata.c_str(), -1, tmpstr, 8192, NULL, FALSE);
-		cout << "buffer reads: " << tmpstr << endl;
+		weasel::Context result;
+		m_client.GetResponseData(boost::bind<bool>(read_context, _1, _2, boost::ref(result)));
+
+		if (m_ctx.empty())
+		{
+			if (!result.empty())
+				_StartComposition();
+		}
+		else
+		{
+			if (result.empty())
+				_EndComposition(m_ctx.preedit.str.c_str());
+		}
+		_UpdateContext(result);
+
+		bEaten = TRUE;
 	}
-	//m_client.GetResponseData(boost::bind<bool>(read_buffer, _1, _2, boost::ref(ctxdata)));
-	//ToAscii(vKey, kinfo.scanCode, lpbKeyState, &ch, 0);
-	//if (ch >= L'a' && ch <= L'z')
-	//{
-	//	bEaten = TRUE;
-	//	if (composition.empty())
-	//		_StartComposition();
-	//	composition.push_back(ch);
-	//	_UpdateContext(composition);
-	//}
-	//else if (!composition.empty())
-	//{
-	//	bEaten = FALSE;
-	//	_EndComposition(composition.c_str());
-	//	composition.clear();
-	//	_UpdateContext(composition);
-	//}
 	
 	return bEaten;
 }
@@ -434,12 +456,12 @@ void WeaselIME::_UpdateInputPosition(LPINPUTCONTEXT lpIMC, POINT pt)
 	m_ui.UpdateInputPosition(rc);
 }
 
-void WeaselIME::_UpdateContext(wstring const& composition)
+void WeaselIME::_UpdateContext(weasel::Context const& ctx)
 {
-	if (!composition.empty())
+	if (!ctx.empty())
 	{
-		m_ctx.preedit.str = L"小狼毫";
-		m_ctx.aux.str = composition;
+		m_ctx.preedit = ctx.preedit;
+		m_ctx.aux = weasel::Text(L"testing");
 		m_ui.UpdateContext(m_ctx);
 		m_ui.Show();
 	}
@@ -449,25 +471,4 @@ void WeaselIME::_UpdateContext(wstring const& composition)
 		m_ui.Hide();
 		m_ui.UpdateContext(m_ctx);
 	}
-}
-
-bool read_buffer(LPWSTR buffer, UINT length, wstring& dest)
-{
-	wbufferstream bs(buffer, length);
-	getline(bs, dest);
-	return bs.good();
-}
-
-bool launch_server()
-{
-	//// TODO: 暂写定一个路径 应改为从注册表读取安装目录
-	//int ret = (int)ShellExecute( NULL, L"open", SERVER_EXEC, SERVER_ARGS, SERVER_DIR, SW_HIDE );
-	int ret = (int)ShellExecute( NULL, L"open", L"TestWeaselIPC.exe", L"/start", NULL, SW_HIDE );
-	if (ret <= 32)
-	{
-		// MessageBox(NULL, L"服務進程啓動不起來:(", L"小狼毫", MB_OK | MB_ICONERROR);
-		cerr << "failed to launch server." << endl;
-		return false;
-	}
-	return true;
 }
