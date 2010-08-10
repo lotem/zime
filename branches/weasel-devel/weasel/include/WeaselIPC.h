@@ -26,11 +26,11 @@ namespace weasel
 		UINT keyCode : 16;
 		UINT mask : 16;
 		KeyEvent() : keyCode(0), mask(0) {}
+		KeyEvent(UINT _keyCode, UINT _mask) : keyCode(_keyCode), mask(_mask) {}
 		KeyEvent(UINT x)
 		{
 			*((UINT*)this) = x;
 		}
-		KeyEvent(UINT _keyCode, UINT _mask) : keyCode(_keyCode), mask(_mask) {}
 		operator UINT() const
 		{
 			return *((UINT32*)this);
