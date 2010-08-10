@@ -76,7 +76,7 @@ private:
 	static std::map<HIMC, boost::shared_ptr<WeaselIME> > _instances;
 	static boost::mutex _mutex;
 	HIMC m_hIMC;
-	WeaselUI m_ui;
+	weasel::UI m_ui;
 	weasel::Client m_client;
 	weasel::Context m_ctx;
 	weasel::Status m_status;

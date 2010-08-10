@@ -12,7 +12,7 @@ boost::mutex WeaselIME::_mutex;
 bool launch_server()
 {
 	//// TODO: 暂写定一个路径 应改为从注册表读取安装目录
-	int ret = (int)ShellExecute( NULL, L"open", L"D:\\home\\devel\\weasel\\Debug\\TestWeaselIPC.exe", L"/start", NULL, SW_HIDE );
+	int ret = (int)ShellExecute( NULL, L"open", L"D:\\home\\devel\\weasel\\Debug\\WeaselServer.exe", NULL, NULL, SW_HIDE );
 	if (ret <= 32)
 	{
 		MessageBox(NULL, L"服務進程啓動不起來:(", L"小狼毫", MB_OK | MB_ICONERROR);

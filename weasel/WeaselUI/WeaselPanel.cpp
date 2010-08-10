@@ -3,11 +3,6 @@
 #include <WeaselCommon.h>
 
 using namespace weasel;
-using namespace std;
-
-WeaselPanel::WeaselPanel()
-{
-}
 
 void WeaselPanel::SetContext(const weasel::Context &ctx)
 {
