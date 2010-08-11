@@ -119,8 +119,7 @@ void exec_test_error()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-  BOOST_TEST(argc == 2);
-  std::string script = argv[1];
+  std::string script = "script.py";
   // Initialize the interpreter
   Py_Initialize();
 
