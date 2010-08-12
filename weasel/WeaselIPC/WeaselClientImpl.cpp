@@ -98,7 +98,8 @@ bool ClientImpl::GetResponseData(ResponseHandler const& handler)
 	{
 		windows_shared_memory shm(open_only, WEASEL_IPC_SHARED_MEMORY, read_only);
 		mapped_region region(shm, read_only);
-
+		//UnSerialize
+		//parser.getReponse();
 		return handler((LPWSTR)region.get_address(), WEASEL_IPC_BUFFER_SIZE / sizeof(WCHAR));
 	}
 	catch (interprocess_exception& /*ex*/)

@@ -151,6 +151,14 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\Response.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ResponseImpl.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -181,6 +189,10 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\ResponseImpl.h"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.h"
 				>
 			</File>
@@ -188,14 +200,42 @@
 				RelativePath=".\targetver.h"
 				>
 			</File>
-			<File
-				RelativePath=".\WeaselClientImpl.h"
+			<Filter
+				Name="Serialize"
 				>
-			</File>
-			<File
-				RelativePath="..\include\WeaselIPC.h"
+				<File
+					RelativePath=".\Action.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Commit.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Context.h"
+					>
+				</File>
+				<File
+					RelativePath=".\ICollectable.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Status.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="IPC"
 				>
-			</File>
+				<File
+					RelativePath=".\WeaselClientImpl.h"
+					>
+				</File>
+				<File
+					RelativePath="..\include\WeaselIPC.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Resource Files"
