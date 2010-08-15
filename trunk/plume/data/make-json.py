@@ -376,7 +376,7 @@ for ikey in sorted(ip_map):
         current = index
         indexed_phrase_count = 0
         indexed_phrases = {}
-        files[index] = index.encode('utf-7')
+        files[index] = 'idx_' + index.encode('utf-7')
     if ikey in indexed_phrases:
         s = indexed_phrases[ikey]
     else:
