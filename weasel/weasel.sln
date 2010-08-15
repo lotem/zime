@@ -13,6 +13,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeaselIPC", "WeaselIPC\Weas
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{53F79A24-5390-4640-84B5-19984EB3353B}"
 	ProjectSection(SolutionItems) = preProject
+		include\PyWeasel.h = include\PyWeasel.h
 		include\WeaselCommon.h = include\WeaselCommon.h
 		include\WeaselIPC.h = include\WeaselIPC.h
 		include\WeaselUI.h = include\WeaselUI.h
@@ -32,6 +33,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeaselServer", "WeaselServer\WeaselServer.vcproj", "{A68C2A5C-D74D-4CB2-9E22-A4D2FC256A2D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{26930622-CFA2-43DF-A9F3-4AA4A313B2A4} = {26930622-CFA2-43DF-A9F3-4AA4A313B2A4}
+		{8C75C43E-E9AD-4D2D-81F2-5608F36CE77B} = {8C75C43E-E9AD-4D2D-81F2-5608F36CE77B}
 		{CE11A2DF-8D20-4B07-A935-4B0D03F0303D} = {CE11A2DF-8D20-4B07-A935-4B0D03F0303D}
 	EndProjectSection
 EndProject
@@ -42,8 +44,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestWeaselIPC", "test\TestW
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestPyWeasel", "test\TestPyWeasel\TestPyWeasel.vcproj", "{F75130DA-B785-42A7-B90B-571EAD9EDBE0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8C75C43E-E9AD-4D2D-81F2-5608F36CE77B} = {8C75C43E-E9AD-4D2D-81F2-5608F36CE77B}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeaselIPCServer", "WeaselIPCServer\WeaselIPCServer.vcproj", "{26930622-CFA2-43DF-A9F3-4AA4A313B2A4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PyWeasel", "PyWeasel\PyWeasel.vcproj", "{8C75C43E-E9AD-4D2D-81F2-5608F36CE77B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +92,10 @@ Global
 		{26930622-CFA2-43DF-A9F3-4AA4A313B2A4}.Debug|Win32.Build.0 = Debug|Win32
 		{26930622-CFA2-43DF-A9F3-4AA4A313B2A4}.Release|Win32.ActiveCfg = Release|Win32
 		{26930622-CFA2-43DF-A9F3-4AA4A313B2A4}.Release|Win32.Build.0 = Release|Win32
+		{8C75C43E-E9AD-4D2D-81F2-5608F36CE77B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8C75C43E-E9AD-4D2D-81F2-5608F36CE77B}.Debug|Win32.Build.0 = Debug|Win32
+		{8C75C43E-E9AD-4D2D-81F2-5608F36CE77B}.Release|Win32.ActiveCfg = Release|Win32
+		{8C75C43E-E9AD-4D2D-81F2-5608F36CE77B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
