@@ -2,6 +2,12 @@
 #include <WeaselIPC.h>
 #include <boost/python.hpp>
 
+struct PyWeasel
+{
+	static void Initialize();
+	static void Finalize();
+};
+
 class PyWeaselHandler :
 	public weasel::RequestHandler
 {

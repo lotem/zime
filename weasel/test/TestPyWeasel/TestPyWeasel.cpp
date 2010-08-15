@@ -3,7 +3,6 @@
 
 #include "stdafx.h"
 
-#include <boost/python.hpp>
 #include <boost/detail/lightweight_test.hpp>
 #include <iostream>
 
@@ -11,7 +10,6 @@
 #include <PyWeasel.h>
 
 using namespace std;
-namespace python = boost::python;
 
 const char* wcstomb(const wchar_t* wcs)
 {
@@ -25,25 +23,36 @@ void test_pyweasel()
 {
 	weasel::RequestHandler* handler = new PyWeaselHandler();
 	BOOST_ASSERT(handler);
+	
+	// 成功创建会话，返回sessionID；失败返回0
 	UINT sessionID = handler->AddSession();
 	BOOST_ASSERT(sessionID);
+
+	// 会话存在返回sessionID，不存在返回0
 	BOOST_ASSERT(sessionID == handler->FindSession(sessionID));
-	WCHAR buffer[WEASEL_IPC_BUFFER_SIZE];
+
+	WCHAR buffer[WEASEL_IPC_BUFFER_LENGTH];
 	memset(buffer, 0, sizeof(buffer));
+	// 输入 a，ProcessKeyEvent应返回TRUE，并将回应串写入buffer
 	BOOST_ASSERT(handler->ProcessKeyEvent(weasel::KeyEvent(L'a', 0), sessionID, buffer));
+	// Windows控制台不能直接显示WideChar中文串，转为MultiByteString
 	cout << wcstomb(buffer) << endl;
-	handler->RemoveSession(sessionID);
+	
+	// 成功销毁会话，返回sessionID；失败返回0
+	BOOST_ASSERT(sessionID == handler->RemoveSession(sessionID));
+
 	delete handler;
 }
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-  // Initialize the interpreter
-  Py_Initialize();
+  // 初始化Python解释器, 有必要在PyWeaselHandler创建之前调用
+  PyWeasel::Initialize();
 
   test_pyweasel();
   
-  // Boost.Python doesn't support Py_Finalize yet, so don't call it!
+  PyWeasel::Finalize();
+  
   system("pause");
   return boost::report_errors();
 }

@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="WeaselServer"
 	ProjectGUID="{A68C2A5C-D74D-4CB2-9E22-A4D2FC256A2D}"
+	RootNamespace="WeaselServer"
 	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
@@ -49,7 +50,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)\include"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)\include&quot;;&quot;$(SolutionDir)\include\python&quot;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;STRICT;_DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -74,7 +75,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="imm32.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories=""
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\lib&quot;;&quot;$(SolutionDir)\lib\python&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -135,7 +136,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="$(SolutionDir)\include"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)\include&quot;;&quot;$(SolutionDir)\include\python&quot;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;STRICT;NDEBUG"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="2"
@@ -157,6 +158,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="imm32.lib"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\lib&quot;;&quot;$(SolutionDir)\lib\python&quot;"
 				SubSystem="2"
 				TargetMachine="1"
 			/>

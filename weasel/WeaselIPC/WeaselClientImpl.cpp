@@ -100,7 +100,7 @@ bool ClientImpl::GetResponseData(ResponseHandler const& handler)
 		mapped_region region(shm, read_only);
 		//UnSerialize
 		//parser.getReponse();
-		return handler((LPWSTR)region.get_address(), WEASEL_IPC_BUFFER_SIZE / sizeof(WCHAR));
+		return handler((LPWSTR)region.get_address(), WEASEL_IPC_BUFFER_LENGTH);
 	}
 	catch (interprocess_exception& /*ex*/)
 	{

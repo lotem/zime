@@ -4,6 +4,7 @@
 
 #include "stdafx.h"
 #include <WeaselIPC.h>
+#include <PyWeasel.h>
 
 CAppModule _Module;
 
@@ -13,9 +14,9 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 	ImmDisableIME(-1);
 
 	HRESULT hRes = ::CoInitialize(NULL);
-// If you are running on NT 4.0 or higher you can use the following call instead to 
-// make the EXE free threaded. This means that calls come in on a random RPC thread.
-//	HRESULT hRes = ::CoInitializeEx(NULL, COINIT_MULTITHREADED);
+	// If you are running on NT 4.0 or higher you can use the following call instead to 
+	// make the EXE free threaded. This means that calls come in on a random RPC thread.
+	//HRESULT hRes = ::CoInitializeEx(NULL, COINIT_MULTITHREADED);
 	ATLASSERT(SUCCEEDED(hRes));
 
 	// this resolves ATL window thunking problem when Microsoft Layer for Unicode (MSLU) is used
@@ -35,11 +36,16 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 		return 0;
 	}
 
-	weasel::Server server;
+	// 初始化Python解释器, 有必要在PyWeaselHandler创建之前调用
+	PyWeasel::Initialize();
+
+	weasel::Server server(new PyWeaselHandler());
 	if (!server.Start())
 		return -1;
 
 	int nRet = server.Run();
+
+	PyWeasel::Finalize();
 
 	_Module.Term();
 	::CoUninitialize();
