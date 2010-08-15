@@ -5,6 +5,7 @@
 
 #define WEASEL_IPC_SHARED_MEMORY "WeaselIPCSharedMemory"
 #define WEASEL_IPC_BUFFER_SIZE 4096
+#define WEASEL_IPC_BUFFER_LENGTH (WEASEL_IPC_BUFFER_SIZE / sizeof(WCHAR))
 
 #define WEASEL_IPC_WINDOW L"WeaselIPCWindow"
 #define WEASEL_IPC_READY_EVENT L"Local\\WeaselIPCReadyEvent"

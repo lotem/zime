@@ -1,6 +1,17 @@
 #include "stdafx.h"
 #include <PyWeasel.h>
 
+void PyWeasel::Initialize()
+{
+	// 初始化Python解释器, 有必要在PyWeaselHandler创建之前调用
+	Py_Initialize();
+}
+
+void PyWeasel::Finalize()
+{
+	// Boost.Python doesn't support Py_Finalize yet, so don't call it!
+}
+
 PyWeaselHandler::PyWeaselHandler()
 {
 	try
@@ -96,7 +107,8 @@ BOOL PyWeaselHandler::ProcessKeyEvent(weasel::KeyEvent keyEvent, UINT sessionID,
 		return FALSE;
 	}
 
-	wbufferstream bs(buffer, WEASEL_IPC_BUFFER_SIZE / sizeof(WCHAR));
+	memset(buffer, 0, WEASEL_IPC_BUFFER_SIZE);
+	wbufferstream bs(buffer, WEASEL_IPC_BUFFER_LENGTH);
 	bs << response;
 	if (!bs.good())
 	{
