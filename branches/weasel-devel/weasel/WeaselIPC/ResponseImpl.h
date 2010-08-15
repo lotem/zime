@@ -5,8 +5,6 @@
 #include "Commit.h"
 #include "Status.h"
 
-using namespace weasel;
-
 namespace weasel
 {
 	struct ResponseImpl

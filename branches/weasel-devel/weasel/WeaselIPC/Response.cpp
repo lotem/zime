@@ -1,11 +1,12 @@
 #pragma once
 #include "stdafx.h"
-#include "WeaselIPC.h"
 #include "Action.h"
 #include "Context.h"
 #include "Commit.h"
 #include "Status.h"
 #include "ResponseImpl.h"
+
+using namespace weasel;
 
 weasel::CResponse::CResponse()
 	:m_Impl(new ResponseImpl())

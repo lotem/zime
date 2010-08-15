@@ -6,7 +6,9 @@ import logging
 import logging.config
 import os
 
-logging.config.fileConfig("logging.conf")
+logfile = os.path.join(os.path.dirname(__file__), "logging.conf")
+
+logging.config.fileConfig(logfile)
 logger = logging.getLogger("weasel")
 
 import ibus
