@@ -8,17 +8,15 @@ extern CAppModule _Module;
 
 SharedMemory::SharedMemory()
 {
-	m_pShm = new windows_shared_memory(create_only, 
-									   WEASEL_IPC_SHARED_MEMORY, 
-									   read_write, 
-									   WEASEL_IPC_BUFFER_SIZE);
-	m_pRegion = new mapped_region(*m_pShm, read_write);
+	m_pShm.reset(new windows_shared_memory(create_only, 
+										   WEASEL_IPC_SHARED_MEMORY, 
+										   read_write, 
+										   WEASEL_IPC_BUFFER_SIZE));
+	m_pRegion.reset(new mapped_region(*m_pShm, read_write));
 }
 
 SharedMemory::~SharedMemory()
 {
-	delete m_pRegion;
-	delete m_pShm;
 }
 
 LPWSTR SharedMemory::GetBuffer()
@@ -27,16 +25,12 @@ LPWSTR SharedMemory::GetBuffer()
 }
 
 ServerImpl::ServerImpl(RequestHandler* pHandler)
-: m_pHandler(pHandler), m_pSharedMemory(new SharedMemory())
+: m_pHandler(pHandler), m_pSharedMemory()
 {
 }
 
 ServerImpl::~ServerImpl()
 {
-	if (m_pHandler)
-		delete m_pHandler;
-	if (m_pSharedMemory)
-		delete m_pSharedMemory;
 }
 
 LRESULT ServerImpl::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
@@ -74,6 +68,8 @@ int ServerImpl::Start()
 	{
 		return 0;
 	}
+	
+	m_pSharedMemory.reset(new SharedMemory());
 
 	HWND hwnd = Create(NULL);
 	return (int)hwnd;

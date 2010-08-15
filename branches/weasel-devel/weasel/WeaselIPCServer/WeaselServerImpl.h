@@ -1,5 +1,6 @@
 #pragma once
 #include <WeaselIPC.h>
+#include <boost/smart_ptr.hpp>
 
 namespace weasel
 {
@@ -12,8 +13,8 @@ namespace weasel
 		LPWSTR GetBuffer();
 
 	private:
-		windows_shared_memory* m_pShm;
-		mapped_region* m_pRegion;
+		boost::shared_ptr<windows_shared_memory> m_pShm;
+		boost::shared_ptr<mapped_region> m_pRegion;
 	};
 
 	typedef CWinTraits<WS_DISABLED, WS_EX_TRANSPARENT> ServerWinTraits;
@@ -54,8 +55,8 @@ namespace weasel
 		void RegisterRequestHandler(RequestHandler handler);
 
 	private:
-		RequestHandler* m_pHandler;
-		SharedMemory* m_pSharedMemory;
+		boost::shared_ptr<RequestHandler> m_pHandler;
+		boost::shared_ptr<SharedMemory> m_pSharedMemory;
 	};
 
 }
