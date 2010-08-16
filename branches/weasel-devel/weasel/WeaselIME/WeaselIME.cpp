@@ -9,9 +9,9 @@ map<HIMC, shared_ptr<WeaselIME> > WeaselIME::_instances;
 boost::mutex WeaselIME::_mutex;
 
 
-bool launch_server()
+static bool launch_server()
 {
-	//// TODO: 暂写定一个路径 应改为从注册表读取安装目录
+	// TODO: 暂写定一个路径 应改为从注册表读取安装目录
 	int ret = (int)ShellExecute( NULL, L"open", L"D:\\home\\devel\\weasel\\Debug\\WeaselServer.exe", NULL, NULL, SW_HIDE );
 	if (ret <= 32)
 	{
@@ -21,7 +21,7 @@ bool launch_server()
 	return true;
 }
 
-bool read_context(LPWSTR buffer, UINT length, weasel::Context& ctx)
+static bool read_context(LPWSTR buffer, UINT length, weasel::Context& ctx)
 {
 	wbufferstream bs(buffer, length);
 	// TODO: parse context data
@@ -42,6 +42,11 @@ LPCWSTR WeaselIME::GetIMEName()
 LPCWSTR WeaselIME::GetIMEFileName()
 {
 	return L"weasel.ime";
+}
+
+LPCWSTR WeaselIME::GetRegKey()
+{
+	return L"Software\\ZIME\\Weasel";
 }
 
 HINSTANCE WeaselIME::GetModuleInstance()

@@ -45,6 +45,8 @@ class WeaselIME
 public:
 	static LPCWSTR GetIMEName();
 	static LPCWSTR GetIMEFileName();
+	static LPCWSTR GetRegKey();
+	static LPCWSTR GetRegValueName();
 	static HINSTANCE GetModuleInstance();
 	static void SetModuleInstance(HINSTANCE hModule);
 	static HRESULT RegisterUIClass();
@@ -81,7 +83,3 @@ private:
 	weasel::Context m_ctx;
 	weasel::Status m_status;
 };
-
-// TODO: make these private memeber functions
-bool read_buffer(LPWSTR buffer, UINT length, std::wstring& dest);
-bool launch_server();
