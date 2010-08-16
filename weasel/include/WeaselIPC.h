@@ -2,6 +2,8 @@
 #include <WeaselCommon.h>
 #include <windows.h>
 #include <boost/function.hpp>
+#include <string>
+#include "boost\interprocess\streams\bufferstream.hpp"
 
 #define WEASEL_IPC_SHARED_MEMORY "WeaselIPCSharedMemory"
 #define WEASEL_IPC_BUFFER_SIZE 4096
@@ -102,4 +104,24 @@ namespace weasel
 		ServerImpl* m_pImpl;
 	};
 
+	
+	//
+	class ResponseImpl;
+	class CAction;
+	class CCommit;
+	class CContext;
+	class CStatus;
+	class CResponse
+	{
+	public:
+		CResponse();
+		~CResponse();
+		bool Parse(boost::interprocess::wbufferstream& bs);
+		CAction GetAction();
+		CCommit GetCommit();
+		CContext GetContext();
+		CStatus GetStatus();
+	private:
+		ResponseImpl* m_Impl;
+	};
 }
