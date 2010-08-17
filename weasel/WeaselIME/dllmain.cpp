@@ -199,9 +199,12 @@ void UnregisterIME(HWND hWnd, HINSTANCE hInstance, LPWSTR lpszCmdLine, int nCmdS
 					ret = RegQueryValueEx(hPreloadKey, number.c_str(), 0, &type, (LPBYTE)value, &len);
 					if (ret != ERROR_SUCCESS)
 					{
-						// 删除最大一号注册表值
-						number = (boost::wformat(L"%1%") % (i - 1)).str();
-						RegDeleteValue(hPreloadKey, number.c_str());
+						if (i > preloads.size())
+						{
+							// 删除最大一号注册表值
+							number = (boost::wformat(L"%1%") % (i - 1)).str();
+							RegDeleteValue(hPreloadKey, number.c_str());
+						}
 						break;
 					}
 					if (_wcsicmp(subKey, value) != 0)
