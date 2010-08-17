@@ -21,17 +21,11 @@ static bool launch_server()
 	return true;
 }
 
+
+// TODO: replace read_context() with boost::ref(weasel::ResponseParser(...))
 static bool read_context(LPWSTR buffer, UINT length, weasel::Context& ctx)
 {
-	wbufferstream bs(buffer, length);
-	// TODO: parse context data
-	wstring line;
-	getline(bs, line);
-	if (!bs.good())
-		return false;
-	ctx.preedit = line;
-
-	return bs.good();
+	return false;
 }
 
 LPCWSTR WeaselIME::GetIMEName()
