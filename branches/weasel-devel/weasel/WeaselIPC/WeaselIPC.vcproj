@@ -201,6 +201,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\include\ResponseParser.h"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.h"
 				>
 			</File>

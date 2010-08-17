@@ -55,20 +55,6 @@ namespace weasel
 	// 啟動服務進程之物件
 	typedef boost::function<bool ()> ServerLauncher;
 
-	// 解析server回應文本
-	struct ResponseParser
-	{
-		std::wstring& r_commit;
-		Context& r_context;
-		Status& r_status;
-
-		// 以引用做參數初始化, 以求直接更新目標數據對象, 不做無謂的對象拷貝!
-		ResponseParser(std::wstring& commit, Context& context, Status& status);
-
-		// 重載函數調用運算符, 以扮做ResponseHandler
-		bool operator() (LPWSTR buffer, UINT length);
-	};
-
 	// IPC實現類聲明
 
 	class ClientImpl;
