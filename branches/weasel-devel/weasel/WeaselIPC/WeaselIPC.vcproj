@@ -182,6 +182,14 @@
 				RelativePath=".\WeaselClientImpl.cpp"
 				>
 			</File>
+			<Filter
+				Name="Deserializer"
+				>
+				<File
+					RelativePath=".\Action.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -209,26 +217,10 @@
 				>
 			</File>
 			<Filter
-				Name="Serialize"
+				Name="Deserializer"
 				>
 				<File
 					RelativePath=".\Action.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Commit.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Context.h"
-					>
-				</File>
-				<File
-					RelativePath=".\ICollectable.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Status.h"
 					>
 				</File>
 			</Filter>
