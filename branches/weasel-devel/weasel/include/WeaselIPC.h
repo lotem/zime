@@ -2,8 +2,6 @@
 #include <WeaselCommon.h>
 #include <windows.h>
 #include <boost/function.hpp>
-#include <string>
-#include "boost\interprocess\streams\bufferstream.hpp"
 
 #define WEASEL_IPC_SHARED_MEMORY "WeaselIPCSharedMemory"
 #define WEASEL_IPC_BUFFER_SIZE 4096
@@ -40,6 +38,7 @@ namespace weasel
 		}
 	};
 
+	// 處理請求之物件
 	struct RequestHandler
 	{
 		RequestHandler() {}
@@ -49,10 +48,28 @@ namespace weasel
 		virtual UINT RemoveSession(UINT sessionID) { return 0; }
 		virtual BOOL ProcessKeyEvent(KeyEvent keyEvent, UINT sessionID, LPWSTR buffer) { return FALSE; }
 	};
+	
+	// 處理server端回應之物件
 	typedef boost::function<bool (LPWSTR buffer, UINT length)> ResponseHandler;
+	
+	// 啟動服務進程之物件
 	typedef boost::function<bool ()> ServerLauncher;
 
-	// 實現類聲明
+	// 解析server回應文本
+	struct ResponseParser
+	{
+		std::wstring& r_commit;
+		Context& r_context;
+		Status& r_status;
+
+		// 以引用做參數初始化, 以求直接更新目標數據對象, 不做無謂的對象拷貝!
+		ResponseParser(std::wstring& commit, Context& context, Status& status);
+
+		// 重載函數調用運算符, 以扮做ResponseHandler
+		bool operator() (LPWSTR buffer, UINT length);
+	};
+
+	// IPC實現類聲明
 
 	class ClientImpl;
 	class ServerImpl;
@@ -104,24 +121,4 @@ namespace weasel
 		ServerImpl* m_pImpl;
 	};
 
-	
-	//
-	class ResponseImpl;
-	class CAction;
-	class CCommit;
-	class CContext;
-	class CStatus;
-	class CResponse
-	{
-	public:
-		CResponse();
-		~CResponse();
-		bool Parse(boost::interprocess::wbufferstream& bs);
-		CAction GetAction();
-		CCommit GetCommit();
-		CContext GetContext();
-		CStatus GetStatus();
-	private:
-		ResponseImpl* m_Impl;
-	};
 }

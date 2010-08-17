@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "WeaselClientImpl.h"
 
+using namespace boost::interprocess;
 using namespace weasel;
 
 ClientImpl::ClientImpl()
