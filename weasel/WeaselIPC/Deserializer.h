@@ -13,19 +13,21 @@ namespace weasel
 
 		Deserializer(ResponseParser* pTarget);
 		virtual ~Deserializer();
-		virtual void Store(Deserializer::KeyType k, wstring const& value);
+		virtual void Store(Deserializer::KeyType k, std::wstring const& value);
 
 		static void Define(std::wstring const& action, Factory factory);
 		static bool Require(std::wstring const& action, ResponseParser* pTarget);
 		static void Feed(std::wstring const& line);
 
+	protected:
+		ResponseParser* m_pTarget;
+
 	private:
-		static void _Dispatch(Deserializer::KeyType k, wstring const& value);
+		static void _Dispatch(Deserializer::KeyType k, std::wstring const& value);
 
 		static std::map<std::wstring, Factory> s_factories;
 		static std::map<std::wstring, Ptr> s_instances;
 
-		ResponseParser* m_pTarget;
 	};
 
 }

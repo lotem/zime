@@ -1,35 +1,10 @@
 #pragma once
-#include "ICollectable.h"
+#include "Deserializer.h"
 
-typedef 
-enum _ACTIONTYPE
+class Action : public weasel::Deserializer
 {
-	NOOP,
-	COMMIT,
-	UPDATE_CTX,
-	UPDATE_STATUS
-}ACTIONTYPE;
-
-namespace weasel
-{
-	class CAction : ICollectable
-	{
-	public:
-		CAction(void)
-			:actionType(NOOP)
-		{
-		}
-
-		virtual ~CAction(void)
-		{
-		}
-
-		virtual bool Collect(const string& str)
-		{
-			return true;
-		}
-
-	private:
-		ACTIONTYPE actionType;
-	};
-}
+public:
+	Action(weasel::ResponseParser* pTarget);
+	virtual ~Action();
+	virtual void Store(weasel::Deserializer::KeyType k, std::wstring const& value);
+};
