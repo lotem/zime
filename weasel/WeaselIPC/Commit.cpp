@@ -5,13 +5,13 @@
 using namespace weasel;
 
 
-static const wstring Commit_NAME = L"Commit";
+static const wstring COMMIT_NAME = L"commit";
 
 static struct CommitFactory
 {
 	CommitFactory()
 	{
-		Deserializer::Define(Commit_NAME, CommitFactory::Create);
+		Deserializer::Define(COMMIT_NAME, CommitFactory::Create);
 	}
 	static Deserializer::Ptr Create(ResponseParser* pTarget)
 	{
