@@ -11,11 +11,49 @@ boost::mutex WeaselIME::_mutex;
 
 static bool launch_server()
 {
-	// TODO: 暂写定一个路径 应改为从注册表读取安装目录
-	int ret = (int)ShellExecute( NULL, L"open", L"D:\\home\\devel\\weasel\\Debug\\WeaselServer.exe", NULL, NULL, SW_HIDE );
-	if (ret <= 32)
+	WCHAR WEASEL[] = L"小狼毫";
+
+	// 從註冊表取得server位置
+	HKEY hKey;
+	LSTATUS ret = RegOpenKey(HKEY_LOCAL_MACHINE, WeaselIME::GetRegKey(), &hKey);
+	if (ret != ERROR_SUCCESS)
 	{
-		MessageBox(NULL, L"服務進程啓動不起來:(", L"小狼毫", MB_OK | MB_ICONERROR);
+		MessageBox(NULL, L"註冊表信息無影了", WEASEL, MB_ICONERROR | MB_OK);
+		return false;
+	}
+
+	WCHAR value[MAX_PATH];
+	DWORD len = sizeof(value);
+	DWORD type = 0;
+	ret = RegQueryValueEx(hKey, L"WeaselRoot", NULL, &type, (LPBYTE)value, &len);
+	if (ret != ERROR_SUCCESS)
+	{
+		MessageBox(NULL, L"未設置 WeaselRoot", WEASEL, MB_ICONERROR | MB_OK);
+		RegCloseKey(hKey);
+		return false;
+	}
+	wpath weaselRoot(value);
+
+	len = sizeof(value);
+	type = 0;
+	ret = RegQueryValueEx(hKey, L"ServerExecutable", NULL, &type, (LPBYTE)value, &len);
+	if (ret != ERROR_SUCCESS)
+	{
+		MessageBox(NULL, L"未設置 ServerExecutable", WEASEL, MB_ICONERROR | MB_OK);
+		RegCloseKey(hKey);
+		return false;
+	}
+	wpath serverPath(weaselRoot / value);
+
+	RegCloseKey(hKey);
+
+	// 啓動服務進程
+	wstring exe = serverPath.native_file_string();
+	wstring dir = weaselRoot.native_file_string();
+	int retCode = (int)ShellExecute(NULL, L"open", exe.c_str(), NULL, dir.c_str(), SW_HIDE);
+	if (retCode <= 32)
+	{
+		MessageBox(NULL, L"服務進程啓動不起來 :(", WEASEL, MB_ICONERROR | MB_OK);
 		return false;
 	}
 	return true;

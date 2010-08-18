@@ -31,7 +31,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	return TRUE;
 }
 
-BOOL _CopyFile(const wstring& src, const wstring& dest)
+BOOL copy_file(const wstring& src, const wstring& dest)
 {
 	BOOL ret = CopyFile(src.c_str(), dest.c_str(), FALSE);
 	if (!ret)
@@ -50,7 +50,7 @@ BOOL _CopyFile(const wstring& src, const wstring& dest)
 	return ret;
 }
 
-BOOL _DeleteFile(const wstring& file)
+BOOL delete_file(const wstring& file)
 {
 	BOOL ret = DeleteFile(file.c_str());
 	if (!ret)
@@ -73,21 +73,21 @@ BOOL _DeleteFile(const wstring& file)
 //
 
 extern "C" __declspec(dllexport)
-void RegisterIME(HWND hWnd, HINSTANCE hInstance, LPWSTR lpszCmdLine, int nCmdShow)
+void install(HWND hWnd, HINSTANCE hInstance, LPWSTR lpszCmdLine, int nCmdShow)
 {
 	WCHAR path[MAX_PATH];
 
 	GetModuleFileName(WeaselIME::GetModuleInstance(), path, _countof(path));
-	wstring srcPath = path;
+	wpath srcPath(path);
 	
 	ExpandEnvironmentStrings(L"%SystemRoot%\\system32\\", path, _countof(path));
-	wstring destPath = path;
+	wpath destPath(path);
+	destPath /= WeaselIME::GetIMEFileName();
 
 	// 复制 weasel.ime 到系统目录
-	destPath += WeaselIME::GetIMEFileName();
-	if (!_CopyFile(srcPath, destPath))
+	if (!copy_file(srcPath.native_file_string(), destPath.native_file_string()))
 	{
-		MessageBox(hWnd, destPath.c_str(), L"安裝失敗", MB_ICONERROR | MB_OK);
+		MessageBox(hWnd, destPath.native_file_string().c_str(), L"安裝失敗", MB_ICONERROR | MB_OK);
 		return;
 	}
 
@@ -101,13 +101,13 @@ void RegisterIME(HWND hWnd, HINSTANCE hInstance, LPWSTR lpszCmdLine, int nCmdSho
 		return;
 	}
 
-	wstring rootDir = srcPath.substr(0, srcPath.find_last_of(L'\\'));
+	wstring rootDir = srcPath.parent_path().native_directory_string();
 	ret = RegSetValueEx(hKey, L"WeaselRoot", 0, REG_SZ, 
 		                (const BYTE*)rootDir.c_str(),  
 						(rootDir.length() + 1) * sizeof(WCHAR));
 	if (FAILED(HRESULT_FROM_WIN32(ret)))
 	{
-		MessageBox(hWnd, L"無法寫入WeaselRoot", L"安裝失敗", MB_ICONERROR | MB_OK);
+		MessageBox(hWnd, L"無法寫入 WeaselRoot", L"安裝失敗", MB_ICONERROR | MB_OK);
 		return;
 	}
 
@@ -117,14 +117,14 @@ void RegisterIME(HWND hWnd, HINSTANCE hInstance, LPWSTR lpszCmdLine, int nCmdSho
 						(executable.length() + 1) * sizeof(WCHAR));
 	if (FAILED(HRESULT_FROM_WIN32(ret)))
 	{
-		MessageBox(hWnd, L"無法寫入ServerExecutable", L"安裝失敗", MB_ICONERROR | MB_OK);
+		MessageBox(hWnd, L"無法寫入 ServerExecutable", L"安裝失敗", MB_ICONERROR | MB_OK);
 		return;
 	}
 
 	RegCloseKey(hKey);
 
 	// 注册输入法
-	HKL hKL = ImmInstallIME(destPath.c_str(), WeaselIME::GetIMEName());
+	HKL hKL = ImmInstallIME(destPath.native_file_string().c_str(), WeaselIME::GetIMEName());
 	if (!hKL)
 	{
 		DWORD dwErr = GetLastError();
@@ -138,7 +138,7 @@ void RegisterIME(HWND hWnd, HINSTANCE hInstance, LPWSTR lpszCmdLine, int nCmdSho
 }
 
 extern "C" __declspec(dllexport)
-void UnregisterIME(HWND hWnd, HINSTANCE hInstance, LPWSTR lpszCmdLine, int nCmdShow)
+void uninstall(HWND hWnd, HINSTANCE hInstance, LPWSTR lpszCmdLine, int nCmdShow)
 {
 	const WCHAR KL_KEY[] = L"SYSTEM\\CurrentControlSet\\Control\\Keyboard Layouts";
 	const WCHAR PRELOAD_KEY[] = L"Keyboard Layout\\Preload";
@@ -190,7 +190,7 @@ void UnregisterIME(HWND hWnd, HINSTANCE hInstance, LPWSTR lpszCmdLine, int nCmdS
 					continue;
 				vector<wstring> preloads;
 				wstring number;
-				for (int i = 1; true; ++i)
+				for (size_t i = 1; true; ++i)
 				{
 					number = (boost::wformat(L"%1%") % i).str();
 					DWORD type = 0;
@@ -235,7 +235,7 @@ void UnregisterIME(HWND hWnd, HINSTANCE hInstance, LPWSTR lpszCmdLine, int nCmdS
 	ExpandEnvironmentStrings(L"%SystemRoot%\\system32\\", path, _countof(path));
 	wstring file = path;
 	file += WeaselIME::GetIMEFileName();
-	if (!_DeleteFile(file))
+	if (!delete_file(file))
 	{
 		MessageBox(hWnd, file.c_str(), L"卸載失敗", MB_ICONERROR | MB_OK);
 		return;
