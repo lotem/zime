@@ -19,7 +19,7 @@ ClientImpl::~ClientImpl()
 bool ClientImpl::Connect(ServerLauncher const& launcher)
 {
 	serverWnd = FindWindow( WEASEL_IPC_WINDOW, NULL );
-	if( !serverWnd && !launcher.empty() )
+	if ( !serverWnd && !launcher.empty() )
 	{
 		HANDLE hEvent = CreateEvent( NULL, TRUE, FALSE, WEASEL_IPC_READY_EVENT );
 		// 启动服务进程
@@ -29,7 +29,7 @@ bool ClientImpl::Connect(ServerLauncher const& launcher)
 			serverWnd = NULL;
 			return false;
 		}
-		WaitForSingleObject( hEvent, 10000 );
+		WaitForSingleObject( hEvent, 2000 );
 		CloseHandle(hEvent);
 		serverWnd = FindWindow( WEASEL_IPC_WINDOW, NULL );
 	}

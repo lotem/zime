@@ -100,6 +100,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="copy $(SolutionDir)\lib\boost_python-vc90-mt-gd-1_43.dll $(OutDir)"
 			/>
 		</Configuration>
 		<Configuration
@@ -182,6 +183,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine=""
 			/>
 		</Configuration>
 	</Configurations>
