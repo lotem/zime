@@ -2,6 +2,7 @@
 #include "Deserializer.h"
 #include "ActionLoader.h"
 #include "Committer.h"
+#include "Contexter.h"
 
 using namespace weasel;
 
@@ -17,6 +18,7 @@ void Deserializer::Initialize(ResponseParser* pTarget)
 		// TODO: extend the parser's functionality in the future by defining more actions here
 		Define(L"action", ActionLoader::Create);
 		Define(L"commit", Committer::Create);
+		Define(L"ctx", Contexter::Create);
 	}
 
 	// loaded by default
@@ -26,6 +28,7 @@ void Deserializer::Initialize(ResponseParser* pTarget)
 void Deserializer::Define(std::wstring const& action, Factory factory)
 {
 	s_factories[action] = factory;
+	//s_factories.insert(make_pair(action, factory));
 }
 
 bool Deserializer::Require(std::wstring const& action, ResponseParser* pTarget)
@@ -41,6 +44,8 @@ bool Deserializer::Require(std::wstring const& action, ResponseParser* pTarget)
 	}
 
 	Factory& factory = i->second;
+
 	pTarget->deserializers[action] = factory(pTarget);
+	//pTarget->deserializers.insert(make_pair(action, factory(pTarget)));
 	return true;
 }
