@@ -1,10 +1,10 @@
 #pragma once
 #include "Deserializer.h"
 
-class Commit : public weasel::Deserializer
+class ActionLoader : public weasel::Deserializer
 {
 public:
-	Commit(weasel::ResponseParser* pTarget);
-	virtual ~Commit();
+	ActionLoader(weasel::ResponseParser* pTarget);
+	virtual ~ActionLoader();
 	virtual void Store(weasel::Deserializer::KeyType k, std::wstring const& value);
 };

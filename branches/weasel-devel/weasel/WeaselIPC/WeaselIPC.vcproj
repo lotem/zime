@@ -186,11 +186,11 @@
 				Name="Deserializer"
 				>
 				<File
-					RelativePath=".\Action.cpp"
+					RelativePath=".\ActionLoader.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\Commit.cpp"
+					RelativePath=".\Committer.cpp"
 					>
 				</File>
 			</Filter>
@@ -228,11 +228,11 @@
 				Name="Deserializer"
 				>
 				<File
-					RelativePath=".\Action.h"
+					RelativePath=".\ActionLoader.h"
 					>
 				</File>
 				<File
-					RelativePath=".\Commit.h"
+					RelativePath=".\Committer.h"
 					>
 				</File>
 			</Filter>
