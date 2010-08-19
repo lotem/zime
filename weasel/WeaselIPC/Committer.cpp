@@ -5,21 +5,10 @@
 using namespace weasel;
 
 
-static const wstring ACTION_NAME = L"commit";
-
-static struct CommitterFactory
+Deserializer::Ptr Committer::Create(ResponseParser* pTarget)
 {
-	CommitterFactory()
-	{
-		Deserializer::Define(ACTION_NAME, CommitterFactory::Create);
-	}
-	static Deserializer::Ptr Create(ResponseParser* pTarget)
-	{
-		return Deserializer::Ptr(new Committer(pTarget));
-	}
-
-} committer_factory;  // define this deserializer
-
+	return Deserializer::Ptr(new Committer(pTarget));
+}
 
 Committer::Committer(ResponseParser* pTarget)
 : Deserializer(pTarget)
@@ -30,9 +19,9 @@ Committer::~Committer()
 {
 }
 
-void Committer::Store(Deserializer::KeyType k, wstring const& value)
+void Committer::Store(Deserializer::KeyType const& key, wstring const& value)
 {
 	//Store Commit str
-	if (k == Deserializer::KeyType())
+	if (key.size() == 1)
 		m_pTarget->r_commit = value;
 }

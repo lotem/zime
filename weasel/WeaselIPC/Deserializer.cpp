@@ -1,11 +1,27 @@
 #include "stdafx.h"
 #include "Deserializer.h"
+#include "ActionLoader.h"
+#include "Committer.h"
 
 using namespace weasel;
 
 
 map<wstring, Deserializer::Factory> Deserializer::s_factories;
 
+
+void Deserializer::Initialize(ResponseParser* pTarget)
+{
+	if (s_factories.empty())
+	{
+		// register factory methods
+		// TODO: extend the parser's functionality in the future by defining more actions here
+		Define(L"action", ActionLoader::Create);
+		Define(L"commit", Committer::Create);
+	}
+
+	// loaded by default
+	Require(L"action", pTarget);
+}
 
 void Deserializer::Define(std::wstring const& action, Factory factory)
 {
