@@ -1,35 +1,35 @@
 #include "stdafx.h"
 #include "Deserializer.h"
-#include "Action.h"
+#include "ActionLoader.h"
 
 using namespace weasel;
 
 static const wstring ACTION_NAME = L"action";
 
-static struct ActionFactory
+static struct ActionLoaderFactory
 {
-	ActionFactory()
+	ActionLoaderFactory()
 	{
-		Deserializer::Define(ACTION_NAME, ActionFactory::Create);
+		Deserializer::Define(ACTION_NAME, ActionLoaderFactory::Create);
 	}
 	static Deserializer::Ptr Create(ResponseParser* pTarget)
 	{
-		return Deserializer::Ptr(new Action(pTarget));
+		return Deserializer::Ptr(new ActionLoader(pTarget));
 	}
 
-} action_factory;  // define this deserializer
+} action_loader_factory;  // define this deserializer
 
 
-Action::Action(ResponseParser* pTarget)
+ActionLoader::ActionLoader(ResponseParser* pTarget)
 : Deserializer(pTarget)
 {
 }
 
-Action::~Action()
+ActionLoader::~ActionLoader()
 {
 }
 
-void Action::Store(Deserializer::KeyType k, wstring const& value)
+void ActionLoader::Store(Deserializer::KeyType k, wstring const& value)
 {
 	Deserializer::KeyType end;
 	if (k == end)  // "action" matches the entire key
