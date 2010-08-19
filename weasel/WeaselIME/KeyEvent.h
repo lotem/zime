@@ -33,6 +33,7 @@ namespace ibus
 	{
 		VoidSymbol = 0xFFFFFF,
 		space = 0x020,
+		grave = 0x060,
 		BackSpace = 0xFF08,
 		Tab = 0xFF09,
 		Linefeed = 0xFF0A,
