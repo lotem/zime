@@ -309,8 +309,9 @@ BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeySta
 		weasel::KeyEvent ke;
 		if (!ConvertKeyEvent(vKey, kinfo, lpbKeyState, ke))
 		{
-			// known key event
+			// unknown key event
 			m_ctx.clear();
+			m_ctx.aux.str = (boost::wformat(L"unknown key event vKey: %x, scanCode: %x, isKeyUp: %u") % vKey % kinfo.scanCode % kinfo.isKeyUp).str();
 			return FALSE;
 		}
 		m_ctx.aux.str = (boost::wformat(L"keycode: %x, mask: %x, isKeyUp: %u") % ke.keycode % ke.mask % kinfo.isKeyUp).str();

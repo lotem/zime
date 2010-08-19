@@ -145,6 +145,8 @@ ibus::Keycode TranslateKeycode(UINT vkey)
 	case VK_RCONTROL:	return ibus::Control_R;
 	case VK_LMENU:	return ibus::Alt_L;
 	case VK_RMENU:	return ibus::Alt_R;
+
+	case VK_OEM_3:	return ibus::grave;
 	}
 	return ibus::Null;
 }
