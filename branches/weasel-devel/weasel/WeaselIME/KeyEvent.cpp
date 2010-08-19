@@ -12,19 +12,19 @@ bool ConvertKeyEvent(UINT vkey, KeyInfo kinfo, const LPBYTE keyState, weasel::Ke
 	result.mask = ibus::NULL_MASK;
 
 	if ((keyState[VK_SHIFT] & KEY_DOWN) != 0)
-		result.mask &= ibus::SHIFT_MASK;
+		result.mask |= ibus::SHIFT_MASK;
 
 	if ((keyState[VK_CAPITAL] & TOGGLED) != 0)
-		result.mask &= ibus::LOCK_MASK;
+		result.mask |= ibus::LOCK_MASK;
 
 	if ((keyState[VK_CONTROL] & KEY_DOWN) != 0)
-		result.mask &= ibus::CONTROL_MASK;
+		result.mask |= ibus::CONTROL_MASK;
 
 	if ((keyState[VK_MENU] & KEY_DOWN) != 0)
-		result.mask &= ibus::ALT_MASK;
+		result.mask |= ibus::ALT_MASK;
 
 	if (kinfo.isKeyUp)
-		result.mask &= ibus::RELEASE_MASK;
+		result.mask |= ibus::RELEASE_MASK;
 
 	// set keycode
 	ibus::Keycode code = TranslateKeycode(vkey);
@@ -36,10 +36,10 @@ bool ConvertKeyEvent(UINT vkey, KeyInfo kinfo, const LPBYTE keyState, weasel::Ke
 
 	const int buf_len = 8;
 	WCHAR buf[buf_len];
-	int ret = ToUnicodeEx(vkey, (UINT)kinfo, keyState, buf, buf_len, 0, NULL);
-	if (ret != 1)
+	int ret = ToUnicodeEx(vkey, UINT(kinfo), keyState, buf, buf_len, 0, NULL);
+	if (ret == 1)
 	{
-		result.keycode = (UINT)buf[0];
+		result.keycode = UINT(buf[0]);
 		return true;
 	}
 

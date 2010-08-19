@@ -12,7 +12,11 @@ BOOL WINAPI ImeInquire(IMEINFO* lpIMEInfo, LPWSTR lpszUIClass, DWORD dwSystemInf
 	if (!lpIMEInfo || !lpszUIClass)
 		return FALSE;
 
-	// TODO: test winlogon against dwSystemInfoFlags
+	if (dwSystemInfoFlags & IME_SYSINFO_WINLOGON)
+	{
+		// TODO: disable input method in winlogon.exe (not tested)
+		return FALSE;
+	}
 
 	wcscpy(lpszUIClass, WeaselIME::GetUIClassName());
 
@@ -52,11 +56,11 @@ LRESULT WINAPI ImeEscape(HIMC hIMC, UINT uSubFunc, LPVOID lpData)
 	return TRUE;
 }
 
-BOOL WINAPI ImeProcessKey(HIMC hIMC, UINT vKey, LPARAM lKeyData, CONST LPBYTE lpbKeyState)
+BOOL WINAPI ImeProcessKey(HIMC hIMC, UINT vKey, LPARAM lKeyData, const LPBYTE lpbKeyState)
 {
 	BOOL bEaten = FALSE;
 	shared_ptr<WeaselIME> p = WeaselIME::GetInstance(hIMC);
-	bEaten = p->ProcessKeyEvent(vKey, KeyInfo(lKeyData), lpbKeyState);
+	bEaten = p->ProcessKeyEvent(vKey, lKeyData, lpbKeyState);
 	return bEaten;
 }
 
