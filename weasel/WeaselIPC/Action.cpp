@@ -35,11 +35,10 @@ void Action::Store(Deserializer::KeyType k, wstring const& value)
 	if (k == end)  // "action" matches the entire key
 	{
 		// split value by L","
-		typedef vector<std::wstring> split_vector_type;
-		split_vector_type vecAction;
+		vector<wstring> vecAction;
 		split(vecAction, value, is_any_of(L","));
 		// require specified action deserializers
-		for(split_vector_type::const_iterator it = vecAction.begin(); it != vecAction.end(); ++it)
+		for(Deserializer::KeyType it = vecAction.begin(); it != vecAction.end(); ++it)
 		{
 			Deserializer::Require(*it, m_pTarget);
 		}

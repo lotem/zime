@@ -34,10 +34,15 @@ void ResponseParser::Feed(const wstring& line)
 	vector<wstring> key;
 	wstring value;
 
-	// TODO: extract key (split by L'.') and value
-	// cf. boost::string_algo
+	// extract key (split by L'.') and value
+	vector<wstring> kv;
+	split(kv, line, is_any_of(L"="));
+	if (kv.size() != 2)
+		return;
+	split(key, kv[0], is_any_of(L"."));
 	if (key.empty())
 		return;
+	value = kv[1];
 
 	Deserializer::KeyType k = key.begin();
 

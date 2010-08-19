@@ -27,7 +27,7 @@ namespace weasel
 		bool operator() (LPWSTR buffer, UINT length);
 
 		// 處理一行回應文本
-		void Feed(const wstring& line);
+		void Feed(const std::wstring& line);
 	};
 
 }
