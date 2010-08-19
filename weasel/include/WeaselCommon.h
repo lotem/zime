@@ -89,10 +89,13 @@ namespace weasel
 		CandidateInfo cinfo;
 	};
 
+	// 由ime管理
 	struct Status
 	{
-		Status() { zhMode = false; }
-		// 转换开关，false：西文，true：中文
+		Status() : zhMode(false), composing(false) {}
+		// 中文轉換開關
 		bool zhMode;
+		// 寫作狀態
+		bool composing;
 	};
 }

@@ -19,7 +19,6 @@
 
 #include <boost/filesystem.hpp>
 #include <boost/format.hpp>
-#include <boost/interprocess/streams/bufferstream.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/thread.hpp>
 
@@ -30,5 +29,4 @@
 
 using namespace std;
 using boost::filesystem::wpath;
-using boost::interprocess::wbufferstream;
 using boost::shared_ptr;
