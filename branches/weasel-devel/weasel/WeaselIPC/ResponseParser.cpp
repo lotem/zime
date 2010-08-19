@@ -7,7 +7,7 @@ using namespace weasel;
 ResponseParser::ResponseParser(std::wstring& commit, Context& context, Status& status)
  : r_commit(commit), r_context(context), r_status(status)
 {
-	Deserializer::Require(L"action", this);
+	Deserializer::Initialize(this);
 }
 
 bool ResponseParser::operator() (LPWSTR buffer, UINT length)
@@ -28,25 +28,23 @@ bool ResponseParser::operator() (LPWSTR buffer, UINT length)
 void ResponseParser::Feed(const wstring& line)
 {
 	// ignore blank lines and comments
-	if (line.empty() || line.find_first_of(L'#') == wstring::npos)
+	if (line.empty() || line.find_first_of(L'#') == 0)
 		return;
 
-	vector<wstring> key;
+	Deserializer::KeyType key;
 	wstring value;
 
 	// extract key (split by L'.') and value
 	wstring::size_type sep_pos = line.find_first_of(L'=');
 	if (sep_pos == wstring::npos)
 		return;
-	split(key, line.substr(sep_pos), is_any_of(L"."));
+	split(key, line.substr(0, sep_pos), is_any_of(L"."));
 	if (key.empty())
 		return;
-	value = line.substr(0, sep_pos);
-
-	Deserializer::KeyType k = key.begin();
+	value = line.substr(sep_pos + 1);
 
 	// first part of the key serve as action type
-	wstring const& action = *k;
+	wstring const& action = key[0];
 	
 	// get required action deserializer instance
 	map<wstring, Deserializer::Ptr>::iterator i = deserializers.find(action);
@@ -58,5 +56,5 @@ void ResponseParser::Feed(const wstring& line)
 
 	// dispatch
 	Deserializer::Ptr p = i->second;
-	p->Store(++k, value);
+	p->Store(key, value);
 }
