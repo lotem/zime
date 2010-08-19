@@ -114,5 +114,7 @@ void ContextUpdater::_StoreCand(Deserializer::KeyType k, wstring const& value)
 	}
 
 	int idx = _wtoi(k[2].c_str());
+	if (idx >= cinfo.candies.size())
+		return;
 	cinfo.candies[idx].str = value;
 }

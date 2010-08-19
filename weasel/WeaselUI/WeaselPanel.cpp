@@ -63,6 +63,9 @@ CSize WeaselPanel::_GetWindowSize()
 
 	width += 2 * MARGIN_X;
 	height += 2 * MARGIN_Y;
+
+	width = max(width, MIN_WIDTH);
+	height = max(height, MIN_HEIGHT);
 	
 	return CSize(width, height);
 }
@@ -157,6 +160,8 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 				p.y -= HIGHLIGHT_PADDING_TOP;
 				szout.cy += HIGHLIGHT_PADDING_TOP;
 				szout.cy += HIGHLIGHT_PADDING_BOTTOM;
+				//if (range.end == preedit.length())
+				//	szout.cx = xRight - p.x;
 				dc.BitBlt(p.x, p.y, szout.cx, szout.cy, dc.m_hDC, p.x, p.y, DSTINVERT);
 			}
 		}

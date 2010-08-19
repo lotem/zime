@@ -80,6 +80,9 @@ class LookupTable:
                     self.__cursor_pos = nr_candidates - 1
                 return True
             else:
+                if self.__cursor_pos > 0:
+                    self.__cursor_pos = 0
+                    return True
                 return False
 
         self.__cursor_pos -= self.__page_size
