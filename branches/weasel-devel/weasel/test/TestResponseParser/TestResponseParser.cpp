@@ -45,7 +45,7 @@ void test_2()
 void test_3()
 {
 	WCHAR resp[] = 
-		L"action=update_ctx\n"
+		L"action=ctx\n"
 		L"ctx.preedit=Œ‘×÷´®=3.14\n"
 		L"ctx.aux=sie'zuoh'chuan=3.14\n"
 		;
@@ -64,7 +64,7 @@ void test_3()
 void test_4()
 {
 	WCHAR resp[] = 
-		L"action=commit,update_ctx\n"
+		L"action=commit,ctx\n"
 		L"ctx.preedit=ºòßxÒÒ=3.14\n"
 		L"ctx.cursor=0,3\n"
 		L"ctx.cand.length=2\n"
