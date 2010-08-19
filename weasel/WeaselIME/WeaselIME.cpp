@@ -300,9 +300,24 @@ LRESULT WeaselIME::_OnIMENotify(LPINPUTCONTEXT lpIMC, WPARAM wp, LPARAM lp)
 	return 0;
 }
 
-BOOL WeaselIME::ProcessKeyEvent(UINT vKey, const KeyInfo kinfo, const LPBYTE lpbKeyState)
+BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeyState)
 {
 	BOOL taken = FALSE;
+
+	// TODO: test code
+	{
+		weasel::KeyEvent ke;
+		if (!ConvertKeyEvent(vKey, kinfo, lpbKeyState, ke))
+		{
+			// known key event
+			m_ctx.clear();
+			return FALSE;
+		}
+		m_ctx.aux.str = (boost::wformat(L"keycode: %x, mask: %x, isKeyUp: %u") % ke.keycode % ke.mask % kinfo.isKeyUp).str();
+		_UpdateContext(m_ctx);
+		return FALSE;
+
+	}
 
 	// TODO: 暂不处理KEY_UP事件（宫保拼音用KEY_UP）
 	if (kinfo.isKeyUp)

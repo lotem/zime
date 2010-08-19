@@ -16,9 +16,9 @@ struct KeyInfo
 		*this = *reinterpret_cast<KeyInfo*>(&lparam);
 	}
 
-	operator UINT()
+	operator UINT32()
 	{
-		return *reinterpret_cast<UINT*>(this);
+		return *reinterpret_cast<UINT32*>(this);
 	}
 };
 
@@ -207,7 +207,7 @@ namespace ibus
 		Null = 0
 	};
 
-	// modifiers
+	// modifiers, modified to fit a UINT16
 
 	enum Modifier
 	{
@@ -222,23 +222,18 @@ namespace ibus
 		MOD3_MASK = 1 << 5,
 		MOD4_MASK = 1 << 6,
 		MOD5_MASK = 1 << 7,
-		BUTTON1_MASK = 1 << 8,
-		BUTTON2_MASK = 1 << 9,
-		BUTTON3_MASK = 1 << 10,
-		BUTTON4_MASK = 1 << 11,
-		BUTTON5_MASK = 1 << 12,
 
-		HANDLED_MASK = 1 << 24,
-		IGNORED_MASK = 1 << 25,
-		FORWARD_MASK = 1 << 25,
+		HANDLED_MASK = 1 << 8,
+		IGNORED_MASK = 1 << 9,
+		FORWARD_MASK = 1 << 9,
 
-		SUPER_MASK = 1 << 26,
-		HYPER_MASK = 1 << 27,
-		META_MASK = 1 << 28,
+		SUPER_MASK = 1 << 10,
+		HYPER_MASK = 1 << 11,
+		META_MASK = 1 << 12,
 
-		RELEASE_MASK = 1 << 30,
+		RELEASE_MASK = 1 << 14,
 
-		MODIFIER_MASK = 0x5c001fff
+		MODIFIER_MASK = 0x2fff
 	};
 
 }

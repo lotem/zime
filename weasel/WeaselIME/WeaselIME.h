@@ -46,7 +46,7 @@ public:
 	LRESULT OnIMESelect(BOOL fSelect);
 	LRESULT OnIMEFocus(BOOL fFocus);
 	LRESULT OnUIMessage(HWND hWnd, UINT uMsg, WPARAM wp, LPARAM lp);
-	BOOL ProcessKeyEvent(UINT vKey, const KeyInfo kinfo, const LPBYTE lpbKeyState);
+	BOOL ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeyState);
 
 private:
 	HRESULT _Initialize();
