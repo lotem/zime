@@ -28,21 +28,20 @@ bool ResponseParser::operator() (LPWSTR buffer, UINT length)
 void ResponseParser::Feed(const wstring& line)
 {
 	// ignore blank lines and comments
-	if (line.empty() || line.find_first_of(L'#') == 0)
+	if (line.empty() || line.find_first_of(L'#') == wstring::npos)
 		return;
 
 	vector<wstring> key;
 	wstring value;
 
 	// extract key (split by L'.') and value
-	vector<wstring> kv;
-	split(kv, line, is_any_of(L"="));
-	if (kv.size() != 2)
+	wstring::size_type sep_pos = line.find_first_of(L'=');
+	if (sep_pos == wstring::npos)
 		return;
-	split(key, kv[0], is_any_of(L"."));
+	split(key, line.substr(sep_pos), is_any_of(L"."));
 	if (key.empty())
 		return;
-	value = kv[1];
+	value = line.substr(0, sep_pos);
 
 	Deserializer::KeyType k = key.begin();
 

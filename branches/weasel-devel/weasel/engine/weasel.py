@@ -67,27 +67,31 @@ class Session:
             r.append(u'commit=%s\n' % u''.join(self.__commit)) 
         if self.__preedit:
             action.add(u'update_ctx')
-            (s, attrs) = self.__preedit
-            r.append(u'preedit=%s\n' % s)
+            (s, attrs, cursor) = self.__preedit
+            r.append(u'ctx.preedit=%s\n' % s)
             if attrs:
-                r.append(u'preedit.attr.length=%d\n' % len(attrs))
+                r.append(u'ctx.preedit.attr.length=%d\n' % len(attrs))
                 for i in range(len(attrs)):
                     (extent, type) = attrs[i]
-                    r.append(u'preedit.attr.%d.range=%d,%d\n' % (i, extent[0], extent[1]))
-                    r.append(u'preedit.attr.%d.type=%s\n' % (i, type))
-        if self.__cand:
-            action.add(u'update_ctx')
-            (current_page, total_pages, highlighted, cands) = self.__cand
-            r.append(u'cand.current_page=%d\n' % current_page)
-            r.append(u'cand.total_pages=%d\n' % total_pages)
-            r.append(u'cand.highlighted=%d\n' % highlighted)
-            r.append(u'cand.length=%d\n' % len(cands))
-            for i in range(len(cands)):
-                r.append(u'cand.%d=%s\n' % (i, cands[i][0]))
+                    r.append(u'ctx.preedit.attr.%d.range=%d,%d\n' % (i, extent[0], extent[1]))
+                    r.append(u'ctx.preedit.attr.%d.type=%s\n' % (i, type))
+            if cursor:
+                r.append(u'ctx.preedit.cursor=%d,%d\n' % cursor)
         if self.__aux:
             action.add(u'update_ctx')
             (s, attrs) = self.__aux
-            r.append(u'aux=%s\n' % s)
+            r.append(u'ctx.aux=%s\n' % s)
+        if self.__cand:
+            action.add(u'update_ctx')
+            (current_page, total_pages, cursor, cands) = self.__cand
+            n = len(cands)
+            r.append(u'ctx.cand.length=%d\n' % n)
+            for i in range(n):
+                r.append(u'ctx.cand.%d=%s\n' % (i, cands[i][0]))
+            r.append(u'ctx.cand.cursor=%d\n' % cursor)
+            r.append(u'ctx.cand.page=%d/%d\n' % (current_page, total_pages))
+            #r.append(u'ctx.cand.current_page=%d\n' % current_page)
+            #r.append(u'ctx.cand.total_pages=%d\n' % total_pages)
         #self.__clear()
         if not action:
             return u'action=noop\n'
@@ -106,24 +110,20 @@ class Session:
 
     def update_preedit(self, s, start, end):
         logger.debug(u'preedit: [%s[%s]%s]' % (s[:start], s[start:end], s[end:]))
-        if s:
-            attrs = [((start, end), u'HIGHLIGHTED')] if start < end else None
-            self.__preedit = (s, attrs)
-        else: 
-            self.__preedit = None
+        #attrs = [((start, end), u'HIGHLIGHTED')] if start < end else None
+        #self.__preedit = (s, attrs)
+        cursor = (start, end) if start < end else None
+        self.__preedit = (s, None, cursor)
 
     def update_aux_string(self, s):
         logger.debug(u'aux: [%s]' % s)
-        if s:
-            self.__aux = (s, None)
-        else:
-            self.__aux = None
+        self.__aux = (s, None)
 
     def update_candidates(self, candidates):
         self.__lookup_table.clean()
         self.__lookup_table.show_cursor(False)
         if not candidates:
-            self.__cand = None
+            self.__cand = (0, 0, 0, [])
         else:
             for c in candidates:
                 self.__lookup_table.append_candidate(ibus.Text(c[0]))
