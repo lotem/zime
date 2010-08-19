@@ -12,9 +12,9 @@ namespace weasel
 		typedef boost::shared_ptr<Deserializer> Ptr;
 		typedef boost::function<Ptr (ResponseParser* pTarget)> Factory;
 
-		Deserializer(ResponseParser* pTarget);
-		virtual ~Deserializer();
-		virtual void Store(KeyType k, std::wstring const& value);
+		Deserializer(ResponseParser* pTarget) : m_pTarget(pTarget) {}
+		virtual ~Deserializer() {}
+		virtual void Store(KeyType k, std::wstring const& value) {}
 
 		static void Define(std::wstring const& action, Factory factory);
 		static bool Require(std::wstring const& action, ResponseParser* pTarget);

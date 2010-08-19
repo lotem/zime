@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include <ResponseParser.h>
 #include "WeaselIME.h"
 
 HINSTANCE WeaselIME::_hModule = 0;
@@ -57,13 +58,6 @@ static bool launch_server()
 		return false;
 	}
 	return true;
-}
-
-
-// TODO: replace read_context() with boost::ref(weasel::ResponseParser(...))
-static bool read_context(LPWSTR buffer, UINT length, weasel::Context& ctx)
-{
-	return false;
 }
 
 LPCWSTR WeaselIME::GetIMEName()
@@ -308,7 +302,7 @@ LRESULT WeaselIME::_OnIMENotify(LPINPUTCONTEXT lpIMC, WPARAM wp, LPARAM lp)
 
 BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeyState)
 {
-	BOOL bEaten = FALSE;
+	BOOL taken = FALSE;
 
 	// TODO: 暂不处理KEY_UP事件（宫保拼音用KEY_UP）
 	if (kinfo.isKeyUp)
@@ -324,25 +318,40 @@ BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeySta
 	
 	if (m_client.ProcessKeyEvent(weasel::KeyEvent(vKey, 0)))
 	{
-		weasel::Context result;
-		m_client.GetResponseData(boost::bind<bool>(read_context, _1, _2, boost::ref(result)));
-
-		if (m_ctx.empty())
+		wstring commit;
+		weasel::ResponseParser parser(commit, m_ctx, m_status);
+		bool ok = m_client.GetResponseData(boost::ref(parser));
+		if (!ok)
 		{
-			if (!result.empty())
+			// may suffer loss of data...
+			return TRUE;
+		}
+
+		if (!commit.empty())
+		{
+			if (!m_status.composing)
+			{
 				_StartComposition();
+			}
+			_EndComposition(commit.c_str());
+			m_status.composing = false;
 		}
-		else
-		{
-			if (result.empty())
-				_EndComposition(m_ctx.preedit.str.c_str());
-		}
-		_UpdateContext(result);
 
-		bEaten = TRUE;
+		if (!m_ctx.empty())
+		{
+			if (!m_status.composing)
+			{
+				_StartComposition();
+				m_status.composing = true;
+			}
+		}
+
+		_UpdateContext(m_ctx);
+
+		taken = TRUE;
 	}
 	
-	return bEaten;
+	return taken;
 }
 
 HRESULT WeaselIME::_Initialize()
@@ -497,14 +506,11 @@ void WeaselIME::_UpdateContext(weasel::Context const& ctx)
 {
 	if (!ctx.empty())
 	{
-		m_ctx.preedit = ctx.preedit;
-		m_ctx.aux = weasel::Text(L"testing");
 		m_ui.UpdateContext(m_ctx);
 		m_ui.Show();
 	}
 	else
 	{
-		m_ctx.clear();
 		m_ui.Hide();
 		m_ui.UpdateContext(m_ctx);
 	}

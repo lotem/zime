@@ -3,14 +3,9 @@
 
 using namespace weasel;
 
-Deserializer::Deserializer(ResponseParser* pTarget)
-: m_pTarget(pTarget)
-{
-}
 
-Deserializer::~Deserializer()
-{
-}
+map<wstring, Deserializer::Factory> Deserializer::s_factories;
+
 
 void Deserializer::Define(std::wstring const& action, Factory factory)
 {
