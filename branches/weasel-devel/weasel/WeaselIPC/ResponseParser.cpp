@@ -19,6 +19,10 @@ bool ResponseParser::operator() (LPWSTR buffer, UINT length)
 		getline(bs, line);
 		if (!bs.good())
 			return false;
+
+		// file ends
+		if (line == L".")
+			break;
 		
 		Feed(line);
 	}

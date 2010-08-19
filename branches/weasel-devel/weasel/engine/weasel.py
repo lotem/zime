@@ -94,9 +94,10 @@ class Session:
             #r.append(u'ctx.cand.total_pages=%d\n' % total_pages)
         #self.__clear()
         if not action:
-            return u'action=noop\n'
+            return u'action=noop\n.\n'
         else:
             r.insert(0, u'action=%s\n' % u','.join(sorted(action)))
+            r.append(u'.\n')
             return u''.join(r)
     
     # implement a frontend proxy for zimeengine

@@ -4,10 +4,12 @@
 static const int FONT_POINT_SIZE = 12;
 static LPCWSTR FONT_FACE = L"Microsoft YaHei";
 
+static const int MIN_WIDTH = 200;
+static const int MIN_HEIGHT = 0;
 static const int BORDER = 2;
 static const int MARGIN_X = 12;
 static const int MARGIN_Y = 10;
-static const int SPACING = 6;
+static const int SPACING = 2;
 static const int HIGHLIGHT_PADDING_TOP = 0;
 static const int HIGHLIGHT_PADDING_BOTTOM = 1;
 

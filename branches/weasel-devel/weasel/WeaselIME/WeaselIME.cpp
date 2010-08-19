@@ -304,7 +304,7 @@ BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeySta
 {
 	BOOL taken = FALSE;
 
-	// TODO: test code
+#ifdef KEYCODE_VIEWER
 	{
 		weasel::KeyEvent ke;
 		if (!ConvertKeyEvent(vKey, kinfo, lpbKeyState, ke))
@@ -316,14 +316,14 @@ BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeySta
 		m_ctx.aux.str = (boost::wformat(L"keycode: %x, mask: %x, isKeyUp: %u") % ke.keycode % ke.mask % kinfo.isKeyUp).str();
 		_UpdateContext(m_ctx);
 		return FALSE;
-
 	}
+#endif
 
-	// TODO: 暂不处理KEY_UP事件（宫保拼音用KEY_UP）
-	if (kinfo.isKeyUp)
-	{
-		return FALSE;
-	}
+	// 要处理KEY_UP事件（宫保拼音用KEY_UP）
+	//if (kinfo.isKeyUp)
+	//{
+	//	return FALSE;
+	//}
 
 	if (!m_client.Echo())
 	{
@@ -334,7 +334,7 @@ BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeySta
 	weasel::KeyEvent ke;
 	if (!ConvertKeyEvent(vKey, kinfo, lpbKeyState, ke))
 	{
-		// known key event
+		// unknown key event
 		return FALSE;
 	}
 
@@ -346,7 +346,9 @@ BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeySta
 		if (!ok)
 		{
 			// may suffer loss of data...
-			return TRUE;
+			m_ctx.aux.clear();
+			m_ctx.aux.str = L"未能完整讀取候選信息！";
+			//return TRUE;
 		}
 
 		if (!commit.empty())
