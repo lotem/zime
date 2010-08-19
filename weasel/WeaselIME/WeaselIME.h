@@ -1,6 +1,7 @@
 #pragma once
 #include <WeaselIPC.h>
 #include <WeaselUI.h>
+#include "KeyEvent.h"
 
 #define MAX_COMPOSITION_SIZE 256
 
@@ -24,22 +25,6 @@ typedef struct _tagTRANSMSG {
 	LPARAM lParam;
 } TRANSMSG, *LPTRANSMSG;
 
-struct KeyInfo
-{
-	UINT repeatCount: 16;
-	UINT scanCode: 8;
-	UINT isExtended: 1;
-	UINT reserved: 4;
-	UINT contextCode: 1;
-	UINT prevKeyState: 1;
-	UINT isKeyUp: 1;
-
-	static inline KeyInfo Create(LPARAM lparam)
-	{
-		return *(KeyInfo*)&lparam;
-	}
-};
-
 class WeaselIME
 {
 public:
@@ -61,7 +46,7 @@ public:
 	LRESULT OnIMESelect(BOOL fSelect);
 	LRESULT OnIMEFocus(BOOL fFocus);
 	LRESULT OnUIMessage(HWND hWnd, UINT uMsg, WPARAM wp, LPARAM lp);
-	BOOL ProcessKeyEvent(UINT vKey, KeyInfo kinfo, CONST LPBYTE lpbKeyState);
+	BOOL ProcessKeyEvent(UINT vKey, const KeyInfo kinfo, const LPBYTE lpbKeyState);
 
 private:
 	HRESULT _Initialize();

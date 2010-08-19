@@ -168,7 +168,7 @@ public:
 	}
 	virtual BOOL ProcessKeyEvent(weasel::KeyEvent keyEvent, UINT sessionID, LPWSTR buffer) {
 		cerr << "ProcessKeyEvent: " << sessionID 
-			  << " keycode: " << keyEvent.keyCode 
+			  << " keycode: " << keyEvent.keycode 
 			  << " mask: " << keyEvent.mask 
 			  << endl;
 		wsprintf(buffer, L"Greeting=Hello, Ð¡ÀÇºÁ.\n");

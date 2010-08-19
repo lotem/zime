@@ -24,17 +24,17 @@ namespace weasel
 
 	struct KeyEvent
 	{
-		UINT keyCode : 16;
+		UINT keycode : 16;
 		UINT mask : 16;
-		KeyEvent() : keyCode(0), mask(0) {}
-		KeyEvent(UINT _keyCode, UINT _mask) : keyCode(_keyCode), mask(_mask) {}
+		KeyEvent() : keycode(0), mask(0) {}
+		KeyEvent(UINT _keycode, UINT _mask) : keycode(_keycode), mask(_mask) {}
 		KeyEvent(UINT x)
 		{
-			*((UINT*)this) = x;
+			*reinterpret_cast<UINT*>(this) = x;
 		}
-		operator UINT() const
+		operator UINT32 const() const
 		{
-			return *((UINT32*)this);
+			return *reinterpret_cast<UINT32 const*>(this);
 		}
 	};
 

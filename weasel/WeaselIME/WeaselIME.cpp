@@ -300,7 +300,7 @@ LRESULT WeaselIME::_OnIMENotify(LPINPUTCONTEXT lpIMC, WPARAM wp, LPARAM lp)
 	return 0;
 }
 
-BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeyState)
+BOOL WeaselIME::ProcessKeyEvent(UINT vKey, const KeyInfo kinfo, const LPBYTE lpbKeyState)
 {
 	BOOL taken = FALSE;
 
@@ -316,7 +316,14 @@ BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeySta
 		m_client.StartSession();
 	}
 	
-	if (m_client.ProcessKeyEvent(weasel::KeyEvent(vKey, 0)))
+	weasel::KeyEvent ke;
+	if (!ConvertKeyEvent(vKey, kinfo, lpbKeyState, ke))
+	{
+		// known key event
+		return FALSE;
+	}
+
+	if (m_client.ProcessKeyEvent(ke))
 	{
 		wstring commit;
 		weasel::ResponseParser parser(commit, m_ctx, m_status);

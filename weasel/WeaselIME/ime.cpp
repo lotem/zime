@@ -56,7 +56,7 @@ BOOL WINAPI ImeProcessKey(HIMC hIMC, UINT vKey, LPARAM lKeyData, CONST LPBYTE lp
 {
 	BOOL bEaten = FALSE;
 	shared_ptr<WeaselIME> p = WeaselIME::GetInstance(hIMC);
-	bEaten = p->ProcessKeyEvent(vKey, KeyInfo::Create(lKeyData), lpbKeyState);
+	bEaten = p->ProcessKeyEvent(vKey, KeyInfo(lKeyData), lpbKeyState);
 	return bEaten;
 }
 
