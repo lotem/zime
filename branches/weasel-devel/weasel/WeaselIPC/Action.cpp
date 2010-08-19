@@ -1,12 +1,8 @@
 #include "stdafx.h"
 #include "Deserializer.h"
 #include "Action.h"
-#include "boost/algorithm/string/split.hpp"
-#include "boost/algorithm/string.hpp"
 
-using namespace std;
 using namespace weasel;
-using namespace boost::algorithm;
 
 static const wstring ACTION_NAME = L"action";
 
@@ -35,14 +31,14 @@ Action::~Action()
 
 void Action::Store(Deserializer::KeyType k, wstring const& value)
 {
-	// "action" matches the entire key
-	if (k == Deserializer::KeyType())
+	Deserializer::KeyType end;
+	if (k == end)  // "action" matches the entire key
 	{
-		// TODO: split value by L","
-		typedef vector<std::wstring > split_vector_type;
+		// split value by L","
+		typedef vector<std::wstring> split_vector_type;
 		split_vector_type vecAction;
-		split( vecAction, value, is_any_of(","));
-		
+		split(vecAction, value, is_any_of(L","));
+		// require specified action deserializers
 		for(split_vector_type::const_iterator it = vecAction.begin(); it != vecAction.end(); ++it)
 		{
 			Deserializer::Require(*it, m_pTarget);
