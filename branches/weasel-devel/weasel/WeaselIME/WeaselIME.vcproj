@@ -207,6 +207,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\KeyEvent.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -242,6 +246,10 @@
 			>
 			<File
 				RelativePath=".\Imm.h"
+				>
+			</File>
+			<File
+				RelativePath=".\KeyEvent.h"
 				>
 			</File>
 			<File

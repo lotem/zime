@@ -94,7 +94,7 @@ BOOL PyWeaselHandler::ProcessKeyEvent(weasel::KeyEvent keyEvent, UINT sessionID,
 			return FALSE;
 		}
 		
-		python::object ret = session.attr("process_key_event")(keyEvent.keyCode, keyEvent.mask);
+		python::object ret = session.attr("process_key_event")(keyEvent.keycode, keyEvent.mask);
 		if (ret.is_none())
 		{
 			return FALSE;
