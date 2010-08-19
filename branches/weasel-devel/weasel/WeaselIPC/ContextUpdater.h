@@ -1,11 +1,11 @@
 #pragma once
 #include "Deserializer.h"
 
-class Contexter : public weasel::Deserializer
+class ContextUpdater : public weasel::Deserializer
 {
 public:
-	Contexter(weasel::ResponseParser* pTarget);
-	virtual ~Contexter();
+	ContextUpdater(weasel::ResponseParser* pTarget);
+	virtual ~ContextUpdater();
 	virtual void Store(weasel::Deserializer::KeyType const& key, std::wstring const& value);
 	
 	void _StorePreedit(Deserializer::KeyType k, wstring const& value);
