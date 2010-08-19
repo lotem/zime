@@ -66,7 +66,7 @@ class Session:
             action.add(u'commit')
             r.append(u'commit=%s\n' % u''.join(self.__commit)) 
         if self.__preedit:
-            action.add(u'update_ctx')
+            action.add(u'ctx')
             (s, attrs, cursor) = self.__preedit
             r.append(u'ctx.preedit=%s\n' % s)
             if attrs:
@@ -78,11 +78,11 @@ class Session:
             if cursor:
                 r.append(u'ctx.preedit.cursor=%d,%d\n' % cursor)
         if self.__aux:
-            action.add(u'update_ctx')
+            action.add(u'ctx')
             (s, attrs) = self.__aux
             r.append(u'ctx.aux=%s\n' % s)
         if self.__cand:
-            action.add(u'update_ctx')
+            action.add(u'ctx')
             (current_page, total_pages, cursor, cands) = self.__cand
             n = len(cands)
             r.append(u'ctx.cand.length=%d\n' % n)
