@@ -66,12 +66,12 @@ void test_4()
 	WCHAR resp[] = 
 		L"action=commit,ctx\n"
 		L"ctx.preedit=∫Úﬂx““=3.14\n"
-		L"ctx.cursor=0,3\n"
+		L"ctx.preedit.cursor=0,3\n"
 		L"ctx.cand.length=2\n"
 		L"ctx.cand.0=∫Úﬂxº◊\n"
 		L"ctx.cand.1=∫Úﬂx““\n"
 		L"ctx.cand.cursor=1\n"
-		L"ctx.pages=0/1\n"
+		L"ctx.cand.page=0/1\n"
 		;
 	DWORD len = wcslen(resp);
 	wstring commit;

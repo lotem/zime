@@ -2,7 +2,7 @@
 #include "Deserializer.h"
 #include "ActionLoader.h"
 #include "Committer.h"
-#include "Contexter.h"
+#include "ContextUpdater.h"
 
 using namespace weasel;
 
@@ -18,7 +18,7 @@ void Deserializer::Initialize(ResponseParser* pTarget)
 		// TODO: extend the parser's functionality in the future by defining more actions here
 		Define(L"action", ActionLoader::Create);
 		Define(L"commit", Committer::Create);
-		Define(L"ctx", Contexter::Create);
+		Define(L"ctx", ContextUpdater::Create);
 	}
 
 	// loaded by default
