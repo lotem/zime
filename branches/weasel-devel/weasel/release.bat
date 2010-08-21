@@ -9,7 +9,6 @@ copy engine\*.py output\engine
 mkdir output\engine\ibus
 copy engine\ibus\*.py output\engine\ibus
 copy misc\*.conf output\engine
-copy misc\install.bat output
-copy misc\uninstall.bat output
-copy misc\stop_service.bat output
+copy misc\*.js output
+copy misc\*.bat output
 pause
