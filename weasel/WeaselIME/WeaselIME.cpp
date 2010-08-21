@@ -302,7 +302,7 @@ LRESULT WeaselIME::_OnIMENotify(LPINPUTCONTEXT lpIMC, WPARAM wp, LPARAM lp)
 
 BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeyState)
 {
-	BOOL taken = FALSE;
+	bool taken = false;
 
 #ifdef KEYCODE_VIEWER
 	{
@@ -339,44 +339,49 @@ BOOL WeaselIME::ProcessKeyEvent(UINT vKey, KeyInfo kinfo, const LPBYTE lpbKeySta
 		return FALSE;
 	}
 
-	if (m_client.ProcessKeyEvent(ke))
-	{
-		wstring commit;
-		weasel::ResponseParser parser(commit, m_ctx, m_status);
-		bool ok = m_client.GetResponseData(boost::ref(parser));
-		if (!ok)
-		{
-			// may suffer loss of data...
-			m_ctx.aux.clear();
-			m_ctx.aux.str = L"未能完整讀取候選信息！";
-			//return TRUE;
-		}
+	taken = m_client.ProcessKeyEvent(ke);
 
-		if (!commit.empty())
+	wstring commit;
+	weasel::ResponseParser parser(commit, m_ctx, m_status);
+	bool ok = m_client.GetResponseData(boost::ref(parser));
+	if (!ok)
+	{
+		// may suffer loss of data...
+		m_ctx.aux.clear();
+		m_ctx.aux.str = L"未能完整讀取候選信息！";
+		//return TRUE;
+	}
+
+	if (!commit.empty())
+	{
+		if (!m_status.composing)
 		{
-			if (!m_status.composing)
-			{
-				_StartComposition();
-			}
-			_EndComposition(commit.c_str());
+			_StartComposition();
+		}
+		_EndComposition(commit.c_str());
+		m_status.composing = false;
+	}
+
+	if (!m_ctx.preedit.empty())
+	{
+		if (!m_status.composing)
+		{
+			_StartComposition();
+			m_status.composing = true;
+		}
+	}
+	else
+	{
+		if (m_status.composing)
+		{
+			_EndComposition(L"");
 			m_status.composing = false;
 		}
-
-		if (!m_ctx.empty())
-		{
-			if (!m_status.composing)
-			{
-				_StartComposition();
-				m_status.composing = true;
-			}
-		}
-
-		_UpdateContext(m_ctx);
-
-		taken = TRUE;
 	}
-	
-	return taken;
+
+	_UpdateContext(m_ctx);
+
+	return (BOOL)taken;
 }
 
 HRESULT WeaselIME::_Initialize()

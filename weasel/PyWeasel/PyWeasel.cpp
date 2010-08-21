@@ -85,6 +85,7 @@ UINT PyWeaselHandler::RemoveSession(UINT sessionID)
 
 BOOL PyWeaselHandler::ProcessKeyEvent(weasel::KeyEvent keyEvent, UINT sessionID, LPWSTR buffer)
 {
+	bool taken = false;
 	wstring response;
 	try
 	{
@@ -100,7 +101,9 @@ BOOL PyWeaselHandler::ProcessKeyEvent(weasel::KeyEvent keyEvent, UINT sessionID,
 			return FALSE;
 		}
 
-		response = python::extract<wstring>(ret);
+		python::tuple t = python::extract<python::tuple>(ret);
+		taken = python::extract<bool>(t[0]);
+		response = python::extract<wstring>(t[1]);
 	}
 	catch (python::error_already_set e)
 	{
@@ -112,8 +115,9 @@ BOOL PyWeaselHandler::ProcessKeyEvent(weasel::KeyEvent keyEvent, UINT sessionID,
 	bs << response;
 	if (!bs.good())
 	{
-		return FALSE;
+		// response text toooo long!
+		//return FALSE;
 	}
 
-	return TRUE;
+	return (BOOL)taken;
 }
