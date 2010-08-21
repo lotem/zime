@@ -54,10 +54,7 @@ class Session:
         logger.debug("process_key_event: '%s'(%x), %08x" % (keysyms.keycode_to_name(keycode), keycode, mask))
         self.__clear()
         taken = self.__engine.process_key_event(keycode, mask)
-        if taken:
-            return self.__reply()
-        else:
-            return None
+        return (taken, self.__reply())
 
     def __reply(self):
         action = set()
