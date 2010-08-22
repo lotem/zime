@@ -21,18 +21,29 @@ voila!
 now, make a release build, and run $(SolutionDir)\release.bat.
 the product will be place in $(SolutionDir)\output.
 
+
 usage:
 
-install.bat
+install Python 2.7;
+set Python path in $(SolutionDir)\env.bat.
+
+
+xp_install.bat
+or
+win7_install.bat
 (require super user previlege)
 
-uninstall.bat
+xp_uninstall.bat
+or
+win7_uninstall.bat
 (require super user previlege)
 
 stop_service.bat
 you may use this to terminate ZIME core service process.
 
+
 before you go...
+
 issue the command populate-db.bat in $(SolutionDir)\data,
 in case you never had a zime database at %userprofile%\.ibus\zime\zime.db.
 otherwise, you will be noticed a message "NO SCHEMA" (in Chinese) on your first try.
