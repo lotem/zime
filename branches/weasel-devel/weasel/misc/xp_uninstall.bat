@@ -1,2 +1,2 @@
 call stop_service.bat
-rundll32 %cd%\weasel.ime uninstall
+rundll32 "%cd%\weasel.ime" uninstall

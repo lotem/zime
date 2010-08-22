@@ -1,1 +1,1 @@
-elevate rundll32 %cd%\weasel.ime install
+elevate rundll32 "%cd%\weasel.ime" install
