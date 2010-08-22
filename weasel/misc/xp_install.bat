@@ -1,1 +1,1 @@
-rundll32 %cd%\weasel.ime install
+rundll32 "%cd%\weasel.ime" install
