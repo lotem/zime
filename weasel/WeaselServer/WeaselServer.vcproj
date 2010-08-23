@@ -138,8 +138,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)\include&quot;;&quot;$(SolutionDir)\include\python&quot;"
-				PreprocessorDefinitions="WIN32;_WINDOWS;STRICT;NDEBUG"
-				RuntimeLibrary="2"
+				PreprocessorDefinitions="WIN32;_WINDOWS;STRICT;NDEBUG;BOOST_PYTHON_STATIC_LIB"
+				RuntimeLibrary="0"
 				UsePrecompiledHeader="2"
 				WarningLevel="3"
 			/>

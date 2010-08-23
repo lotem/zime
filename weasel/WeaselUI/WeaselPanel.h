@@ -26,24 +26,23 @@ public:
 		MESSAGE_HANDLER(WM_PAINT, OnPaint)
 	END_MSG_MAP()
 
-
 	LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	LRESULT OnDestroy(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	LRESULT OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	void CloseDialog(int nVal);
-	void MoveTo(RECT const& rc);
 
-private:
-	CSize _GetWindowSize();
-	void _Refresh();
-
-	void DoPaint(CDCHandle dc);
-	weasel::Context m_ctx;
-	weasel::Status m_status;
-
-public:
 	WeaselPanel() {}
 	~WeaselPanel() {}
 	void SetContext(const weasel::Context &ctx);
 	void SetStatus(const weasel::Status &status);
+	void MoveTo(RECT const& rc);
+
+private:
+	void DoPaint(CDCHandle dc);
+	void _Refresh();
+	void _ResizeWindow();
+	void _RepositionWindow();
+	CRect m_inputPos;
+	weasel::Context m_ctx;
+	weasel::Status m_status;
 };
