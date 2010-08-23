@@ -5,7 +5,6 @@ rmdir /s /q %OUTPUT%
 mkdir %OUTPUT%
 copy release\weasel.ime %OUTPUT%
 copy release\WeaselServer.exe %OUTPUT%
-copy lib\boost_python-vc90-mt-1_43.dll %OUTPUT%
 mkdir %OUTPUT%\data
 copy data\*.bat %OUTPUT%\data
 copy data\*.py %OUTPUT%\data
