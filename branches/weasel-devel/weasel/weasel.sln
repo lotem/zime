@@ -26,10 +26,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestWeaselUI", "test\TestWe
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeaselIME", "WeaselIME\WeaselIME.vcproj", "{A958FE3D-9F6E-44CB-981E-F2AE181657B3}"
-	ProjectSection(ProjectDependencies) = postProject
-		{8A053F41-E102-4DA1-B993-67087AE9EAF5} = {8A053F41-E102-4DA1-B993-67087AE9EAF5}
-		{92F67998-7EFC-430C-A4F4-0C0A3181D123} = {92F67998-7EFC-430C-A4F4-0C0A3181D123}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeaselServer", "WeaselServer\WeaselServer.vcproj", "{A68C2A5C-D74D-4CB2-9E22-A4D2FC256A2D}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -57,10 +53,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestResponseParser", "test\
 	ProjectSection(ProjectDependencies) = postProject
 		{CE11A2DF-8D20-4B07-A935-4B0D03F0303D} = {CE11A2DF-8D20-4B07-A935-4B0D03F0303D}
 	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeaselIPC_static", "WeaselIPC_static\WeaselIPC_static.vcproj", "{92F67998-7EFC-430C-A4F4-0C0A3181D123}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WeaselUI_static", "WeaselUI_static\WeaselUI_static.vcproj", "{8A053F41-E102-4DA1-B993-67087AE9EAF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,14 +102,6 @@ Global
 		{CC642427-64D7-44D9-8543-8CBBF981FAE7}.Debug|Win32.Build.0 = Debug|Win32
 		{CC642427-64D7-44D9-8543-8CBBF981FAE7}.Release|Win32.ActiveCfg = Release|Win32
 		{CC642427-64D7-44D9-8543-8CBBF981FAE7}.Release|Win32.Build.0 = Release|Win32
-		{92F67998-7EFC-430C-A4F4-0C0A3181D123}.Debug|Win32.ActiveCfg = Debug|Win32
-		{92F67998-7EFC-430C-A4F4-0C0A3181D123}.Debug|Win32.Build.0 = Debug|Win32
-		{92F67998-7EFC-430C-A4F4-0C0A3181D123}.Release|Win32.ActiveCfg = Release|Win32
-		{92F67998-7EFC-430C-A4F4-0C0A3181D123}.Release|Win32.Build.0 = Release|Win32
-		{8A053F41-E102-4DA1-B993-67087AE9EAF5}.Debug|Win32.ActiveCfg = Debug|Win32
-		{8A053F41-E102-4DA1-B993-67087AE9EAF5}.Debug|Win32.Build.0 = Debug|Win32
-		{8A053F41-E102-4DA1-B993-67087AE9EAF5}.Release|Win32.ActiveCfg = Release|Win32
-		{8A053F41-E102-4DA1-B993-67087AE9EAF5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

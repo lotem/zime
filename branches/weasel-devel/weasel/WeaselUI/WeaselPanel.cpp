@@ -16,7 +16,7 @@ void WeaselPanel::SetStatus(const weasel::Status &status)
 	_Refresh();
 }
 
-CSize WeaselPanel::_GetWindowSize()
+void WeaselPanel::_ResizeWindow()
 {
 	CDC dc = GetDC();
 	long fontHeight = -MulDiv(FONT_POINT_SIZE, dc.GetDeviceCaps(LOGPIXELSY), 72);
@@ -67,14 +67,14 @@ CSize WeaselPanel::_GetWindowSize()
 	width = max(width, MIN_WIDTH);
 	height = max(height, MIN_HEIGHT);
 	
-	return CSize(width, height);
+	SetWindowPos( NULL, 0, 0, width, height, SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER);
 }
 
 //更新界面
 void WeaselPanel::_Refresh()
 {
-	CSize sz = _GetWindowSize();
-	SetWindowPos( NULL, 0, 0, sz.cx, sz.cy, SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER);
+	_ResizeWindow();
+	_RepositionWindow();
 	RedrawWindow();
 }
 
@@ -225,8 +225,13 @@ void WeaselPanel::CloseDialog(int nVal)
 void WeaselPanel::MoveTo(RECT const& rc)
 {
 	const int offset = 6;
-	int x = rc.left;
-	int y = rc.bottom + offset;
+	m_inputPos = rc;
+	m_inputPos.InflateRect(0, offset);
+	_RepositionWindow();
+}
+
+void WeaselPanel::_RepositionWindow()
+{
 	RECT rcWorkArea;
 	SystemParametersInfo(SPI_GETWORKAREA, 0, &rcWorkArea, 0);
 	RECT rcWindow;
@@ -236,15 +241,20 @@ void WeaselPanel::MoveTo(RECT const& rc)
 	// keep panel visible
 	rcWorkArea.right -= width;
 	rcWorkArea.bottom -= height;
+	int x = m_inputPos.left;
+	int y = m_inputPos.bottom;
 	if (x > rcWorkArea.right)
 		x = rcWorkArea.right;
 	if (x < rcWorkArea.left)
 		x = rcWorkArea.left;
+	// show panel above the input focus if we're around the bottom
 	if (y > rcWorkArea.bottom)
-		y = rc.top - offset - height;
+		y = m_inputPos.top - height;
 	if (y > rcWorkArea.bottom)
 		y = rcWorkArea.bottom;
 	if (y < rcWorkArea.top)
 		y = rcWorkArea.top;
+	// memorize adjusted position (to avoid window bouncing on height change)
+	m_inputPos.bottom = y;
 	SetWindowPos(HWND_TOPMOST, x, y, 0, 0, SWP_NOSIZE|SWP_NOACTIVATE);
 }
