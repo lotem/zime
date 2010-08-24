@@ -78,26 +78,6 @@ void WeaselPanel::_Refresh()
 	RedrawWindow();
 }
 
-LRESULT WeaselPanel::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& Handled)
-{
-	ATLASSERT(::IsWindow(m_hWnd));
-
-	if(wParam != NULL)
-	{
-		CRect rect;
-		GetClientRect(&rect);
-		CMemoryDC dcMem((HDC)wParam, rect);
-		DoPaint(dcMem.m_hDC);
-	}
-	else
-	{
-		CPaintDC dc(m_hWnd);
-		CMemoryDC dcMem(dc.m_hDC, dc.m_ps.rcPaint);
-		DoPaint(dcMem.m_hDC);
-	}
-	return 0;
-}
-
 //draw client area
 void WeaselPanel::DoPaint(CDCHandle dc)
 {
