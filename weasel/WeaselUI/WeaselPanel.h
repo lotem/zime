@@ -16,14 +16,14 @@ static const int HIGHLIGHT_PADDING_BOTTOM = 1;
 typedef CWinTraits<WS_POPUP|WS_CLIPSIBLINGS|WS_DISABLED, WS_EX_TOOLWINDOW|WS_EX_TOPMOST> CWeaselPanelTraits;
 
 class WeaselPanel : 
-	public CWindowImpl<WeaselPanel, CWindow, CWeaselPanelTraits>
+	public CWindowImpl<WeaselPanel, CWindow, CWeaselPanelTraits>,
+	CDoubleBufferImpl<WeaselPanel>
 {
 public:
-
 	BEGIN_MSG_MAP(WeaselPanel)
 		MESSAGE_HANDLER(WM_CREATE, OnCreate)
 		MESSAGE_HANDLER(WM_DESTROY, OnDestroy)
-		MESSAGE_HANDLER(WM_PAINT, OnPaint)
+		CHAIN_MSG_MAP(CDoubleBufferImpl<WeaselPanel>)
 	END_MSG_MAP()
 
 	LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
@@ -36,9 +36,8 @@ public:
 	void SetContext(const weasel::Context &ctx);
 	void SetStatus(const weasel::Status &status);
 	void MoveTo(RECT const& rc);
-
-private:
 	void DoPaint(CDCHandle dc);
+private:
 	void _Refresh();
 	void _ResizeWindow();
 	void _RepositionWindow();
