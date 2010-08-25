@@ -35,8 +35,13 @@ bool ConvertKeyEvent(UINT vkey, KeyInfo kinfo, const LPBYTE keyState, weasel::Ke
 	}
 
 	const int buf_len = 8;
-	WCHAR buf[buf_len];
-	int ret = ToUnicodeEx(vkey, UINT(kinfo), keyState, buf, buf_len, 0, NULL);
+	static WCHAR buf[buf_len];
+	static BYTE table[256];
+	// Çå³ýCtrl¡¢AltæI î‘B£¬ÒÔÁîToUnicodeEx()·µ»Ø×Ö·û
+	memcpy(table, keyState, sizeof(table));
+	table[VK_CONTROL] = 0;
+	table[VK_MENU] = 0;
+	int ret = ToUnicodeEx(vkey, UINT(kinfo), table, buf, buf_len, 0, NULL);
 	if (ret == 1)
 	{
 		result.keycode = UINT(buf[0]);
@@ -145,8 +150,6 @@ ibus::Keycode TranslateKeycode(UINT vkey)
 	case VK_RCONTROL:	return ibus::Control_R;
 	case VK_LMENU:	return ibus::Alt_L;
 	case VK_RMENU:	return ibus::Alt_R;
-
-	case VK_OEM_3:	return ibus::grave;
 	}
 	return ibus::Null;
 }
