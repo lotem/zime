@@ -17,21 +17,18 @@ def feed(session, input):
             is_name = True
         elif c == '}':
             is_name = False
-            taken, resp = session.process_key_event(keysyms.name_to_keycode(name), 0)
-            print taken
-            print resp
+            print session.process_key_event(keysyms.name_to_keycode(name), 0)
+            print session.get_response()
         elif is_name:
             name += c
         else:
-            taken, resp = session.process_key_event(ord(c), 0)
-            print taken
-            print resp
+            print session.process_key_event(ord(c), 0)
+            print session.get_response()
 
 def test(session):
     # Ctrl+grave
-    taken, resp = session.process_key_event(keysyms.grave, modifier.CONTROL_MASK)
-    print taken
-    print resp
+    print session.process_key_event(keysyms.grave, modifier.CONTROL_MASK)
+    print session.get_response()
     # noop
     feed(session, '2')
     # choose Pinyin

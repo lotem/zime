@@ -193,14 +193,21 @@ LRESULT WeaselIME::OnIMESelect(BOOL fSelect)
 {
 	if (fSelect)
 	{
-		// initialize weasel client
-		m_client.Connect(launch_server);
-		m_client.StartSession();
-		
 		if (!m_ui.Create(NULL))
 			return 0;
 		
-		m_ui.UpdateStatus(m_status);
+		// initialize weasel client
+		m_client.Connect(launch_server);
+		m_client.StartSession();
+
+		wstring ignored;
+		m_ctx.clear();
+		m_status.reset();
+		weasel::ResponseParser parser(ignored, m_ctx, m_status);
+		m_client.GetResponseData(boost::ref(parser));
+
+		m_ui.UpdateContext(m_ctx);
+		//m_ui.UpdateStatus(m_status);
 		
 		return _Initialize();
 	}

@@ -21,20 +21,24 @@ const char* wcstomb(const wchar_t* wcs)
 
 void test_pyweasel()
 {
+	WCHAR buffer[WEASEL_IPC_BUFFER_LENGTH];
+
 	weasel::RequestHandler* handler = new PyWeaselHandler();
 	BOOST_ASSERT(handler);
-	
+
+	memset(buffer, 0, sizeof(buffer));
 	// 成功创建会话，返回sessionID；失败返回0
-	UINT sessionID = handler->AddSession();
+	UINT sessionID = handler->AddSession(buffer);
 	BOOST_ASSERT(sessionID);
+	cout << wcstomb(buffer) << endl;
 
 	// 会话存在返回sessionID，不存在返回0
 	BOOST_ASSERT(sessionID == handler->FindSession(sessionID));
 
-	WCHAR buffer[WEASEL_IPC_BUFFER_LENGTH];
 	memset(buffer, 0, sizeof(buffer));
 	// 输入 a，ProcessKeyEvent应返回TRUE，并将回应串写入buffer
-	BOOST_ASSERT(handler->ProcessKeyEvent(weasel::KeyEvent(L'a', 0), sessionID, buffer));
+	BOOL taken = handler->ProcessKeyEvent(weasel::KeyEvent(L'a', 0), sessionID, buffer);
+	BOOST_ASSERT(taken);
 	// Windows控制台不能直接显示WideChar中文串，转为MultiByteString
 	cout << wcstomb(buffer) << endl;
 	

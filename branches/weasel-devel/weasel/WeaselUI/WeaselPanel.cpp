@@ -189,6 +189,7 @@ LRESULT WeaselPanel::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHa
 {
 	_Refresh();
 	CenterWindow();
+	GetWindowRect(&m_inputPos);
 	return TRUE;
 }
 

@@ -55,17 +55,30 @@ UINT PyWeaselHandler::FindSession(UINT sessionID)
 	return found ? sessionID : 0;
 }
 
-UINT PyWeaselHandler::AddSession()
+UINT PyWeaselHandler::AddSession(LPWSTR buffer)
 {
 	UINT id = 0;
 	try
 	{
 		id = python::extract<UINT>(m_service.attr("create_session")());
+		if (!id)
+		{
+			return 0;
+		}
+		python::object session = m_service.attr("get_session")(id);
+		if (session.is_none())
+		{
+			return 0;
+		}
+		wstring resp = python::extract<wstring>(session.attr("get_response")());
+		_Respond(buffer, resp);
+
 	}
 	catch (python::error_already_set e)
 	{
 		return 0;
 	}
+
 	return id;
 }
 
@@ -86,7 +99,6 @@ UINT PyWeaselHandler::RemoveSession(UINT sessionID)
 BOOL PyWeaselHandler::ProcessKeyEvent(weasel::KeyEvent keyEvent, UINT sessionID, LPWSTR buffer)
 {
 	bool taken = false;
-	wstring response;
 	try
 	{
 		python::object session = m_service.attr("get_session")(sessionID);
@@ -95,29 +107,27 @@ BOOL PyWeaselHandler::ProcessKeyEvent(weasel::KeyEvent keyEvent, UINT sessionID,
 			return FALSE;
 		}
 		
-		python::object ret = session.attr("process_key_event")(keyEvent.keycode, keyEvent.mask);
-		if (ret.is_none())
-		{
-			return FALSE;
-		}
-
-		python::tuple t = python::extract<python::tuple>(ret);
-		taken = python::extract<bool>(t[0]);
-		response = python::extract<wstring>(t[1]);
+		taken = python::extract<bool>(session.attr("process_key_event")(keyEvent.keycode, keyEvent.mask));
+		wstring resp = python::extract<wstring>(session.attr("get_response")());
+		_Respond(buffer, resp);
 	}
 	catch (python::error_already_set e)
 	{
 		return FALSE;
 	}
+	
+	return (BOOL)taken;
+}
 
+bool PyWeaselHandler::_Respond(LPWSTR buffer, wstring const& msg)
+{
 	memset(buffer, 0, WEASEL_IPC_BUFFER_SIZE);
 	wbufferstream bs(buffer, WEASEL_IPC_BUFFER_LENGTH);
-	bs << response;
+	bs << msg;
 	if (!bs.good())
 	{
 		// response text toooo long!
-		//return FALSE;
+		return false;
 	}
-
-	return (BOOL)taken;
+	return true;
 }
