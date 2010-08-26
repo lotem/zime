@@ -109,7 +109,7 @@ LRESULT ServerImpl::OnStartSession(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL
 {
 	if (!m_pHandler)
 		return 0;
-	return m_pHandler->AddSession();
+	return m_pHandler->AddSession(m_pSharedMemory->GetBuffer());
 }
 
 LRESULT ServerImpl::OnEndSession(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)

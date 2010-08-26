@@ -41,8 +41,8 @@ class Session:
     def __init__(self, params=''):
         logger.info("init session: %s", params)
         self.__lookup_table = ibus.LookupTable()
-        self.__engine = zimeengine.SchemaChooser(self, params)
         self.__clear()
+        self.__engine = zimeengine.SchemaChooser(self, params)
 
     def __clear(self):
         self.__commit = None
@@ -54,9 +54,9 @@ class Session:
         logger.debug("process_key_event: '%s'(%x), %08x" % (keysyms.keycode_to_name(keycode), keycode, mask))
         self.__clear()
         taken = self.__engine.process_key_event(keycode, mask)
-        return (taken, self.__reply())
+        return taken
 
-    def __reply(self):
+    def get_response(self):
         action = set()
         r = list()
         if self.__commit:

@@ -92,9 +92,14 @@ namespace weasel
 	// 由ime管理
 	struct Status
 	{
-		Status() : zhMode(false), composing(false) {}
+		Status() : zh_mode(false), composing(false) {}
+		void reset()
+		{
+			zh_mode = true;
+			composing = false;
+		}
 		// 中文轉換開關
-		bool zhMode;
+		bool zh_mode;
 		// 寫作狀態
 		bool composing;
 	};

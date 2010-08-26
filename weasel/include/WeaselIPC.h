@@ -44,7 +44,7 @@ namespace weasel
 		RequestHandler() {}
 		virtual ~RequestHandler() {}
 		virtual UINT FindSession(UINT sessionID) { return 0; }
-		virtual UINT AddSession() { return 0; }
+		virtual UINT AddSession(LPWSTR buffer) { return 0; }
 		virtual UINT RemoveSession(UINT sessionID) { return 0; }
 		virtual BOOL ProcessKeyEvent(KeyEvent keyEvent, UINT sessionID, LPWSTR buffer) { return FALSE; }
 	};
