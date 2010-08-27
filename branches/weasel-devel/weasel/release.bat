@@ -3,8 +3,6 @@ set OUTPUT=output\weasel
 
 rmdir /s /q %OUTPUT%
 mkdir %OUTPUT%
-copy release\weasel.ime %OUTPUT%
-copy release\WeaselServer.exe %OUTPUT%
 mkdir %OUTPUT%\data
 copy data\*.bat %OUTPUT%\data
 copy data\*.py %OUTPUT%\data
@@ -17,5 +15,7 @@ copy misc\*.bat %OUTPUT%
 copy misc\*.conf %OUTPUT%\engine
 copy misc\*.js %OUTPUT%
 copy misc\*.txt %OUTPUT%
+copy release\weasel.ime %OUTPUT%
+copy release\WeaselServer.exe %OUTPUT%
 
 pause
