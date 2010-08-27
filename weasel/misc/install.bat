@@ -1,6 +1,5 @@
 @echo off
 call env.bat
-echo WeaselRoot = %WeaselRoot%
 
 python --version 2> nul
 if %ERRORLEVEL% EQU 0 goto python_ok
