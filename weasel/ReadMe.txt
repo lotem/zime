@@ -24,26 +24,26 @@ the product will be place in $(SolutionDir)\output.
 
 usage:
 
+0. before you go...
+
 install Python 2.7;
-set Python path in $(SolutionDir)\env.bat.
 
+set Python path in $(WeaselRoot)\env.bat;
+in this case, $(WeaselRoot) refers to the directory $(SolutionDir)\output\weasel.
 
-xp_install.bat
-or
-win7_install.bat
-(require super user previlege)
+issue the command populate-db.bat in $(SolutionDir)\data
+in case you never had a zime database at %UserProfile%\.ibus\zime\zime.db.
+if you don't, you will be noticed a message "NO SCHEMA" (in Chinese) once the IME is activated.
 
-xp_uninstall.bat
-or
-win7_uninstall.bat
-(require super user previlege)
+1. to install...
+
+install.bat
+
+2. to uninstall...
+
+uninstall.bat
 
 stop_service.bat
 you may use this to terminate ZIME core service process.
 
 
-before you go...
-
-issue the command populate-db.bat in $(SolutionDir)\data,
-in case you never had a zime database at %userprofile%\.ibus\zime\zime.db.
-otherwise, you will be noticed a message "NO SCHEMA" (in Chinese) on your first try.
