@@ -10,4 +10,4 @@
       * [http://zime-web.appspot.com/typewriter/canton 拉丁粵文]
       * [http://zime-web.appspot.com/typewriter/lmz 中州羅馬字]
 
-    * 打包下載：[http://zime.googlecode.com/files/typewriter-0.7.1.zip 打字機0.7.1]
+    * 打包下載：[http://zime.googlecode.com/files/typewriter-0.7.2.zip 打字機0.7.2]
