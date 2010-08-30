@@ -40,7 +40,8 @@ class Session:
 
     def __init__(self, params=''):
         logger.info("init session: %s", params)
-        self.__lookup_table = ibus.LookupTable()
+        self.__page_size = DB.read_setting(u'Option/PageSize') or 7
+        self.__lookup_table = ibus.LookupTable(self.__page_size)
         self.__clear()
         self.__engine = zimeengine.SchemaChooser(self, params)
 
