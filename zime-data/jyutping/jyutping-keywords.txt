@@ -20007,6 +20007,6 @@ nung1	𪒬
 kap6	𪘁
 ji1	𪘲
 nak1	𪙛
-gwi1	𪚩
+#gwi1	𪚩
 gai1	枅
 baan6	洴
