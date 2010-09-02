@@ -2929,7 +2929,6 @@ san	搡
 san	嗓
 saq	殺
 saq	煞
-saq	刷
 saq	剎
 saq	柵
 saq	涮
@@ -3023,6 +3022,7 @@ seq	嗇
 seq	說
 seq	拭
 seq	蟀
+seq	刷
 seu	閃
 seu	歲
 seu	扇
