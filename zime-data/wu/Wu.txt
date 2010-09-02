@@ -7,6 +7,7 @@ AutoPrompt = yes
 AutoDelimit = yes
 Delimiter = [ '-]
 MaxKeywordLength = 5
+FuzzyRule = ^([bcdfghjklmnprstvwxyz]).*$ \1
 AlternativeRule = ^(ch|d?j|gn|x|y)i([aeou]) \1\2
 # punctuation
 Punct = , ，
