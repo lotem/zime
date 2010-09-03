@@ -16,7 +16,7 @@ def debug(*what):
 
 usage = 'usage: %prog [options] dictname'
 parser = optparse.OptionParser(usage)
-parser.add_option('-r', '--ratio', action='store', type='int', dest='ratio', default=10, help='ratio (in %) below which the keyword is considered rare.')
+parser.add_option('-r', '--ratio', action='store', type='int', dest='ratio', default=5, help='ratio (in %) below which the keyword is considered rare.')
 parser.add_option('-v', '--verbose', action='store_true', dest='verbose', default=False, help='make lots of noice.')
 options, args = parser.parse_args()
 
