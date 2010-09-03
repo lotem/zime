@@ -51,4 +51,5 @@ type wu-extra-phrases.txt >> wu-phrases.txt
 python create-schema.py -v Wu.txt
 
 :exit
+cd ..
 pause

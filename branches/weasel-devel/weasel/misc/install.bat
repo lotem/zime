@@ -29,10 +29,7 @@ echo stopping service.
 call stop_service.bat
 
 echo creating ZIME database.
-set WeaselRoot=%CD%
-cd "%WeaselRoot%\data"
 call populate_db.bat
-cd "%WeaselRoot%"
 
 :db_ok
 
