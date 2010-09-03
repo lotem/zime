@@ -2,19 +2,12 @@
 call env.bat
 call stop_service.bat
 
-if defined OSVersion goto uninstall
-
-set /p Answer="are you using Weasel on Windows XP [Y/n]? "
-if /i "%Answer%" == "n" (
-    set OSVersion=win7
-) else (
-    set OSVersion=xp
-)
-echo OSVersion = %OSVersion%
-
-:uninstall
 echo uninstalling Weasel ime.
-goto %OSVersion%_uninstall
+echo OSVersion = %OSVersion%
+if defined OSVersion goto %OSVersion%_uninstall
+
+ver | python checkosver.py
+if %ERRORLEVEL% EQU 5 goto xp_uninstall
 
 :win7_uninstall
 elevate rundll32 "%CD%\weasel.ime" uninstall

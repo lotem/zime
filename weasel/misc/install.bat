@@ -36,19 +36,12 @@ cd "%WeaselRoot%"
 
 :db_ok
 
-if defined OSVersion goto install
-
-set /p Answer="are you using Weasel on Windows XP [Y/n]? "
-if /i "%Answer%" == "n" (
-    set OSVersion=win7
-) else (
-    set OSVersion=xp
-)
-echo OSVersion = %OSVersion%
-
-:install
 echo registering Weasel ime.
-goto %OSVersion%_install
+echo OSVersion = %OSVersion%
+if defined OSVersion goto %OSVersion%_install
+
+ver | python checkosver.py
+if %ERRORLEVEL% EQU 5 goto xp_install
 
 :win7_install
 elevate rundll32 "%CD%\weasel.ime" install
