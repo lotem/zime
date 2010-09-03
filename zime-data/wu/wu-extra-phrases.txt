@@ -1,4 +1,4 @@
-# 上海閒話ABC
+# 上海閒話ABC整理
 阿屈死	1	aq chiuq xi
 挨肩擦背	1	a ci tsaq pe
 阿舅	1	a djioe
@@ -462,7 +462,6 @@
 大便	1	da bi
 汏頭	1	da doe
 大阿福	1	du aq foq
-大家	1	da ka
 大絞	1	da go
 大亨	1	da han
 大家	1	da ka
@@ -2414,7 +2413,7 @@
 齾口	1	ngaq khoe
 齾脫	1	ngaq theq
 外甥	1	nga san
-牙刷	1	nga saq
+牙刷	1	nga seq
 牙鬚	1	nga su
 外套	1	nga tho
 牙齒	1	nga tsy
@@ -2621,7 +2620,7 @@
 撥儂	1	peq non
 撥伊	1	peq yi
 背後	1	pe roe
-板刷	1	pe saq
+板刷	1	pe seq
 背心	1	pe xin
 扳手	1	pe soe
 板數	1	pe su
@@ -2731,7 +2730,7 @@
 幫個忙	1	pan req man
 髈痠腳軟	1	phan seu ciaq gnieu
 冰生激骨	1	pin san ciq kueq
-板刷頭	1	pe saq doe
+板刷頭	1	pe seq doe
 擺煞垃壗	1	pa saq laq he
 拍手拍腳	1	phaq soe phaq ciaq
 擺三擺四	1	pa se pa sy
