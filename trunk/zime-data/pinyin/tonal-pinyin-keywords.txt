@@ -14724,7 +14724,7 @@ pu4	鋪
 qi1	*傶
 qi1	*崎
 qi1	*抾
-qi1	*期
+qi1	期
 qi1	*溪
 qi1	*緝
 qi1	*豯
@@ -17022,7 +17022,7 @@ shen1	阠
 shen1	駪
 shen1	鯓
 shen1	鵢
-shen2	*什
+shen2	什
 shen2	*甚
 shen2	神
 shen3	*曋
@@ -24054,6 +24054,7 @@ za2	雑
 za2	雜
 za2	雥
 za2	韴
+za3	咋
 za3	鮺
 zai1	*菑
 zai1	哉
@@ -24209,7 +24210,7 @@ ze2	*窄
 ze2	*鍘
 ze2	*鸅
 ze2	則
-ze2	咋
+ze2	*咋
 ze2	嘖
 ze2	嫧
 ze2	岅
@@ -24256,7 +24257,7 @@ ze4	稄
 ze4	諎
 zei2	戝
 zei2	賊
-zen3	*怎
+zen3	怎
 zen4	譖
 zeng1	*僧
 zeng1	*噌
@@ -24344,7 +24345,7 @@ zha4	䄍
 zha4	䖳
 zha4	乍
 zha4	吒
-zha4	咋
+zha4	*咋
 zha4	咤
 zha4	宱
 zha4	搾
