@@ -4,7 +4,6 @@ set OUTPUT=output\weasel
 rmdir /s /q %OUTPUT%
 mkdir %OUTPUT%
 mkdir %OUTPUT%\data
-copy data\*.bat %OUTPUT%\data
 copy data\*.py %OUTPUT%\data
 copy data\*.txt %OUTPUT%\data
 mkdir %OUTPUT%\engine
