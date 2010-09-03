@@ -17,8 +17,8 @@ MappingRule = ^(.+)\d$ \1
 #FuzzyRule = ([ei])ng$ \1n
 #FuzzyRule = ([ei])n$ \1ng
 # 簡拼
-FuzzyRule = ^([a-z]).+$ \1
-FuzzyRule = ^([a-z]h).+$ \1
+FuzzyRule = ^([bcdfghjklmnpqrstvwxyz]).+$ \1
+FuzzyRule = ^([zcs]h).+$ \1
 # 兼容拼寫形式
 AlternativeRule = ^([fvw])ei$ \1i
 AlternativeRule = ^([nl])ei$ \1ui
