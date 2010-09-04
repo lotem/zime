@@ -188,7 +188,7 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 LRESULT WeaselPanel::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	_Refresh();
-	CenterWindow();
+	//CenterWindow();
 	GetWindowRect(&m_inputPos);
 	return TRUE;
 }

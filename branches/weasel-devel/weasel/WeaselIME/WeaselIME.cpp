@@ -60,6 +60,16 @@ static bool launch_server()
 	return true;
 }
 
+WeaselIME::WeaselIME(HIMC hIMC) 
+	: m_hIMC(hIMC), m_alwaysDetectCaretPos(false)
+{
+	WCHAR path[MAX_PATH];
+	GetModuleFileName(NULL, path, _countof(path));
+	wstring exe = wpath(path).filename();
+	if (boost::iequals(L"chrome.exe", exe))
+		m_alwaysDetectCaretPos = true;
+}
+
 LPCWSTR WeaselIME::GetIMEName()
 {
 	return L"中州韻輸入法引擎";
@@ -258,6 +268,13 @@ LRESULT WeaselIME::OnUIMessage(HWND hWnd, UINT uMsg, WPARAM wp, LPARAM lp)
 			_OnIMENotify(lpIMC, wp, lp);
 		}
 		break;
+	case WM_IME_SELECT:
+		{
+			// detect caret pos
+			POINT pt = {-1, -1};
+			this->_UpdateInputPosition(lpIMC, pt);
+		}
+		break;
 	default:
 		if (!IsIMEMessage(uMsg)) 
 		{
@@ -274,13 +291,6 @@ LRESULT WeaselIME::_OnIMENotify(LPINPUTCONTEXT lpIMC, WPARAM wp, LPARAM lp)
 {			
 	switch (wp)
 	{
-	case IMN_OPENCANDIDATE:
-		{
-			POINT pt = lpIMC->cfCompForm.ptCurrentPos;
-			_UpdateInputPosition(lpIMC, pt);
-		}
-		break;
-
 	case IMN_SETCANDIDATEPOS:
 		{
 			POINT pt = lpIMC->cfCandForm[0].ptCurrentPos;
@@ -289,11 +299,11 @@ LRESULT WeaselIME::_OnIMENotify(LPINPUTCONTEXT lpIMC, WPARAM wp, LPARAM lp)
 
 	case IMN_SETCOMPOSITIONWINDOW:
 		{
-			POINT pt;
+			POINT pt = {-1, -1};
 			switch (lpIMC->cfCompForm.dwStyle)
 			{
-			case CFS_DEFAULT:  // Excel
-				GetCaretPos(&pt);
+			case CFS_DEFAULT:
+				// require caret pos detection
 				break;
 			default:
 				pt = lpIMC->cfCompForm.ptCurrentPos;
@@ -523,6 +533,21 @@ HRESULT WeaselIME::_AddIMEMessage(UINT msg, WPARAM wp, LPARAM lp)
 
 void WeaselIME::_UpdateInputPosition(LPINPUTCONTEXT lpIMC, POINT pt)
 {
+	if (m_alwaysDetectCaretPos || pt.x == -1 && pt.y == -1)
+	{
+		// caret pos detection required
+		GUITHREADINFO threadInfo;
+		threadInfo.cbSize = sizeof(GUITHREADINFO);
+		BOOL ret = GetGUIThreadInfo(GetCurrentThreadId(), &threadInfo);
+		if (ret && IsWindow(threadInfo.hwndCaret) && IsWindowVisible(threadInfo.hwndCaret))
+		{
+			pt.x = threadInfo.rcCaret.left;
+			pt.y = threadInfo.rcCaret.top;
+		}
+		else
+			pt.x = pt.y = 0;
+	}
+
 	ClientToScreen(lpIMC->hWnd, &pt);
 	int height = abs(lpIMC->lfFont.W.lfHeight);
 	if (height == 0)
