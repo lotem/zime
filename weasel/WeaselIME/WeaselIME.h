@@ -42,7 +42,7 @@ public:
 	static boost::shared_ptr<WeaselIME> GetInstance(HIMC hIMC);
 	static void Cleanup();
 
-	WeaselIME(HIMC hIMC) : m_hIMC(hIMC) {}
+	WeaselIME(HIMC hIMC);
 	LRESULT OnIMESelect(BOOL fSelect);
 	LRESULT OnIMEFocus(BOOL fFocus);
 	LRESULT OnUIMessage(HWND hWnd, UINT uMsg, WPARAM wp, LPARAM lp);
@@ -63,6 +63,7 @@ private:
 	static std::map<HIMC, boost::shared_ptr<WeaselIME> > _instances;
 	static boost::mutex _mutex;
 	HIMC m_hIMC;
+	bool m_alwaysDetectCaretPos;
 	weasel::UI m_ui;
 	weasel::Client m_client;
 	weasel::Context m_ctx;

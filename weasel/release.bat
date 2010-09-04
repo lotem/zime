@@ -1,6 +1,8 @@
 call env.bat
 set OUTPUT=output\weasel
+set SERVER=%OUTPUT%\WeaselServer.exe
 
+if exist %SERVER% %SERVER% /q
 rmdir /s /q %OUTPUT%
 mkdir %OUTPUT%
 mkdir %OUTPUT%\data
