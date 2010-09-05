@@ -73,16 +73,12 @@ Hi，
     * 計劃中 v4
 
   * [IBusZIME 中州韻IBus輸入法／ibus-zime]
-    * 當前版本：3.4
 
   * [Weasel 中州韻Windows輸入法]
-    開發代號：小狼毫／"Weasel"
-    * 研製中 
+    開發代號：小狼毫／Weasel
 
   * [Plume 中州韻網頁輸入法]
-    開發代號：大白雲／"Plume"
-    * 當前版本：2.1
-    * 在線模式計劃中 
+    開發代號：大白雲／Plume
 
   * [ZIMEData ZIME輸入方案倉庫／zime-data]
     * 輸入方案規格：v3
