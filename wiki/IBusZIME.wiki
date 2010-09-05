@@ -1,4 +1,5 @@
 #summary 中州韻IBus輸入法介紹頁
+#labels Featured
 
 = ibus-zime =
 
