@@ -2,13 +2,13 @@
 
 = ibus-zime =
 
-基於Linux／IBus的中州韻輸入法
+中州韻Linux／IBus輸入法
 
 
   * 版本資訊：[ReleaseNotes]
 
-    * 下載：[http://zime.googlecode.com/files/ibus-zime-3.4.tar.gz ibus-zime 3.4]
-      * 內含輸入方案：拼音、雙拼、宮保拼音、粵拼
+    * 下載：[http://zime.googlecode.com/files/ibus-zime-3.5.tar.gz ibus-zime 3.5]
+      * 內含輸入方案：拼音、雙拼、宮保拼音、標調拼音、注音、粵拼、吳語
 
     * 演示視頻：
       * [http://v.youku.com/v_show/id_XMTM4ODkwMzgw.html 其一、功能展示]
