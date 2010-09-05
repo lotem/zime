@@ -41,7 +41,6 @@ goto exit
 echo installing schema Jyutping.
 python make-phrases.py jyutping
 python create-schema.py -v Jyutping.txt
-python create-schema.py -v -k Penkyamp.txt
 goto exit
 
 :wu
