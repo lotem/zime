@@ -4,6 +4,7 @@ call stop_service.bat
 
 cd data
 
+:menu
 echo schema available:
 echo --------------------------------------------------
 echo Pinyin      - simplified :(
@@ -12,11 +13,17 @@ echo Zhuyin      - bopomofo
 echo Jyutping    - cantonese
 echo Wu          - zanhe rerau
 echo --------------------------------------------------
-set /p Choise="what's the schema of your choice [Ptzjw]?"
+set Choise=
+set /p Choise="what's the schema of your choice [Ptzjw]? "
+if /i "%Choise%" == "" goto pinyin
+if /i "%Choise%" == "p" goto pinyin
 if /i "%Choise%" == "t" goto tonal_pinyin
 if /i "%Choise%" == "z" goto zhuyin
 if /i "%Choise%" == "j" goto jyutping
 if /i "%Choise%" == "w" goto wu
+
+echo "%Choise%"... that isn't what we offered.
+goto menu
 
 :pinyin
 echo installing schema Pinyin.
