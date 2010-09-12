@@ -3,10 +3,8 @@ call env.bat
 call stop_service.bat
 
 echo uninstalling Weasel ime.
-echo OSVersion = %OSVersion%
-if defined OSVersion goto %OSVersion%_uninstall
 
-ver | python checkosver.py
+ver | python check_osver.py
 if %ERRORLEVEL% EQU 5 goto xp_uninstall
 
 :win7_uninstall
