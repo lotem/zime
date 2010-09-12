@@ -161,8 +161,8 @@ if schema_file:
         return u' '.join(p)
     f = open(schema_file, 'r')
     for line in f:
-        x = line.strip().decode('utf-8')
-        if not x or x.startswith('#'):
+        x = line.strip().decode('utf-8').lstrip(u'\ufeff')
+        if not x or x.startswith(u'#'):
             continue
         try:
             (path, value) = equal_sign.split(x, 1)
@@ -205,7 +205,7 @@ keywords = dict()
 if keyword_file:
     f = open(keyword_file, 'r')
     for line in f:
-        x = line.strip().decode('utf-8')
+        x = line.strip().decode('utf-8').lstrip(u'\ufeff')
         if not x or x.startswith(u'#'):
             continue
         try:
