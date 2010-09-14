@@ -9,9 +9,9 @@
 
     感謝上海閒話ABC貢獻吳語上海話碼表
 
-    感謝輸入方案作者Penkyamp、thhui、Xiss測試輸入法、整理粵拼碼表，為ZIME的發展提出寶貴意見
+    感謝輸入方案作者Penkyamp、thhui、xiss測試輸入法、整理粵拼碼表，為ZIME的發展提出寶貴意見
 
-    感謝【小狼毫】程序開發者Zouive、Charlie Gong、核心算法開發者佛振的出色工作
+    感謝【小狼毫】程序開發者Charlie Gong、Zouive、核心算法開發者佛振的出色工作
 
   * 後續工作：改進詞庫，完善細節，補充文檔
 
