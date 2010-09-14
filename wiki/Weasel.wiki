@@ -1,15 +1,19 @@
 #summary 中州韻Windows輸入法介紹頁
 #labels Featured,Phase-Design
 
-= 中州韻Windows輸入法 =
+= 小狼毫／Weasel =
 
-開發代號：*小狼毫／Weasel*
+  * 測試版 0.1 於夏曆八月初八發佈 [http://code.google.com/p/zime/downloads/list 下載頁]
 
-  * 幾近完工，我等準備了一個功能基本完備的預覽版放在[http://code.google.com/p/zime/downloads/list 下載頁]，供具有一定技術能力的朋友搶先體驗
+    感謝有女同車分享《廣韻全字表》及拼寫方案
 
-  * 後續工作：整理輸入方案，改進兼容性，補充文檔
+    感謝上海閒話ABC貢獻吳語上海話碼表
 
-  * 定於夏曆八月初八發佈測試版
+    感謝輸入方案作者Penkyamp、thhui、Xiss測試輸入法、整理粵拼碼表，為ZIME的發展提出寶貴意見
+
+    感謝【小狼毫】程序開發者Zouive、Charlie Gong、核心算法開發者佛振的出色工作
+
+  * 後續工作：改進詞庫，完善細節，補充文檔
 
 ----
 
