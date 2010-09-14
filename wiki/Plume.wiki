@@ -1,8 +1,6 @@
 #summary 中州韻網頁輸入法介紹頁
 
-= 中州韻網頁輸入法 =
-
-開發代號：*大白雲／Plume*
+= 大白雲／Plume =
 
     * 下載網頁輸入法 Plume.js：
       * [http://zime.googlecode.com/files/plume-2.1.zip Plume.js 2.1]
