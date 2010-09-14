@@ -67,26 +67,30 @@ Hi，
 
 項目組成：
 
-  * [Rhyme 核心算法庫]
-    開發代號 平水韻／"Rhyme" 
-    * 當前版本：v3
-    * 計劃中 v4
+  * 核心算法層
+    * [Rhyme ZIME核心算法庫]
+      開發代號： 平水韻／Rhyme
 
-  * [IBusZIME 中州韻IBus輸入法／ibus-zime]
+  * 平臺適應層
+    * [IBusZIME 中州韻IBus輸入法／ibus-zime]
+      與核心算法同步發行
+    * [Weasel 中州韻Windows輸入法]
+      開發代號：小狼毫／Weasel
+    * [Squirrel 中州韻Mac輸入法]
+      開發代號：鼠鬚管／Squirrel（規劃）
 
-  * [Weasel 中州韻Windows輸入法]
-    開發代號：小狼毫／Weasel
-
-  * [Plume 中州韻網頁輸入法]
-    開發代號：大白雲／Plume
-
-  * [ZIMEData ZIME輸入方案倉庫／zime-data]
-    * 輸入方案規格：v3
+  * 資料庫／網絡服務層
+    * [Plume 中州韻網頁輸入法]
+      開發代號：大白雲／Plume，未來發展為在線輸入
+    * [ZIMEData 輸入方案倉庫]
+      開發代號：東風破／Brise，未來提供協作審音與在線修訂輸入方案的工具
+    * 線上詞庫
+      開發代號：八股文／Essay（規劃）
 
   * 其他ZIME相關資源
     * 宮保拼音／Combo Pinyin
     * 打字機／Typewriter
     * 中州羅馬字拼寫法
-    * 東風破拼寫法
+    * 東風破古韻拼寫方案
 
 ----
