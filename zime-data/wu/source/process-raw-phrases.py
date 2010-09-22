@@ -2,8 +2,12 @@
 # encoding: utf-8
 import sys
 
+if len(sys.argv) < 2:
+    print >> sys.stderr, "usage: %s dict" % sys.argv[0]
+    exit()
+
 kw = dict()
-for line in open("wu-keywords.txt"):
+for line in open("%s-keywords.txt" % sys.argv[1]):
     line = line.strip().decode('utf-8')
     if not line or line.startswith(u'#'):
         continue
