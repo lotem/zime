@@ -1496,7 +1496,7 @@ bin 臏
 bin 髕
 bin 馮
 binba 並排
-binbansenxian 平彭三響
+binbansexian 平彭三響
 binbaq 平白
 binbe 並被
 binbeu 平盤
@@ -1579,7 +1579,7 @@ binka 並駕
 binka 評介
 binka 病假
 binkaon 平江
-binkautzeq 蘋果汁
+binkutzeq 蘋果汁
 binke 瓶蓋
 binke 評改
 binken 病根
@@ -2349,8 +2349,8 @@ busaq 菩薩
 busaq 捕殺
 buseu 蒲扇
 busin 婆心
-busiocij 孵小鸡
-busiocij 伏小鸡
+busiocij 孵小雞
+busiocij 伏小雞
 busiq 婆媳
 buso 步哨
 busoe 部首
@@ -3346,7 +3346,7 @@ chiqkoe 喫夠
 chiqku 吃過
 chiqku 喫過
 chiqkuaon 喫光
-chiqkuaonl 吃光光
+chiqkuaonkuaon 吃光光
 chiqkue 喫慣
 chiqkueusy 吃官司
 chiqkueusygnin 吃官司人
@@ -5862,6 +5862,7 @@ ciq 騭
 ciq 羯
 ciq 墼
 ciq 桔
+ciq 隲
 ciqba 擊敗
 ciqba 揭牌
 ciqbaq 潔白
@@ -6350,7 +6351,7 @@ ciuliq 句律
 ciulo 鬼老
 ciumeq 鋸末
 ciumeq 句末
-ciumiciunge 鬼眉鬼眼
+ciumijciunge 鬼眉鬼眼
 ciumin 居民
 ciumoq 舉目
 ciumoq 鋸木
@@ -6538,7 +6539,7 @@ ciuq 譎
 ciuq 獗
 ciuq 鱖
 ciuqbiq 訣別
-ciuqchij 赶起
+djiuqchij 赶起
 ciuqchio 訣竅
 ciuqcij 決計
 ciuqdeu 決斷
@@ -6789,7 +6790,7 @@ dafon 大風
 dafoq 大幅
 dafu 大夫
 dafu 大斧
-daga 大家
+daka 大家
 dagni 大年
 dagnian 大嚷
 dagnian 大娘
@@ -7197,7 +7198,7 @@ datzeu 大專
 datzeu 大醉
 datzeu 大展
 datzeu 大轉
-datzi 大姐
+datzij 大姐
 datzia 大姐
 datzian 大將
 datzian 大獎
@@ -8116,6 +8117,7 @@ di 墊
 di 填
 di 甜
 di 澱
+din 澱
 di 靛
 di 奠
 di 殿
@@ -8575,7 +8577,7 @@ dilu 田螺
 dilu 電爐
 dilu 電路
 dilunge 田螺眼
-dilusu 甜蘆黍
+dilusyu 甜蘆黍
 dimaon 電網
 dimau 電碼
 dimen 電門
@@ -9042,7 +9044,7 @@ dirau 殿下
 direu 電函
 direu 電焊
 diroq 電學
-disaq 電刷
+diseq 電刷
 disau 田舍
 dise 田賽
 diseq 恬適
@@ -11437,7 +11439,7 @@ ducin 途徑
 ducin 途經
 ducin 圖景
 ducin 鍍金
-ducinijzan 大襟衣裳
+ducinijzaon 大襟衣裳
 duden 圖騰
 dudi 度電
 dudij 徒弟
@@ -11550,7 +11552,7 @@ duren 杜蘅
 duroegniq 大後日
 duroethi 大後天
 dusaq 屠殺
-dusaq 塗刷
+duseq 塗刷
 duse 圖三
 dusen 度身
 duseq 駝色
@@ -13246,7 +13248,7 @@ fenro 分毫
 fenro 分號
 fenron 分洪
 fensan 分省
-fensaq 粉刷
+fenseq 粉刷
 fensau 粉砂
 fensau 粉沙
 fense 分散
@@ -13377,7 +13379,6 @@ feq 不
 feq 芾
 feqhau 氟化
 feqle 弗萊
-feqzyu 弗如
 ferandoe 翻行頭
 feraon 返航
 ferau 反華
@@ -14399,7 +14400,7 @@ geqxiqzenkuaon 搿歇辰光
 geqzenkuaon 箇辰光
 geqzenkuaon 搿辰光
 gesen 隑身
-giqmenhu 熱門貨
+gniqmenhu 熱門貨
 gni 年
 gni 染
 gni 驗
@@ -14492,7 +14493,7 @@ gniaq 箬
 gniaq 捻
 gniaqcin 捏緊
 gniaqde 虐待
-gniaqdjeudoe 捏拳頭
+gniaqdjieudoe 捏拳頭
 gniaqko 捏告
 gniaqli 虐戀
 gniaqliq 箬笠
@@ -15834,7 +15835,7 @@ gnio 嬈
 gnio 裊
 gnio 僥
 gnio 擾
-gnioatsiaqbij 肉皵皮
+gnioqtsiaqbij 肉皵皮
 gniobeq 鐃鈸
 gniochieu 繞圈
 gniochioq 撓曲
@@ -15899,7 +15900,7 @@ gnioeto 牛刀
 gnioetsau 牛車
 gnioetu 牛肚
 gnioetze 牛仔
-gnioetzeku 牛仔褲
+gnioetzekhu 牛仔褲
 gnioetzin 牛津
 gnioetzy 牛仔
 gnioetzy 牛子
@@ -16160,6 +16161,7 @@ gniq 業
 gniq 逆
 gniq 溺
 gniq 孽
+kniq 孽
 gniq 匿
 gniq 暱
 gniq 屹
@@ -16582,7 +16584,7 @@ gniure 遇害
 gniure 圉限
 gniureq 女個
 gniureq 遇合
-gniureqw 女個淮
+gniureqwa 女個淮
 gniureu 禦寒
 gniureu 御寒
 gniuroe 虞侯
@@ -17037,7 +17039,7 @@ haqgnin 嚇人
 haqgnintokua 嚇人倒怪
 haqgnion 嚇濃
 haqgo 瞎搞
-haqhaqgniq 嚇嚇人
+haqhaqgnin 嚇嚇人
 haqhu 嚇唬
 haqhu 瞎火
 haqhuen 嚇昏
@@ -17957,7 +17959,7 @@ hoqzeu 霍然
 horau 好話
 hore 好閑
 horeq 好個
-horeqw 好個懷
+horeqwa 好個懷
 horoq 好學
 hosa 好耍
 hosan 好生
@@ -18181,6 +18183,7 @@ huaonzyu 恍如
 huaphi 歪偏
 huaq 豁
 huaq 甩
+hue 甩
 huaq 奯
 huaq 砉
 huaq 轄
@@ -18942,7 +18945,7 @@ ieu 苑
 ieu 眢
 ieu 蜎
 ieu 箢
-ieu 宛（大宛）
+ieu 宛
 ieuchij 冤氣
 ieuchij 怨氣
 ieuchiuq 冤屈
@@ -19207,7 +19210,7 @@ ijroe 以候
 ijroq 醫學
 ijsa 以啥
 ijsan 醫生
-ijsaq 衣刷
+ijseq 衣刷
 ijse 衣衫
 ijsen 醫聖
 ijsen 以身
@@ -19436,6 +19439,7 @@ imin 煙民
 imiq 湮滅
 imu 煙幕
 in 陰
+ian 陰
 in 音
 in 應
 in 影
@@ -19480,6 +19484,7 @@ in 映
 in 湮
 in 滎
 in 駰
+in 隂
 inau 喑啞
 inban 蔭棚
 inbe 因被
@@ -19768,7 +19773,7 @@ inro 英豪
 inroe 影后
 insaon 殷商
 insaon 因傷
-insaq 印刷
+inseq 印刷
 inse 陰山
 insen 隱身
 insen 陰沈
@@ -21498,6 +21503,7 @@ itzioe 煙酒
 itziq 醃漬
 itzoe 演奏
 itzoq 饜足
+i 阏
 itzy 阏氏
 itzy 燕子
 itzy 煙子
@@ -23563,8 +23569,8 @@ khaqciu 客居
 khaqdaon 客堂
 khaqdaonke 客堂間
 khaqde 客隊
-khaqdemeqten 揩檯抹凳
-khaqdepu 揩檯布
+khademeqten 揩檯抹凳
+khadepu 揩檯布
 khaqdeu 掐斷
 khaqdij 客地
 khaqgnieu 客源
@@ -23578,7 +23584,7 @@ khaqlen 客輪
 khaqlioe 客流
 khaqlon 客隆
 khaqmeu 客滿
-khaqmikhon 揩面孔
+khamikhon 揩面孔
 khaqpaon 客幫
 khaqpaongnin 客邦人
 khaqphio 客票
@@ -23933,7 +23939,7 @@ kheqne 克難
 kheqnga 磕牙
 kheqpe 刻板
 kheqpen 刻本
-kheqpenga 闊板牙
+khueqpenga 闊板牙
 kheqphe 渴盼
 kheqphu 磕破
 kheqrau 刻畫
@@ -24337,7 +24343,7 @@ khoemu 口蘑
 khoene 口內
 khoenga 口外
 khoengatsy 摳牙齒
-khoenge 眴眼
+xieunge 眴眼
 khoenge 扣眼
 khoengeu 口岸
 khoengu 口誤
@@ -24788,7 +24794,7 @@ khuaonzi 礦泉
 khuaonzu 匡助
 khuaonzyu 礦柱
 khuapo 快報
-khuaqsoekhuaqciaq 快手快腳
+khuasoekhuaciaq 快手快腳
 khuaseq 快說
 khuasi 快線
 khuasij 快些
@@ -24839,7 +24845,7 @@ khuci 課間
 khuciaq 褲腳
 khuciaqkueu 褲腳管
 khucieu 苛捐
-khucin 奎勁
+khuecin 奎勁
 khucin 可敬
 khucin 苦經
 khucio 可叫
@@ -26607,7 +26613,7 @@ koreu 高寒
 koroq 教學
 kosaon 高商
 kosaon 高爽
-kosaq 膠刷
+koseq 膠刷
 kosaq 絞殺
 kosau 絞紗
 kose 絞碎
@@ -28285,7 +28291,7 @@ kuue 顧委
 kuue 過彎
 kuueu 鍋碗
 kuvaon 姑妄
-kuvaongian 過房娘
+kuvaongnian 過房娘
 kuvaongnijtzy 過房兒子
 kuvaonya 過房爺
 kuve 過飯
@@ -28392,6 +28398,7 @@ la 賴
 la 攋
 la 瀨
 la 癩
+laq 癩
 la 旯
 la 籟
 la 拉
@@ -28446,7 +28453,7 @@ lanmen 冷門
 lanmenhu 冷門貨
 lanmi 冷麵
 lanmi 冷面
-lanmikhon 老面孔
+lomikhon 老面孔
 lanmoq 冷漠
 lanneu 冷暖
 lannge 冷眼
@@ -29206,7 +29213,7 @@ lewu 爛糊
 lewu 漯河
 lewu 類乎
 lewugnij 爛糊泥
-lewumij 爛糊麵
+lewumi 爛糊麵
 lexian 雷響
 lexian 來向
 lexij 來兮
@@ -30356,7 +30363,7 @@ linciun 領軍
 lindaon 凌宕
 lindaon 淩宕
 lindaon 靈堂
-lindaon 凌凙兒
+lindoqng 凌凙兒
 linde 零蛋
 linde 靈臺
 linde 棱臺
@@ -32693,7 +32700,7 @@ lusijpo 卵細胞
 lusin 魯迅
 lusoq 魯肅
 lusoq 露宿
-lusu 蘆黍
+lusyu 蘆黍
 lusu 羅素
 lusu 羅唆
 lusu 盧梭
@@ -33087,7 +33094,7 @@ maqdon 襪筒
 maqeu 脈案
 maqfen 麥粉
 maqka 麥加
-maqkeqmaqkeq 麥克麥克
+maqkheqmaqkheq 麥克麥克
 maqkeu 麥稈
 maqkeu 麥杆
 maqkhaon 麥糠
@@ -33449,7 +33456,7 @@ megnian 晚娘
 megnin 媒人
 megnioe 慢牛
 megniq 煤業
-megniqthi 每日天
+mhegniqthi 每日天
 mehau 梅花
 meheq 煤黑
 meho 煤耗
@@ -33842,7 +33849,7 @@ metsau 慢車
 metseq 邁出
 metzan 蠻爭
 metzau 煤渣
-metzenchij 霉氣
+mechij 霉氣
 metzeq 煤質
 metzeq 媒質
 metzeu 煤磚
@@ -34181,7 +34188,7 @@ mhij 咪
 mhij 眯
 mhij 微
 mhijchij 眯起
-mhijhaungesio 瞇花眼笑
+mijhaungesio 瞇花眼笑
 mhijmhij 咪咪
 mhijten 眯瞪
 mhijvon 眯縫
@@ -34286,7 +34293,7 @@ michij 免去
 michiu 棉區
 mici 免檢
 micin 面巾
-miciqkuen 面結骨
+miciqkueq 面結骨
 midaon 綿糖
 mide 免談
 mide 面談
@@ -34308,7 +34315,7 @@ mifij 免費
 migni 免驗
 mignieu 綿軟
 mignij 面議
-migninthaon 米韌湯
+mijgninthaon 米韌湯
 mignion 棉絨
 mihau 棉花
 mihauthe 棉花胎
@@ -34358,7 +34365,7 @@ mijdo 味道
 mijdoe 眉頭
 mijdu 迷途
 mijdu 彌陀
-mijdubasaq 彌陀菩薩
+mijdubusaq 彌陀菩薩
 mijdukatse 彌陀芥菜
 mijel 米爾
 mijeu 謎案
@@ -35610,7 +35617,7 @@ moqzyu 目濡
 more 毛孩
 moreu 冒汗
 moro 冒號
-mosaq 毛刷
+moseq 毛刷
 mosau 茅舍
 mose 茅山
 mosen 毛筍
@@ -36839,7 +36846,7 @@ ngasanneu 外甥囡
 ngasanneu 外孫囡
 ngasaon 外商
 ngasaon 外傷
-ngasaq 牙刷
+ngaseq 牙刷
 ngasen 外滲
 ngasen 外孫
 ngaseq 外設
@@ -36877,7 +36884,7 @@ ngatiq 外的
 ngatiq 捱的
 ngato 外島
 ngato 捱到
-ngatsahau 外插花
+ngatsaqhau 外插花
 ngatsan 外廠
 ngatsaon 外艙
 ngatsaqsanij 外拆生意
@@ -37148,8 +37155,8 @@ ngemen 眼門
 ngemenzi 眼門前
 ngemi 顏面
 ngemij 眼眉
-ngemijtzy 礙面子
-ngemimo 眼眉毛
+ngemitzy 礙面子
+ngemijmo 眼眉毛
 ngemin 銜命
 ngemizi 眼面前
 ngemo 眼毛
@@ -37205,7 +37212,7 @@ ngeroq 癌學
 ngesa 呆傻
 ngesan 眼生
 ngesaon 眼霜
-ngesaqmo 眼毛
+ngeseqmo 眼刷毛
 ngeseq 眼識
 ngeseq 眼色
 ngeseq 顏色
@@ -38088,7 +38095,9 @@ nhalian 那兩
 nhalij 那裡
 nhameq 那麼
 nhami 那面
-nhamoumijduveq 南无阿弥陀佛
+nhamauumijduveq 南無阿彌陀佛
+nha 南
+mau 無
 nhanen 那能
 nhangu 那我
 nhaon 曩
@@ -38427,7 +38436,7 @@ numau 駑馬
 numau 怒罵
 numij 糯米
 numijdeu 糯米糰
-numisinzan 糯米心腸
+numijsinzan 糯米心腸
 numoq 怒目
 nunge 奴顏
 nuro 怒號
@@ -38597,6 +38606,7 @@ opij 奧秘
 opij 奧祕
 opin 鏖兵
 oq 屋
+ueq 屋
 oq 惡
 oq 噁
 oq 齷
@@ -38864,7 +38874,7 @@ panthaq 崩塌
 panthe 浜灘
 panthe 崩坍
 panthio 蹦跳
-pantintzy 掽釘子
+phantintzy 掽釘子
 pantoe 浜兜
 pantsaq 迸坼
 pantseq 迸出
@@ -39050,11 +39060,11 @@ paqlij 百里
 paqlin 百靈
 paqlin 百零
 paqlin 柏林
-paqlipaqlij 百伶百俐
+paqlinpaqlij 百伶百俐
 paqlo 伯勞
 paqloq 伯樂
 paqlu 八路
-paqmhdoelij 伯姆道理
+paqmhdolij 伯姆道理
 paqmhu 伯母
 paqmij 百米
 paqmin 百名
@@ -39101,7 +39111,7 @@ paqtzy 柏子
 paqve 八萬
 paqve 百萬
 paqveq 百物
-paqveqtzaqteq 巴勿紮得
+pauveqtzaqteq 巴勿紮得
 paqvu 伯父
 paqvuiqnen 百無一能
 paqwe 八位
@@ -39415,6 +39425,7 @@ pemu 版模
 pen 本
 pen 奔
 pen 畚
+fen 畚
 pen 苯
 pen 賁
 pen 堋
@@ -40039,8 +40050,8 @@ pero 悲號
 peroe 背後
 peroedoe 背後頭
 pesaon 悲傷
-pesaq 板刷
-pesaqdoe 板刷頭
+peseq 板刷
+peseqdoe 板刷頭
 pesen 碑身
 peseq 板式
 peseq 版式
@@ -40283,7 +40294,7 @@ phakheq 派克
 phakhueu 派款
 phakoe 派購
 phale 派來
-phalijsy 派力司
+phaliqsy 派力司
 phalio 派了
 phan 乓
 phan 閛
@@ -40308,7 +40319,7 @@ phaondoeng 胖頭魚
 phaonknioe 胖妞
 phaonli 胖臉
 phaonphaon 胖胖
-phaonphaonxian 乓乓響
+phanphanxian 乓乓響
 phaonre 胖孩
 phaonseuciaqgnieu 髈痠腳軟
 phaonsoe 胖瘦
@@ -40796,8 +40807,8 @@ phinmin 品名
 phinmo 品貌
 phinmoq 品目
 phinphan 乒乓
-phinphaonchij 乒乓器
-phinphaondjioe 乒乓球
+phinphanchij 乒乓器
+phinphandjioe 乒乓球
 phinpoq 拚搏
 phinraon 品行
 phinreq 拼個
@@ -41336,7 +41347,7 @@ phute 破膽
 phuteq 頗得
 phuthi 普天
 phuthon 普通
-phuthonrerau 普通言话
+phuthonrerau 普通言話
 phuthu 破土
 phutij 鋪底
 phutiq 破的
@@ -43240,7 +43251,7 @@ raqkoq 狹谷
 raqlu 狹路
 raqseq 匣式
 raqsio 狹小
-raqtsyudio 狹竄條
+raqtseudio 狹竄條
 raqtzan 狹長
 raqtzaq 狹窄
 raqtzy 匣子
@@ -43990,7 +44001,7 @@ reqzy 核示
 reqzy 核字
 reqzyu 合住
 reqzyu 閤署
-rerau 言话
+rerau 言話
 rerau 閑話
 rere 陷害
 rereq 閑個
@@ -45299,6 +45310,7 @@ saq 捒
 saq 爍
 saq 鑠
 saq 卅
+seq 卅
 saq 趿
 saq 脎
 saq 唼
@@ -45307,17 +45319,17 @@ saq 靸
 saq 歃
 saq 唰
 saqbaq 煞白
-saqbaq 刷白
-saqbin 刷屏
+seqbaq 刷白
+seqbin 刷屏
 saqchij 殺氣
 saqchij 殺去
 saqcij 殺雞
 saqcij 殺機
 saqciun 殺菌
 saqdeq 薩特
-saqdij 刷地
+seqdij 刷地
 saqdio 殺掉
-saqdio 刷掉
+seqdio 刷掉
 saqdiq 殺敵
 saqdjiq 柵極
 saqdoe 殺頭
@@ -45331,11 +45343,11 @@ saqhe 剎海
 saqka 殺戒
 saqka 殺價
 saqkaq 柵格
-saqkha 刷卡
+seqkha 刷卡
 saqkhoe 煞口
 saqkhu 剎枯
 saqku 殺個
-saqku 刷鍋
+seqku 刷鍋
 saqkuaon 殺光
 saqlaq 殺辣
 saqlaqsybin 煞辣勢平
@@ -45344,7 +45356,7 @@ saqlaqsyzij 煞辣勢齊
 saqle 柵欄
 saqlha 薩拉
 saqlha 趿拉
-saqlha 刷拉
+seqlha 刷拉
 saqliaq 殺掠
 saqlio 殺了
 saqloq 殺戮
@@ -45352,7 +45364,7 @@ saqm 薩姆
 saqmaon 殺夢
 saqmen 柵門
 saqmiq 殺滅
-saqnga 刷牙
+seqnga 刷牙
 saqnge 霎眼
 saqngu 殺我
 saqnha 霎那
@@ -45360,15 +45372,15 @@ saqnha 剎那
 saqpe 趿板
 saqphe 殺坯
 saqpoq 殺博
-saqra 刷鞋
+seqra 刷鞋
 saqre 殺害
 saqsan 殺生
 saqsaon 殺傷
 saqsaon 颯爽
 saqsen 殺身
-saqsij 刷洗
+seqsij 刷洗
 saqsin 煞星
-saqsin 刷新
+seqsin 刷新
 saqsoe 殺手
 saqsy 薩斯
 saqsy 殺死
@@ -45385,18 +45397,18 @@ saqtsito 殺千刀
 saqtzan 煞賬
 saqtzin 殺進
 saqtzy 靸子
-saqtzy 刷子
+seqtzy 刷子
 saqtzyu 殺豬
 saqvaq 殺伐
 saqvij 煞尾
 saqyij 薩伊
 saqzan 殺場
-saqzaq 刷着
+seqzaq 刷着
 saqzen 煞神
 saqzeq 殺入
 saqzeu 颯然
-saqzian 刷牆
-saqzij 刷齊
+seqzian 刷牆
+seqzij 刷齊
 saqzin 殺盡
 saqzon 殺蟲
 saqzoq 殺熟
@@ -45845,6 +45857,7 @@ sen 伸
 sen 損
 sen 森
 sen 孫
+san 孫
 sen 筍
 sen 猻
 sen 聖
@@ -46372,7 +46385,7 @@ sepoq 三北
 sepu 散佈
 sepu 散播
 sepu 碎布
-sepu 山坡
+sephu 山坡
 seq 室
 seq 塞
 seq 葉
@@ -46909,6 +46922,7 @@ seu 陝
 seu 算
 seu 歲
 seu 閃
+si 閃
 seu 扇
 seu 酸
 seu 痠
@@ -47742,7 +47756,7 @@ sijngoq 西嶽
 sijno 洗腦
 sijoe 西歐
 sijpan 死浜
-sijpebe 西爿爿
+sijbebe 西爿爿
 sijpenga 西班牙
 sijpeube 西半爿
 sijpi 西邊
@@ -47755,7 +47769,7 @@ sijrau 西畫
 sijrau 西夏
 sijroq 西學
 sijsa 西曬
-sijsaq 洗刷
+sijseq 洗刷
 sijsau 細沙
 sijsau 細砂
 sijsaugniqdoe 西曬日頭
@@ -47781,7 +47795,7 @@ sijsu 西數
 sijsu 洗漱
 sijsu 細數
 sijsu 細瑣
-sijsy 死尸
+sijsy 死屍
 sijsy 西施
 sijsy 細絲
 sijsyu 細水
@@ -48150,7 +48164,7 @@ sinloe 新樓
 sinlon 新龍
 sinloq 新綠
 sinloq 信樂
-sinloqwe 小樂惠
+sioloqwe 小樂惠
 sinlu 新羅
 sinlu 新路
 sinlu 姓盧
@@ -48474,6 +48488,8 @@ sio 捎
 sio 俏
 sio 蛸
 sio 宿
+tsoq 甴
+khaq 曱
 sioaq 小鴨
 siobakueq 小排骨
 sioban 小棚
@@ -48955,7 +48971,7 @@ sioyeu 小圓
 sioyeu 小院
 sioyi 消炎
 sioyij 小姨
-sioyijmhma 小姨姆媽
+sioyijmhmha 小姨姆媽
 sioyin 小型
 sioyin 小引
 sioyiq 小葉
@@ -49107,7 +49123,7 @@ siqkhan 雪坑
 siqkhuaon 錫礦
 siqko 雪糕
 siqko 膝糕
-siqkueqli 削骨臉
+siaqkueqli 削骨臉
 siqlaon 雪浪
 siqle 雪萊
 siqlian 雪亮
@@ -50477,7 +50493,7 @@ sutziq 數節
 sutzoe 蘇州
 sutzoegnin 蘇州人
 sutzoerau 蘇州話
-sutzoererau 蘇州言话
+sutzoererau 蘇州言話
 sutzoewu 蘇州河
 sutzon 數種
 sutzon 蘇中
@@ -51166,6 +51182,7 @@ syu 水
 syu 舒
 syu 輸
 syu 疏
+su 疏
 syu 梳
 syu 暑
 syu 樞
@@ -51353,7 +51370,7 @@ syupen 書本
 syupeq 恕不
 syuphin 書品
 syuphio 水漂
-syupho 尿脬
+sypho 尿脬
 syupho 水泡
 syuphopho 水泡泡
 syuphude 水潽蛋
@@ -51365,6 +51382,7 @@ syupio 水錶
 syupio 水標
 syupo 書報
 syupo 書包
+syu 尿
 syupu 尿布
 syupu 水波
 syura 水鞋
@@ -51878,7 +51896,7 @@ tantzioe 打酒
 tantzo 打早
 tantzon 打中
 tantzonko 打中覺
-tantzonwanlij 當中橫裏
+taontzonwanlij 當中橫裏
 tantzy 打制
 tanua 打哇
 tanven 打問
@@ -52715,7 +52733,7 @@ terau 對華
 teraukhuaon 對話框
 tereq 對個
 tereq 單核
-tereqw 對個淮
+tereqwa 對個淮
 tereu 膽寒
 tereu 單寒
 tereu 堆焊
@@ -53573,7 +53591,7 @@ thendoesy 吞頭勢
 thenge 坦眼
 theni 吞嚥
 theni 吞咽
-thenkaonvoesy 氽江浮尸
+thenkaonvoesy 氽江浮屍
 thenmeq 吞沒
 thenmiq 吞滅
 thenpin 吞併
@@ -53700,7 +53718,7 @@ theroe 退後
 theroq 退學
 thesan 胎生
 thesaon 攤商
-thesaq 碳刷
+theseq 碳刷
 these 退賽
 thesen 灘聲
 theseq 推說
@@ -55908,7 +55926,7 @@ toka 到家
 toka 刀架
 tokaon 到港
 tokau 倒掛
-tokauli 倒挂臉
+tokauli 倒掛臉
 tokheq 刀刻
 tokhoe 刀口
 tokhoe 倒扣
@@ -56020,7 +56038,7 @@ tonne 凍餒
 tonneu 東南
 tonngeu 東岸
 tonoe 東歐
-tonpebe 東爿爿
+tonbebe 東爿爿
 tonpeube 東半爿
 tonphu 東坡
 tonpi 東邊
@@ -56253,6 +56271,7 @@ tozyu 倒豎
 tsa 差
 tsa 蔡
 tsa 叉
+tsaq 叉
 tsa 扯
 tsa 茬
 tsa 衩
@@ -57020,7 +57039,7 @@ tseme 產煤
 tseme 採煤
 tsememetzy 猜謎謎子
 tsemij 猜謎
-tsemijhau 採棉花
+tsemihau 採棉花
 tsemin 彩民
 tsemoq 猜摸
 tsemoq 揣摸
@@ -57339,7 +57358,7 @@ tseqcij 測計
 tseqcin 出境
 tseqcin 出警
 tseqcin 出鏡
-tseqcindaon 寸金糖
+tsencindaon 寸金糖
 tseqcioe 出九
 tseqciq 出擊
 tseqciun 撤軍
@@ -57648,6 +57667,7 @@ tseu 餐
 tseu 汆
 tseu 川
 tseu 慘
+tse 慘
 tseu 炊
 tseu 喘
 tseu 攛
@@ -58556,7 +58576,7 @@ tsinzeq 親日
 tsinzeu 親善
 tsinzeu 親隨
 tsinzeu 請罪
-tsinzi 清徐
+tsinzij 清徐
 tsinzi 清泉
 tsinzin 親情
 tsinzin 清靜
@@ -59259,12 +59279,11 @@ tsonmhin 聰敏
 tsonmij 舂米
 tsonmin 聰明
 tsonmu 沖模
-tsonngaqkoq 額角
 tsono 吵鬧
 tsonphe 充沛
 tsonpho 沖泡
 tsonphu 衝破
-tsonsaq 沖刷
+tsonseq 沖刷
 tsonsaq 衝殺
 tsonse 沖散
 tsonseq 充塞
@@ -59420,7 +59439,7 @@ tsoqtsiantsoqtzi 戳槍戳箭
 tsoqtsin 促請
 tsoqtsito 戳千刀
 tsoqtzen 觸診
-tsoqtzezijsin 簇嶄全新
+tsoqtzezisin 簇嶄全新
 tsoqtzij 觸祭
 tsoqtzin 促進
 tsoqtzio 觸礁
@@ -60948,7 +60967,7 @@ tzaqhau 摘花
 tzaqhu 咋呼
 tzaqhuaon 札幌
 tzaqijcin 着衣鏡
-tzaqijzan 着衣裳
+tzaqijzaon 着衣裳
 tzaqio 摘要
 tzaqkaon 謫降
 tzaqke 酌減
@@ -60962,7 +60981,7 @@ tzaqloq 摘錄
 tzaqman 蚱蜢
 tzaqmen 窄門
 tzaqmi 灼面
-tzaqmijhau 摘棉花
+tzaqmihau 摘棉花
 tzaqmitzy 紮面子
 tzaqmo 摘帽
 tzaqmoq 咂摸
@@ -61813,7 +61832,7 @@ tzentzy 鎮紙
 tzentzy 鎮子
 tzentzyu 真主
 tzentzyu 珍珠
-tzentzyumi 珍珠米
+tzentzyumij 珍珠米
 tzenue 政委
 tzenue 準尉
 tzenue 鎮委
@@ -62612,7 +62631,7 @@ tzeuko 最高
 tzeuko 專稿
 tzeuko 轉告
 tzeuko 轉交
-tzeukoedoe 鑽狗洞
+tzeukoedon 鑽狗洞
 tzeukofon 最高峰
 tzeukon 專供
 tzeukon 專攻
@@ -63622,7 +63641,7 @@ tzioegniu 酒女
 tzioegue 酒櫃
 tzioehau 酒花
 tzioei 酒宴
-tzioeide 酒靨潭
+tzioeiqde 酒靨潭
 tzioeij 酒意
 tzioein 酒癮
 tzioeiq 酒靨
@@ -64037,6 +64056,7 @@ tzo 躁
 tzo 詔
 tzo 釗
 tzo 笊
+tza 笊
 tzo 啁
 tzo 璪
 tzo 爪
@@ -64175,7 +64195,7 @@ tzoeloq 奏樂
 tzoelosy 周老師
 tzoelu 走路
 tzoemau 咒罵
-tzoemedoe 皺眉頭
+tzoemijdoe 皺眉頭
 tzoemeq 週末
 tzoemij 走味
 tzoemij 皺眉
@@ -64638,7 +64658,7 @@ tzonsan 終生
 tzonsan 中晌
 tzonsaon 終霜
 tzonsaon 中傷
-tzonsaq 鬃刷
+tzonseq 鬃刷
 tzonse 鍾山
 tzonse 中山
 tzonsen 終審
@@ -65027,7 +65047,7 @@ tzoqlu 築路
 tzoqmaon 作夢
 tzoqmaq 斫麥
 tzoqmau 竹馬
-tzoqmenmen 捉猛猛
+tzoqmanman 捉猛猛
 tzoqmhe 作美
 tzoqmi 桌面
 tzoqmij 蹙眉
@@ -65603,6 +65623,7 @@ tzy 滋
 tzy 旨
 tzy 梔
 tzy 摯
+tzeq 摯
 tzy 滓
 tzy 姊
 tzy 孳
@@ -66457,7 +66478,7 @@ tzyuthaon 煮湯
 tzyuthe 主推
 tzyuthi 諸天
 tzyuthij 主體
-tzyuthinloqcieu 諸親六眷
+tzyutsinloqcieu 諸親六眷
 tzyuthiq 鑄鐵
 tzyutin 朱頂
 tzyutio 嘴刁
@@ -67412,7 +67433,7 @@ ulhakue 烏拉圭
 ulian 烏亮
 ulij 窩裡
 ulijmalij 烏裏買裏
-ulijmelij 烏裏埋裏
+ulijmalij 烏裏埋裏
 ulijutzo 污裏污糟
 ulioe 渦流
 uliq 兀立
@@ -67451,7 +67472,7 @@ usy 鎢絲
 utij 誣詆
 utiq 兀的
 utoe 捂抖
-utsautzan 捂痧脹
+usautzan 捂痧脹
 utsi 烏千
 utsin 烏青
 utzaon 窩贓
@@ -68138,6 +68159,7 @@ vepi 萬變
 vepo 萬寶
 vepu 帆布
 veq 弗
+feq 弗
 veq 勿
 veq 物
 veq 佛
@@ -68896,7 +68918,7 @@ voesian 浮想
 voesin 負薪
 voesin 負心
 voesu 負數
-voesy 浮尸
+voesy 浮屍
 voesy 浮屍
 voete 負擔
 voethu 浮土
@@ -69909,7 +69931,7 @@ waonngoq 黃鶴
 waonngsian 黃魚鯗
 waonngtsau 黃魚車
 waonpaon 黃榜
-waonpaq 忘八
+vaonpaq 忘八
 waonpaq 黃檗
 waonpaq 黃柏
 waonpaq 王八
@@ -71381,6 +71403,7 @@ wu 菏
 wu 瓠
 wu 扈
 wu 猢
+weq 猢
 wu 煳
 wu 鶘
 wu 鸌
@@ -72248,7 +72271,7 @@ xijoq 喜惡
 xijpaqle 希伯來
 xijpe 戲班
 xijphio 戲票
-xijpo 顯寶
+xipo 顯寶
 xijpo 喜報
 xijsa 戲耍
 xijsaon 喜喪
@@ -72274,7 +72297,7 @@ xijtiq 戲的
 xijtsen 戲稱
 xijtsen 嬉春
 xijtsi 喜遷
-xijtsiaq 喜鹊
+xijtsiaq 喜鵲
 xijtsiaq 喜鵲
 xijtzaon 戲裝
 xijtzaon 喜幛
@@ -72558,7 +72581,7 @@ xioteq 曉得
 xioteqku 曉得過
 xioteqnhe 曉得呢
 xioteqreq 曉得個
-xioteqreqw 曉得個懷
+xioteqreqwa 曉得個懷
 xiotseu 哮喘
 xiotzan 囂張
 xiotzian 驍將
@@ -73957,6 +73980,7 @@ yeuzyu 懸殊
 yeuzyu 圓柱
 yi 沿
 yi 言
+re 言
 yi 冶
 yi 現
 yi 鹽
@@ -77281,7 +77305,7 @@ yureq 愈合
 yuroe 預後
 yuroe 雨後
 yusan 餘生
-yusaq 雨刷
+yuseq 雨刷
 yusau 緯紗
 yusau 羽紗
 yuse 與賽
@@ -77710,7 +77734,7 @@ zaonhele 上海唻
 zaonhen 上很
 zaonherau 上海話
 zaonheraupa 上海話吧
-zaonhererau 上海言话
+zaonhererau 上海言話
 zaonhererau 上海閑話
 zaonhethe 上海灘
 zaonho 上好
@@ -78442,7 +78466,7 @@ zaute 查對
 zauteq 乍得
 zauthaon 茶湯
 zauthe 茶攤
-zautheqkoq 蛇脫殼
+zautheqkhoq 蛇脫殼
 zauthin 乍聽
 zauti 茶點
 zauti 查點
@@ -79685,6 +79709,7 @@ zepo 財寶
 zepoq 在北
 zeq 入
 zeq 十
+seq 十
 zeq 值
 zeq 實
 zeq 舌
@@ -79702,6 +79727,7 @@ zeq 秩
 zeq 侄
 zeq 姪
 zeq 什
+seq 什
 zeq 蟄
 zeq 澤
 zeq 日
@@ -81178,7 +81204,7 @@ zibij 錢幣
 zibin 全屏
 zibiq 餞別
 zibu 全部
-zibu 徐步
+zijbu 徐步
 zibu 前部
 zichij 前去
 zichin 前傾
@@ -81263,11 +81289,11 @@ zij 薺
 zij 蠐
 zij 鱭
 zijbe 齊備
-zijbu 全部
+zibu 全部
 zijbu 齊步
 zijchio 齊巧
 zijcia 齊家
-zijdoe 前頭
+zidoe 前頭
 zijel 齊耳
 zijfaon 齊放
 zijfaq 齊發
@@ -81308,7 +81334,7 @@ zike 漸減
 zikeu 漸感
 zikeu 全乾
 zikhe 全開
-zikheq 徐克
+zijkheq 徐克
 zikho 全靠
 zikho 全考
 zikhu 全科
@@ -81320,7 +81346,7 @@ zikoq 全角
 ziku 前個
 zikueq 全國
 zilaon 前浪
-zile 徐來
+zijle 徐來
 zile 前來
 zilen 前輪
 zilian 錢糧
@@ -82153,7 +82179,7 @@ zitzin 前進
 zitziq 旋即
 zitzoe 全州
 zitzoe 泉州
-zitzoe 徐州
+zijtzoe 徐州
 zitzoe 前奏
 zitzon 旋踵
 zitzu 全組
@@ -82181,7 +82207,7 @@ ziudoe 聚頭
 ziue 全委
 ziue 前晚
 ziueq 沮遏
-ziueu 徐緩
+zijueu 徐緩
 ziugni 序言
 ziugni 緒言
 ziugnij 聚議
@@ -82225,15 +82251,15 @@ ziuzij 聚齊
 ziuziq 聚集
 ziuziu 聚聚
 ziuzy 敘事
-ziven 徐聞
+zijven 徐聞
 ziven 全文
 ziven 前文
 ziveq 錢物
 zivoq 潛伏
 zivoq 錢復
 zivu 全無
-ziwe 徐匯
-ziwe 徐彙
+zijwe 徐匯
+zijwe 徐彙
 ziwe 全會
 ziwe 前為
 ziwe 前衛
@@ -82285,7 +82311,7 @@ zizeq 潛入
 zizeu 全然
 zizeu 前傳
 zizi 漸漸
-zizi 徐徐
+zijzij 徐徐
 zizin 前情
 ziziq 全集
 ziziq 前夕
@@ -83117,7 +83143,7 @@ zoreq 造個
 zoroe 朝後
 zoroechij 朝後起
 zoroedoe 朝後頭
-zoroerochij 朝後下去
+zoroerauchij 朝後下去
 zose 朝山
 zose 潮汕
 zose 韶山
@@ -83816,7 +83842,7 @@ zyrau 字畫
 zyre 時限
 zyren 持衡
 zyreq 是個
-zyreqw 是個淮
+zyreqwa 是個淮
 zyro 自豪
 zyro 謚號
 zyro 字號
@@ -84053,6 +84079,7 @@ zyu 儒
 zyu 住
 zyu 樹
 zyu 豎
+syu 豎
 zyu 墅
 zyu 殊
 zyu 柱
