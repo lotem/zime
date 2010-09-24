@@ -5,9 +5,9 @@ Dict = wu_lopha
 Parser = roman
 AutoPrompt = yes
 AutoDelimit = yes
-Delimiter = [ '-]
+Delimiter = [ ']
 MaxKeywordLength = 6
-FuzzyRule = ^([bcdfghjklmnprstvwxyz]).*$ \1
+#FuzzyRule = ^([bcdfghjklprstvwxyz]).*$ \1
 AlternativeRule = ^(ch|d?j|gn|x|y)i([aeou]) \1\2
 # punctuation
 Punct = , ，
@@ -45,8 +45,8 @@ Punct = } 』 ｝
 # edit keys
 #EditKey = bracketleft Left
 #EditKey = bracketright Right
-#EditKey = minus Up
-#EditKey = equal Down
+EditKey = minus Page_Up
+EditKey = equal Page_Down
 EditKey = comma Page_Up
 EditKey = period Page_Down
 EditKey = I Up
