@@ -27,6 +27,7 @@ da4	大
 el2	而
 dui4	對
 ni3	你
+nen3	您
 dau3	倒
 dau4	倒
 hau2	*號
@@ -66,7 +67,7 @@ ji4	騎
 hou4	後
 zheo4	這
 ci2	齊
-zi4	齊
+zi4	*齊
 qi2	期
 ji1	*其
 qi2	其
@@ -359,7 +360,6 @@ tian2	田
 tian2	甜
 pin3	品
 pian1	篇
-te1	特
 te2	特
 lou2	樓
 jau4	叫
@@ -6844,7 +6844,7 @@ be1	薜
 bi4	薜
 yu1	矞
 ou3	蕅
-nin4	賃
+lin4	賃
 xi1	汔
 heng2	蘅
 zhou1	侜
@@ -7876,7 +7876,7 @@ muo1	歿
 die2	瓞
 rhen2	鵀
 rhen4	鵀
-nin2	鵀
+nen2	鵀
 lie1	戾
 li4	戾
 guang1	桄
@@ -10108,7 +10108,7 @@ shou1	廋
 sou3	廋
 zhen3	軫
 tung2	烔
-nin2	紉
+nen2	紉
 zie1	罝
 ting2	娗
 ding4	娗
@@ -10728,7 +10728,7 @@ liau3	燎
 liau4	燎
 siun3	鵻
 zhui1	鵻
-nin3	拰
+nen3	拰
 wui1	蜲
 wui3	蜲
 mi2	嵋
@@ -12726,7 +12726,7 @@ cheng1	睖
 zheng1	猙
 zing4	猙
 rhen2	紝
-nin2	紝
+nen2	紝
 chou2	鯈
 lie1	姴
 ting1	艼
