@@ -18,7 +18,8 @@ copy misc\*.bat %OUTPUT%
 copy misc\*.js %OUTPUT%
 copy misc\*.py %OUTPUT%
 copy misc\*.txt %OUTPUT%
-copy release\weasel.ime %OUTPUT%
-copy release\WeaselServer.exe %OUTPUT%
+copy Release\WeaselServer.exe %OUTPUT%
+copy Release\weasel.ime %OUTPUT%\weasels.ime
+copy ReleaseHant\weasel.ime %OUTPUT%\weaselt.ime
 
 pause

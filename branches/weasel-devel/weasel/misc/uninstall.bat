@@ -8,11 +8,11 @@ ver | python check_osver.py
 if %ERRORLEVEL% EQU 5 goto xp_uninstall
 
 :win7_uninstall
-elevate rundll32 "%CD%\weasel.ime" uninstall
+elevate rundll32 "%CD%\weasels.ime" uninstall
 goto exit
 
 :xp_uninstall
-rundll32 "%CD%\weasel.ime" uninstall
+rundll32 "%CD%\weasels.ime" uninstall
 goto exit
 
 :exit
