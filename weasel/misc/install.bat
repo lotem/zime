@@ -1,5 +1,8 @@
 @echo off
 
+set IME_FILE=weasels.ime
+if /i "%1" == "/t" set IME_FILE=weaselt.ime
+
 start notepad README.txt
 
 check_python
@@ -43,11 +46,11 @@ ver | python check_osver.py
 if %ERRORLEVEL% EQU 5 goto xp_install
 
 :win7_install
-elevate rundll32 "%CD%\weasel.ime" install
+elevate rundll32 "%CD%\%IME_FILE%" install
 goto exit
 
 :xp_install
-rundll32 "%CD%\weasel.ime" install
+rundll32 "%CD%\%IME_FILE%" install
 goto exit
 
 :exit
