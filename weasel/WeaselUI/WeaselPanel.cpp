@@ -19,10 +19,10 @@ void WeaselPanel::SetStatus(const weasel::Status &status)
 void WeaselPanel::_ResizeWindow()
 {
 	CDC dc = GetDC();
-	long fontHeight = -MulDiv(FONT_POINT_SIZE, dc.GetDeviceCaps(LOGPIXELSY), 72);
+	long fontHeight = -MulDiv(GetFontPoint(), dc.GetDeviceCaps(LOGPIXELSY), 72);
 
 	CFont font;
-	font.CreateFontW(fontHeight, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, FONT_FACE);
+	font.CreateFontW(fontHeight, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, GetFontFace());
 	CFontHandle oldFont = dc.SelectFont(font);
 
 	long width = 0;
@@ -105,10 +105,10 @@ void WeaselPanel::DoPaint(CDCHandle dc)
 		dc.SelectPen(oldPen);
 	}
 
-	long height = -MulDiv(FONT_POINT_SIZE, dc.GetDeviceCaps(LOGPIXELSY), 72);
+	long height = -MulDiv(GetFontPoint(), dc.GetDeviceCaps(LOGPIXELSY), 72);
 
 	CFont font;
-	font.CreateFontW(height, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, FONT_FACE);
+	font.CreateFontW(height, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, GetFontFace());
 	CFontHandle oldFont = dc.SelectFont(font);
 
 	dc.SetTextColor(fgColor);

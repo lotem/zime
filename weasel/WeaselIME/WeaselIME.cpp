@@ -5,9 +5,9 @@
 #include <ResponseParser.h>
 #include "WeaselIME.h"
 
-HINSTANCE WeaselIME::_hModule = 0;
-map<HIMC, shared_ptr<WeaselIME> > WeaselIME::_instances;
-boost::mutex WeaselIME::_mutex;
+HINSTANCE WeaselIME::s_hModule = 0;
+map<HIMC, shared_ptr<WeaselIME> > WeaselIME::s_instances;
+boost::mutex WeaselIME::s_mutex;
 
 
 static bool launch_server()
@@ -87,12 +87,12 @@ LPCWSTR WeaselIME::GetRegKey()
 
 HINSTANCE WeaselIME::GetModuleInstance()
 {
-	return _hModule;
+	return s_hModule;
 }
 
 void WeaselIME::SetModuleInstance(HINSTANCE hModule)
 {
-	_hModule = hModule;
+	s_hModule = hModule;
 }
 
 HRESULT WeaselIME::RegisterUIClass()
@@ -179,8 +179,8 @@ BOOL WeaselIME::IsIMEMessage(UINT uMsg)
 
 shared_ptr<WeaselIME> WeaselIME::GetInstance(HIMC hIMC)
 {
-	boost::lock_guard<boost::mutex> lock(_mutex);
-	shared_ptr<WeaselIME>& p = _instances[hIMC];
+	boost::lock_guard<boost::mutex> lock(s_mutex);
+	shared_ptr<WeaselIME>& p = s_instances[hIMC];
 	if (!p)
 	{
 		p.reset(new WeaselIME(hIMC));
@@ -190,13 +190,13 @@ shared_ptr<WeaselIME> WeaselIME::GetInstance(HIMC hIMC)
 
 void WeaselIME::Cleanup()
 {
-	boost::lock_guard<boost::mutex> lock(_mutex);
-	for (map<HIMC, shared_ptr<WeaselIME> >::const_iterator i = _instances.begin(); i != _instances.end(); ++i)
+	boost::lock_guard<boost::mutex> lock(s_mutex);
+	for (map<HIMC, shared_ptr<WeaselIME> >::const_iterator i = s_instances.begin(); i != s_instances.end(); ++i)
 	{
 		shared_ptr<WeaselIME> p = i->second;
 		p->OnIMESelect(FALSE);
 	}
-	_instances.clear();
+	s_instances.clear();
 }
 
 LRESULT WeaselIME::OnIMESelect(BOOL fSelect)
@@ -206,6 +206,8 @@ LRESULT WeaselIME::OnIMESelect(BOOL fSelect)
 		if (!m_ui.Create(NULL))
 			return 0;
 		
+		m_ui.SetStyle(GetUIStyleSettings());
+
 		// initialize weasel client
 		m_client.Connect(launch_server);
 		m_client.StartSession();
@@ -576,4 +578,37 @@ void WeaselIME::_UpdateContext(weasel::Context const& ctx)
 		m_ui.Hide();
 		m_ui.UpdateContext(m_ctx);
 	}
+}
+
+weasel::UIStyle const WeaselIME::GetUIStyleSettings()
+{
+	weasel::UIStyle style;
+
+	HKEY hKey;
+	LSTATUS ret = RegOpenKey(HKEY_LOCAL_MACHINE, WeaselIME::GetRegKey(), &hKey);
+	if (ret != ERROR_SUCCESS)
+	{
+		return style;
+	}
+
+	{
+		WCHAR value[100];
+		DWORD len = sizeof(value);
+		DWORD type = REG_SZ;
+		ret = RegQueryValueEx(hKey, L"FontFace", NULL, &type, (LPBYTE)value, &len);
+		if (ret == ERROR_SUCCESS)
+			style.fontFace = value;
+	}
+
+	{
+		DWORD dword = 0;
+		DWORD len = sizeof(dword);
+		DWORD type = REG_DWORD;
+		ret = RegQueryValueEx(hKey, L"FontPoint", NULL, &type, (LPBYTE)&dword, &len);
+		if (ret == ERROR_SUCCESS)
+			style.fontPoint = (int)dword;
+	}
+
+	RegCloseKey(hKey);
+	return style;
 }

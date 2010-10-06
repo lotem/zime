@@ -13,9 +13,7 @@ bool UI::Create(HWND parent)
 
 	pimpl_ = new UIImpl();
 	if (!pimpl_)
-	{
 		return false;
-	}
 
 	pimpl_->Create(parent);
 	return true;
@@ -42,6 +40,17 @@ void UI::Hide()
 	if (pimpl_)
 		pimpl_->ShowWindow(SW_HIDE);
 
+}
+
+void UI::SetStyle(UIStyle const& style)
+{
+	if (pimpl_)
+	{
+		if (!style.fontFace.empty())
+			pimpl_->SetFontFace(style.fontFace);
+		if (style.fontPoint > 0)
+			pimpl_->SetFontPoint(style.fontPoint);
+	}
 }
 
 void UI::UpdateInputPosition(RECT const& rc)
