@@ -5,6 +5,12 @@
 namespace weasel
 {
 
+	struct UIStyle
+	{
+		std::wstring fontFace;
+		int fontPoint;
+	};
+
 	class UIImpl;
 
 	//
@@ -33,6 +39,9 @@ namespace weasel
 		void Show();
 		void Hide();
 		
+		// 设置界面样式
+		void SetStyle(UIStyle const& style);
+
 		// 置输入焦点位置（光标跟随时移动候选窗）
 		void UpdateInputPosition(RECT const& rc);
 

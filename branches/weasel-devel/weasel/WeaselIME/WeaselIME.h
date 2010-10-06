@@ -57,11 +57,12 @@ private:
 	HRESULT _AddIMEMessage(UINT msg, WPARAM wp, LPARAM lp);
 	void _UpdateInputPosition(LPINPUTCONTEXT lpIMC, POINT pt);
 	void _UpdateContext(weasel::Context const& ctx);
+	weasel::UIStyle const GetUIStyleSettings();
 
 private:
-	static HINSTANCE _hModule;
-	static std::map<HIMC, boost::shared_ptr<WeaselIME> > _instances;
-	static boost::mutex _mutex;
+	static HINSTANCE s_hModule;
+	static std::map<HIMC, boost::shared_ptr<WeaselIME> > s_instances;
+	static boost::mutex s_mutex;
 	HIMC m_hIMC;
 	bool m_alwaysDetectCaretPos;
 	weasel::UI m_ui;
