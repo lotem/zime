@@ -9,6 +9,7 @@ namespace weasel
 	{
 		std::wstring fontFace;
 		int fontPoint;
+		UIStyle() : fontFace(), fontPoint(0) {}
 	};
 
 	class UIImpl;
