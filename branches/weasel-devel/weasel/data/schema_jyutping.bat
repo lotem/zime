@@ -3,6 +3,6 @@
 
 ..\WeaselServer.exe /q
 python make-phrases.py jyutping
-python create-schema.py -v Jyutping.txt
+python zimedb-admin.py -vi Jyutping.txt
 
 @pause

@@ -3,6 +3,6 @@
 
 ..\WeaselServer.exe /q
 python make-phrases.py zhuyin
-python create-schema.py -v Zhuyin.txt
+python zimedb-admin.py -vi Zhuyin.txt
 
 @pause
