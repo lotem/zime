@@ -46948,6 +46948,7 @@
 濉	74	seu
 荽	73	seu
 說	72	seu
+舍	71	seu
 山塢	100	se u
 山窩	99	se u
 酸敗	100	seu ba
@@ -51382,8 +51383,7 @@
 水標	99	syu pio
 書報	100	syu po
 書包	99	syu po
-尿	81	syu
-尿布	100	syu pu
+尿布	100	sy pu
 水波	99	syu pu
 水鞋	100	syu ra
 書畫	100	syu rau
@@ -56709,9 +56709,9 @@
 赤手	100	tsaq soe
 插手	99	tsaq soe
 赤松	100	tsaq son
-斥尿	100	tsaq syu
+斥尿	100	tsaq sy
 赤水	99	tsaq syu
-斥尿揩香	100	tsaq syu kha xian
+斥尿揩香	100	tsaq sy kha xian
 插檔	100	tsaq taon
 赤膽	100	tsaq te
 擦得	100	tsaq teq
@@ -78328,7 +78328,7 @@
 雜事	95	zaq zy
 石柱	100	zaq zyu
 惹笑	100	za sio
-射尿	100	za syu
+射尿	100	za sy
 柴堆	100	za te
 惹得	100	za teq
 柴刀	100	za to

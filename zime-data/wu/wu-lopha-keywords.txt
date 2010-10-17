@@ -5027,6 +5027,7 @@ seu	騸
 seu	濉
 seu	荽
 seu	說
+seu	舍
 si	鮮
 si	先
 si	仙
@@ -5385,7 +5386,6 @@ syu	荼
 syu	蔬
 syu	姝
 syu	疋
-syu	尿
 ta	帶
 ta	戴
 tan	打
@@ -8650,4 +8650,5 @@ zyu	女
 zyu	朱
 zyu	予
 zyu	助
+laq	攔
 yij	侇
