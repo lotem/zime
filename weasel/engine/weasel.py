@@ -22,7 +22,7 @@ from zimedb import DB
 def _initialize():
     zimeparser.register_parsers()
     # initialize DB 
-    home_path = os.getenv('HOME') or os.getenv('USERPROFILE')
+    home_path = os.path.expanduser('~')
     if home_path:
         db_path = os.path.join(home_path, '.ibus', 'zime')
     else:
@@ -40,7 +40,7 @@ class Session:
 
     def __init__(self, params=''):
         logger.info("init session: %s", params)
-        self.__page_size = DB.read_setting(u'Option/PageSize') or 7
+        self.__page_size = DB.read_setting(u'Option/PageSize') or 5
         self.__lookup_table = ibus.LookupTable(self.__page_size)
         self.__clear()
         self.__engine = zimeengine.SchemaChooser(self, params)

@@ -159,9 +159,11 @@ def main():
     #e.test('rm/3rm/3u.3gp6zj/ {Escape}2k7al {Tab}{Return}')
 
     e = TestEngine(u'Pinyin')
+    e.test('jiong ')
     #e.test("pinyin-shuru'fa' ")
     #e.test('henanquan{Home}{Tab} ')
-    e.test('jiong ')
+    #e.test('hezhinan{Home}. 23qianwanghezhinan')  # 河之南 vs. 和指南
+    #e.test('henanhenanquan{Tab} {Tab}{Tab}')
 
     #e = TestEngine(u'ComboPinyin')
     #e.process_key_event(keysyms.r, 0)
@@ -178,6 +180,10 @@ def main():
     #e = TestEngine(u'Jyutping')
     #e.test('jyuhomindeoicangjatheizaugwodikjatzi')
     #e.test('fanhoifongziganbunsamgikci')
+
+    #e = TestEngine(u'TonalPinyin')
+    #e.test('pkucn.com')
+    #e.test('3.14wo1.0')
 
     pass
 

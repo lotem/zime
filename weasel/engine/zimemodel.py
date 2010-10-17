@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 # vim:set et sts=4 sw=4:
 
+from math import log
 import re
+from zimealgebra import *
 
 class Entry:
-    def __init__(self, e, i, j, prob=1.0, use_count=0, next=None):
+    def __init__(self, e, i, j, prob=0.0, use_count=0, next=None):
         self.e = e
         self.i = i
         self.j = j
@@ -34,117 +36,8 @@ class Entry:
             a, b = a.next, b.next
         return not a
     def __unicode__(self):
-        return u'<%s (%d, %d) %g%s>' % \
-            (self.get_word(), self.i, self.j, self.prob, (u' => %s' % self.next.get_phrase()) if self.next else u'')
-
-class SpellingCollisionError:
-    def __init__(self, rule, vars):
-        self.rule = rule
-        self.vars = vars
-    def __str__(self):
-        return 'spelling collision detected in %s: %s' % (self.rule, repr(self.vars))
-
-class SpellingAlgebra:
-
-    def __init__(self, report_errors=True):
-        self.__report_errors = report_errors
-
-    def calculate(self, mapping_rules, fuzzy_rules, spelling_rules, alternative_rules, keywords):
-
-        akas = dict()
-
-        def add_aka(s, x):
-            if s in akas:
-                a = akas[s]
-            else:
-                a = akas[s] = []
-            if x not in a:
-                a.append(x)
-
-        def del_aka(s, x):
-            if s in akas:
-                a = akas[s]
-            else:
-                a = akas[s] = []
-            if x in a:
-                a.remove(x)
-            if not a:
-                del akas[s]
-
-        def transform(x, r):
-            return r[0].sub(r[1], x, 1)
-
-        def apply_fuzzy_rule(d, r):
-            dd = dict(d)
-            for x in d:
-                if not r[0].search(x):
-                    continue
-                y = transform(x, r)
-                if y == x:
-                    continue
-                if y not in dd:
-                    dd[y] = d[x]
-                    add_aka(dd[y], y)
-                else:
-                    del_aka(dd[y], y)
-                    dd[y] |= d[x]
-                    add_aka(dd[y], y)
-            return dd
-
-        def apply_alternative_rule(d, r):
-            for x in d.keys():
-                if not r[0].search(x):
-                    continue
-                y = transform(x, r)
-                if y == x:
-                    continue
-                if y not in d:
-                    d[y] = d[x]
-                elif self.__report_errors:
-                    raise SpellingCollisionError('AlternativeRule', (x, d[x], y, d[y]))
-            return d
-
-        io_map = dict()
-        for okey in keywords:
-            ikey = reduce(transform, mapping_rules, okey)
-            s = frozenset([okey])
-            if ikey in io_map:
-                io_map[ikey] |= s
-            else:
-                io_map[ikey] = s
-        for ikey in io_map:
-            add_aka(io_map[ikey], ikey)
-        io_map = reduce(apply_fuzzy_rule, fuzzy_rules, io_map)
-
-        oi_map = dict()
-        ikeys = []
-        spellings = []
-        for okeys in akas:
-            ikey = akas[okeys][0]
-            ikeys.append(ikey)
-            for x in akas[okeys]:
-                spellings.append((x, ikey))
-            for k in okeys:
-                if k in oi_map:
-                    a = oi_map[k]
-                else:
-                    a = oi_map[k] = []
-                a.append(ikey)
-        akas = None
-
-        # remove non-ikey keys
-        io_map = dict([(k, io_map[k]) for k in ikeys])
-
-        spelling_map = dict()
-        for s, ikey in spellings:
-            t = reduce(transform, spelling_rules, s)
-            if t not in spelling_map:
-                spelling_map[t] = ikey
-            elif self.__report_errors:
-                raise SpellingCollisionError('SpellingRule', (s, ikey, t, spelling_map[t]))
-        spelling_map = reduce(apply_alternative_rule, alternative_rules, spelling_map)
-
-        return spelling_map, io_map, oi_map
+        return u'<%s %g %d (%d, %d)%s>' % \
+            (self.get_word(), self.prob, self.use_count, self.i, self.j, (u' => %s' % self.next.get_phrase()) if self.next else u'')
 
 class ContextInfo:
 
@@ -161,7 +54,7 @@ class ContextInfo:
 
 class Model:
 
-    PENALTY = 1e-4
+    PENALTY = log(1e-3)
     LIMIT = 50
     MAX_CONCAT_PHRASE = 3
 
@@ -233,7 +126,7 @@ class Model:
                 s = u''.join(input[i:j])
                 if len (s) > self.__max_keyword_length:
                     break
-                #print j, s
+                ##print j, s
                 if not self.__is_keyword(s):
                     continue
                 if j < n and input[j] in self.__delimiter:
@@ -241,7 +134,7 @@ class Model:
                     beyond_delimiter = True
                 else:
                     t = j
-                #print i, t, s
+                ##print i, t, s
                 if t not in q:
                     q.append(t)
                     m = max(m, t)
@@ -304,7 +197,7 @@ class Model:
         unig = info.unig
         big = info.big
         total, utotal = [x + 0.1 for x in self.__db.lookup_freq_total()]
-        to_prob = lambda x: (x + 0.1) / total
+        to_prob = lambda x: log((x + 0.1) / total)
         def make_keys(i, k, length):
             if length == 0 or i == m:    
                 return [(i, k)]
@@ -327,7 +220,7 @@ class Model:
                     s[x[1]] = to_prob(x[2])
             return result
         def add_word(x, i, j):
-            #print 'add_word:', i, j, x[0], x[1]
+            ##print 'add_word:', i, j, x[0], x[1]
             use_count = x[4]
             e = Entry(x, i, j, 1.0, use_count)
             if not c[i][j]:
@@ -358,11 +251,13 @@ class Model:
         c[diff:] = [[None for j in range(m + 1)] for i in range(diff, m + 1)]
         # last committed word goes to array index -1
         if info.last:
-            c[-1][0] = [info.last]
+            last = info.last
+            #print u'last: %s' % last
+            c[-1][0] = [Entry(last.e, -1, 0, last.prob, last.use_count, None)]
             if not info.q:
-                r = self.__db.lookup_bigram_by_entry(info.last)
+                r = self.__db.lookup_bigram_by_entry(last)
                 if r:
-                    eid = info.last.get_eid()
+                    eid = last.get_eid()
                     if eid in big:
                         s = big[eid]
                     else:
@@ -391,7 +286,10 @@ class Model:
         pred = [None for i in range(m + 1 + 1)]
         info.pred = pred
         def update_pred(i, e):
-            if not pred[i] or e.prob > pred[i].prob:
+            # 用戶用過的詞優先於未用過而但概率高的詞
+            used = lambda x: bool(x.use_count) and x.get_all()[-1].j == m
+            pred_cmp = lambda a, b: cmp(used(a), used(b)) or cmp(a.prob, b.prob)
+            if not pred[i] or pred_cmp(e, pred[i]) > 0:
                 pred[i] = e
         def succ_phrases(j):
             '''returns succeeding phrases starting with position j, grouped by eid'''
@@ -419,12 +317,10 @@ class Model:
                 if c[i][j]:
                     for x in c[i][j]:
                         # calculate prob
-                        if i == -1:
-                            pass
-                        elif j == m:
+                        if i != -1:
                             x.prob = unig[x.get_eid()]
-                        else:
-                            x.prob = unig[x.get_eid()] * pred[j].prob * Model.PENALTY
+                        if j != m:
+                            x.prob += pred[j].prob + Model.PENALTY
                         update_pred(i, x)
                         if j == m:
                             continue
@@ -436,7 +332,7 @@ class Model:
                             for v in big[eid]:
                                 if v in succ:
                                     for y in succ[v]:
-                                        prob = big[eid][v] / unig[v] * y.prob
+                                        prob = big[eid][v] - unig[v] + y.prob
                                         e = Entry(x.e, i, j, prob, min(x.use_count, y.use_count), y)
                                         #print "concat'd phrase:", unicode(e)
                                         # save phrase
@@ -447,6 +343,12 @@ class Model:
                                             f[i][k] = [e]
                                         # update pred[i] with concat'd phrases
                                         update_pred(i, e)
+            """
+            #print 'pred:'
+            for x in pred:
+                if x:
+                    #print unicode(x)
+            """
 
     def train(self, ctx, s):
         def g(ikeys, okey, depth):
@@ -459,13 +361,11 @@ class Model:
                 for y in self.__oi_map[okey[0]]:
                     r.append(x + [y])
             return g(r, okey[1:], depth + 1)
-        def f(a, b):
-            okey = a.get_okey().split() + b.get_okey().split()
-            return [u' '.join(ikey) for ikey in g([[]], okey, 0)]
+        indexer = lambda okey: [u' '.join(ikey) for ikey in g([[]], okey.split(), 0)]
         last = None
         for e in s:
             if last:
-                self.__db.update_bigram(last, e, f)
+                self.__db.update_bigram(last, e, indexer)
             last = e
             self.__db.update_unigram(e)
         self.__db.update_freq_total(len(s))
@@ -474,46 +374,51 @@ class Model:
 
     def make_candidate_list(self, ctx, i, j):
         m = ctx.info.m
-        c = ctx.info.cand
-        f = ctx.info.fraz
+        cand = ctx.info.cand
+        fraz = ctx.info.fraz
         pred = ctx.info.pred
         if i >= m:
             return []
         if j == 0:
             j = m
-            while j > i and not c[i][j] and not f[i][j]:
+            while j > i and not cand[i][j] and not fraz[i][j]:
                 j -= 1
         # info about the previously selected phrase
         prev_table = dict()
         prev = ctx.sel[-1] if ctx.sel else ctx.info.last
         if prev:
-            #print 'prev:', prev.get_phrase()
-            prev_award = 1.0
+            prev_award = 0.0
             prev_eid = prev.get_eid()
-            for x in c[prev.i][prev.j]:
+            #print 'prev:', prev.get_phrase(), prev_eid
+            for x in cand[prev.i][prev.j]:
                 if x.get_eid() == prev_eid:
-                    prev_award = pred[x.j].prob / x.prob
+                    #print u'pred[x.j]: %s x: %s' % (pred[x.j], x)
+                    prev_award = pred[x.j].prob - x.prob
+                    #print 'prev_award:', prev_award
                     break
-            for y in c[prev.i][prev.j:]:
+            for y in fraz[prev.i][prev.j:]:
                 if y:
                     for x in y[:Model.LIMIT]:
                         if x.next and x.get_eid() == prev_eid:
-                            prev_table[id(x.next)] = x.prob * prev_award
+                            #print 'award goes to:', unicode(x)
+                            prev_table[id(x.next)] = x.prob + prev_award
+            #print 'prev_table:', prev_table
         def adjust(e):
             if id(e) not in prev_table:
                 return e
             prob = prev_table[id(e)]
+            #print 'adjust:', e.get_phrase(), e.prob, prob
             return Entry(e.e, e.i, e.j, prob, e.use_count, e.next)
         r = [[] for k in range(m + 1)]
         p = []
         #print 'range:', u''.join(ctx.input[i:j])
         for k in range(j, i, -1):
-            if c[i][k]:
-                for x in c[i][k]:
+            if cand[i][k]:
+                for x in cand[i][k]:
                     e = adjust(x)
                     r[k].append(e)
-            if f[i][k]:
-                for x in f[i][k]:
+            if fraz[i][k]:
+                for x in fraz[i][k]:
                     e = adjust(x)
                     #print "concat'd phrase:", e.get_phrase(), e.prob
                     if not any([e.partof(ex) for kx, ex in p]):
@@ -539,4 +444,8 @@ class Model:
                     if p not in phrases:
                         phrases.add(p)
                         ret.append((p, e))
+        """
+        for x in ret[:5]:
+            #print u'cand: %s' % x[1]
+        """
         return ret

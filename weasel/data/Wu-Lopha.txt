@@ -1,12 +1,12 @@
 # ZIME Schema v3
-Schema = Wu
-DisplayName = 吳語
-Dict = wu
+Schema = Wu-Lopha
+DisplayName = 吳語（老派）
+Dict = wu_lopha
 Parser = roman
 AutoPrompt = yes
 AutoDelimit = yes
 Delimiter = [ ']
-MaxKeywordLength = 5
+MaxKeywordLength = 6
 #FuzzyRule = ^([bcdfghjklprstvwxyz]).*$ \1
 AlternativeRule = ^(ch|d?j|gn|x|y)i([aeou]) \1\2
 # punctuation

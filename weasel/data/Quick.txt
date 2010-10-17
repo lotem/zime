@@ -1,18 +1,13 @@
 # ZIME Schema v3
-Schema = Kuankhiunn
-DisplayName = 廣韻
-Dict = kuankhiunn
-Parser = roman
+Schema = Quick
+DisplayName = 速成
+Dict = quick
+Parser = table
+MaxKeywordLength = 2
 AutoPrompt = yes
-AutoDelimit = yes
-Delimiter = [ ']
-MaxKeyLength = 1
-MaxKeywordLength = 6
-#SplitRule = [jywv]$ ^[aeiou]
-#SplitRule = [pmtnkgqhf]$ ^[jywvaeiou]
-#SplitRule = [pt]$ ^h
-#SplitRule = t$ ^[cr]
-TransformRule = f ng
+Delimiter = [ ';]
+Alphabet = abcdefghijklmnopqrstuvwxyz ';
+PromptChar = 日月金木水火土竹戈十大中一弓人心手口尸廿山女田難卜符 ··
 # punctuation
 Punct = , ，
 Punct = . 。
