@@ -2,11 +2,10 @@
 Schema = Zhung
 DisplayName = 中州羅馬字
 Dict = zhung
-Prefix = zhung
 Parser = roman
 AutoPrompt = yes
 AutoDelimit = yes
-Alphabet = abcdefghijklmnopqrstuvwxyz ;^/\:
+Alphabet = abcdefghijklmnopqrstuvwxyz ;^/<\>:
 Delimiter = [ ']
 MaxKeywordLength = 6
 SplitRule = [mnghptklw]$ ^[aeiou]
@@ -50,11 +49,11 @@ AlternativeRule = u([oôóòö]) \1
 AlternativeRule = iu([eêéèë]) u\1
 AlternativeRule = ^([jqx])([aâáàäeêéèëoôóòöuûúùü]) \1i\2
 TransformRule = ([aeiu])gn \1ng
-TransformRule = ([aeoiuy])(ng|[mnhptklw])([0-4;^/\\:]) \1\3\2
-TransformRule = ([aeo])([aeoiu])([0-4;^/\\:]) \1\3\2
+TransformRule = ([aeoiuy])(ng|[mnhptklw])([0-4;^/<\\>:]) \1\3\2
+TransformRule = ([aeo])([aeoiu])([0-4;^/<\\>:]) \1\3\2
 TransformRule = (?<=[aeoiuyw])[;^] 2
-TransformRule = (?<=[aeoiuyw])/ 3
-TransformRule = (?<=[aeoiuyw])\\ 4
+TransformRule = (?<=[aeoiuyw])[/<] 3
+TransformRule = (?<=[aeoiuyw])[\\>] 4
 TransformRule = (?<=[aeoiuyw]): 0
 TransformRule = ([aeoiuyw])1 \1
 TransformRule = a2 â
