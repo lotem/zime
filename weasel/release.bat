@@ -17,6 +17,7 @@ copy misc\*.conf %OUTPUT%\engine
 copy misc\*.bat %OUTPUT%
 copy misc\*.js %OUTPUT%
 copy misc\*.py %OUTPUT%
+copy misc\*.reg %OUTPUT%
 copy misc\*.txt %OUTPUT%
 copy Release\WeaselServer.exe %OUTPUT%
 copy Release\weasel.ime %OUTPUT%\weasels.ime

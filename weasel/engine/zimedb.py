@@ -178,25 +178,11 @@ INSERT INTO %(prefix)s_unigram VALUES (NULL, :p_id, :okey, :freq, 0);
 """
 
 INC_SFREQ_SQL = """
-UPDATE %(prefix)s_unigram SET sfreq = sfreq + 1 WHERE id = :id;
+UPDATE %(prefix)s_unigram SET sfreq = sfreq + :freq WHERE id = :id;
 """
 
 INC_UFREQ_SQL = """
-UPDATE %(prefix)s_unigram SET ufreq = ufreq + 1 WHERE id = :id;
-"""
-
-QUERY_USER_FREQ_SQL = """
-SELECT phrase, ufreq, okey
-FROM %(prefix)s_unigram u LEFT JOIN phrases p ON p_id = p.id
-WHERE ufreq > 0
-"""
-
-QUERY_USER_GRAM_SQL = """
-SELECT p1.phrase, p2.phrase, bfreq, u1.okey, u2.okey
-FROM %(prefix)s_bigram b, 
-     %(prefix)s_unigram u1 LEFT JOIN phrases p1 ON u1.p_id = p1.id,
-     %(prefix)s_unigram u2 LEFT JOIN phrases p2 ON u2.p_id = p2.id
-WHERE e1 = u1.id AND e2 = u2.id AND bfreq > 0
+UPDATE %(prefix)s_unigram SET ufreq = ufreq + :freq WHERE id = :id;
 """
 
 QUERY_BIGRAM_SQL = """
@@ -218,7 +204,7 @@ INSERT INTO %(prefix)s_bigram VALUES (:e1, :e2, 1);
 """
 
 INC_BFREQ_SQL = """
-UPDATE %(prefix)s_bigram SET bfreq = bfreq + :n WHERE e1 = :e1 AND e2 = :e2;
+UPDATE %(prefix)s_bigram SET bfreq = bfreq + :freq WHERE e1 = :e1 AND e2 = :e2;
 """
 
 QUERY_KB_SQL = """
@@ -235,6 +221,25 @@ INSERT INTO %(prefix)s_keywords VALUES (:keyword);
 
 ADD_KU_SQL = """
 INSERT INTO %(prefix)s_ku VALUES (:k_id, :u_id);
+"""
+
+QUERY_USER_FREQ_SQL = """
+SELECT phrase, ufreq, okey
+FROM %(prefix)s_unigram u LEFT JOIN phrases p ON p_id = p.id
+WHERE ufreq > 0
+"""
+
+QUERY_USER_GRAM_SQL = """
+SELECT p1.phrase, p2.phrase, bfreq, u1.okey, u2.okey
+FROM %(prefix)s_bigram b, 
+     %(prefix)s_unigram u1 LEFT JOIN phrases p1 ON u1.p_id = p1.id,
+     %(prefix)s_unigram u2 LEFT JOIN phrases p2 ON u2.p_id = p2.id
+WHERE e1 = u1.id AND e2 = u2.id AND bfreq > 0
+"""
+
+UPDATE_USER_FREQ_SQL = """
+UPDATE OR IGNORE %(prefix)s_unigram SET ufreq = ufreq + :freq
+WHERE p_id IN (SELECT id FROM phrases WHERE phrase = :phrase) AND okey = :okey;
 """
 
 def _generate_dict_specific_sql(db, prefix_args):
@@ -262,6 +267,7 @@ def _generate_dict_specific_sql(db, prefix_args):
     db._add_kb_sql = ADD_KB_SQL % prefix_args
     db._query_user_freq_sql = QUERY_USER_FREQ_SQL % prefix_args
     db._query_user_gram_sql = QUERY_USER_GRAM_SQL % prefix_args
+    db._update_user_freq_sql = UPDATE_USER_FREQ_SQL % prefix_args
 
 
 class DB:
@@ -299,26 +305,29 @@ class DB:
         return [(x[0][len(key):], x[1]) for x in r]
 
     @classmethod
-    def update_setting(cls, key, value):
+    def add_setting(cls, key, value):
         if cls.read_only:
             return False
-        cur = cls.__conn.cursor()
-        path = cur.execute(QUERY_SETTING_PATH_SQL, {'path': key}).fetchone()
-        if path:
-            path_id = path[0]
-        else:
-            c = cur.execute(ADD_SETTING_PATH_SQL, {'path': key})
-            path_id = c.lastrowid
-        if cls.read_setting(key) is None:
-            cur.execute(ADD_SETTING_VALUE_SQL, {'path_id': path_id, 'value': value})
-        else:
-            cur.execute(UPDATE_SETTING_VALUE_SQL, {'path_id': path_id, 'value': value})
-        cls.flush(True)
+        path_id = cls.__get_or_insert_setting_path(key)
+        args = {'path_id': path_id, 'value': value}
+        cls.__conn.execute(ADD_SETTING_VALUE_SQL, args)
         return True
 
     @classmethod
-    def get_or_insert_setting_path(path):
-        cur = DB.__conn.cursor()
+    def update_setting(cls, key, value):
+        if cls.read_only:
+            return False
+        path_id = cls.__get_or_insert_setting_path(key)
+        args = {'path_id': path_id, 'value': value}
+        if cls.read_setting(key) is None:
+            cls.__conn.execute(ADD_SETTING_VALUE_SQL, args)
+        else:
+            cls.__conn.execute(UPDATE_SETTING_VALUE_SQL, args)
+        return True
+
+    @classmethod
+    def __get_or_insert_setting_path(cls, path):
+        cur = cls.__conn.cursor()
         args = {'path' : path}
         r = cur.execute(QUERY_SETTING_PATH_SQL, args).fetchone()
         if r:
@@ -417,14 +426,14 @@ class DB:
     def __update_unigram(self, e):
         if DB.read_only:
             return
-        args = {'id' : e.get_eid()}
+        args = {'id' : e.get_eid(), 'freq': 1}
         DB.__conn.execute(self._inc_ufreq_sql, args)
 
     def __update_bigram(self, a, b, indexer):
         if DB.read_only:
             return
         cur = DB.__conn.cursor()
-        args = {'e1' : a.get_eid(), 'e2' : b.get_eid(), 'n': 1}
+        args = {'e1' : a.get_eid(), 'e2' : b.get_eid(), 'freq': 1}
         if cur.execute(self._bigram_exist_sql, args).fetchone():
             cur.execute(self._inc_bfreq_sql, args)
         else:
@@ -587,15 +596,9 @@ class DB:
         table = list()
         total_increment = 0
         for (phrase, okey), n in unigram_freq.iteritems():
-            p_id = self.__get_phrase_id(phrase)
-            if not p_id:
-                continue
-            u_id = self.__get_unigram_id(p_id, okey)
-            if not u_id:
-                continue
-            table.append({'id': u_id, 'n': n})
+            table.append({'phrase': phrase, 'okey': okey, 'freq': n})
             total_increment += n
-        cur.executemany(self._inc_ufreq_sql, table)
+        cur.executemany(self._update_user_freq_sql, table)
         if total_increment > 0:
             cur.execute(self._update_ufreq_total_sql, {'n': total_increment})
 
@@ -623,7 +626,7 @@ class DB:
             e2 = self.__get_unigram_id(p2, okey2)
             if not e2:
                 continue
-            args = {'e1': e1, 'e2': e2, 'n': n, 'okey': u' '.join([okey1, okey2])}
+            args = {'e1': e1, 'e2': e2, 'freq': n, 'okey': u' '.join([okey1, okey2])}
             if cur.execute(self._bigram_exist_sql, args).fetchone():
                 increment.append(args)
             else:
