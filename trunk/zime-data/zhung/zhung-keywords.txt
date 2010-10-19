@@ -1,3 +1,5 @@
+sha4	啥
+za3	咋
 zhy1	之
 hui2	回
 di4	地
@@ -11,7 +13,7 @@ le1	的
 wo3	我
 you3	有
 liau3	了
-leo	了
+la1	了
 huai2	或
 hue2	*或
 rhen2	人
@@ -222,7 +224,8 @@ geng1	更
 geng4	更
 pei1	苤
 ji1	機
-zhuo2	著
+zhuo2	着
+zhuo2	*著
 zhu4	著
 yin1	音
 yin1	因
@@ -3329,7 +3332,8 @@ liung2	蘢
 fu3	撫
 guang3	逛
 xi2	郋
-bi1	逼
+bi1	*逼
+bi2	逼
 yu1	陓
 zha1	鞢
 sie1	鞢
@@ -8766,6 +8770,7 @@ dun4	庉
 zhuo1	穱
 chy1	齝
 shy1	齝
+ei1	欸
 ai1	欸
 ai3	欸
 xai4	欸
@@ -9827,16 +9832,15 @@ men2	樠
 mai4	勱
 pau2	咆
 shou1	鄋
-zha4	咋
-zhe1	咋
-zhe2	咋
+zha4	*咋
+zhe2	*咋
 kau1	尻
 mau2	枆
 yi2	暆
 rhu1	縟
-gou1	枸
+gou1	*枸
 gou3	枸
-ju3	枸
+ju3	*枸
 zuo2	砟
 xe1	拹
 ping4	娉
