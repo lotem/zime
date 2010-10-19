@@ -7,7 +7,7 @@
 
   * 版本資訊：[ReleaseNotes]
 
-    * 下載：[http://zime.googlecode.com/files/ibus-zime-3.6.tar.gz ibus-zime 3.6]
+    * ibus-zime 3.6 [http://code.google.com/p/zime/downloads/list 至下載頁]
       * 內含輸入方案：拼音、雙拼、宮保拼音、標調拼音、注音、速成、粵拼、吳語
 
     * 演示視頻：
