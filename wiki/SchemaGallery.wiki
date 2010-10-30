@@ -15,7 +15,7 @@ ibus-zime用戶，如果正在使用ZIME輸入法，請重新啟動一遍IBus再
 
 安裝指令：
 {{{
-python create-schema.py -v Pinyin.txt
+python zimedb-admin.py -v -i Pinyin.txt
 }}}
 
 = 雙拼 =
@@ -27,7 +27,7 @@ MSPY雙拼方案。與「拼音」輸入方案共用一部辭典。
 安裝指令：
 {{{
 # 請先安裝 Pinyin 輸入方案
-python create-schema.py -v -k DoublePinyin.txt
+python zimedb-admin.py -k -i DoublePinyin.txt
 }}}
 
 = 宮保拼音 =
@@ -39,7 +39,7 @@ python create-schema.py -v -k DoublePinyin.txt
 安裝指令：
 {{{
 # 請先安裝 Pinyin 輸入方案
-python create-schema.py -v -k ComboPinyin.txt
+python zimedb-admin.py -k -i ComboPinyin.txt
 }}}
 
 = 標調拼音 =
@@ -53,7 +53,7 @@ python create-schema.py -v -k ComboPinyin.txt
 
 安裝指令：
 {{{
-python create-schema.py -v TonalPinyin.txt
+python zimedb-admin.py -v -i TonalPinyin.txt
 }}}
 
 = 注音 =
@@ -66,7 +66,7 @@ python create-schema.py -v TonalPinyin.txt
 
 安裝指令：
 {{{
-python create-schema.py -v Zhuyin.txt
+python zimedb-admin.py -v -i Zhuyin.txt
 }}}
 
 = 粵拼 =
@@ -80,7 +80,7 @@ python create-schema.py -v Zhuyin.txt
 安裝指令：
 {{{
 python make-phrases.py jyutping
-python create-schema.py -v Jyutping.txt
+python zimedb-admin.py -v -i Jyutping.txt
 }}}
 
 = 廣韻 =
@@ -93,7 +93,7 @@ python create-schema.py -v Jyutping.txt
 安裝指令：
 {{{
 python make-phrases.py kuankhiunn
-python create-schema.py -v Kuankhiunn.txt
+python zimedb-admin.py -v -i Kuankhiunn.txt
 }}}
 
 = 速成 =
@@ -106,5 +106,5 @@ python create-schema.py -v Kuankhiunn.txt
 安裝指令：
 {{{
 python make-phrases.py quick
-python create-schema.py -v Quick.txt
+python zimedb-admin.py -v -i Quick.txt
 }}}
