@@ -39,11 +39,12 @@ def get_freq(hant):
     else:
         return 0
 
-EPSILON = 1e-10
 for hans, v in st_map.iteritems():
     a = [(get_freq(hant), hant) for hant in v]
     a.sort(reverse=True)
-    s = float(sum([freq + EPSILON for (freq, hant) in a]))
+    s = float(sum([freq for (freq, hant) in a]))
+    if s == 0:
+        continue
     r = [(hant, round((freq / s) * 1000) / 10) for (freq, hant) in a]
     print "%d\t%s\t%s" % (len(hans) / 3, hans, " ".join(["%s %g%%" % (hant, ratio) for (hant, ratio) in r]))
 
