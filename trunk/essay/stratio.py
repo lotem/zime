@@ -7,17 +7,17 @@ ts_map = {}
 st_map = {}
 for line in open("vocabulary"):
     t = line.rstrip().split("\t")
-    if t[1] == "1":  # 单字
-        hant = t[2]
-        hans = t[3]
-        if hant in ts_map:
-            ts_map[hant].add(hans)
-        else:
-            ts_map[hant] = set([hans])
-        if hans in st_map:
-            st_map[hans].add(hant)
-        else:
-            st_map[hans] = set([hant])
+    #if t[1] == "1":  # 单字
+    hant = t[2]
+    hans = t[3]
+    if hant in ts_map:
+        ts_map[hant].add(hans)
+    else:
+        ts_map[hant] = set([hans])
+    if hans in st_map:
+        st_map[hans].add(hant)
+    else:
+        st_map[hans] = set([hant])
 # 只保留一简对多繁字
 st_map = dict([(k, v) for (k, v) in st_map.iteritems() if len(v) > 1])
 
@@ -39,10 +39,11 @@ def get_freq(hant):
     else:
         return 0
 
+EPSILON = 1e-10
 for hans, v in st_map.iteritems():
     a = [(get_freq(hant), hant) for hant in v]
     a.sort(reverse=True)
-    s = float(sum([freq for (freq, hant) in a]))
+    s = float(sum([freq + EPSILON for (freq, hant) in a]))
     r = [(hant, round((freq / s) * 1000) / 10) for (freq, hant) in a]
-    print "%s\t%s" % (hans, " ".join(["%s %g%%" % (hant, ratio) for (hant, ratio) in r]))
+    print "%d\t%s\t%s" % (len(hans) / 3, hans, " ".join(["%s %g%%" % (hant, ratio) for (hant, ratio) in r]))
 
