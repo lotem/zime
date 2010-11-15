@@ -23,15 +23,14 @@ FuzzyRule = ^([a-z]h).+$ \1
 # 雙拼
 TransformRule = ^(.)g$ \1eng
 TransformRule = ^(.)n$ \1in
-TransformRule = ^([jqxynl])v$ \1ue
-TransformRule = ^(.)v$ \1ui
+TransformRule = ^([^jqxynl])v$ \1ui
 TransformRule = ^(.)q$ \1iu
 TransformRule = ^([zcsuivgkh])w$ \1ua
 TransformRule = ^(.)w$ \1ia
 TransformRule = ^([^o])r$ \1uan
 TransformRule = ^or$ er
 TransformRule = ^(.)t$ \1ue
-TransformRule = ^([jqxy])y$ \1u
+TransformRule = ^([jqxy])[yv]$ \1u
 TransformRule = ^([nl])y$ \1v
 TransformRule = ^(.)y$ \1uai
 TransformRule = ^([^bpmfwo])o$ \1uo
