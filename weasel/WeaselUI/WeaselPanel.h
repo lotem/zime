@@ -9,7 +9,8 @@ static const int MIN_HEIGHT = 0;
 static const int BORDER = 2;
 static const int MARGIN_X = 12;
 static const int MARGIN_Y = 10;
-static const int SPACING = 3;
+static const int SPACING = 10;
+static const int CAND_SPACING = 3;
 static const int HIGHLIGHT_PADDING_TOP = 1;
 static const int HIGHLIGHT_PADDING_BOTTOM = 1;
 
@@ -47,6 +48,8 @@ private:
 	void _Refresh();
 	void _ResizeWindow();
 	void _RepositionWindow();
+	bool _DrawText(weasel::Text const& text, CDCHandle dc, CRect const& rc, int& y);
+	bool _DrawCandidates(weasel::CandidateInfo const& cinfo, CDCHandle dc, CRect const& rc, int& y);
 
 	wstring m_fontFace;
 	int m_fontPoint;
