@@ -26,13 +26,13 @@ void ContextUpdater::Store(Deserializer::KeyType const& k, wstring const& value)
 
 	if (k[1] == L"preedit")
 	{
-		_StorePreedit(k, value);
+		_StoreText(m_pTarget->r_context.preedit, k, value);
 		return;
 	}
 
 	if (k[1] == L"aux")
 	{
-		_StoreAux(k, value);
+		_StoreText(m_pTarget->r_context.aux, k, value);
 		return;
 	}
 	if (k[1] == L"cand")
@@ -42,13 +42,12 @@ void ContextUpdater::Store(Deserializer::KeyType const& k, wstring const& value)
 	}
 }
 
-void ContextUpdater::_StorePreedit(Deserializer::KeyType k, wstring const& value)
+void ContextUpdater::_StoreText(Text& target, Deserializer::KeyType k, wstring const& value)
 {
-	Text& preedit = m_pTarget->r_context.preedit;
 	if(k.size() == 2)
 	{
-		preedit.clear();
-		preedit.str = value;
+		target.clear();
+		target.str = value;
 		return;
 	}
 	if(k.size() == 3)
@@ -65,20 +64,9 @@ void ContextUpdater::_StorePreedit(Deserializer::KeyType k, wstring const& value
 			attr.range.start = _wtoi(vec[0].c_str());
 			attr.range.end = _wtoi(vec[1].c_str());
 			
-			preedit.attributes.push_back(attr);
+			target.attributes.push_back(attr);
 			return;
 		}
-	}
-}
-
-void ContextUpdater::_StoreAux(Deserializer::KeyType k, wstring const& value)
-{
-	Text& aux = m_pTarget->r_context.aux;
-	if(k.size() == 2)
-	{
-		aux.clear();
-		aux.str = value;
-		return;
 	}
 }
 
