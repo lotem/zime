@@ -9,10 +9,10 @@ static const int MIN_HEIGHT = 0;
 static const int BORDER = 2;
 static const int MARGIN_X = 12;
 static const int MARGIN_Y = 10;
-static const int SPACING = 10;
+static const int SPACING = 9;
 static const int CAND_SPACING = 3;
-static const int HIGHLIGHT_PADDING = 1;
-static const int ROUND_CORNER = 6;
+static const int HIGHLIGHT_PADDING = 0;
+static const int ROUND_CORNER = 5;
 static const COLORREF HIGHLIGHTED_TEXT_COLOR = RGB(255, 255, 128);
 static const COLORREF HIGHLIGHTED_CAND_COLOR = RGB(0, 0, 0);
 

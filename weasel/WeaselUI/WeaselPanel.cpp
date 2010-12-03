@@ -146,7 +146,7 @@ bool WeaselPanel::_DrawCandidates(CandidateInfo const& cinfo, CDCHandle dc, CRec
 	{
 		if (y >= rc.bottom)
 			break;
-		wstring t = (boost::wformat(L"%1%. %2%") % (i + 1) % candies[i].str).str();
+		wstring t = (boost::wformat(L" %1%. %2%") % (i + 1) % candies[i].str).str();
 		CSize szText;
 		dc.GetTextExtent(t.c_str(), t.length(), &szText);
 		CRect rcText(rc.left, y, rc.right, y + szText.cy);
