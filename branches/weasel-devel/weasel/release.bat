@@ -6,13 +6,13 @@ if exist %SERVER% %SERVER% /q
 rmdir /s /q %OUTPUT%
 mkdir %OUTPUT%
 mkdir %OUTPUT%\data
-copy data\*.bat %OUTPUT%\data
-copy data\*.py %OUTPUT%\data
-copy data\*.txt %OUTPUT%\data
+copy ibus-zime\data\*.bat %OUTPUT%\data
+copy ibus-zime\data\*.py %OUTPUT%\data
+copy ibus-zime\data\*.txt %OUTPUT%\data
 mkdir %OUTPUT%\engine
-copy engine\*.py %OUTPUT%\engine
+copy ibus-zime\engine\*.py %OUTPUT%\engine
 mkdir %OUTPUT%\engine\ibus
-copy engine\ibus\*.py %OUTPUT%\engine\ibus
+copy ibus-zime\engine\ibus\*.py %OUTPUT%\engine\ibus
 copy misc\*.conf %OUTPUT%\engine
 copy misc\*.bat %OUTPUT%
 copy misc\*.js %OUTPUT%
