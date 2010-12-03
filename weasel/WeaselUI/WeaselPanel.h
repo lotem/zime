@@ -11,8 +11,10 @@ static const int MARGIN_X = 12;
 static const int MARGIN_Y = 10;
 static const int SPACING = 10;
 static const int CAND_SPACING = 3;
-static const int HIGHLIGHT_PADDING_TOP = 1;
-static const int HIGHLIGHT_PADDING_BOTTOM = 1;
+static const int HIGHLIGHT_PADDING = 1;
+static const int ROUND_CORNER = 6;
+static const COLORREF HIGHLIGHTED_TEXT_COLOR = RGB(255, 255, 128);
+static const COLORREF HIGHLIGHTED_CAND_COLOR = RGB(0, 0, 0);
 
 typedef CWinTraits<WS_POPUP|WS_CLIPSIBLINGS|WS_DISABLED, WS_EX_TOOLWINDOW|WS_EX_TOPMOST> CWeaselPanelTraits;
 
@@ -50,6 +52,7 @@ private:
 	void _RepositionWindow();
 	bool _DrawText(weasel::Text const& text, CDCHandle dc, CRect const& rc, int& y);
 	bool _DrawCandidates(weasel::CandidateInfo const& cinfo, CDCHandle dc, CRect const& rc, int& y);
+	void _HighlightText(CDCHandle dc, CRect rc, COLORREF color, DWORD dwRop);
 
 	wstring m_fontFace;
 	int m_fontPoint;
