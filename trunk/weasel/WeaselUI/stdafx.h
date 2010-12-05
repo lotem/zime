@@ -9,35 +9,25 @@
 
 //#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 
-#include <string>
-#include <vector>
-
-#include <boost/format.hpp>
-
 #pragma warning(disable : 4996)
 
 #include <atlbase.h>
-#include <atlapp.h>
-
 #include <atlwin.h>
 
-#include <atlframe.h>
-#include <atlctrls.h>
-#include <atlgdi.h>
-#include <atlwin.h>
+#include <wtl/atlapp.h>
+#include <wtl/atlframe.h>
+#include <wtl/atlgdi.h>
+#include <wtl/atlmisc.h>
 
-#include <atlframe.h>
-#include <atlmisc.h> 
-#include <atlcrack.h>
-#include <atlddx.h>
-#include <atlctrls.h>
-#include <atlctrlw.h>
-#include <atlctrlx.h>
-#include <atlctl.h>
-#include <atlcoll.h>
-#include <atldlgs.h>
-#include <atlsplit.h>
-#include <atlcom.h>
-#include <atlhost.h>
-#include <atlscrl.h>
-#include <wingdi.h>
+#pragma warning(default: 4996)
+
+#pragma warning(disable : 4819)
+
+#include <boost/format.hpp>
+
+#pragma warning(default: 4819)
+
+#include <string>
+#include <vector>
+
+using namespace std;

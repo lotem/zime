@@ -15,7 +15,7 @@ HINSTANCE hInst;								// current instance
 TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
 
-WeaselUI ui;
+weasel::UI ui;
 
 // Forward declarations of functions included in this code module:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
@@ -127,9 +127,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	/*ui.Create(hWnd);
 	weasel::Context ctx;
 
-	ctx.preedit = weasel::Text(L"中州韻輸入法引擎");
-	ctx.preedit.attributes.push_back(weasel::TextAttribute(0, 6, weasel::HIGHLIGHTED));
-	ctx.aux = weasel::Text(L"zung zau wan syu jap faat");
+	ctx.preedit = weasel::Text(L"zung zau wan syu jap faat jan king");
+	ctx.aux = weasel::Text(L"中州韻輸入法引擎");
+	ctx.aux.attributes.push_back(weasel::TextAttribute(0, 6, weasel::HIGHLIGHTED));
 	ctx.cinfo.currentPage = 1;
 	ctx.cinfo.totalPages = 1;
 	ctx.cinfo.highlighted = 0;
