@@ -1,43 +1,110 @@
 #pragma once
 #include <WeaselCommon.h>
-#include <Windows.h>
+#include <windows.h>
+#include <boost/function.hpp>
 
-#define SERVER_WND_NAME L"WeaselServerWindow"
-#define SERVER_EVENT_NAME L"Local\\WeaselServer"
+#define WEASEL_IPC_SHARED_MEMORY "WeaselIPCSharedMemory"
+#define WEASEL_IPC_BUFFER_SIZE 4096
+#define WEASEL_IPC_BUFFER_LENGTH (WEASEL_IPC_BUFFER_SIZE / sizeof(WCHAR))
 
-enum WEASEL_CMD
+#define WEASEL_IPC_WINDOW L"WeaselIPCWindow"
+#define WEASEL_IPC_READY_EVENT L"Local\\WeaselIPCReadyEvent"
+
+enum WEASEL_IPC_COMMAND
 {	
-	WM_WEASEL_CMD_ECHO = (WM_APP + 1),
-	WM_WEASEL_CMD_ADD_CLIENT,
-	WM_WEASEL_CMD_REMOVE_CLIENT,
-	WM_WEASEL_CMD_SEND_KEY,
-	WM_WEASEL_CMD_CLOSE_SERVER
+	WEASEL_IPC_ECHO = (WM_APP + 1),
+	WEASEL_IPC_START_SESSION,
+	WEASEL_IPC_END_SESSION,
+	WEASEL_IPC_PROCESS_KEY_EVENT,
+	WEASEL_IPC_SHUTDOWN_SERVER
 };
 
-//IPC接口
-class WeaselIPC
+namespace weasel
 {
-public:
-	WeaselIPC(void) ;
-	~WeaselIPC(void);
+
+	struct KeyEvent
+	{
+		UINT keycode : 16;
+		UINT mask : 16;
+		KeyEvent() : keycode(0), mask(0) {}
+		KeyEvent(UINT _keycode, UINT _mask) : keycode(_keycode), mask(_mask) {}
+		KeyEvent(UINT x)
+		{
+			*reinterpret_cast<UINT*>(this) = x;
+		}
+		operator UINT32 const() const
+		{
+			return *reinterpret_cast<UINT32 const*>(this);
+		}
+	};
+
+	// 處理請求之物件
+	struct RequestHandler
+	{
+		RequestHandler() {}
+		virtual ~RequestHandler() {}
+		virtual UINT FindSession(UINT sessionID) { return 0; }
+		virtual UINT AddSession(LPWSTR buffer) { return 0; }
+		virtual UINT RemoveSession(UINT sessionID) { return 0; }
+		virtual BOOL ProcessKeyEvent(KeyEvent keyEvent, UINT sessionID, LPWSTR buffer) { return FALSE; }
+	};
 	
-	//初始化IPC server
-	void ConnectServer();
-	 //关闭IPC server
-	void CloseServer();
-	//向server发送一个键
-	void SendKey(UINT keyVal, LONG mask);
-	//向server注册一个客户端。server返回一个ID用于标识客户端
-	void AddClient();
-	//向server请求移除一个客户端(以ID标识)
-	void RemoveClient();
-	//ping server 成功返回 1, 失败返回 0
-	UINT EchoFromServer();
+	// 處理server端回應之物件
+	typedef boost::function<bool (LPWSTR buffer, UINT length)> ResponseHandler;
+	
+	// 啟動服務進程之物件
+	typedef boost::function<bool ()> ServerLauncher;
 
-	//从共享内存区读取server返回的对象
-	UCHAR* GetDataFromSharedMem();
+	// IPC實現類聲明
 
-private:
-	class WeaselIPCImpl;
-	WeaselIPCImpl* m_pImpl;
-};
+	class ClientImpl;
+	class ServerImpl;
+
+	// IPC接口類
+
+	class Client
+	{
+	public:
+
+		Client();
+		virtual ~Client();
+		
+		// 连接到服务，必要时启动服务进程
+		bool Connect(ServerLauncher launcher = 0);
+		// 断开连接
+		void Disconnect();
+		// 终止服务
+		void ShutdownServer();
+		// 请求服务处理按键消息
+		bool ProcessKeyEvent(KeyEvent keyEvent);
+		// 發起會話
+		void StartSession();
+		// 結束會話
+		void EndSession();
+		// 测试连接
+		bool Echo();
+		// 读取server返回的数据
+		bool GetResponseData(ResponseHandler handler);
+
+	private:
+		ClientImpl* m_pImpl;
+	};
+
+	class Server
+	{
+	public:
+		Server(RequestHandler* pHandler = 0);
+		virtual ~Server();
+
+		// 初始化服务
+		int Start();
+		// 结束服务
+		int Stop();
+		// 消息循环
+		int Run();
+
+	private:
+		ServerImpl* m_pImpl;
+	};
+
+}

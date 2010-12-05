@@ -2,42 +2,58 @@
 
 #include <WeaselCommon.h>
 
-//
-// 输入法界面接口类
-//
-class WeaselUI
+namespace weasel
 {
-public:
-	WeaselUI() : pimpl_(0)
+
+	struct UIStyle
 	{
-	}
+		std::wstring fontFace;
+		int fontPoint;
+		UIStyle() : fontFace(), fontPoint(0) {}
+	};
 
-	virtual ~WeaselUI()
+	class UIImpl;
+
+	//
+	// 输入法界面接口类
+	//
+	class UI
 	{
-		if (pimpl_)
-			Destroy();
-	}
+	public:
+		UI() : pimpl_(0)
+		{
+		}
 
-	// 创建输入法界面
-	bool Create(HWND parent);
+		virtual ~UI()
+		{
+			if (pimpl_)
+				Destroy();
+		}
 
-	// 销毁界面
-	void Destroy();
-	
-	// 界面显隐
-	void Show();
-	void Hide();
-	
-	// 置输入焦点位置（光标跟随时移动候选窗）
-	void UpdateInputPosition(RECT const& rc);
+		// 创建输入法界面
+		bool Create(HWND parent);
 
-	// 更新界面显示内容
-	void UpdateContext(weasel::Context const& ctx);
+		// 销毁界面
+		void Destroy();
+		
+		// 界面显隐
+		void Show();
+		void Hide();
+		
+		// 设置界面样式
+		void SetStyle(UIStyle const& style);
 
-	// 更新输入法状态
-	void UpdateStatus(weasel::Status const& status);
+		// 置输入焦点位置（光标跟随时移动候选窗）
+		void UpdateInputPosition(RECT const& rc);
 
-private:
-	class Impl;
-	Impl* pimpl_;
-};
+		// 更新界面显示内容
+		void UpdateContext(weasel::Context const& ctx);
+
+		// 更新输入法状态
+		void UpdateStatus(weasel::Status const& status);
+
+	private:
+		UIImpl* pimpl_;
+	};
+
+}
