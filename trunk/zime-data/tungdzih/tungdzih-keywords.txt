@@ -2376,7 +2376,7 @@ pui	披
 puu	普
 puu	譜
 puu	浦
-quec	額
+qaec	額
 qaeq	硬
 qai	呆
 qang	昂
