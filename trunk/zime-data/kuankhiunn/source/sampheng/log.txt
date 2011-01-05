@@ -1,0 +1,128 @@
+[緬] mtr mmg
+mismatch: 緬彝 |mtfyih
+
+[榜] bzs pzx bhg paw
+mismatch: 漲幅榜 twwplk|pzw
+
+[服] fuo blk
+mismatch: 口服藥物 xuq|plkyqkmlt
+
+[多] doi taa
+mismatch: 被多 bgq|t
+
+[多] doi taa
+mismatch: 將多 cqs|t
+
+[旆] bab
+mismatch: 總體旆 cuwrey|b
+
+mismatch: 微軟 mlhncr|t
+
+mismatch: 押在了 qzpzayleu|y
+
+[滲] ufl skc
+mismatch: 通滲 rus|sk
+
+[華] hwl hwo hxa gxa gxz
+mismatch: 精華 cts|gx
+
+[降] jdl kjx gjs
+mismatch: 大禍降臨 dazgsq|kjzlid
+
+[路] lul lyz
+mismatch: 路迢迢 |lyadejdej
+
+[覺] jcl kjk jto kzm
+mismatch: 憑直覺 bksdkk|jk
+
+[的] dil toa tek
+mismatch: 我的直覺 waq|tokdkkjk
+
+[異] yil yiz
+mismatch: 異黃酮 |yiagssdus
+
+[期] gka qii
+mismatch: 本刊下期 pprxafgzz|xka
+
+[士] zkq uil
+mismatch: 高薪人士 kajsifnif|zkz
+
+[而] ero nia
+mismatch: 已而 yiq|niz
+
+[要] yki qtm qtj ykl
+mismatch: 摘要性 tdk|kqtmstx
+
+[啊] eai qaa
+mismatch: 染色體啊 nteskkrey|q
+
+[哈] haa wop hai
+mismatch: 公司哈 kussia|h
+
+[何] heo gaq gaa
+mismatch: 萬美元何 mbvmkywbf|g
+
+[位] wzl ymn
+mismatch: 萬單位 mbvtaf|ym
+
+[儲] dja iug
+mismatch: 美聯儲何 mkyltf|g
+
+[何] heo gaq gaa
+mismatch: 美元何 mkywbf|g
+
+[收] onz ona ubi
+mismatch: 每股收益手 msykyq|onq
+
+[施] uii ota otz
+mismatch: 設施 ott|ot
+
+[瘸] qto gba
+mismatch: 的瘸 toa|gb
+
+[陀] daa too
+mismatch: 券商陀 xbvoqs|d
+
+[同] tso dus
+mismatch: 營收同比下降頭 ycsona|dua
+
+[制] atb vil
+mismatch: 財務制度狀況 zahmlz|zwxhbx
+
+[多] doi taa
+mismatch: 指出多 aiyenn|t
+
+mismatch: 紙類 atqlnn|b
+
+mismatch: 提供更多的 dehkmxkzxtaatoa|kz
+
+mismatch: 經理人 kesliqnif|t
+
+[啊] eai qaa
+mismatch: 公司啊 kussia|q
+
+mismatch: 一撇 qitfet|f
+
+mismatch: 等方面的 towpbsmtvtoa|ksyitr
+
+[品] fke png
+mismatch: 次品 vin|fk
+
+[猴] gua hbo
+mismatch: 赤尻馬猴 etkxajmzq|gus
+
+[一] qit yii
+mismatch: 一片黃葉 |fevgssytp
+
+[震] aiv vfl
+mismatch: 震災強度 |qivcahgwsdyz
+
+[震] aiv vfl
+mismatch: 震災發生 |aifcahpbtsgs
+
+[地] dil dei din doa
+mismatch: 有條不紊地 ymqdejpmamlv|di
+
+[悟] wyz wul
+mismatch: 沙悟淨 sza|qyzztw
+
