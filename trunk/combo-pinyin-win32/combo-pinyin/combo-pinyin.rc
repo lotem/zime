@@ -15,7 +15,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 中文(中华人民共和国) resources
+// Chinese (P.R.C.) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 #ifdef _WIN32
@@ -133,7 +133,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,2
+ FILEVERSION 1,0,0,4
  PRODUCTVERSION 1,0,0,1
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
@@ -174,12 +174,12 @@ STRINGTABLE
 BEGIN
     IDS_APP_TITLE           "宫保拼音"
     IDS_LAYOUT_CHANGES      "已選用佈局  "
-    IDS_ZH                  "中文"
-    IDS_ALPHA               "西文"
+    IDS_ZH                  "開啟"
+    IDS_ALPHA               "關閉"
     IDC_COMBO_PINYIN        "COMBO_PINYIN"
 END
 
-#endif    // 中文(中华人民共和国) resources
+#endif    // Chinese (P.R.C.) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

@@ -39,8 +39,6 @@ void ComboConfig::Load( const fs::wpath file_name )
 	opt_repeat_set_ = false;
 	opt_enhanced_bksp_ = false;
 	opt_enhanced_bksp_set_ = false;
-	opt_ctrl_space_toggles_ = false;	// lotem added in v1.2
-	opt_ctrl_space_toggles_set_ = false;	// lotem added in v1.2
 
 	process_directives(reader);
 
@@ -83,9 +81,7 @@ void ComboConfig::process_directives( ImportReader &reader )
 		set_opt_on_off(opt_repeat_, directive, L"@repeat on", L"@repeat off") && 
 			(opt_repeat_set_ = true) ||
 		set_opt_on_off(opt_enhanced_bksp_, directive, L"@enhanced_bksp on", L"@enhanced_bksp off") && 
-			(opt_enhanced_bksp_set_ = true) ||
-		set_opt_on_off(opt_ctrl_space_toggles_, directive, L"@ctrl_space_toggles on", L"@ctrl_space_toggles off") && 
-			(opt_ctrl_space_toggles_set_ = true);	// lotem appended in v1.2
+			(opt_enhanced_bksp_set_ = true);
 	}
 }
 

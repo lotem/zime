@@ -34,10 +34,6 @@ public:
 	{ if (opt_repeat_set_) opt_ = opt_repeat_; }
 	void SetOptEnhancedBksp(bool& opt_) const 
 	{ if (opt_enhanced_bksp_set_) opt_ = opt_enhanced_bksp_; }
-	// lotem added in v1.2
-	void SetOptCtrlSpaceToggles(bool& opt_) const 
-	{ if (opt_ctrl_space_toggles_set_) opt_ = opt_ctrl_space_toggles_; }
-
 	wstring Title() const { return title_; }
 
 private:
@@ -60,7 +56,4 @@ private:
 	bool opt_repeat_set_;
 	bool opt_enhanced_bksp_;
 	bool opt_enhanced_bksp_set_;
-	// lotem added in v1.2
-	bool opt_ctrl_space_toggles_;
-	bool opt_ctrl_space_toggles_set_;
 };
