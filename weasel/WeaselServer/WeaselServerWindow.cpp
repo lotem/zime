@@ -8,7 +8,7 @@ WeaselServerWindow::WeaselServerWindow(void)
 WeaselServerWindow::~WeaselServerWindow(void)
 {
 	//release all the client registery entry
-	map<UINT, WeaselIPC*>::iterator it =	m_Clients.begin();
+	map<UINT, WeaselIPC*>::iterator it = m_Clients.begin();
 	for(; it != m_Clients.end(); it++)
 	{
 		delete (WeaselIPC*)it->second;
