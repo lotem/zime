@@ -56,7 +56,6 @@ private:
 	wstring nav_to_;
 	bool opt_repeat_;
 	bool opt_enhanced_bksp_;
-	bool opt_ctrl_space_toggles_;	// lotem added in v1.2
 	shared_ptr<ComboConfig> p_config_;
 
 	void handle_shift( wchar_t ch, bool key_up );
@@ -66,7 +65,8 @@ private:
 	void handle_caps_comb( wchar_t ch, bool key_up, KeyEvent &key_event );
 	void handle_enhanced_bksp_key( bool key_up, KeyEvent &key_event );
 	void handle_comb_key( bool key_up, wstring::size_type pos, KeyEvent &key_event );
-	bool is_key_down(UINT vk);
+	bool is_chinese_ime_active() const;
+	bool is_key_down(UINT vk) const;
 	void send_comb();
 	void reset_comb();
 	void send_vkcodes(const wstring& vkcodes);

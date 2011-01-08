@@ -22,7 +22,7 @@ ComboFilter::ComboFilter( Timer& timer )
 	caps_state_(RELEASED), 
 	space_state_(RELEASED),
 	repeating_(false), 
-	enabled_(false), 
+	enabled_(true), 
 	n_keys_held_(0), 
 	comb_(), 
 	n_commited_(1)
@@ -71,6 +71,11 @@ void ComboFilter::OnKey(KeyEvent& key_event)
 		return;
 	}
 
+	if (!is_chinese_ime_active())
+	{
+		return;
+	}
+
 	if(	is_key_down(VK_SHIFT) ||
 		is_key_down(VK_CONTROL) ||
 		is_key_down(VK_MENU) ||
@@ -101,7 +106,18 @@ void ComboFilter::OnKey(KeyEvent& key_event)
 	handle_comb_key(key_up, pos, key_event);
 }
 
-bool ComboFilter::is_key_down(UINT vk)
+bool ComboFilter::is_chinese_ime_active() const
+{
+	HWND hWnd = GetForegroundWindow();
+	DWORD idThread = GetWindowThreadProcessId(hWnd, NULL);
+	HKL hkl = GetKeyboardLayout(idThread);
+	// TRICKY!
+	if ((DWORD)hkl & 0xA0000000)
+		return true;
+	return false;
+}
+
+bool ComboFilter::is_key_down(UINT vk) const
 {
 	return (GetAsyncKeyState(vk) & 0x8000) != 0;
 }
@@ -147,11 +163,10 @@ void ComboFilter::handle_ctrl_space( bool key_up )
 	if (!key_up && previous == RELEASED &&
 		is_key_down(VK_CONTROL) &&
 		!is_key_down(VK_SHIFT) && 
-		!is_key_down(VK_MENU) &&
-		opt_ctrl_space_toggles_)
+		!is_key_down(VK_MENU))
 	{
 		// Ctrl+Space
-		Toggle();
+
 	}
 }
 
@@ -162,7 +177,8 @@ void ComboFilter::handle_caps_key( bool key_up, KeyEvent &key_event )
 		if (caps_state_ == HELD_DOWN) 
 		{
 			// released without having been used in combination
-			send_vkcodes(wstring(1, VK_CAPITAL));
+			if (shift_state_ > RELEASED)
+				send_vkcodes(wstring(1, VK_CAPITAL));
 		}
 		caps_state_ = RELEASED;
 	}
@@ -193,14 +209,7 @@ void ComboFilter::handle_caps_comb( wchar_t ch, bool key_up, KeyEvent &key_event
 	{
 		if (key_up)
 		{	
-			if (is_key_down(VK_CONTROL))
-			{
-				opt_ctrl_space_toggles_ = !opt_ctrl_space_toggles_;
-			}
-			else
-			{
-				Toggle();
-			}
+			Toggle();
 		}
 		key_event.Consumed(true);
 		return;
@@ -350,7 +359,6 @@ void ComboFilter::Configure( const shared_ptr<ComboConfig>& p_config )
 	nav_to_ = p_config->NavTo();
 	p_config->SetOptRepeat(opt_repeat_);
 	p_config->SetOptEnhancedBksp(opt_enhanced_bksp_);
-	p_config->SetOptCtrlSpaceToggles(opt_ctrl_space_toggles_);	// lotem added in v1.2
 	p_config->SetOptEnabled(enabled_);
 	p_config_ = p_config;
 	reset_comb();

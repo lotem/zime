@@ -135,6 +135,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				OutputFile="$(SolutionDir)\$(ProjectName).exe"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -164,7 +165,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cmd /c copy &quot;$(TargetDir)$(TargetFileName)&quot; &quot;$(SolutionDir)&quot;"
+				CommandLine=""
 			/>
 		</Configuration>
 	</Configurations>
