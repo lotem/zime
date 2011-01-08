@@ -1,7 +1,7 @@
 ﻿宫保拼音 1.4
 
 中州式恕堂製
-版權所有(C) 2010 弓辰
+版權所有(C) 2011 弓辰
 
 本程序為自由軟件；您可依據自由軟件基金會所發表的GNU通用公共授權條款，
 對本程序再次發佈和/或修改；無論您依據的是本授權的第三版，或（您可選
@@ -30,7 +30,7 @@
 Combo Pinyin 1.4
 converts combinations of keystrokes into Chinese romanization.
 
-Copyright (C) 2010  Gong, Chen
+Copyright (C) 2010  GONG Chen
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
