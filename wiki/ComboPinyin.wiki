@@ -1,4 +1,5 @@
 #summary 宮保拼音介紹頁
+#labels Featured
 
 = 宮保拼音／Combo Pinyin =
 
@@ -8,5 +9,10 @@
 
     * [http://zime.googlecode.com/files/combo-pinyin-1.3.zip 宮保拼音1.3 Windows]
         宮保拼音外掛程式，配合搜狗、微軟拼音使用（含指南）
+
+    * [http://zime.googlecode.com/files/combopinyin-1.4.zip 宮保拼音1.4 Windows]
+      * 会看当前窗口的输入法状态来决定要不要使宫保拼音
+      * Caps功能键改为仿VIM布局，做了防大写锁定处理
+      * TODO: 需要設計一個「本品不兼容360」的圖示
 
     * 宮保拼音已在 ibus-zime 及 Plume.js 中集成，請參閱[SchemaGallery 輸入方案展示]中的宮保拼音條目。
