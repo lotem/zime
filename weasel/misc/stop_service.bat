@@ -1,1 +1,0 @@
-weaselserver.exe /q
