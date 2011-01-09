@@ -1,0 +1,2 @@
+cd weasel
+install.bat
