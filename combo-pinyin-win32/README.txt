@@ -1,4 +1,4 @@
-﻿宫保拼音 1.4
+﻿宫保拼音 1.5
 
 中州式恕堂製
 版權所有(C) 2011 弓辰
@@ -27,7 +27,7 @@
 
 ---------------------------------------------------------------------
 
-Combo Pinyin 1.4
+Combo Pinyin 1.5
 converts combinations of keystrokes into Chinese romanization.
 
 Copyright (C) 2010  GONG Chen
