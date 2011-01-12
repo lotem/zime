@@ -59,16 +59,14 @@ LRESULT CALLBACK KeyboardHook::keyboard_proc(int nCode, WPARAM wParam, LPARAM lP
 		{
 		case WM_KEYDOWN:
 		case WM_KEYUP:
+		case WM_SYSKEYDOWN:
+		case WM_SYSKEYUP:
 			{
 				KeyEvent key_event(p_struct);
 				instance.on_key_event(key_event);
 				if (key_event.consumed())
 					return true;
 			}
-			break;
-
-		case WM_SYSKEYDOWN:
-		case WM_SYSKEYUP:
 			break;
 		}
 	}

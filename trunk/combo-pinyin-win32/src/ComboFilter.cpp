@@ -19,7 +19,7 @@
 ComboFilter::ComboFilter( Timer& timer )
 	: timer_(timer),
 	shift_state_(RELEASED), 
-	caps_state_(RELEASED), 
+	super_state_(RELEASED), 
 	space_state_(RELEASED),
 	repeating_(false), 
 	enabled_(true), 
@@ -44,7 +44,7 @@ void ComboFilter::on_key_event(KeyEvent& key_event)
 
 	handle_shift(ch, key_up);
 
-	if(key_info->flags & (LLKHF_EXTENDED | LLKHF_INJECTED | LLKHF_ALTDOWN))
+	if(key_info->flags & (LLKHF_EXTENDED | LLKHF_INJECTED))
 	{
 		return;
 	}
@@ -55,9 +55,9 @@ void ComboFilter::on_key_event(KeyEvent& key_event)
 		return;
 	}
 
-	if (caps_state_ > RELEASED)
+	if (super_state_ > RELEASED)
 	{
-		handle_caps_combo(ch, key_up, key_event);
+		handle_super_combo(ch, key_up, key_event);
 		return;
 	}
 
@@ -87,8 +87,7 @@ void ComboFilter::on_key_event(KeyEvent& key_event)
 		return;
 	}
 
-	//
-	if (enhanced_bksp_ && ch == VK_BACK)
+	if (p_config_->opt_enhanced_bksp && ch == VK_BACK)
 	{
 		handle_enhanced_bksp(key_up, key_event);
 		return;
@@ -137,14 +136,6 @@ void ComboFilter::handle_shift( wchar_t ch, bool key_up )
 {
 	if (ch == VK_LSHIFT)
 	{
-		////lotem removed in v1.2
-		//if (key_up && shift_state_ == KEY_DOWN &&
-		//	!is_key_down(VK_CONTROL) && 
-		//	!is_key_down(VK_MENU))
-		//{
-		//	// released without having been used in combo_
-		//	Toggle();
-		//}
 		shift_state_ = key_up ? RELEASED : (shift_state_ == RELEASED ? KEY_DOWN : COMBINED);
 		// let go...
 	}
@@ -178,37 +169,30 @@ void ComboFilter::handle_caps( bool key_up, KeyEvent &key_event )
 {
 	if (key_up)
 	{
-		if (caps_state_ == KEY_DOWN) 
+		if (super_state_ == KEY_DOWN) 
 		{
 			// released without having been used in combination
 			if (shift_state_ > RELEASED)
+			{
 				send_vkcodes(wstring(1, VK_CAPITAL));
+			}
 		}
-		caps_state_ = RELEASED;
+		super_state_ = RELEASED;
 	}
 	else 
 	{
-		if (caps_state_ < KEY_DOWN)
-			caps_state_ = KEY_DOWN;
+		if (super_state_ < KEY_DOWN)
+		{
+			super_state_ = KEY_DOWN;
+		}
 	}
 	key_event.consumed(true);
 }
 
-void ComboFilter::handle_caps_combo( wchar_t ch, bool key_up, KeyEvent &key_event )
+void ComboFilter::handle_super_combo( wchar_t ch, bool key_up, KeyEvent &key_event )
 {
-	caps_state_ = COMBINED;
+	super_state_ = COMBINED;
 
-	if (ch == VK_BACK)
-	{
-		if (key_up)
-		{					
-			enhanced_bksp_ = !enhanced_bksp_;
-		}
-		key_event.consumed(true);
-		return;
-	}
-
-	//// lotem added in v1.2
 	if (ch == VK_SPACE)
 	{
 		if (key_up)
@@ -220,18 +204,51 @@ void ComboFilter::handle_caps_combo( wchar_t ch, bool key_up, KeyEvent &key_even
 	}
 
 	handle_nav_key(ch, key_up, key_event);
+	key_event.consumed(true);	
 }
 
 void ComboFilter::handle_nav_key( wchar_t ch, bool key_up, KeyEvent &key_event )
 {
+	if (key_up)
+		return;
+	
 	wstring::size_type pos = p_config_->nav_from.find(ch);
-	if (pos != wstring::npos) {
-		if(!key_up)
-		{
-			send_vkcodes(wstring(1, p_config_->nav_to[pos]));
-		}
+	if (pos != wstring::npos)
+	{
+		send_vkcodes(wstring(1, p_config_->nav_to[pos]));
 	}
-	key_event.consumed(true);	
+	else if (ch == VK_BACK)
+	{					
+		send_vkcodes(wstring(1, VK_DELETE));
+	}
+	else if (ch == VK_OEM_3)  // apostroph (`)
+	{
+		send_vkcodes(wstring(1, VK_ESCAPE));
+	}
+	else if (ch >= '1' && ch <= '9')
+	{
+		send_vkcodes(wstring(1, ch - '1' + VK_F1));
+	}
+	else if (ch == '0')
+	{
+		send_vkcodes(wstring(1, VK_F10));
+	}
+	else if (ch == VK_OEM_MINUS)
+	{
+		send_vkcodes(wstring(1, VK_F11));
+	}
+	else if (ch == VK_OEM_PLUS)
+	{
+		send_vkcodes(wstring(1, VK_F12));
+	}
+	else if (ch == VK_OEM_COMMA)
+	{
+		send_vkcodes(wstring(1, VK_PRIOR));
+	}
+	else if (ch == VK_OEM_PERIOD)
+	{
+		send_vkcodes(wstring(1, VK_NEXT));
+	}
 }
 
 void ComboFilter::handle_enhanced_bksp( bool key_up, KeyEvent &key_event )
@@ -302,7 +319,7 @@ void ComboFilter::send_combo()
 		
 		if (text == L"~")
 		{
-			send_vkcodes(wstring(enhanced_bksp_ ? n_commited_ : 1, VK_BACK));
+			send_vkcodes(wstring(p_config_->opt_enhanced_bksp ? n_commited_ : 1, VK_BACK));
 			n_commited_ = 1;
 		} 
 		else 
@@ -355,7 +372,6 @@ void ComboFilter::configure( const shared_ptr<ComboConfig>& p_config )
 {
 	p_config_ = p_config;
 	enabled_ = p_config->opt_enabled;
-	enhanced_bksp_ = p_config->opt_enhanced_bksp;
 	reset_combo();
 }
 
