@@ -150,7 +150,7 @@ UONG	UNG
 I?UE$	IUE
 
 [AE]i?u	AU
-i?u	OU
+iu	OU
 u	O
 ([AOE])i	$1I
 
