@@ -221,7 +221,7 @@ void ComboFilter::handle_nav_key( wchar_t ch, bool key_up, KeyEvent &key_event )
 	{					
 		send_vkcodes(wstring(1, VK_DELETE));
 	}
-	else if (ch == VK_OEM_3)  // apostroph (`)
+	else if (ch == VK_OEM_3)  // brave (`)
 	{
 		send_vkcodes(wstring(1, VK_ESCAPE));
 	}
