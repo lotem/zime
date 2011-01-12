@@ -41,13 +41,12 @@ private:
 		COMBINED = 2
 	};
 	key_state shift_state_;
-	key_state caps_state_;
+	key_state super_state_;
 	key_state space_state_;
 
 	Timer& timer_;
 
 	bool enabled_;
-	bool enhanced_bksp_;
 
 	shared_ptr<ComboConfig> p_config_;
 
@@ -62,7 +61,7 @@ private:
 	void handle_ctrl_space( bool key_up );
 	void handle_nav_key( wchar_t ch, bool key_up, KeyEvent &key_event );
 	void handle_caps( bool key_up, KeyEvent &key_event );
-	void handle_caps_combo( wchar_t ch, bool key_up, KeyEvent &key_event );
+	void handle_super_combo( wchar_t ch, bool key_up, KeyEvent &key_event );
 	void handle_enhanced_bksp( bool key_up, KeyEvent &key_event );
 	void handle_combo_key( bool key_up, wstring::size_type pos, KeyEvent &key_event );
 
