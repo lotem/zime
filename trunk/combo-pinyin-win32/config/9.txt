@@ -208,7 +208,7 @@ UEI	UI
 ^([FW])I$	$1EI
 ^([NL])UI$	$1EI
 
-#([A-Z])$	$1\xDE
+([A-Z])$	$1\xDE
 #([A-Z])$	$1_
 
 #@end
