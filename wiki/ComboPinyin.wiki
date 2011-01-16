@@ -11,6 +11,7 @@
       * 新增鍵位佈局【宮保拼音】第九式
       * 聲明：本品不兼容360「安全」衛士！
 
-    * [http://zime.googlecode.com/files/combo-pinyin-doc.pdf 快速入門指南 (PDF；講述基本操作及宮保拼音第六式)]
+    * [http://zime.googlecode.com/files/combo-pinyin-doc.pdf 快速入門指南 (PDF)]
+      就1.3版講述基本操作及宮保拼音第六式，與最新版本略有差別
 
-    * 宮保拼音已在ZIME各產品線中集成，請參閱[SchemaGallery 輸入方案展示]中的宮保拼音條目。
+    * 宮保拼音已在ZIME各輸入法產品中集成，請參閱[SchemaGallery 輸入方案展示]中的宮保拼音條目。
