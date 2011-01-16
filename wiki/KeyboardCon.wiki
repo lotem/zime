@@ -7,11 +7,11 @@ Hello, world. 我是佛振。
 
 因為最近用慣了UNIX佈局的鍵盤，在Windows裡頭甚感不便。於是翻出「宮保拼音」這個外掛的鍵碼轉換器，DIY了一套快速Caps組合鍵。
 
-再配合!KeyTweak這個修改Windows系統鍵盤佈局的程序，終於滿意了。
+再配合!KeyTweak這個修改Windows系統鍵盤佈局的程序，終於滿意了，把這方案分享給大家。
 
 = Cookbook =
 
-== 鍵盤 ==
+== 實體鍵盤 ==
 
 TODO 鍵盤圖
 
