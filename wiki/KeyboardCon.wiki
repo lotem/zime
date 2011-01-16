@@ -1,0 +1,114 @@
+#summary 【原創】鍵盤控－自定義組合功能鍵
+#labels Phase-Support,Featured
+
+= 鍵盤控 =
+
+Hello, world. 我是佛振。
+
+因為最近用慣了UNIX佈局的鍵盤，在Windows裡頭甚感不便。於是翻出「宮保拼音」這個外掛的鍵碼轉換器，DIY了一套快速Caps組合鍵。
+
+再配合!KeyTweak這個修改Windows系統鍵盤佈局的程序，終於滿意了。
+
+= Cookbook =
+
+TODO
+
+= Linux篇 =
+
+在Linux下可通過修改 `~/.xmodmaprc` 達到同樣的效果。附件是佛振的設定檔：
+{{{
+! ~/.xmodmaprc
+!
+! * makes Caps_Lock an additional Control;
+! * Super_L + <alphanumeric> yields function keys within reach.
+!
+! author: GONG Chen <chen.sst@gmail.com>
+! revision: 2011-01-16
+!
+remove Lock = Caps_Lock
+remove Control = Control_L
+remove Mod4 = Super_L
+remove Mod5 = Mode_switch
+keysym Super_L = Mode_switch
+keysym Caps_Lock = Control_L
+keysym h = h H Left NoSymbol
+keysym l = l L Right NoSymbol
+keysym k = k K Up NoSymbol
+keysym j = j J Down NoSymbol
+keysym p = p P Prior NoSymbol
+keysym n = n N Next NoSymbol
+keysym b = b B Home NoSymbol
+keysym f = f F End NoSymbol
+keysym i = i I Insert NoSymbol
+keysym d = d D Delete NoSymbol
+keysym x = x X BackSpace NoSymbol
+keysym q = q Q Escape NoSymbol
+keysym comma = comma less Prior NoSymbol
+keysym period = period greater Next NoSymbol
+keysym 1 = 1 exclam F1 NoSymbol
+keysym 2 = 2 at F2 NoSymbol
+keysym 3 = 3 numbersign F3 NoSymbol
+keysym 4 = 4 dollar F4 NoSymbol
+keysym 5 = 5 percent F5 NoSymbol
+keysym 6 = 6 asciicircum F6 NoSymbol
+keysym 7 = 7 ampersand F7 NoSymbol
+keysym 8 = 8 asterisk F8 NoSymbol
+keysym 9 = 9 parenleft F9 NoSymbol
+keysym 0 = 0 parenright F10 NoSymbol
+keysym minus = minus underscore F11 NoSymbol
+keysym equal = equal plus F12 NoSymbol
+keysym space = space NoSymbol Zenkaku_Hankaku NoSymbol
+add Lock = Caps_Lock
+add Control = Control_L
+add Mod4 = Super_L
+add Mod5 = Mode_switch
+}}}
+
+== 一、CapsLock 當作 Control 鍵 ==
+
+因為CapsLock我幾乎從來不用，按錯了還有麻煩，而Control鍵的組合在Linux下極為常用，但Control位置不好且不同鍵盤的Control鍵位置和大小還會有差別，於是作了這樣的映射，方便多了。
+
+另，傳統UNIX佈局的鍵盤Control鍵就在A的左邊。
+此設定相當於GNOME鍵盤配置選項中的「Make
+CapsLock an additional Control」。
+
+== 二、Super_L 當作 Mode_switch ==
+
+在我的鍵盤上，這個鍵是 *空格左邊那一顆* ，即PC鍵盤的左側Win鍵、Apple鍵盤的左側Command鍵。
+
+我認為是一眾modifier中風水最好的啦，只因它是用左手拇指操作、形成按鍵組合的最佳鍵位。
+
+（如果用PC鍵盤，應該相應地採用左Alt鍵；但Alt本身也有些用處，需要權衡！）
+
+他的用場和各種筆記本鍵盤的Fn相似，為了簡便，把他記為「Φ」。
+
+我用這顆鍵，與主鍵盤區的按鍵組合，模擬各種編輯功能鍵：
+
+|| Φ＋H, J, K, L || 仿VIM風格的左下上右四鍵 ||
+|| Φ＋P, N || 前頁／Prior、次頁／Next ||
+|| Φ＋B, F || 至行首／Backward、行尾／Forward，即Home、End鍵 ||
+|| Φ＋I || 插入／Insert ||
+|| Φ＋D || 刪除／Delete ||
+|| Φ＋X || 退格／BackSpace ||
+|| Φ＋Q || 取消／Escape ||
+|| Φ＋comma, period || 前、次頁，兼容輸入法 ||
+|| Φ＋1～9 || F1～F9 ||
+|| Φ＋0 || F10 ||
+|| Φ＋minus, equal || F11、F12 ||
+|| Φ＋空格 || 切換（ibus）輸入法 ||
+
+== 於是，現在我打得很爽。 ==
+
+只不過，還有少許不完美的地方：
+
+  * 一、在gedit等一些程序的編輯框內，有的Φ組合鍵會失靈，尤其是與字母的組合；F1等鍵倒是有可能管用；在gnome-terminal、gvim、firefox裡沒問題。
+
+  * 二、與除Shift、Control二者以外的其他modifier（Alt、Super等）合用，往往其他modifier先於Φ得到解釋，結果各種系統定義的組合鍵都使不出來；
+    比如Alt＋F4，用Alt＋Φ＋4就不行；而Ctrl＋Alt＋Right切至右方的桌面，若打成Ctrl＋Alt＋Φ＋L則會觸發Ctrl＋Alt＋L鎖定GNOME會話 :(
+
+
+= Epilogue = 
+
+總之，有了這些，ZIME輸入法裡頭就不必費力實現自定義組合功能鍵了。只要處理好單個按鍵（如以 , . 翻頁）的自定義即可。
+
+朋友們假如你有更好的設計，請一定寫信告訴我，喔～
