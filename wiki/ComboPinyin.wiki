@@ -5,14 +5,12 @@
 
     PC鍵盤上的簡易並擊輸入方法
 
-    * [http://zime.googlecode.com/files/combo-pinyin-doc.pdf 快速入門指南 (PDF)]
-
-    * [http://zime.googlecode.com/files/combo-pinyin-1.3.zip 宮保拼音1.3 Windows]
-        宮保拼音外掛程式，配合搜狗、微軟拼音使用（含指南）
-
-    * [http://zime.googlecode.com/files/combopinyin-1.5.zip 宮保拼音1.5 Windows]
+    * [http://zime.googlecode.com/files/combopinyin-1.5.1.zip 宮保拼音1.5.1 Windows]
       * 会看当前窗口的输入法状态来决定要不要使宫保拼音
       * Caps功能键改为仿VIM布局，做了防大写锁定处理
-      * TODO: 需要設計一個「本品不兼容360」的圖示
+      * 新增鍵位佈局【宮保拼音】第九式
+      * 聲明：本品不兼容360「安全」衛士！
 
-    * 宮保拼音已在 ibus-zime 及 Plume.js 中集成，請參閱[SchemaGallery 輸入方案展示]中的宮保拼音條目。
+    * [http://zime.googlecode.com/files/combo-pinyin-doc.pdf 快速入門指南 (PDF；講述基本操作及宮保拼音第六式)]
+
+    * 宮保拼音已在ZIME各產品線中集成，請參閱[SchemaGallery 輸入方案展示]中的宮保拼音條目。
