@@ -13,7 +13,9 @@ Hello, world. 我是佛振。
 
 == 實體鍵盤 ==
 
-TODO 鍵盤圖
+圖一、實體鍵盤
+
+http://lh3.ggpht.com/_Eg5POKbH8uk/TTLE9L7IQWI/AAAAAAAAAJI/mBDQT_20RCk/s800/kb-0.jpg
 
 因為沒有安裝!BootCamp中的Apple鍵盤驅動，Fn鍵無法工作，於是少了Delete、Home、End、Page_Up、Page_Down等一些很有用的功能鍵。
 
@@ -21,12 +23,17 @@ TODO 鍵盤圖
 
 於是，我先用!KeyTweak這款第三方的工具修改Windows系統的鍵盤佈局：
 
-TODO !KeyTweak截圖
+圖二、!KeyTweak介面
+
+http://lh4.ggpht.com/_Eg5POKbH8uk/TTLE9BgZ4EI/AAAAAAAAAJE/p7_2uRRUK04/s800/keytweak.png
 
 於是再次登錄Windows之時：
 
   * 原先的!CapsLock變成了一顆Control，稱了UNIX程序員的心意；
-    TODO HHKB圖
+
+    圖三、HHKB
+
+    http://lh6.ggpht.com/_Eg5POKbH8uk/TTLE82JMj9I/AAAAAAAAAI8/V_J5m-PqwvE/s640/hhkb.jpg
 
   * 而!CapsLock轉移到空格左邊的原Command鍵上，這是因為通過鍵盤鉤子不能改變系統賦予Win鍵的預設動作，所以宮保拼音 for Windows仍需要利用!CapsLock的鍵碼來模擬組合功能鍵。
 
@@ -40,7 +47,9 @@ TODO !KeyTweak截圖
 
 用他和主鍵盤區的按鍵組合，就實現了手指不必離開打字鍵位而完成各種編輯操作！
 
-TODO Φ－組合鍵鍵位圖
+圖四、Φ－組合鍵鍵位
+
+http://lh5.ggpht.com/_Eg5POKbH8uk/TTLE9ba5r8I/AAAAAAAAAJM/GXJWsB8woGI/s800/kb-phi.jpg
 
 其中這幾個鍵位是在「宮保拼音」的佈局文件中設定的：
 
@@ -59,7 +68,11 @@ KJHLBFPNXDI
 
 == 順便推介自家釀造的PC鍵盤並擊打字法【宮保拼音】 ==
 
-TODO 宮保拼音圖
+圖五、宮保拼音鍵位
+
+http://lh5.ggpht.com/_Eg5POKbH8uk/TTLE9E1qqGI/AAAAAAAAAJA/bXS7V7HG0oo/s640/combo-pinyin-layout-9.png
+
+http://lh3.ggpht.com/_Eg5POKbH8uk/TTLFCAO4PZI/AAAAAAAAAJQ/Pfa8YIYkVHo/s800/kb-combo-pinyin.jpg
 
 *Φ＋空格* 用於切換「宮保拼音」轉換狀態。
 
