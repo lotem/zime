@@ -11,7 +11,71 @@ Hello, world. 我是佛振。
 
 = Cookbook =
 
-TODO
+== 鍵盤 ==
+
+TODO 鍵盤圖
+
+因為沒有安裝!BootCamp中的Apple鍵盤驅動，Fn鍵無法工作，於是少了Delete、Home、End、Page_Up、Page_Down等一些很有用的功能鍵。
+
+== 快使用!KeyTweak！ ==
+
+於是，我先用!KeyTweak這款第三方的工具修改Windows系統的鍵盤佈局：
+
+TODO !KeyTweak截圖
+
+於是再次登錄Windows之時：
+
+  * 原先的!CapsLock變成了一顆Control，稱了UNIX程序員的心意；
+    TODO HHKB圖
+
+  * 而!CapsLock轉移到空格左邊的原Command鍵上，這是因為通過鍵盤鉤子不能改變系統賦予Win鍵的預設動作，所以宮保拼音 for Windows仍需要利用!CapsLock的鍵碼來模擬組合功能鍵。
+
+    這顆鍵的用場和各種筆記本鍵盤的Fn相似，為了簡便，下文我把他記為「Φ」。
+
+  * 右Alt被映射為Delete鍵，這是因為開機時我要用到Ctrl+Alt+Delete的組合開啟用戶登錄框，而此時宮保拼音尚無法利用，故需映射一顆實體按鍵。
+
+== 掛上【宮保拼音】 ==
+
+最後，打開「宮保拼音 for Windows」外掛程序，移到空格鍵旁邊的CapsLock就變身為「Φ」鍵啦！
+
+用他和主鍵盤區的按鍵組合，就實現了手指不必離開打字鍵位而完成各種編輯操作！
+
+TODO Φ－組合鍵鍵位圖
+
+其中這幾個鍵位是在「宮保拼音」的佈局文件中設定的：
+
+{{{
+# 組合編輯鍵定義
+# 
+# 以下配置行所列按鍵與 CapsLock 組合時將依次轉換成各種編輯鍵，
+# 以方便光標移動、刪除、翻頁等操作。
+# 
+# 次序：上 下   左   右    行首 行尾 前頁 後頁 回退 刪除 插入
+#       Up Down Left Right Home End  PgUp PgDn Bksp Del  Ins
+
+# Vim 風格
+KJHLBFPNXDI
+}}}
+
+== 順便推介自家釀造的PC鍵盤並擊打字法【宮保拼音】 ==
+
+TODO 宮保拼音圖
+
+*Φ＋空格* 用於切換「宮保拼音」轉換狀態。
+
+系統托盤顯示墨色「中」字圖標則啟用「宮保拼音」；顯示硃砂色「A」字圖標則禁用「宮保拼音」轉換而只啟用Φ－組合鍵。
+
+初始狀態在這個文件裡設定：
+
+{{{
+# config/autoload.txt
+#@ title 默認(&A)
+
+#@ import 9.txt
+
+# 若要默認關閉宮保拼音，請加這一句：
+#@ disable
+}}}
 
 = Linux篇 =
 
@@ -101,7 +165,7 @@ CapsLock an additional Control」。
 
 只不過，還有少許不完美的地方：
 
-  * 一、在gedit等一些程序的編輯框內，有的Φ組合鍵會失靈，尤其是與字母的組合；F1等鍵倒是有可能管用；在gnome-terminal、gvim、firefox裡沒問題。
+  * 一、在gedit等一些程序的編輯框內，有的Φ－組合鍵會失靈，尤其是與字母的組合；Φ1等鍵倒是有可能管用；在gnome-terminal、gvim、firefox裡都沒問題。
 
   * 二、與除Shift、Control二者以外的其他modifier（Alt、Super等）合用，往往其他modifier先於Φ得到解釋，結果各種系統定義的組合鍵都使不出來；
     比如Alt＋F4，用Alt＋Φ＋4就不行；而Ctrl＋Alt＋Right切至右方的桌面，若打成Ctrl＋Alt＋Φ＋L則會觸發Ctrl＋Alt＋L鎖定GNOME會話 :(
@@ -112,3 +176,5 @@ CapsLock an additional Control」。
 總之，有了這些，ZIME輸入法裡頭就不必費力實現自定義組合功能鍵了。只要處理好單個按鍵（如以 , . 翻頁）的自定義即可。
 
 朋友們假如你有更好的設計，請一定寫信告訴我，喔～
+
+佛振 <chen.sst@gmail.com>
