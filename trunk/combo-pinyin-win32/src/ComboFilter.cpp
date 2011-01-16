@@ -249,6 +249,38 @@ void ComboFilter::handle_nav_key( wchar_t ch, bool key_up, KeyEvent &key_event )
 	{
 		send_vkcodes(wstring(1, VK_NEXT));
 	}
+	else if (ch == VK_F3)
+	{
+		send_vkcodes(wstring(1, VK_LAUNCH_APP1));
+	}
+	else if (ch == VK_F4)
+	{
+		send_vkcodes(wstring(1, VK_LAUNCH_APP2));
+	}
+	else if (ch == VK_F7)
+	{
+		send_vkcodes(wstring(1, VK_MEDIA_PREV_TRACK));
+	}
+	else if (ch == VK_F8)
+	{
+		send_vkcodes(wstring(1, VK_MEDIA_PLAY_PAUSE));
+	}
+	else if (ch == VK_F9)
+	{
+		send_vkcodes(wstring(1, VK_MEDIA_NEXT_TRACK));
+	}
+	else if (ch == VK_F10)
+	{
+		send_vkcodes(wstring(1, VK_VOLUME_MUTE));
+	}
+	else if (ch == VK_F11)
+	{
+		send_vkcodes(wstring(1, VK_VOLUME_DOWN));
+	}
+	else if (ch == VK_F12)
+	{
+		send_vkcodes(wstring(1, VK_VOLUME_UP));
+	}
 }
 
 void ComboFilter::handle_enhanced_bksp( bool key_up, KeyEvent &key_event )
