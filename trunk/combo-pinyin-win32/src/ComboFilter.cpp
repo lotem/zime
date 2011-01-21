@@ -203,84 +203,92 @@ void ComboFilter::handle_super_combo( wchar_t ch, bool key_up, KeyEvent &key_eve
 		return;
 	}
 
-	handle_nav_key(ch, key_up, key_event);
-	key_event.consumed(true);	
+	handle_phi_key(ch, key_up, key_event);	
 }
 
-void ComboFilter::handle_nav_key( wchar_t ch, bool key_up, KeyEvent &key_event )
+void ComboFilter::handle_phi_key( wchar_t ch, bool key_up, KeyEvent &key_event )
 {
-	if (key_up)
-		return;
-	
+	int phi_key = 0;
 	wstring::size_type pos = p_config_->nav_from.find(ch);
 	if (pos != wstring::npos)
 	{
-		send_vkcodes(wstring(1, p_config_->nav_to[pos]));
+		phi_key = p_config_->nav_to[pos];
 	}
 	else if (ch == VK_BACK)
 	{					
-		send_vkcodes(wstring(1, VK_DELETE));
+		phi_key = VK_DELETE;
 	}
 	else if (ch == VK_OEM_3)  // brave (`)
 	{
-		send_vkcodes(wstring(1, VK_ESCAPE));
+		phi_key = VK_ESCAPE;
 	}
 	else if (ch >= '1' && ch <= '9')
 	{
-		send_vkcodes(wstring(1, ch - '1' + VK_F1));
+		phi_key = ch - '1' + VK_F1;
 	}
 	else if (ch == '0')
 	{
-		send_vkcodes(wstring(1, VK_F10));
+		phi_key = VK_F10;
 	}
 	else if (ch == VK_OEM_MINUS)
 	{
-		send_vkcodes(wstring(1, VK_F11));
+		phi_key = VK_F11;
 	}
 	else if (ch == VK_OEM_PLUS)
 	{
-		send_vkcodes(wstring(1, VK_F12));
+		phi_key = VK_F12;
 	}
 	else if (ch == VK_OEM_COMMA)
 	{
-		send_vkcodes(wstring(1, VK_PRIOR));
+		phi_key = VK_PRIOR;
 	}
 	else if (ch == VK_OEM_PERIOD)
 	{
-		send_vkcodes(wstring(1, VK_NEXT));
+		phi_key = VK_NEXT;
 	}
 	else if (ch == VK_F3)
 	{
-		send_vkcodes(wstring(1, VK_LAUNCH_APP1));
+		phi_key = VK_LAUNCH_APP1;
 	}
 	else if (ch == VK_F4)
 	{
-		send_vkcodes(wstring(1, VK_LAUNCH_APP2));
+		phi_key = VK_LAUNCH_APP2;
 	}
 	else if (ch == VK_F7)
 	{
-		send_vkcodes(wstring(1, VK_MEDIA_PREV_TRACK));
+		phi_key = VK_MEDIA_PREV_TRACK;
 	}
 	else if (ch == VK_F8)
 	{
-		send_vkcodes(wstring(1, VK_MEDIA_PLAY_PAUSE));
+		phi_key = VK_MEDIA_PLAY_PAUSE;
 	}
 	else if (ch == VK_F9)
 	{
-		send_vkcodes(wstring(1, VK_MEDIA_NEXT_TRACK));
+		phi_key = VK_MEDIA_NEXT_TRACK;
 	}
 	else if (ch == VK_F10)
 	{
-		send_vkcodes(wstring(1, VK_VOLUME_MUTE));
+		phi_key = VK_VOLUME_MUTE;
 	}
 	else if (ch == VK_F11)
 	{
-		send_vkcodes(wstring(1, VK_VOLUME_DOWN));
+		phi_key = VK_VOLUME_DOWN;
 	}
 	else if (ch == VK_F12)
 	{
-		send_vkcodes(wstring(1, VK_VOLUME_UP));
+		phi_key = VK_VOLUME_UP;
 	}
+	else
+	{
+		// undefined; let go
+		return;
+	}
+	
+	if (!key_up)
+	{
+		send_vkcodes(wstring(1, phi_key));
+	}
+	key_event.consumed(true);
 }
 
 void ComboFilter::handle_enhanced_bksp( bool key_up, KeyEvent &key_event )
