@@ -90,8 +90,8 @@ CAPTION "關於"
 FONT 9, "宋体", 400, 0, 0x0
 BEGIN
     DEFPUSHBUTTON   "確定",IDOK,126,224,44,16,WS_GROUP
-    LTEXT           "宮保拼音  1.5\n中州式恕堂製  2011\n\n本程序為自由軟件，以GNU GPL授權發佈。\n項目主頁\thttp://zime.googlecode.com/\n聯繫作者請寄\t<chen.sst@gmail.com>",IDC_STATIC,13,11,202,52,0,WS_EX_TRANSPARENT
-    LTEXT           "Combo Pinyin 1.5 \nconverts combinations of keystrokes into Chinese romanization.\n\nCopyright (C) 2011",IDC_STATIC,13,70,284,35,0,WS_EX_TRANSPARENT
+    LTEXT           "宮保拼音\n中州式恕堂製  2011\n\n本程序為自由軟件，以GNU GPL授權發佈。\n項目主頁\thttp://zime.googlecode.com/\n聯繫作者請寄\t<chen.sst@gmail.com>",IDC_STATIC,13,11,202,52,0,WS_EX_TRANSPARENT
+    LTEXT           "Combo Pinyin\nconverts combinations of keystrokes into Chinese romanization.\n\nCopyright (C) 2011",IDC_STATIC,13,70,284,35,0,WS_EX_TRANSPARENT
     LTEXT           "This program is free software: you can redistribute it and/or modify\nit under the terms of the GNU General Public License as published by\nthe Free Software Foundation, either version 3 of the License, or\n(at your option) any later version.",IDC_STATIC,13,112,284,36,0,WS_EX_TRANSPARENT
     LTEXT           "This program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.",IDC_STATIC,13,155,284,35,0,WS_EX_TRANSPARENT
     LTEXT           "You should have received a copy of the GNU General Public License\nalong with this program.  If not, see <http://www.gnu.org/licenses/>.\n",IDC_STATIC,13,197,284,20,0,WS_EX_TRANSPARENT
@@ -132,7 +132,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,5
+ FILEVERSION 1,0,0,6
  PRODUCTVERSION 1,0,0,1
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
@@ -149,12 +149,12 @@ BEGIN
         BLOCK "080404b0"
         BEGIN
             VALUE "FileDescription", "宮保拼音"
-            VALUE "FileVersion", "1, 0, 0, 5"
+            VALUE "FileVersion", "1, 0, 0, 6"
             VALUE "InternalName", "ComboPinyin"
-            VALUE "LegalCopyright", "中州式恕堂製 2010"
+            VALUE "LegalCopyright", "中州式恕堂製 2011"
             VALUE "OriginalFilename", "combopinyin.exe"
             VALUE "ProductName", "宮保拼音"
-            VALUE "ProductVersion", "1, 0, 0, 5"
+            VALUE "ProductVersion", "1, 0, 0, 6"
         END
     END
     BLOCK "VarFileInfo"
