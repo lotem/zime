@@ -218,10 +218,6 @@ void ComboFilter::handle_phi_key( wchar_t ch, bool key_up, KeyEvent &key_event )
 	{					
 		phi_key = VK_DELETE;
 	}
-	else if (ch == VK_OEM_3)  // brave (`)
-	{
-		phi_key = VK_ESCAPE;
-	}
 	else if (ch >= '1' && ch <= '9')
 	{
 		phi_key = ch - '1' + VK_F1;

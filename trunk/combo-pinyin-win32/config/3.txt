@@ -16,11 +16,11 @@
 #@enhanced_bksp on
 #@repeat off
 
-# Up Down Left Right Home End PgUp PgDn Bksp Del Ins
-#IKJLUOYHNMP
+# 次序：
+# Up Down Left Right Home End PgUp PgDn Bksp Del Ins Tab Esc
 
 # Vim 風格
-KJHLBFPNXDI
+KJHLAEPNBDIFQ
 
 VCXZREWQFDSAGTB_LO>KI<PUMJNYH
 BF!!DL!!ZCS!GKH%IUvAOEriung<>

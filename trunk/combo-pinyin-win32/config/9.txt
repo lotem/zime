@@ -70,12 +70,12 @@
 # 以下配置行所列按鍵與 CapsLock 組合時將依次轉換成各種編輯鍵，
 # 以方便光標移動、刪除、翻頁等操作。
 # 
-# 次序：上 下   左   右    行首 行尾 前頁 後頁 回退 刪除 插入
-#       Up Down Left Right Home End  PgUp PgDn Bksp Del  Ins
+# 次序：
+# Up Down Left Right Home End PgUp PgDn Bksp Del Ins Tab Esc
 #--------------------------------------------------------------
 
 # Vim 風格
-KJHLBFPNXDI
+KJHLAEPNBDIFQ
 
 
 #--------------------------------------------------------------
