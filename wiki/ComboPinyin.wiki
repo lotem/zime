@@ -5,7 +5,7 @@
 
     PC鍵盤上的簡易並擊輸入方法
 
-    * [http://zime.googlecode.com/files/combopinyin-1.5.2.zip 宮保拼音1.6 Windows]
+    * [http://zime.googlecode.com/files/combopinyin-1.6.zip 宮保拼音1.6 Windows]
       * 最新的鍵位佈局【宮保拼音】第九式
       * 仿Vim風格的Caps組合鍵，教手指不必離開主鍵盤即可完成各種編輯功能（強力推介！）
       * 識別當前窗口的輸入法狀態
