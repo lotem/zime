@@ -5,11 +5,11 @@
 
     PC鍵盤上的簡易並擊輸入方法
 
-    * [http://zime.googlecode.com/files/combopinyin-1.5.2.zip 宮保拼音1.5.2 Windows]
-      * 会看当前窗口的输入法状态来决定要不要使宫保拼音
-      * Caps功能键改为仿VIM布局，做了防大写锁定处理
-      * 新增鍵位佈局【宮保拼音】第九式
-      * 聲明：本品不兼容360「安全」衛士！
+    * [http://zime.googlecode.com/files/combopinyin-1.5.2.zip 宮保拼音1.6 Windows]
+      * 最新的鍵位佈局【宮保拼音】第九式
+      * 仿Vim風格的Caps組合鍵，教手指不必離開主鍵盤即可完成各種編輯功能（強力推介！）
+      * 識別當前窗口的輸入法狀態
+      * 注意：本品不兼容360「安全」衛士！
 
     * [http://zime.googlecode.com/files/combo-pinyin-doc.pdf 快速入門指南 (PDF)]
       就1.3版講述基本操作及宮保拼音第六式，與最新版本略有差別
