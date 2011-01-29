@@ -22,3 +22,4 @@
 
 #@ import 9.txt
 
+#@ enable

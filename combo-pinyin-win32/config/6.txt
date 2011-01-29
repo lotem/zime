@@ -13,11 +13,9 @@
 #@enhanced_bksp on
 #@repeat off
 
-# Up Down Left Right Home End PgUp PgDn Bksp Del Ins
-#IKJLUOYHNMP
-
+# Up Down Left Right Home End PgUp PgDn Bksp Del Ins Tab Esc
 # Vim 風格
-KJHLBFPNXDI
+KJHLAEPNBDIFQ
 
 BVCXZTREWQGFDSA_HYNJUMKI<LO>P
 PBFZ~TDLC!KGHS!IaeoAEUni<gu>r
