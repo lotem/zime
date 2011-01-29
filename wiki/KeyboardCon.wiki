@@ -1,5 +1,5 @@
 #summary 【原創】鍵盤控－自定義組合功能鍵
-#labels Phase-Support,Featured
+#labels Phase-Support
 
 = 鍵盤控 =
 
