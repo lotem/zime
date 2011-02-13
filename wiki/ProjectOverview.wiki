@@ -61,34 +61,34 @@ Hi，
 
 ----
 
-== ZIME計劃全景 ==
+== 計劃全景 ==
 
-中州韻輸入法引擎／ZIME Input Method Engine
+辛卯年正月初十決議更名
+
+中州韻輸入法引擎／Rime Input Method Engine
 
 項目組成：
 
   * 核心算法層
-    * [Rhyme ZIME核心算法庫]
-      開發代號： 平水韻／Rhyme
 
   * 平臺適應層
-    * [IBusZIME 中州韻IBus輸入法／ibus-zime]
-      與核心算法同步發行
-    * [Weasel 中州韻Windows輸入法]
-      開發代號：小狼毫／Weasel
-    * [Squirrel 中州韻Mac輸入法]
-      開發代號：鼠鬚管／Squirrel（規劃）
+    * ibus-rime
+      Linux/ibus版本，與核心算法同步發行
+    * 鼠鬚管／Squirre
+      Mac版本（規劃）
+    * 小狼毫／Weasel
+      Windows版本
 
   * 資料庫／網絡服務層
-    * [Plume 中州韻網頁輸入法]
-      開發代號：大白雲／Plume，未來發展為在線輸入
-    * [ZIMEData 輸入方案倉庫]
-      開發代號：東風破／Brise，未來提供協作審音與在線修訂輸入方案的工具
-    * 線上詞庫
-      開發代號：八股文／Essay（規劃）
+    * 大白雲／Plume
+      網頁輸入法，未來或可發展為在線輸入
+    * 東風破／Brise
+      輸入方案倉庫，未來將提供協作審音與在線修訂輸入方案的工具
+    * 八股文／Essay
+      語言模型及線上詞庫（規劃）
 
-  * 其他ZIME相關資源
-    * 宮保拼音／Combo Pinyin
+  * 其他相關資源
+    * 宮保拼音／ComboPinyin
     * 打字機／Typewriter
     * 中州羅馬字拼寫法
     * 東風破古韻拼寫方案
