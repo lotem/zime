@@ -65,11 +65,10 @@ Hi，
 
 辛卯年正月初十決議更名
 
-中州韻輸入法引擎／Rime Input Method Engine
-
 項目組成：
 
   * 核心算法層
+    * 中州韻輸入法引擎／Rime Input Method Engine
 
   * 平臺適應層
     * ibus-rime
