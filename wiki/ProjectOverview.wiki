@@ -19,7 +19,7 @@
   * 平臺適應層
     * ibus-rime
       Linux/ibus版本，與核心算法同步發行
-    * 鼠鬚管／Squirre
+    * 鼠鬚管／Squirrel
       Mac版本（規劃）
     * 小狼毫／Weasel
       Windows版本
