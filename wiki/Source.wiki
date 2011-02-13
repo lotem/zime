@@ -1,16 +1,20 @@
 #summary access to the source code
 
-= Get the Source =
+= Next Generation =
 
-  * [http://code.google.com/p/zime/source/browse/ Source Browser]
-  * [http://code.google.com/p/zime/source/list Committed Changes]
-  * [http://code.google.com/p/zime/source/checkout Checkout Instructions]
-  * [http://github.com/lotem/ibus-zime]
+  * [http://github.com/lotem/rime Rime]
 
-== ibus-zime ==
+== Git now! ==
 {{{
-git clone git://github.com/lotem/ibus-zime.git
+git clone git://github.com/lotem/rime
 }}}
+
+
+= Legacy Code =
+
+  * [http://code.google.com/p/zime/source/list Committed Changes]
+  * [http://code.google.com/p/zime/source/browse/ Code Broswer]
+  * [http://code.google.com/p/zime/source/checkout Checkout Instructions]
 
 == zime-data ==
 {{{
