@@ -3,6 +3,43 @@
 
 ----
 
+== 計劃全景 ==
+
+辛卯年正月初十決議更名為
+
+*中州韻輸入法引擎／Rime Input Method Engine*
+
+史稱 _la renaissance de la rime_
+
+項目組成：
+
+  * 核心算法層
+    * 中州韻／Rime
+
+  * 平臺適應層
+    * ibus-rime
+      Linux/ibus版本，與核心算法同步發行
+    * 鼠鬚管／Squirre
+      Mac版本（規劃）
+    * 小狼毫／Weasel
+      Windows版本
+
+  * 資料庫／網絡服務層
+    * 大白雲／Plume
+      網頁輸入法，未來或可發展為在線輸入
+    * 東風破／Brise
+      輸入方案倉庫，未來將提供協作審音與在線修訂輸入方案的工具
+    * 八股文／Essay
+      語言模型及線上詞庫（規劃）
+
+  * 其他相關資源
+    * 宮保拼音／ComboPinyin
+    * 打字機／Typewriter
+    * 中州羅馬字拼寫法
+    * 東風破古韻拼寫方案
+
+----
+
 == 佛振說ZIME ==
 
 啊，不是吧，又一款輸入法平臺。
@@ -58,42 +95,5 @@ Hi，
 
 佛振
 某年月日
-
-----
-
-== 計劃全景 ==
-
-辛卯年正月初十決議更名為
-
-*中州韻輸入法引擎／Rime Input Method Engine*
-
-史稱 _la renaissance de la rime_
-
-項目組成：
-
-  * 核心算法層
-    * 中州韻／Rime
-
-  * 平臺適應層
-    * ibus-rime
-      Linux/ibus版本，與核心算法同步發行
-    * 鼠鬚管／Squirre
-      Mac版本（規劃）
-    * 小狼毫／Weasel
-      Windows版本
-
-  * 資料庫／網絡服務層
-    * 大白雲／Plume
-      網頁輸入法，未來或可發展為在線輸入
-    * 東風破／Brise
-      輸入方案倉庫，未來將提供協作審音與在線修訂輸入方案的工具
-    * 八股文／Essay
-      語言模型及線上詞庫（規劃）
-
-  * 其他相關資源
-    * 宮保拼音／ComboPinyin
-    * 打字機／Typewriter
-    * 中州羅馬字拼寫法
-    * 東風破古韻拼寫方案
 
 ----
