@@ -44,7 +44,7 @@ void ComboFilter::on_key_event(KeyEvent& key_event)
 
 	handle_shift(ch, key_up);
 
-	if(key_info->flags & (LLKHF_EXTENDED | LLKHF_INJECTED))
+	if(key_info->flags & LLKHF_INJECTED)
 	{
 		return;
 	}
@@ -52,6 +52,12 @@ void ComboFilter::on_key_event(KeyEvent& key_event)
 	if (ch == VK_CAPITAL)
 	{
 		handle_caps(key_up, key_event);
+		return;
+	}
+
+	if (ch == VK_LWIN)
+	{
+		handle_super(key_up, key_event);
 		return;
 	}
 
@@ -177,6 +183,22 @@ void ComboFilter::handle_caps( bool key_up, KeyEvent &key_event )
 				send_vkcodes(wstring(1, VK_CAPITAL));
 			}
 		}
+		super_state_ = RELEASED;
+	}
+	else 
+	{
+		if (super_state_ < KEY_DOWN)
+		{
+			super_state_ = KEY_DOWN;
+		}
+	}
+	key_event.consumed(true);
+}
+
+void ComboFilter::handle_super( bool key_up, KeyEvent &key_event )
+{
+	if (key_up)
+	{
 		super_state_ = RELEASED;
 	}
 	else 

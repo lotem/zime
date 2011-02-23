@@ -34,9 +34,11 @@ void ComboConfig::load( const fs::wpath file_name )
 
 	title = fs::basename(file_name);
 	opt_enabled = false;
-	opt_ctrl_space_switch = false;
-	opt_enhanced_bksp = false;
 	opt_repeat = false;
+	opt_enhanced_bksp = false;
+	opt_ctrl_space_switch = false;
+	opt_caps_as_super = true;
+	opt_lwin_as_super = true;
 
 	process_directives(reader);
 
@@ -75,9 +77,11 @@ void ComboConfig::process_directives( ImportReader &reader )
 			continue;
 		}
 		set_opt_on_off(opt_enabled, directive, L"@enable", L"@disable") ||
-		set_opt_on_off(opt_ctrl_space_switch, directive, L"@ctrl_space_switch on", L"@ctrl_space_switch off") ||
+		set_opt_on_off(opt_repeat, directive, L"@repeat on", L"@repeat off") ||
 		set_opt_on_off(opt_enhanced_bksp, directive, L"@enhanced_bksp on", L"@enhanced_bksp off") ||
-		set_opt_on_off(opt_repeat, directive, L"@repeat on", L"@repeat off");
+		set_opt_on_off(opt_ctrl_space_switch, directive, L"@ctrl_space_switch on", L"@ctrl_space_switch off") ||
+		set_opt_on_off(opt_caps_as_super, directive, L"@caps_as_super on", L"@caps_as_super off") ||
+		set_opt_on_off(opt_lwin_as_super, directive, L"@lwin_as_super on", L"@lwin_as_super off");
 	}
 }
 
