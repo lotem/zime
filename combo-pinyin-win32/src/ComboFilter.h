@@ -61,6 +61,7 @@ private:
 	void handle_ctrl_space( bool key_up );
 	void handle_phi_key( wchar_t ch, bool key_up, KeyEvent &key_event );
 	void handle_caps( bool key_up, KeyEvent &key_event );
+	void handle_super( bool key_up, KeyEvent &key_event );
 	void handle_super_combo( wchar_t ch, bool key_up, KeyEvent &key_event );
 	void handle_enhanced_bksp( bool key_up, KeyEvent &key_event );
 	void handle_combo_key( bool key_up, wstring::size_type pos, KeyEvent &key_event );

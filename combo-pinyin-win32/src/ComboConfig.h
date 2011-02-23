@@ -30,9 +30,11 @@ public:
 	const wstring nav_to;
 	wstring title;
 	bool opt_enabled;
-	bool opt_ctrl_space_switch;
-	bool opt_enhanced_bksp;
 	bool opt_repeat;
+	bool opt_enhanced_bksp;
+	bool opt_ctrl_space_switch;
+	bool opt_caps_as_super;
+	bool opt_lwin_as_super;
 
 private:
 	void process_directives( ImportReader& reader );
