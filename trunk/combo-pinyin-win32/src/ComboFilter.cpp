@@ -49,13 +49,13 @@ void ComboFilter::on_key_event(KeyEvent& key_event)
 		return;
 	}
 
-	if (ch == VK_CAPITAL)
+	if (ch == VK_CAPITAL && p_config_->opt_caps_as_super)
 	{
 		handle_caps(key_up, key_event);
 		return;
 	}
 
-	if (ch == VK_LWIN)
+	if (ch == VK_LWIN && p_config_->opt_lwin_as_super)
 	{
 		handle_super(key_up, key_event);
 		return;
