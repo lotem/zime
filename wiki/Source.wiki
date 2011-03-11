@@ -1,6 +1,6 @@
 #summary access to the source code
 
-= Next Generation =
+= Core Library =
 
   * [http://github.com/lotem/rime Rime]
 
