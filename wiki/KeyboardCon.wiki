@@ -122,11 +122,11 @@ keysym k = k K Up NoSymbol
 keysym j = j J Down NoSymbol
 keysym p = p P Prior NoSymbol
 keysym n = n N Next NoSymbol
-keysym b = b B Home NoSymbol
-keysym f = f F End NoSymbol
+keysym a = a A Home NoSymbol
+keysym e = e E End NoSymbol
 keysym i = i I Insert NoSymbol
 keysym d = d D Delete NoSymbol
-keysym x = x X BackSpace NoSymbol
+keysym b = b B BackSpace NoSymbol
 keysym q = q Q Escape NoSymbol
 keysym comma = comma less Prior NoSymbol
 keysym period = period greater Next NoSymbol
@@ -171,10 +171,10 @@ CapsLock an additional Control」。
 
 || Φ＋H, J, K, L || 仿VIM風格的左下上右四鍵 ||
 || Φ＋P, N || 前頁／Prior、次頁／Next ||
-|| Φ＋B, F || 至行首／Backward、行尾／Forward，即Home、End鍵 ||
+|| Φ＋A, E || 至行首／Backward、行尾／Forward，即Home、End鍵 ||
 || Φ＋I || 插入／Insert ||
 || Φ＋D || 刪除／Delete ||
-|| Φ＋X || 退格／BackSpace ||
+|| Φ＋B || 退格／BackSpace ||
 || Φ＋Q || 取消／Escape ||
 || Φ＋comma, period || 前、次頁，兼容輸入法 ||
 || Φ＋1～9 || F1～F9 ||
