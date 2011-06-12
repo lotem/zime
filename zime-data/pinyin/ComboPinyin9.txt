@@ -1,6 +1,6 @@
 # ZIME Schema v3
-Schema = ComboPinyin
-DisplayName = 宮保拼音
+Schema = ComboPinyin9
+DisplayName = 宮保拼音第九式
 Dict = pinyin
 Parser = combo
 AutoPrompt = yes
