@@ -124,9 +124,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	ui.Create(hWnd);
 	weasel::Context ctx;
 
-	ctx.preedit = weasel::Text(L"zung zau wan syu jap faat jan king");
-	ctx.aux = weasel::Text(L"中州韻輸入法引擎");
-	ctx.aux.attributes.push_back(weasel::TextAttribute(0, 6, weasel::HIGHLIGHTED));
+	ctx.preedit = weasel::Text(L"中州韻輸入法引擎");
+	ctx.aux = weasel::Text(L"zung zau wan syu jap faat| jan king");
+	ctx.aux.attributes.push_back(weasel::TextAttribute(0, 25, weasel::HIGHLIGHTED));
 	ctx.cinfo.currentPage = 1;
 	ctx.cinfo.totalPages = 1;
 	ctx.cinfo.highlighted = 0;

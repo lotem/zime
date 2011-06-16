@@ -5,14 +5,15 @@
 #include <ResponseParser.h>
 #include "WeaselIME.h"
 
+const WCHAR WEASEL[] = L"小狼毫";
+const WCHAR WEASEL_IME_FILE[] = L"weasel.ime";
+
 HINSTANCE WeaselIME::s_hModule = 0;
 map<HIMC, shared_ptr<WeaselIME> > WeaselIME::s_instances;
 boost::mutex WeaselIME::s_mutex;
 
-
 static bool launch_server()
 {
-	WCHAR WEASEL[] = L"小狼毫";
 
 	// 從註冊表取得server位置
 	HKEY hKey;
@@ -72,17 +73,17 @@ WeaselIME::WeaselIME(HIMC hIMC)
 
 LPCWSTR WeaselIME::GetIMEName()
 {
-	return L"中州韻輸入法引擎";
+	return WEASEL;
 }
 
 LPCWSTR WeaselIME::GetIMEFileName()
 {
-	return L"weasel.ime";
+	return WEASEL_IME_FILE;
 }
 
 LPCWSTR WeaselIME::GetRegKey()
 {
-	return L"Software\\ZIME\\Weasel";
+	return L"Software\\Rime\\Weasel";
 }
 
 HINSTANCE WeaselIME::GetModuleInstance()

@@ -1,10 +1,11 @@
 ﻿# 說明書
 
 ----------------------------------------------------------
-【小狼毫】0.2
+【小狼毫】0.3
 
-基於 中州韻輸入法引擎／ZIME 核心版本 3.6
-http://zime.googlecode.com/
+基於 中州韻輸入法引擎／Rime Input Method Engine
+
+http://code.google.com/p/rimeime/
 
 中州式恕堂 版權所無
 
@@ -13,17 +14,17 @@ http://zime.googlecode.com/
 
 本品適用於 Windows XP, 32位 Windows 7 系統
 
-自 ZIME 網站下載頁取得：
+自 Rime 網站下載頁取得：
 
-weasel-0.2-with-python.exe
+weasel-0.3-installer.exe
 
-ZIME核心算法依賴於Python腳本語言。如果系統中已裝有
+Rime.py 核心算法依賴於 Python 腳本語言。如果系統中已裝有
 Python 2.7 for Windows（注意，Python 3.x 不適用）
-可下載更輕巧的、不包含Python安裝程序的軟件包：
+可下載更輕巧的、不包含 Python 安裝程序的綠色安裝包：
 
-weasel-0.2.zip
+weasel-0.3.zip
 
-本品採用綠色安裝方式，請從以上軟件包中取得 weasel 文件夾，
+若採用綠色安裝方式，請從以上壓縮包中取得 weasel 文件夾，
 執行其中的安裝腳本：
 
 > install.bat
@@ -43,20 +44,19 @@ weasel-0.2.zip
   * 標調拼音，以-/<\符號標調
   * 注音
   * 速成
-  * 粵拼／Jyutping
+  * 粵拼／粵語協會拼音方案 Jyutping
   * 吳語／上海言話
-
-如需再次添加一種輸入方案，請手動執行該腳本
 
 產出的數據庫文件位於 %USERPROFILE%\.ibus\zime\zime.db
 
-更多輸入方案及定製方法見於
-http://code.google.com/p/zime/wiki/ZIMEData
+如需添加另一種輸入方案，請手動執行該腳本。
+
 
 欲將【小狼毫】註冊為繁體中文鍵盤佈局，請手動執行安裝腳本，
-並指定命令行選項 /t：
+並指定命令行選項 /t ：
 
-> install_schema.bat /t
+> install.bat /t
+
 
 修改介面字體、字號，請參考 style.reg 編輯註冊表信息
 
@@ -65,7 +65,7 @@ http://code.google.com/p/zime/wiki/ZIMEData
 
 選取輸入法通知區的【中】字樣圖標，開始用小狼毫寫字
 
-要切換輸入方案，請按熱鍵 Ctrl+` 或 F1 調出「方案選單」
+在輸入方案間切換，請按熱鍵 Ctrl+` 或 F1 調出「方案選單」
 
 各輸入方案對按鍵的功用有自己的定義。常見的設置為：
 
@@ -78,6 +78,12 @@ http://code.google.com/p/zime/wiki/ZIMEData
 
 ----------------------------------------------------------
 更新日誌
+
+小狼毫 0.3
+  * 核心算法升級為 Rime.py 0.3，仍兼容 ibus-zime 3.x 數據庫
+  * 交互模式更貼近主流拼音輸入法，支持兩種輸入風格
+  * 開啟各預設輸入方案的簡拼功能
+  * 修復BUG若干
 
 小狼毫 0.2
   * 增加安裝為繁體中文輸入法的選項
@@ -138,12 +144,12 @@ http://code.google.com/p/zime/wiki/ZIMEData
 ----------------------------------------------------------
 問題反饋
 
-發現程序有BUG，或不合理的設計，請到ZIME項目網站反饋：
-http://code.google.com/p/zime/issues/list
+發現程序有BUG，或使用不便之處，請到Rime項目網站反饋：
+http://code.google.com/p/rimeime/issues/list
 
 已知問題
 
-  * 安裝輸入方案過程中輸入法暫時不可使用
+  * 安裝輸入方案過程中，輸入法暫時不可使用
   * 不支持設置為系統默認鍵盤佈局
   * 不支持嵌入到命令行和全屏遊戲的內置輸入法介面
   * 不支持多顯示器
@@ -151,7 +157,7 @@ http://code.google.com/p/zime/issues/list
 ----------------------------------------------------------
 聯繫方式
 
-技術交流請寄ZIME開發者郵件組 <zime-devel@googlegroups.com>
+技術交流請寄Rime開發者郵件組 <rime-devel@googlegroups.com>
 其他問題，請寫信給我 佛振 <chen.sst@gmail.com>
 
 謝謝！

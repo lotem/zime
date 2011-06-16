@@ -7,11 +7,11 @@ cd data
 :menu
 echo --------------------------------------------------
 echo Pinyin      - Simplified :(
-echo TonalPinyin - Recommended :)
+echo TonalPinyin - Traditional :)
 echo Zhuyin      - Bopomofo
 echo Quick       - A Cangjie variant
 echo Jyutping    - Cantonese
-echo Wu          - Zanhe rerau
+echo Wu          - Shanghainese
 echo --------------------------------------------------
 set Choice=
 set /p Choice="what's the schema of your choice [Ptzqjw]? "

@@ -32,7 +32,7 @@ set Python path in $(WeaselRoot)\env.bat;
 in this case, $(WeaselRoot) refers to the directory $(SolutionDir)\output\weasel.
 
 issue the command populate-db.bat in $(SolutionDir)\data
-in case you never had a zime database at %UserProfile%\.ibus\zime\zime.db.
+in case you never had a database at %UserProfile%\.ibus\zime\zime.db.
 if you don't, you will be noticed a message "NO SCHEMA" (in Chinese) once the IME is activated.
 
 1. to install...
@@ -44,6 +44,6 @@ install.bat
 uninstall.bat
 
 stop_service.bat
-you may use this to terminate ZIME core service process.
+you may use this to terminate the service process.
 
 
