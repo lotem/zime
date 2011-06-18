@@ -60,6 +60,8 @@ BOOL WINAPI ImeProcessKey(HIMC hIMC, UINT vKey, LPARAM lKeyData, const LPBYTE lp
 {
 	BOOL bEaten = FALSE;
 	shared_ptr<WeaselIME> p = WeaselIME::GetInstance(hIMC);
+    if (!p)
+        return FALSE;
 	bEaten = p->ProcessKeyEvent(vKey, lKeyData, lpbKeyState);
 	return bEaten;
 }
@@ -67,6 +69,8 @@ BOOL WINAPI ImeProcessKey(HIMC hIMC, UINT vKey, LPARAM lKeyData, const LPBYTE lp
 BOOL WINAPI ImeSelect(HIMC hIMC, BOOL fSelect)
 {
 	shared_ptr<WeaselIME> p = WeaselIME::GetInstance(hIMC);
+    if (!p)
+        return FALSE;
 	HRESULT hr = p->OnIMESelect(fSelect);
 	if (FAILED(hr))
 		return FALSE;
@@ -79,6 +83,8 @@ BOOL WINAPI ImeSetActiveContext(HIMC hIMC, BOOL fFocus)
 	if (hIMC)
 	{	
 		shared_ptr<WeaselIME> p = WeaselIME::GetInstance(hIMC);
+        if (!p)
+            return FALSE;
 		HRESULT hr = p->OnIMEFocus(fFocus);
         if (FAILED(hr))
 			return FALSE;
