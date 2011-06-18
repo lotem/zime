@@ -12,6 +12,9 @@ MaxKeywordLength = 6
 MappingRule = ^(.+)5$ \1
 # 無調號兼表四聲
 FuzzyRule = ^(.+)\d$ \1
+# 簡拼
+#FuzzyRule = ^([bcdfghjklmnpqrstvwxyz]).+$ \1
+#FuzzyRule = ^([zcs]h).+$ \1
 # 將聲調移動到主要元音後
 SpellingRule = ([aoeiuv])([rn]|ng)([1234]) \1\3\2
 SpellingRule = ([aoe])([iou])([1234]) \1\3\2
@@ -43,7 +46,16 @@ SpellingRule = v2 ǘ
 SpellingRule = v3 ǚ
 SpellingRule = v4 ǜ
 SpellingRule = v ü
+# 拼式糾錯
+AlternativeRule = ([aeiou])ng$ \1gn
+AlternativeRule = ([iu])(a)([ion]|ng)$ \2\1\3
+AlternativeRule = ao$ oa$
+AlternativeRule = (.)([aeiou])ng$ \1n\2g
+AlternativeRule = ong$ on
+# 音節切分
 SplitRule = [ng]$ ^[aeiou]
+SplitRule = [aeiou]$ ^g$
+SplitRule = o$ ^a$
 #DivideRule = ^.*[iu]([āáǎàaēéěèeōóǒòo].*)$ \1
 TransformRule = ([aeio])gn \1ng
 TransformRule = ([aoeiuv])([rn]|ng)([-;/<^>\\1-5]) \1\3\2
@@ -85,52 +97,43 @@ TransformRule = v3 ǚ
 TransformRule = v4 ǜ
 TransformRule = v5 ü
 TransformRule = (?<=[jqxynlzcs])v ü
-# punctuation
+# 標點
 Punct = , ，
 Punct = . 。
 Punct = < 《 〈
 Punct = > 》 〉
-Punct = / ／
+Punct = / / ／
 Punct = ? ？
 Punct = ; ；
 Punct = : ：
 Punct = ' ‘~’
 Punct = " “~”
 Punct = \ 、
-Punct = | ｜
-Punct = ` ｀
-Punct = ~ ～
+Punct = | | ｜
+Punct = ` ` ｀
+Punct = ~ ~ ～
 Punct = ! ！
-Punct = @ ＠
-Punct = # ＃
-Punct = % ％
-Punct = $ ￥
+Punct = @ @ ＠
+Punct = # # ＃
+Punct = % % ％
+Punct = $ $ ￥
 Punct = ^ ……
-Punct = & ＆
-Punct = * ＊
+Punct = & & ＆
+Punct = * * ＊
 Punct = ( （
 Punct = ) ）
-Punct = - －
+Punct = - - －
 Punct = _ ——
-Punct = + ＋
-Punct = = ＝
+Punct = + + ＋
+Punct = = = ＝
 Punct = [ 「 【 ［
 Punct = ] 」 】 ］
 Punct = { 『 ｛
 Punct = } 』 ｝
-# edit keys
+# 編輯鍵
 EditKey = bracketleft Left
 EditKey = bracketright Right
 EditKey = minus Page_Up
 EditKey = equal Page_Down
 EditKey = comma Page_Up
 EditKey = period Page_Down
-EditKey = I Up
-EditKey = K Down
-EditKey = J Left
-EditKey = L Right
-EditKey = U Page_Up
-EditKey = O Page_Down
-EditKey = H Home
-EditKey = N End
-EditKey = P Escape
