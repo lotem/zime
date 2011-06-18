@@ -9,8 +9,7 @@ const WCHAR WEASEL[] = L"小狼毫";
 const WCHAR WEASEL_IME_FILE[] = L"weasel.ime";
 
 HINSTANCE WeaselIME::s_hModule = 0;
-map<HIMC, shared_ptr<WeaselIME> > WeaselIME::s_instances;
-boost::mutex WeaselIME::s_mutex;
+HIMCMap WeaselIME::s_instances;
 
 static bool launch_server()
 {
@@ -180,7 +179,11 @@ BOOL WeaselIME::IsIMEMessage(UINT uMsg)
 
 shared_ptr<WeaselIME> WeaselIME::GetInstance(HIMC hIMC)
 {
-	boost::lock_guard<boost::mutex> lock(s_mutex);
+    if (!s_instances.is_valid())
+    {
+        return shared_ptr<WeaselIME>();
+    }
+    boost::lock_guard<boost::mutex> lock(s_instances.get_mutex());
 	shared_ptr<WeaselIME>& p = s_instances[hIMC];
 	if (!p)
 	{
@@ -191,12 +194,12 @@ shared_ptr<WeaselIME> WeaselIME::GetInstance(HIMC hIMC)
 
 void WeaselIME::Cleanup()
 {
-	boost::lock_guard<boost::mutex> lock(s_mutex);
 	for (map<HIMC, shared_ptr<WeaselIME> >::const_iterator i = s_instances.begin(); i != s_instances.end(); ++i)
 	{
 		shared_ptr<WeaselIME> p = i->second;
 		p->OnIMESelect(FALSE);
 	}
+	boost::lock_guard<boost::mutex> lock(s_instances.get_mutex());
 	s_instances.clear();
 }
 

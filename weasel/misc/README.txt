@@ -1,7 +1,7 @@
 ﻿# 說明書
 
 ----------------------------------------------------------
-【小狼毫】0.3
+【小狼毫】0.3b
 
 基於 中州韻輸入法引擎／Rime Input Method Engine
 
@@ -16,13 +16,13 @@ http://code.google.com/p/rimeime/
 
 自 Rime 網站下載頁取得：
 
-weasel-0.3-installer.exe
+weasel-0.3b-installer.exe
 
 Rime.py 核心算法依賴於 Python 腳本語言。如果系統中已裝有
 Python 2.7 for Windows（注意，Python 3.x 不適用）
 可下載更輕巧的、不包含 Python 安裝程序的綠色安裝包：
 
-weasel-0.3.zip
+weasel-0.3b.zip
 
 若採用綠色安裝方式，請從以上壓縮包中取得 weasel 文件夾，
 執行其中的安裝腳本：
@@ -78,6 +78,11 @@ weasel-0.3.zip
 
 ----------------------------------------------------------
 更新日誌
+
+小狼毫 0.3b
+  * 修復BUG：應用程序進程退出時發生死鎖
+  * 關閉大詞庫的簡拼索引，完善對不完整拼式的解析
+  * 修復在單個詞組內移動光標不靈的BUG
 
 小狼毫 0.3
   * 核心算法升級為 Rime.py 0.3，仍兼容 ibus-zime 3.x 數據庫

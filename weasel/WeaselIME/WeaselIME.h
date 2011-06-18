@@ -25,6 +25,20 @@ typedef struct _tagTRANSMSG {
 	LPARAM lParam;
 } TRANSMSG, *LPTRANSMSG;
 
+class WeaselIME;
+
+class HIMCMap : public std::map<HIMC, boost::shared_ptr<WeaselIME> >
+{
+public:
+    HIMCMap() : m_valid(true) {}
+    ~HIMCMap() { m_valid = false; }
+    boost::mutex& get_mutex() { return m_mutex; }
+    bool is_valid() const { return m_valid; }
+private:
+    bool m_valid;
+	boost::mutex m_mutex;
+};
+
 class WeaselIME
 {
 public:
@@ -61,8 +75,7 @@ private:
 
 private:
 	static HINSTANCE s_hModule;
-	static std::map<HIMC, boost::shared_ptr<WeaselIME> > s_instances;
-	static boost::mutex s_mutex;
+	static HIMCMap s_instances;
 	HIMC m_hIMC;
 	bool m_alwaysDetectCaretPos;
 	weasel::UI m_ui;
