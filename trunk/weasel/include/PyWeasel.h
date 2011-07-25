@@ -2,18 +2,14 @@
 #include <WeaselIPC.h>
 #include <boost/python.hpp>
 
-struct PyWeasel
-{
-	static void Initialize();
-	static void Finalize();
-};
-
 class PyWeaselHandler :
 	public weasel::RequestHandler
 {
 public:
 	PyWeaselHandler();
 	virtual ~PyWeaselHandler();
+	virtual void Initialize();
+	virtual void Finalize();
 	virtual UINT FindSession(UINT sessionID);
 	virtual UINT AddSession(LPWSTR buffer);
 	virtual UINT RemoveSession(UINT sessionID);

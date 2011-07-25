@@ -36,16 +36,18 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lp
 		return 0;
 	}
 
-	// 初始化Python解释器, 有必要在PyWeaselHandler创建之前调用
-	PyWeasel::Initialize();
-
-	weasel::Server server(new PyWeaselHandler());
-	if (!server.Start())
-		return -1;
-
-	int nRet = server.Run();
-
-	PyWeasel::Finalize();
+	int nRet = 0;
+	try
+	{
+		weasel::Server server(new PyWeaselHandler);
+		if (!server.Start())
+			return -1;
+		nRet = server.Run();
+	}
+	catch (...)
+	{
+		// bad luck...
+	}
 
 	_Module.Term();
 	::CoUninitialize();
