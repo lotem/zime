@@ -23,8 +23,10 @@ void test_pyweasel()
 {
 	WCHAR buffer[WEASEL_IPC_BUFFER_LENGTH];
 
-	weasel::RequestHandler* handler = new PyWeaselHandler();
+	weasel::RequestHandler* handler = new PyWeaselHandler;
 	BOOST_ASSERT(handler);
+
+	handler->Initialize();
 
 	memset(buffer, 0, sizeof(buffer));
 	// 成功创建会话，返回sessionID；失败返回0
@@ -45,17 +47,14 @@ void test_pyweasel()
 	// 成功销毁会话，返回sessionID；失败返回0
 	BOOST_ASSERT(sessionID == handler->RemoveSession(sessionID));
 
+	handler->Finalize();
+
 	delete handler;
 }
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-  // 初始化Python解释器, 有必要在PyWeaselHandler创建之前调用
-  PyWeasel::Initialize();
-
   test_pyweasel();
-  
-  PyWeasel::Finalize();
   
   system("pause");
   return boost::report_errors();

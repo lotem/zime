@@ -71,12 +71,25 @@ int ServerImpl::Start()
 	
 	m_pSharedMemory.reset(new SharedMemory());
 
+	if (m_pHandler)
+		m_pHandler->Initialize();
+
 	HWND hwnd = Create(NULL);
 	return (int)hwnd;
 }
 
 int ServerImpl::Stop()
 {
+	if (m_pHandler)
+	{
+		m_pHandler->Initialize();
+		m_pHandler.reset();
+	}
+	if (m_pSharedMemory)
+	{
+		m_pSharedMemory.reset();
+	}
+
 	if (!IsWindow())
 	{
 		return 0;

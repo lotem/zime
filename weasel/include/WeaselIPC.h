@@ -43,6 +43,8 @@ namespace weasel
 	{
 		RequestHandler() {}
 		virtual ~RequestHandler() {}
+		virtual void Initialize() {}
+		virtual void Finalize() {}
 		virtual UINT FindSession(UINT sessionID) { return 0; }
 		virtual UINT AddSession(LPWSTR buffer) { return 0; }
 		virtual UINT RemoveSession(UINT sessionID) { return 0; }

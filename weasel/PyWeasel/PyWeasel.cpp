@@ -1,19 +1,18 @@
 #include "stdafx.h"
 #include <PyWeasel.h>
 
-void PyWeasel::Initialize()
+PyWeaselHandler::PyWeaselHandler()
+{
+}
+
+PyWeaselHandler::~PyWeaselHandler()
+{
+}
+
+void PyWeaselHandler::Initialize()
 {
 	// 初始化Python解释器, 有必要在PyWeaselHandler创建之前调用
 	Py_Initialize();
-}
-
-void PyWeasel::Finalize()
-{
-	// Boost.Python doesn't support Py_Finalize yet, so don't call it!
-}
-
-PyWeaselHandler::PyWeaselHandler()
-{
 	try
 	{
 		python::object module = python::import("engine.weasel");
@@ -30,7 +29,7 @@ PyWeaselHandler::PyWeaselHandler()
 	}
 }
 
-PyWeaselHandler::~PyWeaselHandler()
+void PyWeaselHandler::Finalize()
 {
 	try
 	{
@@ -39,6 +38,7 @@ PyWeaselHandler::~PyWeaselHandler()
 	catch (python::error_already_set e)
 	{
 	}
+	// Boost.Python doesn't support Py_Finalize yet, so don't call it!
 }
 
 UINT PyWeaselHandler::FindSession(UINT sessionID)
