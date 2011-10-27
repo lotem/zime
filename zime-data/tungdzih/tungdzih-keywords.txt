@@ -1325,7 +1325,8 @@ giu	渠
 giu	瞿
 giu	衢
 giuaan	圈
-giuan	倦
+giuan	權
+giuan	拳
 giuann	倦
 giue	瘸
 giuec	劇
