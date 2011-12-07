@@ -28,6 +28,9 @@ AlternativeRule = oe(k|ng)$ eo\1
 #TransformRule = ([a-z]+)[$] \g<1>4
 #TransformRule = ([a-z]+)[%] \g<1>5
 #TransformRule = ([a-z]+)[\^] \g<1>6
+# 音節切分
+SplitRule = ^m$ ^[aeiouy]
+SplitRule = ^ng$ ^[aeiouy]
 # 標點
 Punct = , ，
 Punct = . 。
