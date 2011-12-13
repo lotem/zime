@@ -728,6 +728,7 @@ lo	㗊
 lo	卵
 lo	螺
 lo	囉
+lo	攞
 lo	羅
 me	乜
 me	咩
